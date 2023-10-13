@@ -6,11 +6,6 @@ authors = ["Lei.Lee <codeplus@qq.com>"]
 license = "MIT"
 packages = [{ include = "app" }]
 
-[[tool.poetry.source]]
-name = "DGame"
-url = "http://pypi.dy/simple/"
-priority = "default"
-
 [tool.poetry.dependencies]
 python = "^3.11"
 aiofiles = "^23.2.1"
