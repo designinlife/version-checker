@@ -1,0 +1,34 @@
+.DS_Store
+.flaskenv
+*.pyc
+*.pyo
+.idea/
+.venv/
+.vscode/
+.build/
+.tox/
+.cache/
+.pytest_cache/
+env/
+env*
+dist/
+build/
+node_modules/
+*.egg
+*.egg-info/
+tests/
+*~
+tmp
+*.exe
+.*.swp
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+*,cover
+
+# For current project.
+poetry.lock
+test*.py
+.env.dev
