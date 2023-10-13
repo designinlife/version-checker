@@ -148,3 +148,11 @@ tag_pattern = "^openssl-(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
 download_urls = [
     "https://www.openssl.org/source/openssl-{version}.tar.gz",
 ]
+
+[[gh]]
+name = "php"
+repo = "php/php-src"
+tag_pattern = "^php-(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+download_urls = [
+    "https://www.php.net/distributions/php-{version}.tar.gz",
+]
