@@ -23,7 +23,9 @@ jobs:
           python-version: '3.12'
 
       - name: Check Python version
-        run: python -V
+        run: |
+          python -V
+          pip install poetry
 
       - name: Generate JSON Data Files
         run: |
