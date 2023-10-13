@@ -35,7 +35,7 @@ jobs:
         uses: EndBug/add-and-commit@v9
         with:
           fetch: false
-          message: 'Update README.md'
+          message: 'Update'
           add: 'data'
           author_name: 'L.STONE'
           author_email: 'codeplus@qq.com'
