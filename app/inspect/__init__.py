@@ -1,4 +1,5 @@
 import asyncio
+import json
 import os
 import re
 from pathlib import Path
@@ -21,6 +22,21 @@ class GithubInspect:
         self.cfg = cfg
 
         asyncio.run(self._main(items))
+
+        self._combine_json()
+
+    def _combine_json(self):
+        p = Path(self.cfg.workdir).joinpath('data')
+
+        data = []
+
+        for file in p.glob('*.json'):
+            if file.name != 'all.json':
+                with open(file, 'r', encoding='utf-8') as f:
+                    data.append(json.loads(f.read()))
+
+        with open(Path(self.cfg.workdir).joinpath('data').joinpath('all.json'), 'w', encoding='utf-8') as f:
+            f.write(json.dumps(data, ensure_ascii=True, separators=(',', ':')))
 
     def _create_download_links(self, version: str, links: List[str]) -> List[str]:
         r = []
