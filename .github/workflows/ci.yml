@@ -1,0 +1,39 @@
+name: 'Generate JSON'
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: "0 0 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Check Python version
+        run: python -V
+
+      - name: Generate JSON Data Files
+        run: |
+          make
+
+      - name: Commit
+        uses: EndBug/add-and-commit@v9
+        with:
+          fetch: false
+          message: 'Update README.md'
+          add: 'data'
+          author_name: 'L.STONE'
+          author_email: 'codeplus@qq.com'
