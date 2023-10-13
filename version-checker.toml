@@ -140,3 +140,11 @@ tag_pattern = "^gd-(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
 download_urls = [
     "https://github.com/libgd/libgd/releases/download/gd-{version}/libgd-{version}.tar.gz",
 ]
+
+[[gh]]
+name = "openssl"
+repo = "openssl/openssl"
+tag_pattern = "^openssl-(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+download_urls = [
+    "https://www.openssl.org/source/openssl-{version}.tar.gz",
+]
