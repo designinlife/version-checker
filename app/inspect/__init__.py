@@ -77,13 +77,15 @@ class GithubInspect:
                                 semver_versions.append(ver)
 
                         latest_version = max(semver_versions, key=Version.parse)
+                        download_links = self._create_download_links(latest_version, queue_item.download_urls)
 
                         logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(semver_versions)}')
-                        logger.debug('DOWNLOADS: {}'.format('\n'.join(self._create_download_links(latest_version, queue_item.download_urls))))
+                        logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
 
                         # 创建输出结果对象并写入 JSON 数据文件。
                         result = OutputResult(name=queue_item.name, url=f'https://github.com/{queue_item.repo}', latest=latest_version,
                                               versions=semver_versions, commit_sha=commit_sha_arr[latest_version],
+                                              download_urls=download_links,
                                               created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
 
                         output_path = Path(self.cfg.workdir).joinpath('data')
