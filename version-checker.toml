@@ -6,9 +6,9 @@ name = "git"
 repo = "git/git"
 tag_pattern = "^v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
 download_urls = [
-    "http://kernel.org/pub/software/scm/git/git-{version}.tar.gz",
-    "http://kernel.org/pub/software/scm/git/git-htmldocs-{version}.tar.gz",
-    "http://kernel.org/pub/software/scm/git/git-manpages-{version}.tar.gz",
+    "https://kernel.org/pub/software/scm/git/git-{version}.tar.gz",
+    "https://kernel.org/pub/software/scm/git/git-htmldocs-{version}.tar.gz",
+    "https://kernel.org/pub/software/scm/git/git-manpages-{version}.tar.gz",
 ]
 
 [[gh]]
