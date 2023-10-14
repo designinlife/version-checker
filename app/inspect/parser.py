@@ -62,7 +62,6 @@ class GithubParser(Parser):
 
             async with aiohttp.ClientSession(timeout=timeout) as session:
                 async with session.get(f'https://api.github.com/repos/{item.repo}/{api_by}', headers=headers, proxy=os.environ.get('PROXY')) as resp:
-                    logger.debug(f'{resp.text()}')
                     logger.debug(f'{resp.url} | STATUS: {resp.status}')
 
                     data_r = await resp.json()
@@ -101,7 +100,7 @@ class GithubParser(Parser):
                     async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
                         await f.write(result)
 
-                    # logger.info(f'<{item.name}> data information has been generated.')
+                    logger.info(f'<{item.name}> data information has been generated.')
 
 
 class PHPReleasesParser(Parser):
@@ -142,4 +141,4 @@ class PHPReleasesParser(Parser):
                         async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
                             await f.write(result)
 
-                        # logger.info(f'<{item.name}> data information has been generated.')
+                        logger.info(f'<{item.name}> data information has been generated.')
