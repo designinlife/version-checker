@@ -8,16 +8,25 @@ class AppSettingBase(BaseModel):
     version: Optional[str] = None
 
 
-class AppSettingGithubItem(BaseModel):
+class AppSettingSoftItem(BaseModel):
     name: str = Field()
+    download_urls: List[str] = Field(default_factory=list)
+    parser: Optional[str] = Field(default='GithubParser')
+
+
+class AppSettingGitHubItem(AppSettingSoftItem):
     repo: str = Field()
     tag_pattern: Optional[str] = Field(default=None)
-    download_urls: List[str] = Field(default_factory=list)
+    by_release: bool = Field(default=False)
+
+
+class AppSettingPHPItem(AppSettingSoftItem):
+    major: List[int] = Field(default_factory=list)
 
 
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
-    github: List[AppSettingGithubItem] = Field(alias='gh', default_factory=list)
+    softwares: List[AppSettingGitHubItem | AppSettingPHPItem] = Field(alias='softwares', default_factory=list)
 
 
 class Configuration(BaseModel):

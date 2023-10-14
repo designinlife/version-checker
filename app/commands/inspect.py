@@ -3,7 +3,7 @@ from click.core import Context
 from loguru import logger
 
 from app.core.config import Configuration
-from app.inspect import GithubInspect
+from app.inspect import InspectRunner
 
 
 @click.command('inspect', help='Batch check the latest release version number of the software.')
@@ -12,5 +12,5 @@ from app.inspect import GithubInspect
 def cli(ctx: Context, cfg: Configuration):
     logger.info(f'app cli inspect called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})')
 
-    insp = GithubInspect()
-    insp.start(cfg, cfg.settings.github)
+    ir = InspectRunner(ctx, cfg)
+    ir.start()
