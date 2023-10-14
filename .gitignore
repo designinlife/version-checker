@@ -9,6 +9,7 @@
 .tox/
 .cache/
 .pytest_cache/
+__pycache__/
 env/
 env*
 dist/
