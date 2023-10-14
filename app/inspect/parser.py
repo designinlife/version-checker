@@ -58,7 +58,7 @@ class GithubParser(Parser):
                     'X-GitHub-Api-Version': '2022-11-28',
                 }
 
-                logger.info('Using GITHUB_TOKEN env.')
+                logger.debug('Using GITHUB_TOKEN env.')
 
             async with aiohttp.ClientSession(timeout=timeout) as session:
                 async with session.get(f'https://api.github.com/repos/{item.repo}/{api_by}', headers=headers, proxy=os.environ.get('PROXY')) as resp:
