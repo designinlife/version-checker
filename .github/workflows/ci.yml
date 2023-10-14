@@ -6,7 +6,6 @@ on:
   #   - cron: "0 0 * * *"
 
 permissions:
-  actions: read
   contents: write
 
 jobs:
@@ -31,6 +30,8 @@ jobs:
       - name: Generate JSON Data Files
         run: |
           make
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit
         uses: EndBug/add-and-commit@v9
