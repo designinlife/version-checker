@@ -12,6 +12,7 @@ class AppSettingSoftItem(BaseModel):
     name: str = Field()
     download_urls: List[str] = Field(default_factory=list)
     parser: Optional[str] = Field(default='GithubParser')
+    category: bool = Field(default=False)
 
 
 class AppSettingGitHubItem(AppSettingSoftItem):

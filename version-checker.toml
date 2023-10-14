@@ -145,6 +145,7 @@ download_urls = [
 name = "openssl"
 repo = "openssl/openssl"
 by_release = true
+category = true
 tag_pattern = "^OpenSSL (?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?P<suffix>[a-z])?$"
 download_urls = [
     "https://www.openssl.org/source/openssl-{version}.tar.gz",

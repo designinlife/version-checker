@@ -1,3 +1,4 @@
+import functools
 import os
 import re
 from abc import ABC, abstractmethod
@@ -11,6 +12,7 @@ from loguru import logger
 from semver import Version
 
 from app.core.config import AppSettingSoftItem, AppSettingGitHubItem, AppSettingPHPItem, Configuration, OutputResult
+from app.core.version import VersionParser
 
 
 class Parser(ABC):
@@ -75,7 +77,10 @@ class GithubParser(Parser):
                         m = exp_r.match(v['name'])
 
                         if m:
-                            ver = '{}.{}.{}'.format(m.group('major'), m.group('minor'), m.group('patch'))
+                            if m.group('suffix'):
+                                ver = '{}.{}.{}{}'.format(m.group('major'), m.group('minor'), m.group('patch'), m.group('suffix'))
+                            else:
+                                ver = '{}.{}.{}'.format(m.group('major'), m.group('minor'), m.group('patch'))
 
                             if 'commit' in v:
                                 commit_sha_arr[ver] = v['commit']['sha']
@@ -84,27 +89,58 @@ class GithubParser(Parser):
 
                             semver_versions.append(ver)
 
-                    latest_version = max(semver_versions, key=Version.parse)
-                    download_links = Parser.create_download_links(latest_version, item.download_urls)
+                    vpsr = VersionParser(item.tag_pattern)
 
-                    logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(semver_versions)}')
-                    logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
+                    if item.category:
+                        # 按 <major>.<minor> 规则将版本分类为字典对象, 例如 OpenSSL 的版本划分为: 1.0, 1.1, 3.0, 3.1, 3.2 ...
+                        vpsr2 = VersionParser(pattern=r'^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(?P<suffix>[a-z])?$')
+                        dict_versions = vpsr2.semver_split(semver_versions)
 
-                    # 创建输出结果对象并写入 JSON 数据文件。
-                    result = OutputResult(name=item.name, url=f'https://github.com/{item.repo}', latest=latest_version,
-                                          versions=semver_versions, commit_sha=commit_sha_arr[latest_version],
-                                          download_urls=download_links,
-                                          created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
+                        for m, n in dict_versions.items():
+                            latest_version = vpsr2.latest(n)
+                            download_links = Parser.create_download_links(latest_version, item.download_urls)
 
-                    output_path = Path(cfg.workdir).joinpath('data')
+                            logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(n)}')
+                            logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
 
-                    if not output_path.is_dir():
-                        output_path.mkdir(parents=True, exist_ok=True)
+                            # 创建输出结果对象并写入 JSON 数据文件。
+                            result = OutputResult(name=f'{item.name}-{m}', url=f'https://github.com/{item.repo}', latest=latest_version,
+                                                  versions=n,
+                                                  download_urls=download_links,
+                                                  created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
 
-                    async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
-                        await f.write(result)
+                            output_path = Path(cfg.workdir).joinpath('data')
 
-                    logger.info(f'<{item.name}> data information has been generated.')
+                            if not output_path.is_dir():
+                                output_path.mkdir(parents=True, exist_ok=True)
+
+                            async with aiofiles.open(output_path.joinpath(f'{item.name}-{m}.json'), 'w', encoding='utf-8') as f:
+                                await f.write(result)
+
+                            logger.info(f'<{item.name}-{m}> data information has been generated.')
+                    else:
+                        # latest_version = max(semver_versions, key=Version.parse)
+                        latest_version = vpsr.latest(semver_versions)
+                        download_links = Parser.create_download_links(latest_version, item.download_urls)
+
+                        logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(semver_versions)}')
+                        logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
+
+                        # 创建输出结果对象并写入 JSON 数据文件。
+                        result = OutputResult(name=item.name, url=f'https://github.com/{item.repo}', latest=latest_version,
+                                              versions=semver_versions, commit_sha=commit_sha_arr[latest_version],
+                                              download_urls=download_links,
+                                              created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
+
+                        output_path = Path(cfg.workdir).joinpath('data')
+
+                        if not output_path.is_dir():
+                            output_path.mkdir(parents=True, exist_ok=True)
+
+                        async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
+                            await f.write(result)
+
+                        logger.info(f'<{item.name}> data information has been generated.')
 
 
 class PHPReleasesParser(Parser):

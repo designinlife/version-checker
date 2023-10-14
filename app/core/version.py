@@ -40,7 +40,7 @@ class VersionParser:
             if self._suffix:
                 v1 = (int(m.group('major')), int(m.group('minor')), int(m.group('patch')), m.group('suffix'))
             else:
-                v1 = (int(m.group('major')), int(m.group('minor')), int(m.group('patch')), m.group('suffix'))
+                v1 = (int(m.group('major')), int(m.group('minor')), int(m.group('patch')))
         else:
             if self._suffix:
                 v1 = (0, 0, 0, None)
@@ -52,7 +52,7 @@ class VersionParser:
             if self._suffix:
                 v2 = (int(m.group('major')), int(m.group('minor')), int(m.group('patch')), m.group('suffix'))
             else:
-                v2 = (int(m.group('major')), int(m.group('minor')), int(m.group('patch')), m.group('suffix'))
+                v2 = (int(m.group('major')), int(m.group('minor')), int(m.group('patch')))
         else:
             if self._suffix:
                 v2 = (0, 0, 0, None)
