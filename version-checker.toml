@@ -153,7 +153,8 @@ download_urls = [
 
 [[softwares]]
 name = "php"
-major = [8]
+major = [7, 8]
+category = true
 parser = "PHPReleasesParser"
 tag_pattern = "^(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
 download_urls = [
