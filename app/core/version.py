@@ -15,6 +15,22 @@ class VersionParser:
     def latest(self, items: List[str]):
         return max(items, key=functools.cmp_to_key(self.cmp_version))
 
+    def semver_split(self, items: List[str]) -> dict[str, list]:
+        r = dict()
+
+        for v in items:
+            m = self.exp.match(v)
+
+            if m:
+                key = '{}.{}'.format(m.group('major'), m.group('minor'))
+
+                if key not in r:
+                    r[key] = []
+
+                r[key].append(v)
+
+        return r
+
     def cmp_version(self, x: str, y: str) -> int:
         if x == y:
             return 0
