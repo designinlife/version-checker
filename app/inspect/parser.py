@@ -48,7 +48,11 @@ class GithubParser(Parser):
             api_by = 'releases' if item.by_release else 'tags'
 
             async with aiohttp.ClientSession(timeout=timeout) as session:
-                async with session.get(f'https://api.github.com/repos/{item.repo}/{api_by}', proxy=os.environ.get('PROXY')) as resp:
+                async with session.get(f'https://api.github.com/repos/{item.repo}/{api_by}', headers={
+                    'Accept': 'application/vnd.github+json',
+                    'Authorization': f'Bearer {os.environ.get("GITHUB_TOKEN")}',
+                    'X-GitHub-Api-Version': '2022-11-28',
+                }, proxy=os.environ.get('PROXY')) as resp:
                     logger.debug(f'{resp.url} | STATUS: {resp.status}')
 
                     data_r = await resp.json()
