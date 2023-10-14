@@ -47,12 +47,22 @@ class GithubParser(Parser):
             timeout = aiohttp.ClientTimeout(total=15)
             api_by = 'releases' if item.by_release else 'tags'
 
-            async with aiohttp.ClientSession(timeout=timeout) as session:
-                async with session.get(f'https://api.github.com/repos/{item.repo}/{api_by}', headers={
+            github_token = os.environ.get("GITHUB_TOKEN")
+
+            headers = {}
+
+            if github_token:
+                headers = {
                     'Accept': 'application/vnd.github+json',
-                    'Authorization': f'Bearer {os.environ.get("GITHUB_TOKEN")}',
+                    'Authorization': f'Bearer {github_token}',
                     'X-GitHub-Api-Version': '2022-11-28',
-                }, proxy=os.environ.get('PROXY')) as resp:
+                }
+
+                logger.info('Using GITHUB_TOKEN env.')
+
+            async with aiohttp.ClientSession(timeout=timeout) as session:
+                async with session.get(f'https://api.github.com/repos/{item.repo}/{api_by}', headers=headers, proxy=os.environ.get('PROXY')) as resp:
+                    logger.debug(f'{resp.text()}')
                     logger.debug(f'{resp.url} | STATUS: {resp.status}')
 
                     data_r = await resp.json()
