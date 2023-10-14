@@ -16,7 +16,6 @@ build/
 node_modules/
 *.egg
 *.egg-info/
-tests/
 *~
 tmp
 *.exe
