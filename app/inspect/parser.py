@@ -77,7 +77,11 @@ class GithubParser(Parser):
                         if m:
                             ver = '{}.{}.{}'.format(m.group('major'), m.group('minor'), m.group('patch'))
 
-                            commit_sha_arr[ver] = v['commit']['sha']
+                            if 'commit' in v:
+                                commit_sha_arr[ver] = v['commit']['sha']
+                            else:
+                                commit_sha_arr[ver] = None
+
                             semver_versions.append(ver)
 
                     latest_version = max(semver_versions, key=Version.parse)
