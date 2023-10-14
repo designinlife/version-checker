@@ -13,9 +13,7 @@ class VersionParser:
             self._suffix = True
 
     def latest(self, items: List[str]):
-        items.sort(key=functools.cmp_to_key(self.cmp_version))
-
-        return items[0]
+        return max(items, key=functools.cmp_to_key(self.cmp_version))
 
     def cmp_version(self, x: str, y: str) -> int:
         if x == y:
