@@ -147,6 +147,8 @@ class PHPReleasesParser(Parser):
     @staticmethod
     async def parse(cfg: Configuration, item: AppSettingSoftItem):
         if isinstance(item, AppSettingPHPItem):
+            semver_versions = []
+
             timeout = aiohttp.ClientTimeout(total=15)
 
             async with aiohttp.ClientSession(timeout=timeout) as session:
@@ -161,24 +163,29 @@ class PHPReleasesParser(Parser):
                         for k, _ in data_r.items():
                             semver_versions.append(k)
 
-                        latest_version = max(semver_versions, key=Version.parse)
-                        download_links = Parser.create_download_links(latest_version, item.download_urls)
+            vpsr = VersionParser(pattern=r'^(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$')
 
-                        logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(semver_versions)}')
-                        logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
+            dict_versions = vpsr.semver_split(semver_versions)
 
-                        # 创建输出结果对象并写入 JSON 数据文件。
-                        result = OutputResult(name=item.name, url='https://github.com/php/php-src', latest=latest_version,
-                                              versions=semver_versions,
-                                              download_urls=download_links,
-                                              created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
+            for m, n in dict_versions.items():
+                latest_version = vpsr.latest(n)
+                download_links = Parser.create_download_links(latest_version, item.download_urls)
 
-                        output_path = Path(cfg.workdir).joinpath('data')
+                logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(n)}')
+                logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
 
-                        if not output_path.is_dir():
-                            output_path.mkdir(parents=True, exist_ok=True)
+                # 创建输出结果对象并写入 JSON 数据文件。
+                result = OutputResult(name=f'{item.name}-{m}', url=f'https://github.com/{item.repo}', latest=latest_version,
+                                      versions=n,
+                                      download_urls=download_links,
+                                      created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
 
-                        async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
-                            await f.write(result)
+                output_path = Path(cfg.workdir).joinpath('data')
 
-                        logger.info(f'<{item.name}> data information has been generated.')
+                if not output_path.is_dir():
+                    output_path.mkdir(parents=True, exist_ok=True)
+
+                async with aiofiles.open(output_path.joinpath(f'{item.name}-{m}.json'), 'w', encoding='utf-8') as f:
+                    await f.write(result)
+
+                logger.info(f'<{item.name}-{m}> data information has been generated.')
