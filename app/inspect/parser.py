@@ -92,7 +92,6 @@ class GithubParser(Parser):
                     vpsr = VersionParser(item.tag_pattern)
 
                     if item.category:
-                        logger.debug(f'{semver_versions}')
                         # 按 <major>.<minor> 规则将版本分类为字典对象, 例如 OpenSSL 的版本划分为: 1.0, 1.1, 3.0, 3.1, 3.2 ...
                         vpsr2 = VersionParser(pattern=r'^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(?P<suffix>[a-z])?$')
                         dict_versions = vpsr2.semver_split(semver_versions)
