@@ -77,7 +77,7 @@ class GithubParser(Parser):
                         m = exp_r.match(v['name'])
 
                         if m:
-                            if m.group('suffix'):
+                            if 'suffix' in m.groupdict():
                                 ver = '{}.{}.{}{}'.format(m.group('major'), m.group('minor'), m.group('patch'), m.group('suffix'))
                             else:
                                 ver = '{}.{}.{}'.format(m.group('major'), m.group('minor'), m.group('patch'))
