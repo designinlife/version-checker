@@ -177,7 +177,7 @@ class PHPReleasesParser(Parser):
                 logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
 
                 # 创建输出结果对象并写入 JSON 数据文件。
-                result = OutputResult(name=f'{item.name}-{m}', url=f'https://github.com/{item.repo}', latest=latest_version,
+                result = OutputResult(name=f'{item.name}-{m}', url=f'https://github.com/php/php-src', latest=latest_version,
                                       versions=n,
                                       download_urls=download_links,
                                       created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
