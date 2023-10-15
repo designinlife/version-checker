@@ -152,6 +152,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "corretto-11"
+repo = "corretto/corretto-11"
+by_release = true
+tag_pattern = "^(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<suffix>\\d+)(\\.\\d+)?$"
+download_urls = [
+    "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-linux-x64.tar.gz",
+    "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-windows-x64.msi",
+    "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-windows-x64-jdk.zip",
+]
+
+[[softwares]]
 name = "php"
 major = [7, 8]
 category = true

@@ -20,6 +20,12 @@ class RegexpTestCase(unittest.TestCase):
 
         self.assertEqual(ps.latest(v1), '1.12.0')
 
+        ps = VersionParser(pattern=r'^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<suffix>\d+)$')
+
+        v2 = ['11.0.18.10.1', '11.0.20.9.1', '11.0.18.11.1']
+
+        self.assertEqual(ps.latest(v2), '11.0.20.9.1')
+
     def test_semver_split(self):
         ps = VersionParser(pattern=r'^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(?P<suffix>[a-z])?$')
 
