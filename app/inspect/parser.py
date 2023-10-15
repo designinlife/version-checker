@@ -163,7 +163,7 @@ class PHPReleasesParser(Parser):
 
             logger.info(f'PHP: {semver_versions}')
 
-            vpsr = VersionParser(pattern=r'^(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$')
+            vpsr = VersionParser(pattern=r'^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)$')
 
             dict_versions = vpsr.semver_split(semver_versions)
 
