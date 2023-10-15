@@ -161,13 +161,13 @@ class PHPReleasesParser(Parser):
                         for k, _ in data_r.items():
                             semver_versions.append(k)
 
-            logger.info(f'PHP: {semver_versions}')
+            logger.debug(f'PHP: {semver_versions}')
 
             vpsr = VersionParser(pattern=r'^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)$')
 
             dict_versions = vpsr.semver_split(semver_versions)
 
-            logger.info(f'PHP Split: {dict_versions}')
+            logger.debug(f'PHP Split: {dict_versions}')
 
             for m, n in dict_versions.items():
                 latest_version = vpsr.latest(n)
