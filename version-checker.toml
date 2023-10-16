@@ -226,3 +226,13 @@ download_urls = [
     "https://go.dev/dl/go{version}.windows-amd64.msi",
     "https://go.dev/dl/go{version}.windows-amd64.msi",
 ]
+
+[[softwares]]
+name = "redis"
+repo = "redis/redis"
+by_release = true
+category = true
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://download.redis.io/releases/redis-{version}.tar.gz",
+]
