@@ -199,7 +199,7 @@ download_urls = [
 name = "python"
 repo = "python/cpython"
 category = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://www.python.org/ftp/python/{version}/Python-{version}.tgz",
     "https://www.python.org/ftp/python/{version}/Python-{version}.tar.xz",
