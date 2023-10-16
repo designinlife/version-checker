@@ -214,3 +214,15 @@ tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))
 download_urls = [
     "https://www.php.net/distributions/php-{version}.tar.gz",
 ]
+
+[[softwares]]
+name = "go"
+category = true
+parser = "GoReleasesParser"
+tag_pattern = "^go(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://go.dev/dl/go{version}.src.tar.gz",
+    "https://go.dev/dl/go{version}.linux-amd64.tar.gz",
+    "https://go.dev/dl/go{version}.windows-amd64.msi",
+    "https://go.dev/dl/go{version}.windows-amd64.msi",
+]

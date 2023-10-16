@@ -26,6 +26,10 @@ class AppSettingPHPItem(AppSettingSoftItem):
     tag_pattern: Optional[str] = Field(default=None)
 
 
+class AppSettingGoItem(AppSettingSoftItem):
+    tag_pattern: Optional[str] = Field(default=None)
+
+
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[AppSettingGitHubItem | AppSettingPHPItem] = Field(alias='softwares', default_factory=list)
