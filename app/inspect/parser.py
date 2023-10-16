@@ -25,6 +25,8 @@ class Parser(ABC):
             return GithubParser()
         elif name == 'PHPReleasesParser':
             return PHPReleasesParser()
+        elif name == 'GoReleasesParser':
+            return GoReleasesParser()
         else:
             return None
 

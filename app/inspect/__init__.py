@@ -1,7 +1,7 @@
 import asyncio
 import json
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 from click.core import Context
 from loguru import logger
@@ -15,8 +15,8 @@ class InspectRunner:
         self.ctx = ctx
         self.cfg = cfg
 
-    def start(self):
-        asyncio.run(self._main(self.cfg.settings.softwares))
+    def start(self, filter_name: Optional[str] = None):
+        asyncio.run(self._main(self.cfg.settings.softwares, filter_name))
 
         self._combine_json()
 
@@ -49,13 +49,14 @@ class InspectRunner:
 
             # print(f'{name} has slept for {sleep_for:.2f} seconds')
 
-    async def _main(self, items: List[AppSettingSoftItem]):
+    async def _main(self, items: List[AppSettingSoftItem], filter_name: Optional[str] = None):
         # Create a queue that we will use to store our "workload".
         queue = asyncio.Queue()
 
         # Generate random timings and put them into the queue.
         for v in items:
-            queue.put_nowait(v)
+            if not filter_name or filter_name == v.name:
+                queue.put_nowait(v)
 
         # Create three worker tasks to process the queue concurrently.
         tasks = []
