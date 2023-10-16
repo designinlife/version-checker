@@ -1,4 +1,3 @@
-import functools
 import os
 import re
 from abc import ABC, abstractmethod
@@ -9,7 +8,6 @@ import aiofiles
 import aiohttp
 import arrow
 from loguru import logger
-from semver import Version
 
 from app.core.config import AppSettingSoftItem, AppSettingGitHubItem, AppSettingPHPItem, Configuration, OutputResult
 from app.core.version import VersionParser
@@ -77,27 +75,27 @@ class GithubParser(Parser):
                         m = exp_r.match(v['name'])
 
                         if m:
-                            if 'suffix' in m.groupdict() and m.group('suffix') is not None:
-                                ver = '{}.{}.{}{}'.format(m.group('major'), m.group('minor'), m.group('patch'), m.group('suffix'))
-                            else:
-                                ver = '{}.{}.{}'.format(m.group('major'), m.group('minor'), m.group('patch'))
+                            # if 'suffix' in m.groupdict() and m.group('suffix') is not None:
+                            #     ver = '{}.{}.{}{}'.format(m.group('major'), m.group('minor'), m.group('patch'), m.group('suffix'))
+                            # else:
+                            #     ver = '{}.{}.{}'.format(m.group('major'), m.group('minor'), m.group('patch'))
+                            ver = m.group('version')
 
                             if 'commit' in v:
                                 commit_sha_arr[ver] = v['commit']['sha']
                             else:
                                 commit_sha_arr[ver] = None
 
-                            semver_versions.append(ver)
+                            semver_versions.append(v['name'])
 
                     vpsr = VersionParser(item.tag_pattern)
 
                     if item.category:
                         # 按 <major>.<minor> 规则将版本分类为字典对象, 例如 OpenSSL 的版本划分为: 1.0, 1.1, 3.0, 3.1, 3.2 ...
-                        vpsr2 = VersionParser(pattern=r'^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(?P<suffix>[a-z])?$')
-                        dict_versions = vpsr2.semver_split(semver_versions)
+                        dict_versions = vpsr.semver_split(semver_versions)
 
                         for m, n in dict_versions.items():
-                            latest_version = vpsr2.latest(n)
+                            latest_version = vpsr.latest(n)
                             download_links = Parser.create_download_links(latest_version, item.download_urls)
 
                             logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(n)}')
@@ -163,7 +161,7 @@ class PHPReleasesParser(Parser):
 
             logger.debug(f'PHP: {semver_versions}')
 
-            vpsr = VersionParser(pattern=r'^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)$')
+            vpsr = VersionParser(pattern=item.tag_pattern)
 
             dict_versions = vpsr.semver_split(semver_versions)
 

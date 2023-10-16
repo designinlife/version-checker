@@ -1,19 +1,28 @@
 import functools
 import re
-from typing import List
+from typing import List, Optional
+
+
+def is_numeric(s: Optional[str]):
+    if not s:
+        return False
+
+    m = re.match(r'^\d+$', s)
+    if m:
+        return True
+    return False
 
 
 class VersionParser:
-    _suffix: bool = False
-
     def __init__(self, pattern: str):
         self.exp = re.compile(pattern)
 
-        if '{suffix}' in pattern:
-            self._suffix = True
-
     def latest(self, items: List[str]):
-        return max(items, key=functools.cmp_to_key(self.cmp_version))
+        m = self.exp.match(max(items, key=functools.cmp_to_key(self.cmp_version)))
+        if m:
+            return m.group('version')
+
+        return None
 
     def semver_split(self, items: List[str]) -> dict[str, list]:
         r = dict()
@@ -27,6 +36,7 @@ class VersionParser:
                 if key not in r:
                     r[key] = []
 
+                # r[key].append(m.group('version'))
                 r[key].append(v)
 
         return r
@@ -35,33 +45,37 @@ class VersionParser:
         if x == y:
             return 0
 
+        v1 = None
+        v2 = None
+
         m = self.exp.match(x)
         if m:
-            if self._suffix:
-                v1 = (int(m.group('major')), int(m.group('minor')), int(m.group('patch')), m.group('suffix'))
-            else:
-                v1 = (int(m.group('major')), int(m.group('minor')), int(m.group('patch')))
-        else:
-            if self._suffix:
-                v1 = (0, 0, 0, None)
-            else:
-                v1 = (0, 0, 0)
+            v1 = m.groups()[1:]
+            kk = []
+            for n in v1:
+                if is_numeric(n):
+                    kk.append(int(n))
+                else:
+                    kk.append(n)
+            v1 = tuple(kk)
 
         m = self.exp.match(y)
         if m:
-            if self._suffix:
-                v2 = (int(m.group('major')), int(m.group('minor')), int(m.group('patch')), m.group('suffix'))
-            else:
-                v2 = (int(m.group('major')), int(m.group('minor')), int(m.group('patch')))
-        else:
-            if self._suffix:
-                v2 = (0, 0, 0, None)
-            else:
-                v2 = (0, 0, 0)
+            v2 = m.groups()[1:]
+            kk = []
+            for n in v2:
+                if is_numeric(n):
+                    kk.append(int(n))
+                else:
+                    kk.append(n)
+            v2 = tuple(kk)
 
-        if v1 > v2:
-            return 1
-        elif v1 < v2:
-            return -1
+        if v1 and v2:
+            if v1 > v2:
+                return 1
+            elif v1 < v2:
+                return -1
+            else:
+                return 0
         else:
-            return 0
+            return -1

@@ -4,7 +4,7 @@ title = "Software version checker"
 [[softwares]]
 name = "git"
 repo = "git/git"
-tag_pattern = "^v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://kernel.org/pub/software/scm/git/git-{version}.tar.gz",
     "https://kernel.org/pub/software/scm/git/git-htmldocs-{version}.tar.gz",
@@ -14,7 +14,7 @@ download_urls = [
 [[softwares]]
 name = "clash_for_windows_pkg"
 repo = "Fndroid/clash_for_windows_pkg"
-tag_pattern = "^(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/Fndroid/clash_for_windows_pkg/releases/download/{version}/Clash.for.Windows-{version}-win.7z",
     "https://github.com/Fndroid/clash_for_windows_pkg/releases/download/{version}/Clash.for.Windows.Setup.{version}.exe",
@@ -23,7 +23,7 @@ download_urls = [
 [[softwares]]
 name = "clash"
 repo = "Dreamacro/clash"
-tag_pattern = "^v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-linux-amd64-v{version}.gz",
     "https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-linux-amd64-v3-v{version}.gz",
@@ -34,7 +34,7 @@ download_urls = [
 [[softwares]]
 name = "ClashForAndroid"
 repo = "Kr328/ClashForAndroid"
-tag_pattern = "^v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-foss-arm64-v8a-release.apk",
     "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-foss-armeabi-v7a-release.apk",
@@ -51,7 +51,7 @@ download_urls = [
 [[softwares]]
 name = "Clash.Meta"
 repo = "MetaCubeX/Clash.Meta"
-tag_pattern = "^v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/MetaCubeX/Clash.Meta/releases/download/v{version}/clash.meta-linux-amd64-v{version}.gz",
     "https://github.com/MetaCubeX/Clash.Meta/releases/download/v{version}/clash.meta-linux-amd64-cgo-v{version}.gz",
@@ -62,7 +62,7 @@ download_urls = [
 [[softwares]]
 name = "compose"
 repo = "docker/compose"
-tag_pattern = "^v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/docker/compose/releases/download/v{version}/docker-compose-linux-x86_64",
     "https://github.com/docker/compose/releases/download/v{version}/docker-compose-windows-x86_64.exe",
@@ -71,7 +71,7 @@ download_urls = [
 [[softwares]]
 name = "graalvm-ce-builds"
 repo = "graalvm/graalvm-ce-builds"
-tag_pattern = "^vm-ce-(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^vm-ce-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-{version}/graalvm-community-jdk-{version}_linux-x64_bin.tar.gz",
     "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-{version}/graalvm-community-jdk-{version}_windows-x64_bin.zip",
@@ -80,7 +80,7 @@ download_urls = [
 [[softwares]]
 name = "stonedb"
 repo = "stoneatom/stonedb"
-tag_pattern = "^5\\.7-v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)-GA$"
+tag_pattern = "^5\\.7-v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))-GA$"
 download_urls = [
     "https://github.com/stoneatom/stonedb/releases/download/5.7-v{version}-GA/stonedb-ce-5.7-v{version}.el7.x86_64.rpm",
     "https://github.com/stoneatom/stonedb/releases/download/5.7-v{version}-GA/stonedb-ce-5.7_v{version}.ubuntu.amd64.deb",
@@ -90,7 +90,7 @@ download_urls = [
 [[softwares]]
 name = "libmaxminddb"
 repo = "maxmind/libmaxminddb"
-tag_pattern = "^(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/maxmind/libmaxminddb/releases/download/{version}/libmaxminddb-{version}.tar.gz",
 ]
@@ -98,7 +98,7 @@ download_urls = [
 [[softwares]]
 name = "geoipupdate"
 repo = "maxmind/geoipupdate"
-tag_pattern = "^v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/maxmind/geoipupdate/releases/download/v{version}/geoipupdate_{version}_linux_amd64.deb",
     "https://github.com/maxmind/geoipupdate/releases/download/v{version}/geoipupdate_{version}_linux_amd64.rpm",
@@ -109,7 +109,7 @@ download_urls = [
 [[softwares]]
 name = "upx"
 repo = "upx/upx"
-tag_pattern = "^v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-amd64_linux.tar.xz",
     "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-arm64_linux.tar.xz",
@@ -128,7 +128,7 @@ download_urls = [
 [[softwares]]
 name = "curl"
 repo = "curl/curl"
-tag_pattern = "^curl-(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+)$"
+tag_pattern = "^curl-(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
 download_urls = [
     "https://curl.se/download/curl-{version}.tar.gz",
 ]
@@ -136,7 +136,7 @@ download_urls = [
 [[softwares]]
 name = "libgd"
 repo = "libgd/libgd"
-tag_pattern = "^gd-(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^gd-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/libgd/libgd/releases/download/gd-{version}/libgd-{version}.tar.gz",
 ]
@@ -146,7 +146,7 @@ name = "openssl"
 repo = "openssl/openssl"
 by_release = true
 category = true
-tag_pattern = "^OpenSSL (?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?P<suffix>[a-z])?$"
+tag_pattern = "^OpenSSL (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?P<suffix>[a-z])?)$"
 download_urls = [
     "https://www.openssl.org/source/openssl-{version}.tar.gz",
 ]
@@ -155,7 +155,7 @@ download_urls = [
 name = "corretto-11"
 repo = "corretto/corretto-11"
 by_release = true
-tag_pattern = "^(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<suffix>\\d+)(\\.\\d+)?$"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<suffix>\\d+)(\\.\\d+)?)$"
 download_urls = [
     "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-linux-x64.tar.gz",
     "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-windows-x64.msi",
@@ -167,7 +167,7 @@ name = "php"
 major = [7, 8]
 category = true
 parser = "PHPReleasesParser"
-tag_pattern = "^(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)$"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://www.php.net/distributions/php-{version}.tar.gz",
 ]

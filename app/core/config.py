@@ -1,6 +1,6 @@
 from typing import Optional, List
 
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field
 
 
 class AppSettingBase(BaseModel):
@@ -23,6 +23,7 @@ class AppSettingGitHubItem(AppSettingSoftItem):
 
 class AppSettingPHPItem(AppSettingSoftItem):
     major: List[int] = Field(default_factory=list)
+    tag_pattern: Optional[str] = Field(default=None)
 
 
 class AppSetting(BaseModel):

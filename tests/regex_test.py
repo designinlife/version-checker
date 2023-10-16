@@ -1,5 +1,6 @@
 import re
 import unittest
+
 from app.core.version import VersionParser
 
 
@@ -14,22 +15,23 @@ class RegexpTestCase(unittest.TestCase):
         self.assertEqual(m.group('suffix'), 'w')
 
     def test_version_latest(self):
-        ps = VersionParser(pattern=r'^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(?P<suffix>[a-z])?$')
+        ps = VersionParser(pattern=r'^OpenSSL (?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(?P<suffix>[a-z])?)$')
 
-        v1 = ['1.1.1b', '1.1.1a', '1.1.1c', '1.1.1w', '1.1.1v', '1.1.2t', '1.2.0', '1.12.0']
+        v1 = ['OpenSSL 1.1.1b', 'OpenSSL 1.1.1a', 'OpenSSL 1.1.1c', 'OpenSSL 1.1.1w', 'OpenSSL 1.1.1v', 'OpenSSL 1.1.2t', 'OpenSSL 1.2.0', 'OpenSSL 1.12.0']
 
         self.assertEqual(ps.latest(v1), '1.12.0')
 
-        ps = VersionParser(pattern=r'^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<suffix>\d+)$')
+        ps = VersionParser(pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(\d+)\.(\d+))$')
 
         v2 = ['11.0.18.10.1', '11.0.20.9.1', '11.0.18.11.1']
 
         self.assertEqual(ps.latest(v2), '11.0.20.9.1')
 
     def test_semver_split(self):
-        ps = VersionParser(pattern=r'^(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(?P<suffix>[a-z])?$')
+        ps = VersionParser(pattern=r'^OpenSSL (?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)(?P<suffix>[a-z])?)$')
 
-        v1 = ['1.1.1b', '1.1.1a', '1.1.1c', '1.1.1w', '1.1.1v', '3.0.1', '3.0.0', '3.0.10', '3.1.2', '3.1.1', '3.1.3', '3.1.4', '3.2.0']
+        v1 = ['OpenSSL 1.1.1b', 'OpenSSL 1.1.1a', 'OpenSSL 1.1.1c', 'OpenSSL 1.1.1w', 'OpenSSL 1.1.1v', 'OpenSSL 3.0.1', 'OpenSSL 3.0.0', 'OpenSSL 3.0.10',
+              'OpenSSL 3.1.2', 'OpenSSL 3.1.1', 'OpenSSL 3.1.3', 'OpenSSL 3.1.4', 'OpenSSL 3.2.0']
 
         v2 = ps.semver_split(v1)
 
