@@ -20,9 +20,18 @@ class VersionParser:
     def latest(self, items: List[str]):
         m = self.exp.match(max(items, key=functools.cmp_to_key(self.cmp_version)))
         if m:
-            return m.group('version')
+            return m.group('version').replace('_', '.')
 
         return None
+
+    def clean(self, items: List[str]) -> List[str]:
+        r = []
+        for v in items:
+            m = self.exp.match(v)
+            if m:
+                r.append(m.group('version').replace('_', '.'))
+
+        return r
 
     def semver_split(self, items: List[str]) -> dict[str, list]:
         r = dict()

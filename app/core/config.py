@@ -49,6 +49,5 @@ class OutputResult(BaseModel):
     url: str
     latest: str
     versions: List[str] = Field(default_factory=list)
-    commit_sha: Optional[str] = Field(default=None)
     download_urls: List[str] = Field(default_factory=list)
     created_time: str
