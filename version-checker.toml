@@ -246,3 +246,11 @@ tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))
 download_urls = [
     "https://getcomposer.org/download/{version}/composer.phar",
 ]
+
+[[softwares]]
+name = "httpd"
+repo = "apache/httpd"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://dlcdn.apache.org/httpd/httpd-{version}.tar.gz",
+]
