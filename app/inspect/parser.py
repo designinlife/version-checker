@@ -61,7 +61,8 @@ class GithubParser(Parser):
                 logger.debug('Using GITHUB_TOKEN env.')
 
             async with aiohttp.ClientSession(timeout=timeout) as session:
-                async with session.get(f'https://api.github.com/repos/{item.repo}/{api_by}', headers=headers, proxy=os.environ.get('PROXY')) as resp:
+                async with session.get(f'https://api.github.com/repos/{item.repo}/{api_by}?per_page=100', headers=headers,
+                                       proxy=os.environ.get('PROXY')) as resp:
                     logger.debug(f'{resp.url} | STATUS: {resp.status}')
 
                     data_r = await resp.json()
