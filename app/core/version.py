@@ -64,6 +64,8 @@ class VersionParser:
             for n in v1:
                 if is_numeric(n):
                     kk.append(int(n))
+                elif n is None:
+                    kk.append(0)
                 else:
                     kk.append(n)
             v1 = tuple(kk)
@@ -75,6 +77,8 @@ class VersionParser:
             for n in v2:
                 if is_numeric(n):
                     kk.append(int(n))
+                elif n is None:
+                    kk.append(0)
                 else:
                     kk.append(n)
             v2 = tuple(kk)
