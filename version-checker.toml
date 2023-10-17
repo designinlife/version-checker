@@ -516,3 +516,12 @@ tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))
 download_urls = [
     "https://cdn.mysql.com/Downloads/MySQL-{major}.{minor}/mysql-{version}-winx64.zip",
 ]
+
+[[softwares]]
+name = "flume"
+parser = "apache-flume"
+url = "https://flume.apache.org/releases/index.html"
+download_urls = [
+    "https://dlcdn.apache.org/flume/{version}/apache-flume-{version}-src.tar.gz",
+    "https://dlcdn.apache.org/flume/{version}/apache-flume-{version}-bin.tar.gz",
+]
