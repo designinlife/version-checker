@@ -7,7 +7,7 @@ from click.core import Context
 from loguru import logger
 
 from app.core.config import Configuration, AppSettingSoftItem
-from app.inspect.parser import GithubParser, Parser
+from app.inspect.parser import Parser
 
 
 class InspectRunner:
@@ -40,7 +40,7 @@ class InspectRunner:
 
             try:
                 if isinstance(queue_item, AppSettingSoftItem):
-                    await Parser.create(queue_item.parser).parse(self.cfg, queue_item)
+                    await Parser.create(queue_item.parser, self.cfg, queue_item)
             except Exception as exc:
                 logger.exception('{}'.format(exc))
 
