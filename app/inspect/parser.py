@@ -1,17 +1,11 @@
 import importlib
 import re
-from abc import ABC, abstractmethod
 from typing import List
 
 from app.core.config import AppSettingSoftItem, Configuration
 
 
-class Parser(ABC):
-    @staticmethod
-    @abstractmethod
-    def parse(cfg: Configuration, item: AppSettingSoftItem):
-        pass
-
+class Parser:
     @staticmethod
     async def create(name: str, cfg: Configuration, item: AppSettingSoftItem):
         module = importlib.import_module('app.parser.%s' % name.replace('-', '_'))
