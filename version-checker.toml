@@ -257,6 +257,27 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "kafka"
+repo = "apache/kafka"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://downloads.apache.org/kafka/{version}/kafka-{version}-src.tgz",
+    "https://downloads.apache.org/kafka/{version}/kafka_2.12-{version}.tgz",
+    "https://downloads.apache.org/kafka/{version}/kafka_2.13-{version}.tgz",
+]
+
+[[softwares]]
+name = "doris"
+repo = "apache/doris"
+by_release = true
+category = true
+tag_pattern = "^Apache Doris (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.?(\\d+)?) Release$"
+download_urls = [
+    "https://downloads.apache.org/doris/{major}.{minor}/{version}/apache-doris-{version}-src.tar.gz",
+    "https://apache-doris-releases.oss-accelerate.aliyuncs.com/apache-doris-{version}-bin-x64.tar.gz",
+]
+
+[[softwares]]
 name = "nginx"
 repo = "nginx/nginx"
 tag_pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
@@ -331,17 +352,6 @@ tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))
 download_urls = [
     "https://github.com/greenplum-db/gpdb/releases/download/{version}/{version}-src-full.tar.gz",
     "https://github.com/greenplum-db/gpdb/releases/download/{version}/open-source-greenplum-db-{version}-el8-x86_64.rpm",
-]
-
-[[softwares]]
-name = "doris"
-repo = "apache/doris"
-by_release = true
-category = true
-tag_pattern = "^Apache Doris (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.?(\\d+)?) Release$"
-download_urls = [
-    "https://downloads.apache.org/doris/{major}.{minor}/{version}/apache-doris-{version}-src.tar.gz",
-    "https://apache-doris-releases.oss-accelerate.aliyuncs.com/apache-doris-{version}-bin-x64.tar.gz",
 ]
 
 [[softwares]]
