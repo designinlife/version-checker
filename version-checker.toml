@@ -396,8 +396,59 @@ download_urls = [
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-windows-x86_64.zip",
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-linux-x86_64.tar.gz",
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-x86_64.rpm",
-    "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-8.10.3-x86_64.rpm",
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-amd64.deb",
+    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-{version}-windows-x86_64.zip",
+    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-{version}-linux-x86_64.tar.gz",
+    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-{version}-x86_64.rpm",
+    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-{version}-amd64.deb",
+]
+
+[[softwares]]
+name = "logstash"
+repo = "elastic/logstash"
+by_release = true
+tag_pattern = "^Logstash (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://artifacts.elastic.co/downloads/logstash/logstash-{version}-linux-x86_64.tar.gz",
+    "https://artifacts.elastic.co/downloads/logstash/logstash-{version}-windows-x86_64.zip",
+    "https://artifacts.elastic.co/downloads/logstash/logstash-{version}-amd64.deb",
+    "https://artifacts.elastic.co/downloads/logstash/logstash-{version}-x86_64.rpm",
+    "https://artifacts.elastic.co/downloads/logstash/logstash-oss-{version}-linux-x86_64.tar.gz",
+    "https://artifacts.elastic.co/downloads/logstash/logstash-oss-{version}-windows-x86_64.zip",
+    "https://artifacts.elastic.co/downloads/logstash/logstash-oss-{version}-amd64.deb",
+    "https://artifacts.elastic.co/downloads/logstash/logstash-oss-{version}-x86_64.rpm",
+]
+
+[[softwares]]
+name = "kibana"
+repo = "elastic/kibana"
+by_release = true
+tag_pattern = "^Kibana (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://artifacts.elastic.co/downloads/kibana/kibana-{version}-windows-x86_64.zip",
+    "https://artifacts.elastic.co/downloads/kibana/kibana-{version}-linux-x86_64.tar.gz",
+    "https://artifacts.elastic.co/downloads/kibana/kibana-{version}-x86_64.rpm",
+    "https://artifacts.elastic.co/downloads/kibana/kibana-{version}-amd64.deb",
+    "https://artifacts.elastic.co/downloads/kibana/kibana-oss-{version}-windows-x86_64.zip",
+    "https://artifacts.elastic.co/downloads/kibana/kibana-oss-{version}-linux-x86_64.tar.gz",
+    "https://artifacts.elastic.co/downloads/kibana/kibana-oss-{version}-x86_64.rpm",
+    "https://artifacts.elastic.co/downloads/kibana/kibana-oss-{version}-amd64.deb",
+]
+
+[[softwares]]
+name = "beats"
+repo = "elastic/beats"
+by_release = true
+tag_pattern = "^Beats (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{version}-amd64.deb",
+    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{version}-x86_64.rpm",
+    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{version}-linux-x86_64.tar.gz",
+    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{version}-windows-x86_64.zip",
+    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-{version}-amd64.deb",
+    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-{version}-x86_64.rpm",
+    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-{version}-linux-x86_64.tar.gz",
+    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-{version}-windows-x86_64.zip",
 ]
 
 [[softwares]]
