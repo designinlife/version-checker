@@ -388,6 +388,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "elasticsearch"
+repo = "elastic/elasticsearch"
+by_release = true
+tag_pattern = "^Elasticsearch (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-windows-x86_64.zip",
+    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-linux-x86_64.tar.gz",
+    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-x86_64.rpm",
+    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-amd64.deb",
+]
+
+[[softwares]]
 name = "haproxy"
 parser = "docker-library"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
