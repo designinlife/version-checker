@@ -537,3 +537,14 @@ download_urls = [
     "https://download.sonatype.com/nexus/3/nexus-{version}-unix.tar.gz",
     "https://download.sonatype.com/nexus/3/nexus-{version}-win64.zip",
 ]
+
+[[softwares]]
+name = "nodejs"
+parser = "nodejs"
+url = "https://nodejs.org/download/release/index.json"
+download_urls = [
+    "https://nodejs.org/dist/v{version}/node-v{version}-x64.msi",
+    "https://nodejs.org/dist/v{version}/node-v{version}-win-x64.zip",
+    "https://nodejs.org/dist/v{version}/node-v{version}-linux-x64.tar.xz",
+    "https://nodejs.org/dist/v{version}/node-v{version}.tar.gz",
+]
