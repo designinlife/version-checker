@@ -271,3 +271,13 @@ tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)
 download_urls = [
     "https://github.com/ansible/ansible/archive/refs/tags/v{version}.tar.gz",
 ]
+
+[[softwares]]
+name = "coredns"
+repo = "coredns/coredns"
+by_release = true
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/coredns/coredns/releases/download/v{version}/coredns_{version}_linux_amd64.tgz",
+    "https://github.com/coredns/coredns/releases/download/v{version}/coredns_{version}_windows_amd64.tgz",
+]
