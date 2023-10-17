@@ -1,3 +1,4 @@
+import json
 import os
 import re
 from abc import ABC, abstractmethod
@@ -21,12 +22,14 @@ class Parser(ABC):
 
     @staticmethod
     def create(name: str):
-        if name == 'GithubParser':
+        if name == 'gh':
             return GithubParser()
-        elif name == 'PHPReleasesParser':
+        elif name == 'php':
             return PHPReleasesParser()
-        elif name == 'GoReleasesParser':
+        elif name == 'go':
             return GoReleasesParser()
+        elif name == 'docker-library':
+            return DockerLibraryParser()
         else:
             return None
 
@@ -228,6 +231,57 @@ class GoReleasesParser(Parser):
 
                 # 创建输出结果对象并写入 JSON 数据文件。
                 result = OutputResult(name=f'{item.name}-{m}', url=f'https://go.dev/dl/', latest=latest_version,
+                                      versions=n,
+                                      download_urls=download_links,
+                                      created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
+
+                output_path = Path(cfg.workdir).joinpath('data')
+
+                if not output_path.is_dir():
+                    output_path.mkdir(parents=True, exist_ok=True)
+
+                async with aiofiles.open(output_path.joinpath(f'{item.name}-{m}.json'), 'w', encoding='utf-8') as f:
+                    await f.write(result)
+
+                logger.info(f'<{item.name}-{m}> data information has been generated.')
+
+
+class DockerLibraryParser(Parser):
+    @staticmethod
+    async def parse(cfg: Configuration, item: AppSettingSoftItem):
+        if isinstance(item, AppSettingSoftItem):
+            semver_versions = []
+
+            timeout = aiohttp.ClientTimeout(total=15)
+
+            async with aiohttp.ClientSession(timeout=timeout) as session:
+                async with session.get(f'https://raw.githubusercontent.com/docker-library/{item.name}/master/versions.json',
+                                       proxy=os.environ.get('PROXY')) as resp:
+                    logger.debug(f'{resp.url} | STATUS: {resp.status}')
+
+                    data_s = await resp.text()
+                    data_r = json.loads(data_s)
+
+                    for _, v in data_r.items():
+                        semver_versions.append(v['version'])
+
+            logger.debug(f'docker-library: {semver_versions}')
+
+            vpsr = VersionParser(pattern=item.tag_pattern)
+
+            dict_versions = vpsr.semver_split(semver_versions)
+
+            logger.debug(f'docker-library Split: {dict_versions}')
+
+            for m, n in dict_versions.items():
+                latest_version = vpsr.latest(n)
+                download_links = Parser.create_download_links(latest_version, item.download_urls)
+
+                logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(n)}')
+                logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
+
+                # 创建输出结果对象并写入 JSON 数据文件。
+                result = OutputResult(name=f'{item.name}-{m}', url=f'https://github.com/', latest=latest_version,
                                       versions=n,
                                       download_urls=download_links,
                                       created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
