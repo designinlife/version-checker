@@ -25,6 +25,9 @@ class Parser:
         if m:
             grpdict = m.groupdict()
 
+            if 'version' not in grpdict:
+                grpdict['version'] = version
+
             for v in links:
                 # r.append(v.format(version=version, major=m.group('major'), minor=m.group('minor')))
                 r.append(v.format(**grpdict))
