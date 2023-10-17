@@ -335,3 +335,11 @@ download_urls = [
     "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-windows-{version}.zip",
     "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server_{version}-1_all.deb",
 ]
+
+[[softwares]]
+name = "mysql"
+parser = "docker-library"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://cdn.mysql.com/Downloads/MySQL-{major}.{minor}/mysql-{version}-winx64.zip",
+]
