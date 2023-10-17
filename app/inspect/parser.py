@@ -12,15 +12,22 @@ class Parser:
         await module.parse(cfg, item)
 
     @staticmethod
-    def create_download_links(version: str, links: List[str]) -> List[str]:
+    def create_download_links(version: str, links: List[str], pattern: str = None) -> List[str]:
         r = []
 
-        exp = re.compile(r'^(?P<major>\d+)\.(?P<minor>\d+)(.*)$')
+        if pattern:
+            exp = re.compile(pattern)
+        else:
+            exp = re.compile(r'^(?P<major>\d+)\.(?P<minor>\d+)(.*)$')
+
         m = exp.match(version)
 
         if m:
+            grpdict = m.groupdict()
+
             for v in links:
-                r.append(v.format(version=version, major=m.group('major'), minor=m.group('minor')))
+                # r.append(v.format(version=version, major=m.group('major'), minor=m.group('minor')))
+                r.append(v.format(**grpdict))
         else:
             for v in links:
                 r.append(v.format(version=version))

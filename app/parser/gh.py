@@ -91,7 +91,7 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
             else:
                 # latest_version = max(semver_versions, key=Version.parse)
                 latest_version = vpsr.latest(semver_versions)
-                download_links = Parser.create_download_links(latest_version, item.download_urls)
+                download_links = Parser.create_download_links(latest_version, item.download_urls, item.ver_pattern)
 
                 logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(semver_versions)}')
                 logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))

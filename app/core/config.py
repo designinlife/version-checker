@@ -15,6 +15,7 @@ class AppSettingSoftItem(BaseModel):
     parser: Optional[str] = Field(default='gh')
     category: bool = Field(default=False)
     tag_pattern: Optional[str] = Field(default=None)
+    ver_pattern: Optional[str] = Field(default=None)
     url: Optional[str] = Field(default=None)
     major: List[int] = Field(default_factory=list)
     by_release: bool = Field(default=False)
