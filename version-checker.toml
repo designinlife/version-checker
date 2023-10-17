@@ -396,7 +396,24 @@ download_urls = [
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-windows-x86_64.zip",
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-linux-x86_64.tar.gz",
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-x86_64.rpm",
+    "https://artifacts.elastic.co/downloads/beats/heartbeat/heartbeat-oss-8.10.3-x86_64.rpm",
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-amd64.deb",
+]
+
+[[softwares]]
+name = "opensearch"
+repo = "opensearch-project/OpenSearch"
+by_release = true
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://artifacts.opensearch.org/releases/bundle/opensearch/{version}/opensearch-{version}-linux-x64.tar.gz",
+    "https://artifacts.opensearch.org/releases/bundle/opensearch/{version}/opensearch-{version}-windows-x64.zip",
+    "https://artifacts.opensearch.org/releases/bundle/opensearch/{version}/opensearch-{version}-linux-x64.rpm",
+    "https://artifacts.opensearch.org/releases/bundle/opensearch/{version}/opensearch-{version}-linux-x64.deb",
+    "https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/{version}/opensearch-dashboards-{version}-linux-x64.tar.gz",
+    "https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/{version}/opensearch-dashboards-{version}-windows-x64.zip",
+    "https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/{version}/opensearch-dashboards-{version}-linux-x64.deb",
+    "https://artifacts.opensearch.org/releases/bundle/opensearch-dashboards/{version}/opensearch-dashboards-{version}-linux-x64.rpm",
 ]
 
 [[softwares]]
