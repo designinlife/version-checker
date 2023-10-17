@@ -309,3 +309,15 @@ tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))
 download_urls = [
     "https://www.haproxy.org/download/{major}.{minor}/src/haproxy-{version}.tar.gz",
 ]
+
+[[softwares]]
+name = "mongo"
+parser = "docker-library"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://fastdl.mongodb.org/src/mongodb-src-r{version}.tar.gz",
+    "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-{version}-signed.msi",
+    "https://repo.mongodb.org/yum/redhat/7/mongodb-org/{major}.{minor}/x86_64/RPMS/mongodb-org-server-{version}-1.el7.x86_64.rpm",
+    "https://repo.mongodb.org/yum/redhat/8/mongodb-org/{major}.{minor}/x86_64/RPMS/mongodb-org-server-{version}-1.el8.x86_64.rpm",
+    "https://repo.mongodb.org/yum/redhat/9/mongodb-org/{major}.{minor}/x86_64/RPMS/mongodb-org-server-{version}-1.el9.x86_64.rpm",
+]

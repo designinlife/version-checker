@@ -270,7 +270,8 @@ class DockerLibraryParser(Parser):
                     data_r = json.loads(data_s)
 
                     for _, v in data_r.items():
-                        semver_versions.append(v['version'])
+                        if v:
+                            semver_versions.append(v['version'])
 
             logger.debug(f'docker-library: {semver_versions}')
 
