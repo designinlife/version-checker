@@ -37,8 +37,15 @@ class Parser(ABC):
     def create_download_links(version: str, links: List[str]) -> List[str]:
         r = []
 
-        for v in links:
-            r.append(v.format(version=version))
+        exp = re.compile(r'^(?P<major>\d+)\.(?P<minor>\d+)(.*)$')
+        m = exp.match(version)
+
+        if m:
+            for v in links:
+                r.append(v.format(version=version, major=m.group('major'), minor=m.group('minor')))
+        else:
+            for v in links:
+                r.append(v.format(version=version))
 
         return r
 

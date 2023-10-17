@@ -307,5 +307,5 @@ name = "haproxy"
 parser = "docker-library"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
-    "https://www.haproxy.org/download/2.8/src/haproxy-2.8.3.tar.gz",
+    "https://www.haproxy.org/download/{major}.{minor}/src/haproxy-{version}.tar.gz",
 ]
