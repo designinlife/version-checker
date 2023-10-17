@@ -525,3 +525,12 @@ download_urls = [
     "https://dlcdn.apache.org/flume/{version}/apache-flume-{version}-src.tar.gz",
     "https://dlcdn.apache.org/flume/{version}/apache-flume-{version}-bin.tar.gz",
 ]
+
+[[softwares]]
+name = "nexus"
+parser = "sonatype-nexus"
+url = "https://raw.githubusercontent.com/sonatype/docker-nexus3/main/Dockerfile"
+download_urls = [
+    "https://download.sonatype.com/nexus/3/nexus-{version}-unix.tar.gz",
+    "https://download.sonatype.com/nexus/3/nexus-{version}-win64.zip",
+]

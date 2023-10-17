@@ -1,3 +1,4 @@
+import re
 import unittest
 import requests
 from bs4 import BeautifulSoup
@@ -14,6 +15,14 @@ class BeautifulSoupTestCase(unittest.TestCase):
 
         for v in other_a_elements:
             print(v.attrs['href'])
+
+    def test_sonatype_nexus3(self):
+        r = requests.get('https://raw.githubusercontent.com/sonatype/docker-nexus3/main/Dockerfile')
+        r.raise_for_status()
+
+        exp = re.compile(r'ARG NEXUS_VERSION=([0-9-.]+)')
+        m = exp.findall(r.text)
+        print(m)
 
 
 if __name__ == '__main__':
