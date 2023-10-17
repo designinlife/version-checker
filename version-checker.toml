@@ -321,3 +321,17 @@ download_urls = [
     "https://repo.mongodb.org/yum/redhat/8/mongodb-org/{major}.{minor}/x86_64/RPMS/mongodb-org-server-{version}-1.el8.x86_64.rpm",
     "https://repo.mongodb.org/yum/redhat/9/mongodb-org/{major}.{minor}/x86_64/RPMS/mongodb-org-server-{version}-1.el9.x86_64.rpm",
 ]
+
+[[softwares]]
+name = "rabbitmq"
+parser = "docker-library"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-generic-unix-{version}.tar.xz",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-{version}-1.el8.noarch.rpm",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-{version}.exe",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-{version}.tar.xz",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-generic-unix-latest-toolchain-{version}.tar.xz",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-windows-{version}.zip",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server_{version}-1_all.deb",
+]
