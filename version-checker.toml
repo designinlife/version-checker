@@ -303,6 +303,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "vagrant"
+repo = "hashicorp/vagrant"
+by_release = true
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://releases.hashicorp.com/vagrant/{version}/vagrant-{version}-1.x86_64.rpm",
+    "https://releases.hashicorp.com/vagrant/{version}/vagrant_{version}_windows_amd64.msi",
+]
+
+[[softwares]]
 name = "gpdb"
 repo = "greenplum-db/gpdb"
 by_release = true
