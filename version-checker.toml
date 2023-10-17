@@ -278,6 +278,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "maven"
+repo = "apache/maven"
+by_release = true
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://dlcdn.apache.org/maven/maven-{major}/{version}/source/apache-maven-{version}-src.tar.gz",
+    "https://dlcdn.apache.org/maven/maven-{major}/{version}/binaries/apache-maven-{version}-bin.tar.gz",
+    "https://dlcdn.apache.org/maven/maven-{major}/{version}/binaries/apache-maven-{version}-bin.zip",
+]
+
+[[softwares]]
 name = "nginx"
 repo = "nginx/nginx"
 tag_pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
