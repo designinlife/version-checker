@@ -1,5 +1,11 @@
 # Project version-checker
 
+## Usage
+
+```bash
+curl -sSL --fail https://raw.githubusercontent.com/designinlife/version-checker/main/data/all.json | jq
+```
+
 ## Add Source
 
 ```bash
