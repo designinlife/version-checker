@@ -486,6 +486,7 @@ download_urls = [
 [[softwares]]
 name = "mongo"
 parser = "docker-library"
+url = "https://www.mongodb.com/try/download/community"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://fastdl.mongodb.org/src/mongodb-src-r{version}.tar.gz",
@@ -498,6 +499,7 @@ download_urls = [
 [[softwares]]
 name = "rabbitmq"
 parser = "docker-library"
+url = "https://www.rabbitmq.com/download.html"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-generic-unix-{version}.tar.xz",
@@ -512,6 +514,7 @@ download_urls = [
 [[softwares]]
 name = "mysql"
 parser = "docker-library"
+url = "https://dev.mysql.com/downloads/"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://cdn.mysql.com/Downloads/MySQL-{major}.{minor}/mysql-{version}-winx64.zip",
