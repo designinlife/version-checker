@@ -303,6 +303,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "gpdb"
+repo = "greenplum-db/gpdb"
+by_release = true
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/greenplum-db/gpdb/releases/download/{version}/{version}-src-full.tar.gz",
+    "https://github.com/greenplum-db/gpdb/releases/download/{version}/open-source-greenplum-db-{version}-el8-x86_64.rpm",
+]
+
+[[softwares]]
 name = "haproxy"
 parser = "docker-library"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
