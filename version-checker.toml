@@ -548,3 +548,11 @@ download_urls = [
     "https://nodejs.org/dist/v{version}/node-v{version}-linux-x64.tar.xz",
     "https://nodejs.org/dist/v{version}/node-v{version}.tar.gz",
 ]
+
+[[softwares]]
+name = "ruby"
+parser = "ruby"
+url = "https://rubychangelog.com/versions-latest/"
+download_urls = [
+    "https://cache.ruby-lang.org/pub/ruby/{major}.{minor}/ruby-{version}.tar.gz",
+]

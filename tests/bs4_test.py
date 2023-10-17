@@ -24,6 +24,16 @@ class BeautifulSoupTestCase(unittest.TestCase):
         m = exp.findall(r.text)
         print(m)
 
+    def test_ruby(self):
+        r = requests.get('https://rubychangelog.com/versions-latest/')
+        r.raise_for_status()
+
+        soup = BeautifulSoup(r.text, 'html.parser')
+        items = soup.select('body > div.md-container > main > div > div.md-sidebar.md-sidebar--secondary > div > div > nav > ul > li > a')
+
+        for v in items:
+            print(v.text.strip())
+
 
 if __name__ == '__main__':
     unittest.main()
