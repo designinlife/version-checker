@@ -310,6 +310,14 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "njs"
+repo = "nginx/njs"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/nginx/njs/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "ansible"
 repo = "ansible/ansible"
 by_release = true
