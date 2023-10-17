@@ -313,6 +313,15 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "netdata"
+repo = "netdata/netdata"
+by_release = true
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/netdata/netdata/releases/download/v{version}/netdata-x86_64-v{version}.gz.run",
+]
+
+[[softwares]]
 name = "haproxy"
 parser = "docker-library"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
