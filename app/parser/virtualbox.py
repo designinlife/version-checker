@@ -26,22 +26,32 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
             data_s = await resp.text()
             soup = BeautifulSoup(data_s, 'html5lib')
 
-            elements = soup.select('h3.section')
-            download_link_ul = soup.select('div#wikipage ul', limit=1)[0]
-            download_link_elements = download_link_ul.select('li > a[class=ext-link]')
+            latest_element = soup.select_one('#wikipage > h3:nth-of-type(1)')
+            download_link_elements = soup.select('#wikipage > ul:nth-of-type(1) > li > a[class=ext-link]')
+            extension_pack_link_elements = soup.select('#wikipage > ul:nth-of-type(3) > li > a[class=ext-link]')
+            sdk_link_elements = soup.select('#wikipage > ul:nth-of-type(4) > li > a[class=ext-link]')
 
             exp_ver = re.compile(r'^VirtualBox (?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)) platform packages$', flags=re.I)
 
-            for el in elements:
-                m = exp_ver.match(el.text.strip())
+            m = exp_ver.match(latest_element.text.strip())
 
-                if m:
-                    latest_version = m.group('version')
-                    semver_versions.append(latest_version)
-                    break
+            if m:
+                latest_version = m.group('version')
+                semver_versions.append(latest_version)
 
+            # Installer
             if download_link_elements:
                 for v in download_link_elements:
+                    download_links.append(v.attrs['href'])
+
+            # Extension Pack
+            if extension_pack_link_elements:
+                for v in extension_pack_link_elements:
+                    download_links.append(v.attrs['href'])
+
+            # SDK
+            if sdk_link_elements:
+                for v in sdk_link_elements:
                     download_links.append(v.attrs['href'])
 
     # 创建输出结果对象并写入 JSON 数据文件。
