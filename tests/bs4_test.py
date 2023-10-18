@@ -1,10 +1,16 @@
+import asyncio
 import re
 import unittest
+
 import requests
 from bs4 import BeautifulSoup
 
+from app.core.config import AppSettingSoftItem
+from app.parser.virtualbox import parse as virtualbox_parse
+from base import MyTestCase
 
-class BeautifulSoupTestCase(unittest.TestCase):
+
+class BeautifulSoupTestCase(MyTestCase):
     def test_bs4_apache_flume(self):
         r = requests.get('https://flume.apache.org/releases/index.html')
         r.raise_for_status()
@@ -33,6 +39,9 @@ class BeautifulSoupTestCase(unittest.TestCase):
 
         for v in items:
             print(v.text.strip())
+
+    def test_virtualbox(self):
+        asyncio.run(virtualbox_parse(self.cfg, AppSettingSoftItem(name='virtualbox', url='https://www.virtualbox.org/wiki/Downloads')))
 
 
 if __name__ == '__main__':

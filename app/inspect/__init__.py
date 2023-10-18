@@ -38,11 +38,11 @@ class InspectRunner:
             # Get a "work item" out of the queue.
             queue_item = await queue.get()
 
-            try:
-                if isinstance(queue_item, AppSettingSoftItem):
+            if isinstance(queue_item, AppSettingSoftItem):
+                try:
                     await Parser.create(queue_item.parser, self.cfg, queue_item)
-            except Exception as exc:
-                logger.exception('{}'.format(exc))
+                except Exception as exc:
+                    logger.exception('[{}] {}'.format(queue_item.name, exc))
 
             # Notify the queue that the "work item" has been processed.
             queue.task_done()

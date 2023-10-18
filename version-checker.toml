@@ -582,3 +582,8 @@ url = "https://rubychangelog.com/versions-latest/"
 download_urls = [
     "https://cache.ruby-lang.org/pub/ruby/{major}.{minor}/ruby-{version}.tar.gz",
 ]
+
+[[softwares]]
+name = "virtualbox"
+parser = "virtualbox"
+url = "https://www.virtualbox.org/wiki/Downloads"
