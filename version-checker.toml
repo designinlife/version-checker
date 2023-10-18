@@ -560,6 +560,19 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "gitlab-ce"
+repo = "gitlab/gitlab-ce"
+parser = "docker-hub"
+url = "https://gitlab.com/rluna-gitlab/gitlab-ce"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)-ce\\.\\d)$"
+download_urls = [
+    "https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/7/gitlab-ce-{version}.el7.x86_64.rpm",
+    "https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/8/gitlab-ce-{version}.el8.x86_64.rpm",
+    "https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/9/gitlab-ce-{version}.el9.x86_64.rpm",
+    "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/jammy/gitlab-ce_{version}_amd64.deb",
+]
+
+[[softwares]]
 name = "flume"
 parser = "apache-flume"
 url = "https://flume.apache.org/releases/index.html"
