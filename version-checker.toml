@@ -562,12 +562,25 @@ download_urls = [
 [[softwares]]
 name = "postgres"
 parser = "docker-library"
-url = "https://dev.mysql.com/downloads/"
+url = "https://www.postgresql.org/download/"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
 category_by_major = true
 download_urls = [
     "https://ftp.postgresql.org/pub/source/v{version}/postgresql-{version}.tar.gz",
     "https://ftp.postgresql.org/pub/source/v{version}/postgresql-{version}.tar.bz2",
+]
+
+[[softwares]]
+name = "almalinux"
+repo = "library/almalinux"
+parser = "docker-hub"
+url = "https://almalinux.org/"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
+category = true
+category_by_major = true
+download_urls = [
+    "https://hkg.mirror.rackspace.com/almalinux/{version}/isos/x86_64/AlmaLinux-{version}-x86_64-minimal.iso",
+    "https://mirrors.aliyun.com/almalinux/{version}/isos/x86_64/AlmaLinux-{version}-x86_64-minimal.iso",
 ]
 
 [[softwares]]

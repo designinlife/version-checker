@@ -33,7 +33,7 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
                         semver_versions.append(v['name'])
 
     if item.category:
-        dict_versions = vpsr.semver_split(semver_versions)
+        dict_versions = vpsr.semver_split(semver_versions, only_major=item.category_by_major)
 
         for m, n in dict_versions.items():
             latest_version = vpsr.latest(n)
