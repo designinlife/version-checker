@@ -584,6 +584,19 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "rockylinux"
+repo = "library/rockylinux"
+parser = "docker-hub"
+url = "https://rockylinux.org/"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
+category = true
+category_by_major = true
+download_urls = [
+    "https://download.rockylinux.org/pub/rocky/{major}/isos/x86_64/Rocky-{version}-x86_64-minimal.iso",
+    "https://mirrors.aliyun.com/rockylinux/{version}/isos/x86_64/Rocky-{version}-x86_64-minimal.iso",
+]
+
+[[softwares]]
 name = "gitlab-ce"
 repo = "gitlab/gitlab-ce"
 parser = "docker-hub"
