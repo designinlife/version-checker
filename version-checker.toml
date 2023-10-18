@@ -607,6 +607,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "ubuntu"
+repo = "library/ubuntu"
+parser = "docker-hub"
+url = "https://ubuntu.com/"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
+download_urls = [
+    "https://ubuntu.com/download",
+]
+
+[[softwares]]
 name = "gitlab-ce"
 repo = "gitlab/gitlab-ce"
 parser = "docker-hub"
