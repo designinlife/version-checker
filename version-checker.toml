@@ -515,6 +515,28 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "kubernetes"
+repo = "kubernetes/kubernetes"
+by_release = true
+tag_pattern = "^Kubernetes v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/kubernetes/kubernetes/archive/refs/tags/v{version}.tar.gz",
+    "https://github.com/kubernetes/kubernetes/archive/refs/tags/v{version}.zip",
+]
+
+[[softwares]]
+name = "rke2"
+repo = "rancher/rke2"
+by_release = true
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\+rke2r(?P<suffix>\\d))$"
+ver_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\+rke2r(?P<suffix>\\d))$"
+download_urls = [
+    "https://github.com/rancher/rke2/releases/download/v{version}%2Brke2r{suffix}/rke2-images.linux-amd64.tar.gz",
+    "https://github.com/rancher/rke2/releases/download/v{version}%2Brke2r{suffix}/rke2.linux-amd64",
+    "https://github.com/rancher/rke2/releases/download/v{version}%2Brke2r{suffix}/rke2-windows-amd64.exe",
+]
+
+[[softwares]]
 name = "haproxy"
 parser = "docker-library"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
