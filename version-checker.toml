@@ -571,6 +571,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "centos"
+repo = "library/centos"
+parser = "docker-hub"
+url = "https://www.centos.org/"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+category = true
+category_by_major = true
+download_urls = [
+    "https://mirrors.nju.edu.cn/centos/{major}/isos/x86_64/CentOS-{major}-x86_64-Minimal-{patch}.iso",
+]
+
+[[softwares]]
 name = "almalinux"
 repo = "library/almalinux"
 parser = "docker-hub"
