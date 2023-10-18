@@ -42,6 +42,13 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "clash-premium"
+repo = "Dreamacro/clash"
+parser = "gh-releases"
+by_tag = "premium"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+
+[[softwares]]
 name = "ClashForAndroid"
 repo = "Kr328/ClashForAndroid"
 tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"

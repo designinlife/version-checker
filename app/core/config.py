@@ -19,6 +19,7 @@ class AppSettingSoftItem(BaseModel):
     url: Optional[str] = Field(default=None)
     major: List[int] = Field(default_factory=list)
     by_release: bool = Field(default=False)
+    by_tag: Optional[str] = Field(default=None)
 
 
 class AppSetting(BaseModel):
