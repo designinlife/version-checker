@@ -585,6 +585,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "percona-server"
+repo = "percona/percona-server"
+parser = "docker-hub"
+url = "https://www.percona.com/"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+category = true
+download_urls = [
+    "https://docs.percona.com/percona-server/8.0/installation.html",
+    "https://www.percona.com/downloads",
+]
+
+[[softwares]]
 name = "flume"
 parser = "apache-flume"
 url = "https://flume.apache.org/releases/index.html"

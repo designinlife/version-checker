@@ -32,25 +32,48 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
                     if vpsr.is_match(v['name']):
                         semver_versions.append(v['name'])
 
-                if len(semver_versions) > 0:
-                    latest_version = vpsr.latest(semver_versions)
-                semver_versions = vpsr.clean(semver_versions)
+    if item.category:
+        dict_versions = vpsr.semver_split(semver_versions)
 
-    if latest_version and semver_versions:
-        download_links = Parser.create_download_links(latest_version, item.download_urls)
+        for m, n in dict_versions.items():
+            latest_version = vpsr.latest(n)
+            download_links = Parser.create_download_links(latest_version, item.download_urls)
 
-        # 创建输出结果对象并写入 JSON 数据文件。
-        result = OutputResult(name=f'{item.name}', url=item.url if item.url else 'https://hub.docker.com/', latest=latest_version,
-                              versions=semver_versions,
-                              download_urls=download_links,
-                              created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
+            logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(n)}')
+            logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
 
-        output_path = Path(cfg.workdir).joinpath('data')
+            # 创建输出结果对象并写入 JSON 数据文件。
+            result = OutputResult(name=f'{item.name}-{m}', url=item.url if item.url else 'https://hub.docker.com/', latest=latest_version,
+                                  versions=vpsr.clean(n),
+                                  download_urls=download_links,
+                                  created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
 
-        if not output_path.is_dir():
-            output_path.mkdir(parents=True, exist_ok=True)
+            output_path = Path(cfg.workdir).joinpath('data')
 
-        async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
-            await f.write(result)
+            if not output_path.is_dir():
+                output_path.mkdir(parents=True, exist_ok=True)
 
-        logger.info(f'<{item.name}> data information has been generated.')
+            async with aiofiles.open(output_path.joinpath(f'{item.name}-{m}.json'), 'w', encoding='utf-8') as f:
+                await f.write(result)
+
+            logger.info(f'<{item.name}-{m}> data information has been generated.')
+    else:
+        if semver_versions:
+            latest_version = vpsr.latest(semver_versions)
+            download_links = Parser.create_download_links(latest_version, item.download_urls)
+
+            # 创建输出结果对象并写入 JSON 数据文件。
+            result = OutputResult(name=f'{item.name}', url=item.url if item.url else 'https://hub.docker.com/', latest=latest_version,
+                                  versions=vpsr.clean(semver_versions),
+                                  download_urls=download_links,
+                                  created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
+
+            output_path = Path(cfg.workdir).joinpath('data')
+
+            if not output_path.is_dir():
+                output_path.mkdir(parents=True, exist_ok=True)
+
+            async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
+                await f.write(result)
+
+            logger.info(f'<{item.name}> data information has been generated.')
