@@ -29,12 +29,14 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
                 vpsr = VersionParser(pattern=item.tag_pattern)
 
                 for v in data_r['results']:
-                    semver_versions.append(v['name'])
+                    if vpsr.is_match(v['name']):
+                        semver_versions.append(v['name'])
 
+                if len(semver_versions) > 0:
+                    latest_version = vpsr.latest(semver_versions)
                 semver_versions = vpsr.clean(semver_versions)
 
-    if semver_versions:
-        latest_version = vpsr.latest(semver_versions)
+    if latest_version and semver_versions:
         download_links = Parser.create_download_links(latest_version, item.download_urls)
 
         # 创建输出结果对象并写入 JSON 数据文件。

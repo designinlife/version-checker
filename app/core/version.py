@@ -17,6 +17,11 @@ class VersionParser:
     def __init__(self, pattern: str):
         self.exp = re.compile(pattern)
 
+    def is_match(self, s: str) -> bool:
+        if self.exp.match(s):
+            return True
+        return False
+
     def latest(self, items: List[str]):
         m = self.exp.match(max(items, key=functools.cmp_to_key(self.cmp_version)))
         if m:
