@@ -537,6 +537,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "gradle"
+repo = "gradle/gradle"
+by_release = true
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)(?P<patch>\\.\\d+)?)$"
+download_urls = [
+    "https://services.gradle.org/distributions/gradle-{version}-bin.zip",
+    "https://services.gradle.org/distributions/gradle-{version}-all.zip",
+    "https://services.gradle.org/distributions/gradle-{version}-src.zip",
+    "https://services.gradle.org/distributions/gradle-{version}-docs.zip",
+]
+
+[[softwares]]
 name = "haproxy"
 parser = "docker-library"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
