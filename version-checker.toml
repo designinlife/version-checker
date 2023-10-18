@@ -117,6 +117,14 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "zfs"
+repo = "openzfs/zfs"
+tag_pattern = "^zfs-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/openzfs/zfs/releases/download/zfs-{version}/zfs-{version}.tar.gz",
+]
+
+[[softwares]]
 name = "upx"
 repo = "upx/upx"
 tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
