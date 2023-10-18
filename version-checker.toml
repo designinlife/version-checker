@@ -328,6 +328,19 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "groovy"
+repo = "apache/groovy"
+category = true
+tag_pattern = "^GROOVY_(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+download_urls = [
+    "https://dlcdn.apache.org/groovy/{major}.{minor}.{patch}/distribution/apache-groovy-binary-{major}.{minor}.{patch}.zip",
+    "https://dlcdn.apache.org/groovy/{major}.{minor}.{patch}/sources/apache-groovy-src-{major}.{minor}.{patch}.zip",
+    "https://dlcdn.apache.org/groovy/{major}.{minor}.{patch}/distribution/apache-groovy-docs-{major}.{minor}.{patch}.zip",
+    "https://dlcdn.apache.org/groovy/{major}.{minor}.{patch}/distribution/apache-groovy-sdk-{major}.{minor}.{patch}.zip",
+    "https://groovy.jfrog.io/artifactory/dist-release-local/groovy-windows-installer/groovy-{major}.{minor}.{patch}/groovy-{major}.{minor}.{patch}.msi",
+]
+
+[[softwares]]
 name = "nginx"
 repo = "nginx/nginx"
 tag_pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"

@@ -18,7 +18,7 @@ class Parser:
         if pattern:
             exp = re.compile(pattern)
         else:
-            exp = re.compile(r'^(?P<major>\d+)\.(?P<minor>\d+)(.*)$')
+            exp = re.compile(r'^(?P<major>\d+)\.(?P<minor>\d+)(\.(?P<patch>\d+))?(.*)$')
 
         m = exp.match(version)
 
