@@ -597,6 +597,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "debian"
+repo = "library/debian"
+parser = "docker-hub"
+url = "https://www.debian.org/"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
+download_urls = [
+    "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-{version}.0-amd64-netinst.iso",
+]
+
+[[softwares]]
 name = "gitlab-ce"
 repo = "gitlab/gitlab-ce"
 parser = "docker-hub"
