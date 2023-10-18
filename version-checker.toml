@@ -560,6 +560,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "postgres"
+parser = "docker-library"
+url = "https://dev.mysql.com/downloads/"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
+category_by_major = true
+download_urls = [
+    "https://ftp.postgresql.org/pub/source/v{version}/postgresql-{version}.tar.gz",
+    "https://ftp.postgresql.org/pub/source/v{version}/postgresql-{version}.tar.bz2",
+]
+
+[[softwares]]
 name = "gitlab-ce"
 repo = "gitlab/gitlab-ce"
 parser = "docker-hub"

@@ -14,6 +14,7 @@ class AppSettingSoftItem(BaseModel):
     download_urls: List[str] = Field(default_factory=list)
     parser: Optional[str] = Field(default='gh')
     category: bool = Field(default=False)
+    category_by_major: bool = Field(default=False)
     tag_pattern: Optional[str] = Field(default=None)
     ver_pattern: Optional[str] = Field(default=None)
     url: Optional[str] = Field(default=None)

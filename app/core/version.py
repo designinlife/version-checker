@@ -38,14 +38,17 @@ class VersionParser:
 
         return r
 
-    def semver_split(self, items: List[str]) -> dict[str, list]:
+    def semver_split(self, items: List[str], only_major: bool = False) -> dict[str, list]:
         r = dict()
 
         for v in items:
             m = self.exp.match(v)
 
             if m:
-                key = '{}.{}'.format(m.group('major'), m.group('minor'))
+                if only_major:
+                    key = m.group('major')
+                else:
+                    key = '{}.{}'.format(m.group('major'), m.group('minor'))
 
                 if key not in r:
                     r[key] = []
