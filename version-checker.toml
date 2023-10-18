@@ -549,6 +549,14 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "memcached"
+repo = "memcached/memcached"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://www.memcached.org/files/memcached-{version}.tar.gz",
+]
+
+[[softwares]]
 name = "haproxy"
 parser = "docker-library"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
