@@ -19,7 +19,7 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
     timeout = aiohttp.ClientTimeout(total=15)
 
     async with aiohttp.ClientSession(timeout=timeout) as session:
-        async with session.get(f'https://hub.docker.com/v2/namespaces/{ns}/repositories/{name}/tags',
+        async with session.get(f'https://hub.docker.com/v2/namespaces/{ns}/repositories/{name}/tags?page_size=100',
                                proxy=os.environ.get('PROXY')) as resp:
             logger.debug(f'{resp.url} | STATUS: {resp.status}')
 

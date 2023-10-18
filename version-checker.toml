@@ -573,6 +573,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "gitlab-runner"
+repo = "gitlab/gitlab-runner"
+parser = "docker-hub"
+url = "https://gitlab.com/gitlab-org/gitlab-runner"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://packages.gitlab.com/runner/gitlab-runner/packages/el/7/gitlab-runner-{version}-1.x86_64.rpm",
+    "https://packages.gitlab.com/runner/gitlab-runner/packages/el/7/gitlab-runner-fips-{version}-1.x86_64.rpm",
+    "https://packages.gitlab.com/runner/gitlab-runner/packages/ubuntu/focal/gitlab-runner_{version}_amd64.deb",
+]
+
+[[softwares]]
 name = "flume"
 parser = "apache-flume"
 url = "https://flume.apache.org/releases/index.html"
