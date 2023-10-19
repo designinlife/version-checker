@@ -24,20 +24,31 @@ class VersionSplitItem(BaseModel):
     latest: str = Field(default=None)
     versions: List[Version] = Field(default_factory=list)
 
+    def build_download_links(self, groups: dict, download_urls: List[str]) -> List[str]:
+        r = []
+
+        for v in download_urls:
+            r.append(v.format(**groups))
+
+        return r
+
 
 class VersionSplitLiteItem(BaseModel):
     latest: str = Field(default=None)
     versions: List[str] = Field(default_factory=list)
+    download_links: List[str] = Field(default_factory=list)
 
 
 class VersionHelper:
     _versions: List[Version] = []
     _split_versions: Dict[str, VersionSplitItem] = {}
     _latest_version: str = None
+    _download_links: List[str] = []
 
-    def __init__(self, pattern: str, split_mode: int = 0):
+    def __init__(self, pattern: str, split_mode: int = 0, download_urls: List[str] = None):
         self.exp = re.compile(pattern)
         self.split_mode = split_mode
+        self.download_urls = download_urls
 
     def is_match(self, v: str):
         if self.exp.match(v):
@@ -59,6 +70,12 @@ class VersionHelper:
                 r.append(self._build_semver(v))
 
             return r
+
+    @property
+    def download_links(self) -> List[str]:
+        r = []
+
+        return r
 
     @property
     def split_versions(self) -> Dict[str, VersionSplitLiteItem]:
