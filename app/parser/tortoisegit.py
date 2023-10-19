@@ -38,10 +38,19 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
                     download_links.append(f'https://download.tortoisegit.org/tgit/{latest_version}/TortoiseGit-{latest_version}-32bit.msi')
                     download_links.append(f'https://download.tortoisegit.org/tgit/{latest_version}/TortoiseGit-{latest_version}-64bit.msi')
                     download_links.append(f'https://download.tortoisegit.org/tgit/{latest_version}/TortoiseGit-{latest_version}-arm64.msi')
+                    download_links.append(f'https://download.tortoisegit.org/tgit/{latest_version}/TortoiseGit-LanguagePack-{latest_version}-32bit-zh_CN.msi')
+                    download_links.append(f'https://download.tortoisegit.org/tgit/{latest_version}/TortoiseGit-LanguagePack-{latest_version}-64bit-zh_CN.msi')
+                    download_links.append(f'https://download.tortoisegit.org/tgit/{latest_version}/TortoiseGit-LanguagePack-{latest_version}-arm64-zh_CN.msi')
                 elif ver_split_len == 3:
                     download_links.append(f'https://download.tortoisegit.org/tgit/{latest_version}.0/TortoiseGit-{latest_version}.0-32bit.msi')
                     download_links.append(f'https://download.tortoisegit.org/tgit/{latest_version}.0/TortoiseGit-{latest_version}.0-64bit.msi')
                     download_links.append(f'https://download.tortoisegit.org/tgit/{latest_version}.0/TortoiseGit-{latest_version}.0-arm64.msi')
+                    download_links.append(
+                        f'https://download.tortoisegit.org/tgit/{latest_version}.0/TortoiseGit-LanguagePack-{latest_version}.0-32bit-zh_CN.msi')
+                    download_links.append(
+                        f'https://download.tortoisegit.org/tgit/{latest_version}.0/TortoiseGit-LanguagePack-{latest_version}.0-64bit-zh_CN.msi')
+                    download_links.append(
+                        f'https://download.tortoisegit.org/tgit/{latest_version}.0/TortoiseGit-LanguagePack-{latest_version}.0-arm64-zh_CN.msi')
                 else:
                     raise ValueError(f'TORTOISEGIT VERSION NUMBER IS NOT STANDARDIZED. ({latest_version})')
 
