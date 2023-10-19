@@ -344,7 +344,7 @@ download_urls = [
 name = "dolphinscheduler"
 repo = "apache/dolphinscheduler"
 by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://dlcdn.apache.org/dolphinscheduler/{version}/apache-dolphinscheduler-{version}-src.tar.gz",
     "https://dlcdn.apache.org/dolphinscheduler/{version}/apache-dolphinscheduler-{version}-bin.tar.gz",
@@ -354,7 +354,7 @@ download_urls = [
 name = "echarts"
 repo = "apache/echarts"
 by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://dlcdn.apache.org/echarts/{version}/apache-echarts-{version}-src.zip",
 ]
@@ -363,7 +363,7 @@ download_urls = [
 name = "dubbo"
 repo = "apache/dubbo"
 by_release = true
-tag_pattern = "^dubbo-(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+tag_pattern = "^dubbo-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/apache/dubbo/archive/refs/tags/dubbo-{version}.zip",
     "https://github.com/apache/dubbo/archive/refs/tags/dubbo-{version}.tar.gz",
@@ -372,7 +372,7 @@ download_urls = [
 [[softwares]]
 name = "spark"
 repo = "apache/spark"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://archive.apache.org/dist/spark/spark-{version}/spark-{version}-bin-hadoop3.tgz",
     "https://archive.apache.org/dist/spark/spark-{version}/spark-{version}-bin-without-hadoop.tgz",
@@ -383,7 +383,7 @@ download_urls = [
 name = "airflow"
 repo = "apache/airflow"
 by_release = true
-tag_pattern = "^Apache Airflow (?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+tag_pattern = "^Apache Airflow (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/apache/airflow/releases/download/{version}/apache-airflow-{version}-source.tar.gz",
     "https://github.com/apache/airflow/releases/download/{version}/apache-airflow-{version}.tar.gz",
@@ -394,7 +394,7 @@ download_urls = [
 name = "rocketmq"
 repo = "apache/rocketmq"
 by_release = true
-tag_pattern = "^rocketmq-all-(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+tag_pattern = "^rocketmq-all-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://archive.apache.org/dist/rocketmq/{version}/rocketmq-all-{version}-source-release.zip",
     "https://archive.apache.org/dist/rocketmq/{version}/rocketmq-all-{version}-bin-release.zip",
@@ -404,7 +404,7 @@ download_urls = [
 name = "druid"
 repo = "apache/druid"
 by_release = true
-tag_pattern = "^Druid (?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+tag_pattern = "^Druid (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://archive.apache.org/dist/druid/{version}/apache-druid-{version}-src.tar.gz",
     "https://archive.apache.org/dist/druid/{version}/apache-druid-{version}-bin.tar.gz",
@@ -413,7 +413,7 @@ download_urls = [
 [[softwares]]
 name = "zookeeper"
 repo = "apache/zookeeper"
-tag_pattern = "^release-(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+tag_pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://archive.apache.org/dist/zookeeper/zookeeper-{version}/apache-zookeeper-{version}.tar.gz",
     "https://archive.apache.org/dist/zookeeper/zookeeper-{version}/apache-zookeeper-{version}-bin.tar.gz",
