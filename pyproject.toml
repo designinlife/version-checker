@@ -1,3 +1,6 @@
+[project]
+requires-python = "^3.11"
+
 [tool.poetry]
 name = "version-checker"
 version = "1.0.0"
