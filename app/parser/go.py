@@ -19,7 +19,7 @@ async def parse(assist: Assistant, item: AppSettingSoftItem):
 
     vpsr = VersionParser(pattern=r'^go(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+))$')
 
-    dict_versions = vpsr.semver_split(all_versions)
+    dict_versions = vpsr.split(all_versions)
 
     logger.debug(f'Go Split: {dict_versions}')
 

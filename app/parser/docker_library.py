@@ -24,7 +24,7 @@ async def parse(assist: Assistant, item: AppSettingSoftItem):
 
     vpsr = VersionParser(pattern=item.tag_pattern)
 
-    dict_versions = vpsr.semver_split(all_versions, only_major=item.category_by_major)
+    dict_versions = vpsr.split(all_versions, only_major=item.category_by_major)
 
     logger.debug(f'docker-library Split: {dict_versions}')
 

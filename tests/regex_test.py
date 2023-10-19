@@ -33,7 +33,7 @@ class RegexpTestCase(unittest.TestCase):
         v1 = ['OpenSSL 1.1.1b', 'OpenSSL 1.1.1a', 'OpenSSL 1.1.1c', 'OpenSSL 1.1.1w', 'OpenSSL 1.1.1v', 'OpenSSL 3.0.1', 'OpenSSL 3.0.0', 'OpenSSL 3.0.10',
               'OpenSSL 3.1.2', 'OpenSSL 3.1.1', 'OpenSSL 3.1.3', 'OpenSSL 3.1.4', 'OpenSSL 3.2.0']
 
-        v2 = ps.semver_split(v1)
+        v2 = ps.split(v1)
 
         self.assertIsInstance(v2, dict)
         self.assertTrue('3.2' in v2)

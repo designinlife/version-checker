@@ -24,7 +24,7 @@ async def parse(assist: Assistant, item: AppSettingSoftItem):
                 all_versions.append(v['name'])
 
         if item.category:
-            dict_versions = vpsr.semver_split(all_versions, only_major=item.category_by_major)
+            dict_versions = vpsr.split(all_versions, only_major=item.category_by_major)
 
             for m, n in dict_versions.items():
                 latest_version = vpsr.latest(n)

@@ -18,7 +18,7 @@ async def parse(assist: Assistant, item: AppSettingSoftItem):
 
     vpsr = VersionParser(pattern=item.tag_pattern)
 
-    dict_versions = vpsr.semver_split(all_versions)
+    dict_versions = vpsr.split(all_versions)
 
     for m, n in dict_versions.items():
         latest_version = vpsr.latest(n)

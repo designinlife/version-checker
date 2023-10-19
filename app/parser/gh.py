@@ -53,7 +53,7 @@ async def parse(assist: Assistant, item: AppSettingSoftItem):
 
     if item.category:
         # 按 <major>.<minor> 规则将版本分类为字典对象, 例如 OpenSSL 的版本划分为: 1.0, 1.1, 3.0, 3.1, 3.2 ...
-        dict_versions = vpsr.semver_split(all_versions)
+        dict_versions = vpsr.split(all_versions)
 
         for m, n in dict_versions.items():
             latest_version = vpsr.latest(n)
