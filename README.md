@@ -1,5 +1,8 @@
 # Project version-checker
 
+![GitHub CI](https://github.com/designinlife/version-checker/actions/workflows/ci.yml/badge.svg)
+![Python Version from PEP 621 TOML](https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fdesigninlife%2Fversion-checker%2Fmain%2Fpyproject.toml)
+
 ## Usage
 
 ```bash
