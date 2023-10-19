@@ -1,7 +1,7 @@
 import re
 import unittest
 
-from app.core.version import VersionParser
+from app.core.version import VersionParser, VersionHelper
 
 
 class RegexpTestCase(unittest.TestCase):
@@ -41,6 +41,22 @@ class RegexpTestCase(unittest.TestCase):
         self.assertTrue('3.0' in v2)
         self.assertTrue('1.1' in v2)
         self.assertFalse('1.0' in v2)
+
+    def test_version_helper_curl(self):
+        helper = VersionHelper(pattern=r'^curl-(?P<version>(?P<major>\d+)_(?P<minor>\d+)_(?P<patch>\d+))$', split_mode=0)
+        helper.add('v7_0_2beta')
+        helper.add('tiny-curl-7_72_0')
+        helper.add('curl-8_4_0')
+        helper.add('curl-7_81_0')
+        helper.add('curl-8_0_1')
+        helper.add('curl-8_1_0')
+        helper.add('curl-8_1_1')
+        helper.add('curl-7_86_0')
+        helper.add('curl-8_0_0')
+
+        helper.sort()
+
+        print(helper.latest, helper.versions)
 
 
 if __name__ == '__main__':

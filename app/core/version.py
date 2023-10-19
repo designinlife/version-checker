@@ -1,6 +1,8 @@
 import functools
 import re
-from typing import List, Optional
+from typing import Dict, List, Optional
+
+from pydantic import BaseModel, Field
 
 
 def is_numeric(s: Optional[str]):
@@ -11,6 +13,129 @@ def is_numeric(s: Optional[str]):
     if m:
         return True
     return False
+
+
+class Version(BaseModel):
+    origin: str = Field(default=None)
+    semver: str = Field(default=None)
+
+
+class VersionSplitItem(BaseModel):
+    latest: str = Field(default=None)
+    versions: List[Version] = Field(default_factory=list)
+
+
+class VersionHelper:
+    _versions: List[Version] = []
+    _split_versions: Dict[str, VersionSplitItem] = None
+    _latest_version: str = None
+
+    def __init__(self, pattern: str, split_mode: int = 0):
+        self.exp = re.compile(pattern)
+        self.split_mode = split_mode
+
+    def is_match(self, v: str):
+        if self.exp.match(v):
+            return True
+        return False
+
+    @property
+    def latest(self):
+        return self._latest_version.replace('_', '.')
+
+    @property
+    def versions(self):
+        r = []
+
+        for v in self._versions:
+            r.append(v.semver.replace('_', '.'))
+
+        return r
+
+    def add(self, v: str):
+        m = self.exp.match(v)
+        if m:
+            groupdict = m.groupdict()
+
+            if 'version' not in groupdict:
+                raise ValueError('The version variable does not exist in the match pattern.')
+
+            self._versions.append(Version(origin=v, semver=m.group('version')))
+
+            groupdict = m.groupdict()
+
+            if self.split_mode > 0:
+                if 1 == self.split_mode:  # 依据 <major> 划分
+                    if 'major' not in groupdict:
+                        raise ValueError('The major variable does not exist in the match pattern.')
+
+                    key = '{}'.format(m.group('major'))
+                elif 2 == self.split_mode:  # 依据 <major>.<minor> 划分
+                    if 'major' not in groupdict:
+                        raise ValueError('The major variable does not exist in the match pattern.')
+                    if 'minor' not in groupdict:
+                        raise ValueError('The minor variable does not exist in the match pattern.')
+
+                    key = '{}.{}'.format(m.group('major'), m.group('minor'))
+                else:
+                    raise ValueError(f'Unsupported split mode. (split_mode={self.split_mode})')
+
+                if key not in self._split_versions:
+                    self._split_versions[key] = VersionSplitItem()
+
+                self._split_versions[key].versions.append(Version(origin=v, semver=m.group('version')))
+
+    def sort(self):
+        if self.split_mode > 0:
+            for k, v in self._split_versions.items():
+                self._split_versions[k].versions.sort(key=functools.cmp_to_key(self._cmp_semver_version), reverse=True)
+                self._split_versions[k].latest = self._split_versions[k].versions[0].semver
+        else:
+            self._versions.sort(key=functools.cmp_to_key(self._cmp_semver_version), reverse=True)
+            self._latest_version = self._versions[0].semver
+
+    def _cmp_semver_version(self, x: Version, y: Version) -> int:
+        if x.semver == y.semver:
+            return 0
+
+        v1 = None
+        v2 = None
+
+        m = self.exp.match(x.origin)
+        if m:
+            v1 = m.groups()[1:]
+            kk = []
+            for n in v1:
+                if is_numeric(n):
+                    kk.append(int(n))
+                elif n is None:
+                    kk.append(0)
+                else:
+                    kk.append(n)
+            v1 = tuple(kk)
+
+        m = self.exp.match(y.origin)
+        if m:
+            v2 = m.groups()[1:]
+            kk = []
+            for n in v2:
+                if is_numeric(n):
+                    kk.append(int(n))
+                elif n is None:
+                    kk.append(0)
+                else:
+                    kk.append(n)
+            v2 = tuple(kk)
+
+        if v1 and v2:
+            if v1 > v2:
+                return 1
+            elif v1 < v2:
+                return -1
+            else:
+                return 0
+        else:
+            return -1
 
 
 class VersionParser:
