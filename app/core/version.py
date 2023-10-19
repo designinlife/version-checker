@@ -36,7 +36,7 @@ class VersionParser:
             if m:
                 r.append(m.group('version').replace('_', '.'))
 
-        r.sort(key=functools.cmp_to_key(self.cmp_version), reverse=True)
+        # r.sort(key=functools.cmp_to_key(self.cmp_version), reverse=True)
 
         return r
 
