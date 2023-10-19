@@ -58,8 +58,8 @@ class VersionParser:
                 # r[key].append(m.group('version'))
                 r[key].append(v)
 
-        for k, v in r.items():
-            r[k] = v.sort(key=functools.cmp_to_key(self.cmp_version), reverse=True)
+        # for k, v in r.items():
+        #     r[k] = v.sort(key=functools.cmp_to_key(self.cmp_version), reverse=True)
 
         return r
 
