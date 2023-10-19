@@ -365,8 +365,7 @@ repo = "apache/dubbo"
 by_release = true
 tag_pattern = "^dubbo-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
-    "https://github.com/apache/dubbo/archive/refs/tags/dubbo-{version}.zip",
-    "https://github.com/apache/dubbo/archive/refs/tags/dubbo-{version}.tar.gz",
+    "https://archive.apache.org/dist/dubbo/{version}/apache-dubbo-{version}.zip",
 ]
 
 [[softwares]]
