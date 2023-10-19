@@ -2,14 +2,15 @@ import importlib
 import re
 from typing import List
 
-from app.core.config import AppSettingSoftItem, Configuration
+from app.core.config import AppSettingSoftItem
+from app.parser import Assistant
 
 
 class Parser:
     @staticmethod
-    async def create(name: str, cfg: Configuration, item: AppSettingSoftItem):
+    async def create(name: str, assistant: Assistant, item: AppSettingSoftItem):
         module = importlib.import_module('app.parser.%s' % name.replace('-', '_'))
-        await module.parse(cfg, item)
+        await module.parse(assistant, item)
 
     @staticmethod
     def create_download_links(version: str, links: List[str], pattern: str = None) -> List[str]:

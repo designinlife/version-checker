@@ -1,22 +1,20 @@
 import re
-from pathlib import Path
 
-import aiofiles
-import arrow
 from bs4 import BeautifulSoup
 from loguru import logger
 
-from app.core.config import AppSettingSoftItem, Configuration, OutputResult
-from app.parser import HTTP
+from app.core.config import AppSettingSoftItem
+from . import Assistant
 
 TORTOISE_GIT_DOWNLOAD_BASE_URL = 'https://download.tortoisegit.org/tgit'
 
 
-async def parse(cfg: Configuration, item: AppSettingSoftItem):
-    semver_versions = []
+async def parse(assist: Assistant, item: AppSettingSoftItem):
+    all_versions = []
     download_links = []
 
-    url, http_status_code, _, data_s = await HTTP.get('https://tortoisegit.org/download/')
+    # Make an HTTP request.
+    url, http_status_code, _, data_s = await assist.get('https://tortoisegit.org/download/')
 
     soup = BeautifulSoup(data_s, 'html5lib')
 
@@ -26,7 +24,7 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
     m = latest_exp.match(latest_element.text)
     if m:
         latest_version = m.group('version')
-        semver_versions.append(latest_version)
+        all_versions.append(latest_version)
 
         ver_split = latest_version.split('.')
         ver_split_len = len(ver_split)
@@ -48,24 +46,11 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
         else:
             raise ValueError(f'[{item.name}] TORTOISEGIT VERSION NUMBER IS NOT STANDARDIZED. ({latest_version})')
 
-        if semver_versions and download_links:
-            # 创建输出结果对象并写入 JSON 数据文件。
-            result = OutputResult(name=f'{item.name}', url=item.url if item.url else f'https://sourceforge.net/projects/{item.name}/',
-                                  latest=latest_version,
-                                  versions=semver_versions,
-                                  download_urls=download_links,
-                                  created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
-
-            output_path = Path(cfg.workdir).joinpath('data')
-
-            if not output_path.is_dir():
-                output_path.mkdir(parents=True, exist_ok=True)
-
-            async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
-                await f.write(result)
-
-            logger.info(f'<{item.name}> data information has been generated.')
-        else:
-            logger.error(f'[{item.name}] The variable semver_versions or download_links is empty and data generation failed.')
+        # Output JSON file.
+        await assist.create(name=item.name,
+                            url=item.url if item.url else f'https://sourceforge.net/projects/{item.name}/',
+                            version=latest_version,
+                            all_versions=all_versions,
+                            download_links=download_links)
     else:
         logger.error(f'[{item.name}] Regular expression fails when matching latest version pattern.')

@@ -1,35 +1,25 @@
-import os
-from pathlib import Path
-
-import aiofiles
-import aiohttp
-import arrow
 from loguru import logger
 
-from app.core.config import AppSettingSoftItem, Configuration, OutputResult
+from app.core.config import AppSettingSoftItem
 from app.core.version import VersionParser
 from app.inspect.parser import Parser
+from . import Assistant
 
 
-async def parse(cfg: Configuration, item: AppSettingSoftItem):
-    semver_versions = []
+async def parse(assist: Assistant, item: AppSettingSoftItem):
+    all_versions = []
 
-    timeout = aiohttp.ClientTimeout(total=15)
+    # Make an HTTP request.
+    url, http_status_code, _, data_r = await assist.get('https://go.dev/dl/?mode=json&include=all', is_json=True)
 
-    async with aiohttp.ClientSession(timeout=timeout) as session:
-        async with session.get(f'https://go.dev/dl/?mode=json&include=all', proxy=os.environ.get('PROXY')) as resp:
-            logger.debug(f'{resp.url} | STATUS: {resp.status}')
+    for v in data_r:
+        all_versions.append(v['version'])
 
-            data_r = await resp.json()
+    logger.debug(f'Go: {all_versions}')
 
-            for v in data_r:
-                semver_versions.append(v['version'])
+    vpsr = VersionParser(pattern=r'^go(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+))$')
 
-    logger.debug(f'Go: {semver_versions}')
-
-    vpsr = VersionParser(pattern=item.tag_pattern)
-
-    dict_versions = vpsr.semver_split(semver_versions)
+    dict_versions = vpsr.semver_split(all_versions)
 
     logger.debug(f'Go Split: {dict_versions}')
 
@@ -40,18 +30,9 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
         logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(n)}')
         logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
 
-        # 创建输出结果对象并写入 JSON 数据文件。
-        result = OutputResult(name=f'{item.name}-{m}', url=f'https://go.dev/dl/', latest=latest_version,
-                              versions=n,
-                              download_urls=download_links,
-                              created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
-
-        output_path = Path(cfg.workdir).joinpath('data')
-
-        if not output_path.is_dir():
-            output_path.mkdir(parents=True, exist_ok=True)
-
-        async with aiofiles.open(output_path.joinpath(f'{item.name}-{m}.json'), 'w', encoding='utf-8') as f:
-            await f.write(result)
-
-        logger.info(f'<{item.name}-{m}> data information has been generated.')
+        # Output JSON file.
+        await assist.create(name=f'{item.name}-{m}',
+                            url='https://go.dev/dl/',
+                            version=latest_version,
+                            all_versions=n,
+                            download_links=download_links)

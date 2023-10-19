@@ -246,7 +246,6 @@ download_urls = [
 name = "go"
 category = true
 parser = "go"
-tag_pattern = "^go(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://go.dev/dl/go{version}.src.tar.gz",
     "https://go.dev/dl/go{version}.linux-amd64.tar.gz",
@@ -808,7 +807,6 @@ download_urls = [
 [[softwares]]
 name = "flume"
 parser = "apache-flume"
-url = "https://flume.apache.org/releases/index.html"
 download_urls = [
     "https://dlcdn.apache.org/flume/{version}/apache-flume-{version}-src.tar.gz",
     "https://dlcdn.apache.org/flume/{version}/apache-flume-{version}-bin.tar.gz",
@@ -817,7 +815,6 @@ download_urls = [
 [[softwares]]
 name = "nexus"
 parser = "sonatype-nexus"
-url = "https://raw.githubusercontent.com/sonatype/docker-nexus3/main/Dockerfile"
 download_urls = [
     "https://download.sonatype.com/nexus/3/nexus-{version}-unix.tar.gz",
     "https://download.sonatype.com/nexus/3/nexus-{version}-win64.zip",
@@ -826,7 +823,6 @@ download_urls = [
 [[softwares]]
 name = "nodejs"
 parser = "nodejs"
-url = "https://nodejs.org/download/release/index.json"
 download_urls = [
     "https://nodejs.org/dist/v{version}/node-v{version}-x64.msi",
     "https://nodejs.org/dist/v{version}/node-v{version}-win-x64.zip",
@@ -837,7 +833,6 @@ download_urls = [
 [[softwares]]
 name = "ruby"
 parser = "ruby"
-url = "https://rubychangelog.com/versions-latest/"
 download_urls = [
     "https://cache.ruby-lang.org/pub/ruby/{major}.{minor}/ruby-{version}.tar.gz",
 ]
@@ -860,4 +855,3 @@ url = "https://tortoisegit.org/"
 [[softwares]]
 name = "github-desktop"
 parser = "github-desktop"
-url = "https://desktop.github.com/"

@@ -1,24 +1,18 @@
 import re
-from pathlib import Path
 
-import aiofiles
-import arrow
 from bs4 import BeautifulSoup
 from loguru import logger
 
-from app.core.config import AppSettingSoftItem, Configuration, OutputResult
-from app.parser import HTTP
+from app.core.config import AppSettingSoftItem
+from . import Assistant
 
 
-async def parse(cfg: Configuration, item: AppSettingSoftItem):
-    logger.debug(f'virtualbox parser called.')
-
-    semver_versions = []
+async def parse(assist: Assistant, item: AppSettingSoftItem):
+    all_versions = []
     download_links = []
 
-    latest_version = None
-
-    url, http_status_code, _, data_s = await HTTP.get('https://www.virtualbox.org/wiki/Downloads')
+    # Make an HTTP request.
+    url, http_status_code, _, data_s = await assist.get('https://www.virtualbox.org/wiki/Downloads')
 
     soup = BeautifulSoup(data_s, 'html5lib')
 
@@ -33,35 +27,28 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
 
     if m:
         latest_version = m.group('version')
-        semver_versions.append(latest_version)
+        all_versions.append(latest_version)
 
-    # Installer
-    if download_link_elements:
-        for v in download_link_elements:
-            download_links.append(v.attrs['href'])
+        # Installer
+        if download_link_elements:
+            for v in download_link_elements:
+                download_links.append(v.attrs['href'])
 
-    # Extension Pack
-    if extension_pack_link_elements:
-        for v in extension_pack_link_elements:
-            download_links.append(v.attrs['href'])
+        # Extension Pack
+        if extension_pack_link_elements:
+            for v in extension_pack_link_elements:
+                download_links.append(v.attrs['href'])
 
-    # SDK
-    if sdk_link_elements:
-        for v in sdk_link_elements:
-            download_links.append(v.attrs['href'])
+        # SDK
+        if sdk_link_elements:
+            for v in sdk_link_elements:
+                download_links.append(v.attrs['href'])
 
-    # 创建输出结果对象并写入 JSON 数据文件。
-    result = OutputResult(name=f'{item.name}', url=f'https://www.virtualbox.org/wiki/Downloads', latest=latest_version,
-                          versions=semver_versions,
-                          download_urls=download_links,
-                          created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
-
-    output_path = Path(cfg.workdir).joinpath('data')
-
-    if not output_path.is_dir():
-        output_path.mkdir(parents=True, exist_ok=True)
-
-    async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
-        await f.write(result)
-
-    logger.info(f'<{item.name}> data information has been generated.')
+        # Output JSON file.
+        await assist.create(name=item.name,
+                            url='https://www.virtualbox.org/wiki/Downloads',
+                            version=latest_version,
+                            all_versions=all_versions,
+                            download_links=download_links)
+    else:
+        logger.error(f'[{item.name}] Regular expression fails when matching latest version pattern.')

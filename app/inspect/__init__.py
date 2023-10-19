@@ -8,6 +8,7 @@ from loguru import logger
 
 from app.core.config import Configuration, AppSettingSoftItem
 from app.inspect.parser import Parser
+from app.parser import Assistant
 
 
 class InspectRunner:
@@ -18,7 +19,9 @@ class InspectRunner:
     def start(self, filter_name: Optional[str] = None):
         asyncio.run(self._main(self.cfg.settings.softwares, filter_name))
 
-        self._combine_json()
+        # Merging behavior is not performed in DEBUG mode.
+        if not self.cfg.debug:
+            self._combine_json()
 
     def _combine_json(self):
         p = Path(self.cfg.workdir).joinpath('data')
@@ -34,13 +37,15 @@ class InspectRunner:
             f.write(json.dumps(data, ensure_ascii=True, separators=(',', ':')))
 
     async def _worker(self, name, queue):
+        assistant = Assistant(self.cfg)
+
         while True:
             # Get a "work item" out of the queue.
             queue_item = await queue.get()
 
             if isinstance(queue_item, AppSettingSoftItem):
                 try:
-                    await Parser.create(queue_item.parser, self.cfg, queue_item)
+                    await Parser.create(queue_item.parser, assistant, queue_item)
                 except Exception as exc:
                     logger.exception('[{}] {}'.format(queue_item.name, exc))
 
@@ -61,7 +66,7 @@ class InspectRunner:
         # Create three worker tasks to process the queue concurrently.
         tasks = []
 
-        for i in range(4):
+        for i in range(8):
             task = asyncio.create_task(self._worker(f'worker-{i}', queue))
             tasks.append(task)
 

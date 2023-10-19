@@ -1,17 +1,13 @@
 import os
-from pathlib import Path
 
-import aiofiles
 import aiohttp
-import arrow
 from loguru import logger
 
-from app.core.config import Configuration, AppSettingSoftItem, OutputResult
+from app.core.config import AppSettingSoftItem
+from . import Assistant
 
 
-async def parse(cfg: Configuration, item: AppSettingSoftItem):
-    timeout = aiohttp.ClientTimeout(total=15)
-
+async def parse(assist: Assistant, item: AppSettingSoftItem):
     github_token = os.environ.get("GITHUB_TOKEN")
 
     headers = {}
@@ -25,60 +21,41 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
 
         logger.debug('Using GITHUB_TOKEN env.')
 
-    async with aiohttp.ClientSession(timeout=timeout) as session:
-        if item.by_tag:
-            async with session.get(f'https://api.github.com/repos/{item.repo}/releases/tags/{item.by_tag}', headers=headers,
-                                   proxy=os.environ.get('PROXY')) as resp:
-                data_r = await resp.json()
+    download_links = []
 
-                if data_r:
-                    download_links = []
+    if item.by_tag:
+        # Make an HTTP request.
+        url, http_status_code, _, data_r = await assist.get(f'https://api.github.com/repos/{item.repo}/releases/tags/{item.by_tag}',
+                                                            headers=headers,
+                                                            is_json=True)
 
-                    for v2 in data_r['assets']:
-                        download_links.append(v2['browser_download_url'])
+        for v2 in data_r['assets']:
+            download_links.append(v2['browser_download_url'])
 
-                    # 创建输出结果对象并写入 JSON 数据文件。
-                    result = OutputResult(name=f'{item.name}', url=f'https://github.com/{item.repo}/releases/tag/{item.by_tag}', latest=data_r['name'],
-                                          versions=[data_r['name']],
-                                          download_urls=download_links,
-                                          created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
+        # Output JSON file.
+        await assist.create(name=item.name,
+                            url=f'https://github.com/{item.repo}/releases/tag/{item.by_tag}',
+                            version=data_r['name'],
+                            all_versions=[data_r['name']],
+                            download_links=download_links)
+    else:
+        # Make an HTTP request.
+        url, http_status_code, _, data_r = await assist.get(f'https://api.github.com/repos/{item.repo}/releases',
+                                                            params={'per_page': '100'},
+                                                            headers=headers,
+                                                            is_json=True)
 
-                    output_path = Path(cfg.workdir).joinpath('data')
+        if len(data_r) > 0:
+            data = data_r[0]
 
-                    if not output_path.is_dir():
-                        output_path.mkdir(parents=True, exist_ok=True)
+            download_links = []
 
-                    async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
-                        await f.write(result)
+            for v2 in data['assets']:
+                download_links.append(v2['browser_download_url'])
 
-                    logger.info(f'<{item.name}> data information has been generated.')
-        else:
-            async with session.get(f'https://api.github.com/repos/{item.repo}/releases?per_page=100', headers=headers,
-                                   proxy=os.environ.get('PROXY')) as resp:
-                logger.debug(f'{resp.url} | STATUS: {resp.status}')
-
-                data_r = await resp.json()
-
-                if len(data_r) > 0:
-                    data = data_r[0]
-
-                    download_links = []
-
-                    for v2 in data['assets']:
-                        download_links.append(v2['browser_download_url'])
-
-                    # 创建输出结果对象并写入 JSON 数据文件。
-                    result = OutputResult(name=f'{item.name}', url=f'https://github.com/{item.repo}', latest=data['name'],
-                                          versions=[data['name']],
-                                          download_urls=download_links,
-                                          created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
-
-                    output_path = Path(cfg.workdir).joinpath('data')
-
-                    if not output_path.is_dir():
-                        output_path.mkdir(parents=True, exist_ok=True)
-
-                    async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
-                        await f.write(result)
-
-                    logger.info(f'<{item.name}> data information has been generated.')
+            # Output JSON file.
+            await assist.create(name=item.name,
+                                url=f'https://github.com/{item.repo}',
+                                version=data['name'],
+                                all_versions=[data['name']],
+                                download_links=download_links)

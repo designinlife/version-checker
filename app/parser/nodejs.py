@@ -1,30 +1,20 @@
-import os
-from pathlib import Path
-
-import aiofiles
-import aiohttp
-import arrow
 from loguru import logger
 
-from app.core.config import AppSettingSoftItem, Configuration, OutputResult
+from app.core.config import AppSettingSoftItem
 from app.core.version import VersionParser
 from app.inspect.parser import Parser
+from . import Assistant
 
 
-async def parse(cfg: Configuration, item: AppSettingSoftItem):
+async def parse(assist: Assistant, item: AppSettingSoftItem):
     semver_versions = []
 
-    timeout = aiohttp.ClientTimeout(total=15)
+    # Make an HTTP request.
+    url, http_status_code, _, data_r = await assist.get('https://nodejs.org/download/release/index.json', is_json=True)
 
-    async with aiohttp.ClientSession(timeout=timeout) as session:
-        async with session.get(item.url, proxy=os.environ.get('PROXY')) as resp:
-            logger.debug(f'{resp.url} | STATUS: {resp.status}')
-
-            data_r = await resp.json()
-
-            for v in data_r:
-                if 'lts' in v and v['lts'] is not False:
-                    semver_versions.append(v['version'])
+    for v in data_r:
+        if 'lts' in v and v['lts'] is not False:
+            semver_versions.append(v['version'])
 
     logger.debug(f'nodejs: {semver_versions}')
 
@@ -36,18 +26,9 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
     logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(semver_versions)}')
     logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
 
-    # 创建输出结果对象并写入 JSON 数据文件。
-    result = OutputResult(name=f'{item.name}', url=f'https://nodejs.org/', latest=latest_version,
-                          versions=semver_versions,
-                          download_urls=download_links,
-                          created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
-
-    output_path = Path(cfg.workdir).joinpath('data')
-
-    if not output_path.is_dir():
-        output_path.mkdir(parents=True, exist_ok=True)
-
-    async with aiofiles.open(output_path.joinpath(f'{item.name}.json'), 'w', encoding='utf-8') as f:
-        await f.write(result)
-
-    logger.info(f'<{item.name}> data information has been generated.')
+    # Output JSON file.
+    await assist.create(name=item.name,
+                        url='https://nodejs.org/',
+                        version=latest_version,
+                        all_versions=semver_versions,
+                        download_links=download_links)
