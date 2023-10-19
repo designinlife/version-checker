@@ -106,6 +106,40 @@ class RegexpTestCase(unittest.TestCase):
 
         print(helper.versions)
 
+    def test_version_helper_almalinux(self):
+        helper = VersionHelper(pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+))$', split_mode=1)
+        helper.add('8.8')
+        helper.add('8.9')
+        helper.add('9.1')
+        helper.add('9.3')
+        helper.add('9.4')
+        helper.add('9.2')
+        helper.add('9.5')
+        helper.add('8.5')
+        helper.add('8.7')
+        helper.add('8.6')
+
+        helper.sort()
+
+        print(helper.versions)
+
+    def test_version_helper_debian(self):
+        helper = VersionHelper(pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+))$', split_mode=0)
+        helper.add('11.5')
+        helper.add('12.1')
+        helper.add('12.2')
+        helper.add('12.0')
+        helper.add('9.4')
+        helper.add('9.2')
+        helper.add('9.5')
+        helper.add('8.5')
+        helper.add('8.7')
+        helper.add('8.6')
+
+        helper.sort()
+
+        print(helper.latest, helper.versions)
+
 
 if __name__ == '__main__':
     unittest.main()
