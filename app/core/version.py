@@ -41,16 +41,26 @@ class VersionHelper:
 
     @property
     def latest(self):
-        return self._latest_version.replace('_', '.')
+        return self._build_semver(self._versions[0])
 
     @property
     def versions(self):
         r = []
 
         for v in self._versions:
-            r.append(v.semver.replace('_', '.'))
+            r.append(self._build_semver(v))
 
         return r
+
+    def _build_semver(self, version: Version) -> Optional[str]:
+        m = self.exp.match(version.origin)
+        if m:
+            # 剔除第一个 group 项, 因为第一项固定位 <version>
+            groups = m.groups()[1:]
+
+            return '.'.join(groups)
+        else:
+            return None
 
     def add(self, v: str):
         m = self.exp.match(v)
