@@ -17,16 +17,17 @@ from app.core.config import Configuration, AppSetting
 from app.core.utils import strtobool
 
 logger.remove()
-logger.add(sys.stderr, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level='ERROR')
+logger.add(sys.stderr, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level='ERROR', backtrace=False, diagnose=False)
 
+# The following code adds a filter so that the STDOUT pipe does not print exception information!
 if strtobool(os.environ.get('DEBUG', 'false')):
-    logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level='DEBUG')
+    logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", filter=lambda record: record["level"].no < 40, level='DEBUG')
 
     load_dotenv('.env.dev')
 
     logger.info('Mode: Debug')
 else:
-    logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level='INFO')
+    logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", filter=lambda record: record["level"].no < 40, level='INFO')
 
     load_dotenv()
 

@@ -1,14 +1,13 @@
-import os
 import re
 from pathlib import Path
 
 import aiofiles
-import aiohttp
 import arrow
 from bs4 import BeautifulSoup
 from loguru import logger
 
 from app.core.config import AppSettingSoftItem, Configuration, OutputResult
+from app.parser import HTTP
 
 
 async def parse(cfg: Configuration, item: AppSettingSoftItem):
@@ -19,40 +18,37 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
 
     latest_version = None
 
-    async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=15)) as session:
-        async with session.get(item.url, proxy=os.environ.get('PROXY')) as resp:
-            logger.debug(f'{resp.url} | STATUS: {resp.status}')
+    url, http_status_code, _, data_s = await HTTP.get('https://www.virtualbox.org/wiki/Downloads')
 
-            data_s = await resp.text()
-            soup = BeautifulSoup(data_s, 'html5lib')
+    soup = BeautifulSoup(data_s, 'html5lib')
 
-            latest_element = soup.select_one('#wikipage > h3:nth-of-type(1)')
-            download_link_elements = soup.select('#wikipage > ul:nth-of-type(1) > li > a[class=ext-link]')
-            extension_pack_link_elements = soup.select('#wikipage > ul:nth-of-type(3) > li > a[class=ext-link]')
-            sdk_link_elements = soup.select('#wikipage > ul:nth-of-type(4) > li > a[class=ext-link]')
+    latest_element = soup.select_one('#wikipage > h3:nth-of-type(1)')
+    download_link_elements = soup.select('#wikipage > ul:nth-of-type(1) > li > a[class=ext-link]')
+    extension_pack_link_elements = soup.select('#wikipage > ul:nth-of-type(3) > li > a[class=ext-link]')
+    sdk_link_elements = soup.select('#wikipage > ul:nth-of-type(4) > li > a[class=ext-link]')
 
-            exp_ver = re.compile(r'^VirtualBox (?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)) platform packages$', flags=re.I)
+    exp_ver = re.compile(r'^VirtualBox (?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)) platform packages$', flags=re.I)
 
-            m = exp_ver.match(latest_element.text.strip())
+    m = exp_ver.match(latest_element.text.strip())
 
-            if m:
-                latest_version = m.group('version')
-                semver_versions.append(latest_version)
+    if m:
+        latest_version = m.group('version')
+        semver_versions.append(latest_version)
 
-            # Installer
-            if download_link_elements:
-                for v in download_link_elements:
-                    download_links.append(v.attrs['href'])
+    # Installer
+    if download_link_elements:
+        for v in download_link_elements:
+            download_links.append(v.attrs['href'])
 
-            # Extension Pack
-            if extension_pack_link_elements:
-                for v in extension_pack_link_elements:
-                    download_links.append(v.attrs['href'])
+    # Extension Pack
+    if extension_pack_link_elements:
+        for v in extension_pack_link_elements:
+            download_links.append(v.attrs['href'])
 
-            # SDK
-            if sdk_link_elements:
-                for v in sdk_link_elements:
-                    download_links.append(v.attrs['href'])
+    # SDK
+    if sdk_link_elements:
+        for v in sdk_link_elements:
+            download_links.append(v.attrs['href'])
 
     # 创建输出结果对象并写入 JSON 数据文件。
     result = OutputResult(name=f'{item.name}', url=f'https://www.virtualbox.org/wiki/Downloads', latest=latest_version,

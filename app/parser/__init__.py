@@ -20,7 +20,10 @@ class HTTP:
                                    params=params,
                                    headers=hdr,
                                    proxy=os.environ.get('PROXY')) as resp:
-                if is_json:
-                    return resp.url, resp.status, resp.headers, await resp.json()
+                if 200 <= resp.status < 300:
+                    if is_json:
+                        return resp.url, resp.status, resp.headers, await resp.json()
+                    else:
+                        return resp.url, resp.status, resp.headers, await resp.text()
                 else:
-                    return resp.url, resp.status, resp.headers, await resp.text()
+                    raise ValueError(f'HTTP status code exception. ({resp.status} | {url})')
