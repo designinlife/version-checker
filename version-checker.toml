@@ -856,3 +856,8 @@ url = "https://tortoisesvn.net/downloads.html"
 name = "tortoisegit"
 parser = "tortoisegit"
 url = "https://tortoisegit.org/"
+
+[[softwares]]
+name = "github-desktop"
+parser = "github-desktop"
+url = "https://desktop.github.com/"
