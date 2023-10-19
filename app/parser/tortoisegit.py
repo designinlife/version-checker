@@ -69,6 +69,8 @@ async def parse(cfg: Configuration, item: AppSettingSoftItem):
 
                 logger.info(f'<{item.name}> data information has been generated.')
             else:
-                logger.warning(f'[{item.name}] The variable semver_versions or download_links is empty and data generation failed.')
+                logger.error(f'[{item.name}] The variable semver_versions or download_links is empty and data generation failed.')
+        else:
+            logger.error(f'[{item.name}] Regular expression fails when matching latest version pattern.')
     else:
         logger.error(f'[{item.name}] HTTP status code exception. ({http_status_code} | {url})')
