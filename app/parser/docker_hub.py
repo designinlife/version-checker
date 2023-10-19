@@ -7,7 +7,7 @@ from . import Assistant
 
 
 async def parse(assist: Assistant, item: AppSettingSoftItem):
-    semver_versions = []
+    all_versions = []
 
     ns, name = item.repo.split('/')
 
@@ -21,10 +21,10 @@ async def parse(assist: Assistant, item: AppSettingSoftItem):
 
         for v in data_r['results']:
             if vpsr.is_match(v['name']):
-                semver_versions.append(v['name'])
+                all_versions.append(v['name'])
 
         if item.category:
-            dict_versions = vpsr.semver_split(semver_versions, only_major=item.category_by_major)
+            dict_versions = vpsr.semver_split(all_versions, only_major=item.category_by_major)
 
             for m, n in dict_versions.items():
                 latest_version = vpsr.latest(n)
@@ -40,13 +40,13 @@ async def parse(assist: Assistant, item: AppSettingSoftItem):
                                     all_versions=vpsr.clean(n),
                                     download_links=download_links)
         else:
-            if semver_versions:
-                latest_version = vpsr.latest(semver_versions)
+            if all_versions:
+                latest_version = vpsr.latest(all_versions)
                 download_links = Parser.create_download_links(latest_version, item.download_urls)
 
                 # Output JSON file.
                 await assist.create(name=item.name,
                                     url=item.url if item.url else 'https://hub.docker.com/',
                                     version=latest_version,
-                                    all_versions=vpsr.clean(semver_versions),
+                                    all_versions=vpsr.clean(all_versions),
                                     download_links=download_links)

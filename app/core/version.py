@@ -36,6 +36,8 @@ class VersionParser:
             if m:
                 r.append(m.group('version').replace('_', '.'))
 
+        r.sort(key=functools.cmp_to_key(self.cmp_version), reverse=True)
+
         return r
 
     def semver_split(self, items: List[str], only_major: bool = False) -> dict[str, list]:
@@ -55,6 +57,9 @@ class VersionParser:
 
                 # r[key].append(m.group('version'))
                 r[key].append(v)
+
+        for k, v in r.items():
+            r[k] = v.sort(key=functools.cmp_to_key(self.cmp_version), reverse=True)
 
         return r
 
