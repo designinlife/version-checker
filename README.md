@@ -2,6 +2,7 @@
 
 ![GitHub CI](https://github.com/designinlife/version-checker/actions/workflows/ci.yml/badge.svg)
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
+[![Python](https://img.shields.io/badge/language-python-green.svg)](https://www.python.org/)
 
 ## Usage
 
