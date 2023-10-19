@@ -1,5 +1,6 @@
 import asyncio
 import json
+import sys
 from pathlib import Path
 from typing import List, Optional
 
@@ -48,6 +49,9 @@ class InspectRunner:
                     await Parser.create(queue_item.parser, assistant, queue_item)
                 except Exception as exc:
                     logger.exception('[{}] {}'.format(queue_item.name, exc))
+
+                    if self.cfg.debug:
+                        sys.exit(1)
 
             # Notify the queue that the "work item" has been processed.
             queue.task_done()
