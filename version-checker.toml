@@ -846,3 +846,8 @@ download_urls = [
 name = "virtualbox"
 parser = "virtualbox"
 url = "https://www.virtualbox.org/wiki/Downloads"
+
+[[softwares]]
+name = "tortoisesvn"
+parser = "sourceforge"
+url = "https://tortoisesvn.net/downloads.html"
