@@ -58,6 +58,30 @@ class RegexpTestCase(unittest.TestCase):
 
         print(helper.latest, helper.versions)
 
+    def test_version_helper_openssl(self):
+        helper = VersionHelper(pattern=r'^(?:openssl-|OpenSSL_)(?P<version>(?P<major>\d+)[_.](?P<minor>\d+)[_.](?P<patch>\d+[a-z]?))$', split_mode=2)
+        helper.add('openssl-3.2.0-alpha2')
+        helper.add('OpenSSL_1_1_1w')
+        helper.add('openssl-3.2.0-alpha1')
+        helper.add('openssl-3.1.2')
+        helper.add('openssl-3.0.10')
+        helper.add('openssl-3.0.11')
+        helper.add('OpenSSL_1_1_1v')
+        helper.add('openssl-3.1.1')
+        helper.add('openssl-3.1.3')
+        helper.add('openssl-3.0.9')
+        helper.add('OpenSSL_1_1_1u')
+        helper.add('openssl-3.1.0')
+        helper.add('openssl-3.0.8')
+        helper.add('OpenSSL_1_1_1t')
+        helper.add('openssl-3.1.0-beta1')
+        helper.add('openssl-3.0.7')
+        helper.add('OpenSSL_1_1_1s')
+
+        helper.sort()
+
+        print(helper.versions)
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -25,9 +25,14 @@ class VersionSplitItem(BaseModel):
     versions: List[Version] = Field(default_factory=list)
 
 
+class VersionSplitLiteItem(BaseModel):
+    latest: str = Field(default=None)
+    versions: List[str] = Field(default_factory=list)
+
+
 class VersionHelper:
     _versions: List[Version] = []
-    _split_versions: Dict[str, VersionSplitItem] = None
+    _split_versions: Dict[str, VersionSplitItem] = {}
     _latest_version: str = None
 
     def __init__(self, pattern: str, split_mode: int = 0):
@@ -45,10 +50,27 @@ class VersionHelper:
 
     @property
     def versions(self):
-        r = []
+        if self.split_mode > 0:
+            return self.split_versions
+        else:
+            r = []
 
-        for v in self._versions:
-            r.append(self._build_semver(v))
+            for v in self._versions:
+                r.append(self._build_semver(v))
+
+            return r
+
+    @property
+    def split_versions(self) -> Dict[str, VersionSplitLiteItem]:
+        r = {}
+
+        for k, v in self._split_versions.items():
+            versions = []
+
+            for v2 in v.versions:
+                versions.append(self._build_semver(v2))
+
+            r[k] = VersionSplitLiteItem(latest=versions[0], versions=versions)
 
         return r
 
