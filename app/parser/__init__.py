@@ -2,6 +2,7 @@ import os
 from typing import Optional, Dict
 
 import aiohttp
+from loguru import logger
 
 
 class HTTP:
@@ -11,6 +12,8 @@ class HTTP:
 
         if headers:
             hdr = hdr.update(headers)
+
+        logger.debug(f'[aiohttp::Request] URL: {url}, PARAMS: {params}, HEADERS: {headers}, TIMEOUT: {timeout}, JSON RESULT: {is_json}')
 
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=timeout)) as session:
             async with session.get(url,
