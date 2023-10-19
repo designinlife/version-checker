@@ -851,3 +851,8 @@ url = "https://www.virtualbox.org/wiki/Downloads"
 name = "tortoisesvn"
 parser = "sourceforge"
 url = "https://tortoisesvn.net/downloads.html"
+
+[[softwares]]
+name = "tortoisegit"
+parser = "tortoisegit"
+url = "https://tortoisegit.org/"
