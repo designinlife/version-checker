@@ -58,6 +58,30 @@ class RegexpTestCase(unittest.TestCase):
 
         print(helper.latest, helper.versions)
 
+    def test_version_helper_corretto(self):
+        helper = VersionHelper(pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<suffix>\d+)\.(\d+)?)$', split_mode=0)
+        helper.add('11.0.20.9.1')
+        helper.add('11.0.20.8.1')
+        helper.add('11.0.19.7.1')
+        helper.add('11.0.18.11.1')
+        helper.add('11.0.14.9.1')
+        helper.add('11.0.18.10.1')
+        helper.add('11.0.17.8.1')
+        helper.add('11.0.21.9.1')
+        helper.add('11.0.16.9.1')
+        helper.add('11.0.16.8.3')
+        helper.add('11.0.16.8.1')
+        helper.add('11.0.15.9.1')
+        helper.add('preview-11.0.15.2.1')
+        helper.add('11.0.14.10.1')
+        helper.add('11.0.13.8.1')
+        helper.add('11.0.12.7.2')
+        helper.add('11.0.12.7.1')
+
+        helper.sort()
+
+        print(helper.latest, helper.versions)
+
     def test_version_helper_openssl(self):
         helper = VersionHelper(pattern=r'^(?:openssl-|OpenSSL_)(?P<version>(?P<major>\d+)[_.](?P<minor>\d+)[_.](?P<patch>\d+[a-z]?))$', split_mode=2)
         helper.add('openssl-3.2.0-alpha2')
