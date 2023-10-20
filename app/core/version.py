@@ -16,18 +16,18 @@ def is_numeric(s: Optional[str]):
 
 
 class Version(BaseModel):
-    origin: str = Field(default=None)
-    semver: str = Field(default=None)
+    origin: str | None = Field(default=None)
+    semver: str | None = Field(default=None)
     groups: dict = Field(default_factory=dict)
 
 
 class VersionSplitItem(BaseModel):
-    latest: str = Field(default=None)
+    latest: str | None = Field(default=None)
     versions: List[Version] = Field(default_factory=list)
 
 
 class VersionSplitLiteItem(BaseModel):
-    latest: str = Field(default=None)
+    latest: str | None = Field(default=None)
     versions: List[str | None] = Field(default_factory=list)
     download_links: List[str] = Field(default_factory=list)
 
