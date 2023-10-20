@@ -110,7 +110,7 @@ class Assistant:
                         f'Rate Limit '
                         f'| Remaining: \033[1;32m{data_r["rate"]["remaining"]}\033[0m/\033[1;33m{data_r["rate"]["limit"]}\033[0m'
                         f',\033[1;34m{timedelta(seconds=data_r["rate"]["reset"] - time.time())}\033[0m'
-                        f'| Current Time: {arrow.now().format("YYYY-MM-DD HH:mm:ss")} '
-                        f'| Reset: {arrow.get(data_r["rate"]["reset"]).format("YYYY-MM-DD HH:mm:ss")}')
+                        f'| Current Time: {arrow.now("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss ZZ")} '
+                        f'| Reset: {arrow.get(data_r["rate"]["reset"]).to("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss ZZ")}')
                 else:
                     logger.warning('Ratelimit data reading failed.')
