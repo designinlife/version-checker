@@ -172,8 +172,8 @@ download_urls = [
 name = "openssl"
 repo = "openssl/openssl"
 by_release = true
-category = true
-tag_pattern = "^OpenSSL (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?P<suffix>[a-z])?)$"
+split_mode = 2
+tag_pattern = "^(?:openssl-|OpenSSL_)(?P<version>(?P<major>\\d+)[_.](?P<minor>\\d+)[_.](?P<patch>\\d+[a-z]?))$"
 download_urls = [
     "https://www.openssl.org/source/openssl-{version}.tar.gz",
 ]
@@ -225,7 +225,7 @@ download_urls = [
 [[softwares]]
 name = "python"
 repo = "python/cpython"
-category = true
+split_mode = 2
 tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://www.python.org/ftp/python/{version}/Python-{version}.tgz",
@@ -256,7 +256,7 @@ download_urls = [
 name = "redis"
 repo = "redis/redis"
 by_release = true
-category = true
+split_mode = 2
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://download.redis.io/releases/redis-{version}.tar.gz",
@@ -266,7 +266,7 @@ download_urls = [
 name = "composer"
 repo = "composer/composer"
 by_release = true
-category = true
+split_mode = 2
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://getcomposer.org/download/{version}/composer.phar",
@@ -294,8 +294,9 @@ download_urls = [
 name = "doris"
 repo = "apache/doris"
 by_release = true
-category = true
-tag_pattern = "^Apache Doris (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.?(\\d+)?) Release$"
+by_release_name = true
+split_mode = 2
+tag_pattern = "^Apache Doris (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:\\.\\d+)?) Release$"
 download_urls = [
     "https://downloads.apache.org/doris/{major}.{minor}/{version}/apache-doris-{version}-src.tar.gz",
     "https://apache-doris-releases.oss-accelerate.aliyuncs.com/apache-doris-{version}-bin-x64.tar.gz",
@@ -328,7 +329,7 @@ download_urls = [
 [[softwares]]
 name = "groovy"
 repo = "apache/groovy"
-category = true
+split_mode = 2
 tag_pattern = "^GROOVY_(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
 download_urls = [
     "https://dlcdn.apache.org/groovy/{major}.{minor}.{patch}/distribution/apache-groovy-binary-{major}.{minor}.{patch}.zip",
@@ -604,12 +605,11 @@ download_urls = [
 name = "rke2"
 repo = "rancher/rke2"
 by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\+rke2r(?P<suffix>\\d))$"
-ver_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\+rke2r(?P<suffix>\\d))$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\+rke2r\\d)$"
 download_urls = [
-    "https://github.com/rancher/rke2/releases/download/v{version}%2Brke2r{suffix}/rke2-images.linux-amd64.tar.gz",
-    "https://github.com/rancher/rke2/releases/download/v{version}%2Brke2r{suffix}/rke2.linux-amd64",
-    "https://github.com/rancher/rke2/releases/download/v{version}%2Brke2r{suffix}/rke2-windows-amd64.exe",
+    "https://github.com/rancher/rke2/releases/download/v{version}/rke2-images.linux-amd64.tar.gz",
+    "https://github.com/rancher/rke2/releases/download/v{version}/rke2.linux-amd64",
+    "https://github.com/rancher/rke2/releases/download/v{version}/rke2-windows-amd64.exe",
 ]
 
 [[softwares]]
@@ -702,7 +702,7 @@ name = "postgres"
 parser = "docker-library"
 url = "https://www.postgresql.org/download/"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
-category_by_major = true
+split_mode = 1
 download_urls = [
     "https://ftp.postgresql.org/pub/source/v{version}/postgresql-{version}.tar.gz",
     "https://ftp.postgresql.org/pub/source/v{version}/postgresql-{version}.tar.bz2",
