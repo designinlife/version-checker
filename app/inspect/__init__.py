@@ -55,7 +55,7 @@ class InspectRunner:
                     if self.cfg.debug:
                         sys.exit(1)
 
-            await asyncio.sleep(random.uniform(1.0, 3.0))
+            await asyncio.sleep(random.uniform(0.1, 0.2))
 
             # Notify the queue that the "work item" has been processed.
             queue.task_done()
