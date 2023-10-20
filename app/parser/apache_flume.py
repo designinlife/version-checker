@@ -2,37 +2,36 @@ from bs4 import BeautifulSoup
 from loguru import logger
 
 from app.core.config import AppSettingSoftItem
-from app.core.version import VersionParser
+from app.core.version import VersionParser, VersionHelper
 from app.inspect.parser import Parser
 from . import Assistant
 
 
 async def parse(assist: Assistant, item: AppSettingSoftItem):
-    all_versions = []
-
     # Make an HTTP request.
     url, http_status_code, _, data_s = await assist.get('https://flume.apache.org/releases/index.html')
 
+    # Create VersionHelper instance.
+    vhlp = VersionHelper(pattern=item.tag_pattern, download_urls=item.download_urls)
+
+    # Analyzing HTML text data.
     soup = BeautifulSoup(data_s, 'html.parser')
 
     latest_a_element = soup.select_one('#releases > p:nth-child(3) > a')
     other_a_elements = soup.select('#releases > div:nth-child(6) > ul > li > a')
 
-    all_versions.append(latest_a_element.attrs['href'].removesuffix('.html'))
+    vhlp.add(latest_a_element.attrs['href'].removesuffix('.html'))
 
     for v in other_a_elements:
         if v:
-            all_versions.append(v.attrs['href'].removesuffix('.html'))
+            vhlp.add(v.attrs['href'].removesuffix('.html'))
 
-    logger.debug(f'flume: {all_versions}')
+    # Perform actions such as sorting.
+    vhlp.done()
 
-    vpsr = VersionParser(pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+))$')
-
-    latest_version = vpsr.latest(all_versions)
-    download_links = Parser.create_download_links(latest_version, item.download_urls)
-
-    logger.debug(f'LATEST: {latest_version} | Versions: {", ".join(all_versions)}')
-    logger.debug('DOWNLOADS: {}'.format('\n'.join(download_links)))
+    latest_version = vhlp.latest
+    download_links = vhlp.download_links
+    all_versions = vhlp.versions
 
     # Output JSON file.
     await assist.create(name=item.name,

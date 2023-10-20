@@ -54,7 +54,7 @@ class RegexpTestCase(unittest.TestCase):
         helper.add('curl-7_86_0')
         helper.add('curl-8_0_0')
 
-        helper.sort()
+        helper.done()
 
         print(helper.latest, helper.versions)
 
@@ -83,7 +83,7 @@ class RegexpTestCase(unittest.TestCase):
         helper.add('11.0.12.7.2')
         helper.add('11.0.12.7.1')
 
-        helper.sort()
+        helper.done()
 
         print(helper.latest, helper.versions, helper.download_links)
 
@@ -108,7 +108,7 @@ class RegexpTestCase(unittest.TestCase):
         helper.add('openssl-3.0.7')
         helper.add('OpenSSL_1_1_1s')
 
-        helper.sort()
+        helper.done()
 
         print(helper.versions)
 
@@ -125,7 +125,7 @@ class RegexpTestCase(unittest.TestCase):
         helper.add('8.7')
         helper.add('8.6')
 
-        helper.sort()
+        helper.done()
 
         print(helper.versions)
 
@@ -142,7 +142,7 @@ class RegexpTestCase(unittest.TestCase):
         helper.add('8.7')
         helper.add('8.6')
 
-        helper.sort()
+        helper.done()
 
         print(helper.latest, helper.versions)
 

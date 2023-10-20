@@ -86,7 +86,7 @@ class VersionHelper:
             download_links = []
 
             if self._download_urls:
-                download_links = self._build_download_links(v.versions[0].groups, self._download_urls)
+                download_links = self._build_download_links(v.versions[0], self._download_urls)
 
             r[k] = VersionSplitLiteItem(latest=versions[0], versions=versions, download_links=download_links)
 
@@ -102,11 +102,11 @@ class VersionHelper:
         else:
             return None
 
-    def _build_download_links(self, groups: dict, download_urls: List[str]) -> List[str]:
+    def _build_download_links(self, version: Version, download_urls: List[str]) -> List[str]:
         r = []
 
         for v in download_urls:
-            r.append(v.format(**groups))
+            r.append(v.format(**version.groups))
 
         return r
 
@@ -141,7 +141,7 @@ class VersionHelper:
 
                 self._split_versions[key].versions.append(Version(origin=v, semver=m.group('version'), groups=groupdict))
 
-    def sort(self):
+    def done(self):
         if self.split_mode > 0:
             for k, v in self._split_versions.items():
                 self._split_versions[k].versions.sort(key=functools.cmp_to_key(self._cmp_semver_version), reverse=True)
@@ -150,7 +150,7 @@ class VersionHelper:
             self._versions.sort(key=functools.cmp_to_key(self._cmp_semver_version), reverse=True)
 
             if self._download_urls:
-                self._download_links = self._build_download_links(self._versions[0].groups, self._download_urls)
+                self._download_links = self._build_download_links(self._versions[0], self._download_urls)
 
     def _cmp_semver_version(self, x: Version, y: Version) -> int:
         if x.semver == y.semver:
