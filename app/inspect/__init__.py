@@ -73,7 +73,7 @@ class InspectRunner:
         # Create three worker tasks to process the queue concurrently.
         tasks = []
 
-        for i in range(1):
+        for i in range(4):
             task = asyncio.create_task(self._worker(f'worker-{i}', queue))
             tasks.append(task)
 
