@@ -59,7 +59,12 @@ class RegexpTestCase(unittest.TestCase):
         print(helper.latest, helper.versions)
 
     def test_version_helper_corretto(self):
-        helper = VersionHelper(pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<suffix>\d+)\.(\d+)?)$', split_mode=0)
+        helper = VersionHelper(pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<suffix>\d+)\.(?P<end>\d+)?)$', split_mode=0,
+                               download_urls=[
+                                   "https://corretto.aws/downloads/resources/jdk-{major}/{version}/amazon-corretto-{version}-linux-x64.tar.gz",
+                                   "https://corretto.aws/downloads/resources/jdk-{major}/{version}/amazon-corretto-{version}-windows-x64.msi",
+                                   "https://corretto.aws/downloads/resources/jdk-{major}/{version}/amazon-corretto-{version}-windows-x64-jdk.zip",
+                               ])
         helper.add('11.0.20.9.1')
         helper.add('11.0.20.8.1')
         helper.add('11.0.19.7.1')
@@ -80,10 +85,11 @@ class RegexpTestCase(unittest.TestCase):
 
         helper.sort()
 
-        print(helper.latest, helper.versions)
+        print(helper.latest, helper.versions, helper.download_links)
 
     def test_version_helper_openssl(self):
-        helper = VersionHelper(pattern=r'^(?:openssl-|OpenSSL_)(?P<version>(?P<major>\d+)[_.](?P<minor>\d+)[_.](?P<patch>\d+[a-z]?))$', split_mode=2)
+        helper = VersionHelper(pattern=r'^(?:openssl-|OpenSSL_)(?P<version>(?P<major>\d+)[_.](?P<minor>\d+)[_.](?P<patch>\d+[a-z]?))$',
+                               split_mode=2, download_urls=['https://www.openssl.org/source/openssl-{version}.tar.gz'])
         helper.add('openssl-3.2.0-alpha2')
         helper.add('OpenSSL_1_1_1w')
         helper.add('openssl-3.2.0-alpha1')

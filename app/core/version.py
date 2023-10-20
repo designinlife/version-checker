@@ -18,19 +18,12 @@ def is_numeric(s: Optional[str]):
 class Version(BaseModel):
     origin: str = Field(default=None)
     semver: str = Field(default=None)
+    groups: dict = Field(default_factory=dict)
 
 
 class VersionSplitItem(BaseModel):
     latest: str = Field(default=None)
     versions: List[Version] = Field(default_factory=list)
-
-    def build_download_links(self, groups: dict, download_urls: List[str]) -> List[str]:
-        r = []
-
-        for v in download_urls:
-            r.append(v.format(**groups))
-
-        return r
 
 
 class VersionSplitLiteItem(BaseModel):
@@ -42,13 +35,12 @@ class VersionSplitLiteItem(BaseModel):
 class VersionHelper:
     _versions: List[Version] = []
     _split_versions: Dict[str, VersionSplitItem] = {}
-    _latest_version: str = None
     _download_links: List[str] = []
 
     def __init__(self, pattern: str, split_mode: int = 0, download_urls: List[str] = None):
         self.exp = re.compile(pattern)
         self.split_mode = split_mode
-        self.download_urls = download_urls
+        self._download_urls = download_urls
 
     def is_match(self, v: str):
         if self.exp.match(v):
@@ -57,6 +49,9 @@ class VersionHelper:
 
     @property
     def latest(self):
+        if self.split_mode > 0:
+            raise ValueError('Calling this property is not allowed in split mode. (Using foreach in split_versions property!)')
+
         return self._build_semver(self._versions[0])
 
     @property
@@ -73,9 +68,10 @@ class VersionHelper:
 
     @property
     def download_links(self) -> List[str]:
-        r = []
+        if self.split_mode > 0:
+            raise ValueError('Calling this property is not allowed in split mode. (Using foreach in split_versions property!)')
 
-        return r
+        return self._download_links
 
     @property
     def split_versions(self) -> Dict[str, VersionSplitLiteItem]:
@@ -87,7 +83,12 @@ class VersionHelper:
             for v2 in v.versions:
                 versions.append(self._build_semver(v2))
 
-            r[k] = VersionSplitLiteItem(latest=versions[0], versions=versions)
+            download_links = []
+
+            if self._download_urls:
+                download_links = self._build_download_links(v.versions[0].groups, self._download_urls)
+
+            r[k] = VersionSplitLiteItem(latest=versions[0], versions=versions, download_links=download_links)
 
         return r
 
@@ -101,6 +102,14 @@ class VersionHelper:
         else:
             return None
 
+    def _build_download_links(self, groups: dict, download_urls: List[str]) -> List[str]:
+        r = []
+
+        for v in download_urls:
+            r.append(v.format(**groups))
+
+        return r
+
     def add(self, v: str):
         m = self.exp.match(v)
         if m:
@@ -109,9 +118,7 @@ class VersionHelper:
             if 'version' not in groupdict:
                 raise ValueError('The version variable does not exist in the match pattern.')
 
-            self._versions.append(Version(origin=v, semver=m.group('version')))
-
-            groupdict = m.groupdict()
+            self._versions.append(Version(origin=v, semver=m.group('version'), groups=groupdict))
 
             if self.split_mode > 0:
                 if 1 == self.split_mode:  # 依据 <major> 划分
@@ -132,7 +139,7 @@ class VersionHelper:
                 if key not in self._split_versions:
                     self._split_versions[key] = VersionSplitItem()
 
-                self._split_versions[key].versions.append(Version(origin=v, semver=m.group('version')))
+                self._split_versions[key].versions.append(Version(origin=v, semver=m.group('version'), groups=groupdict))
 
     def sort(self):
         if self.split_mode > 0:
@@ -141,7 +148,9 @@ class VersionHelper:
                 self._split_versions[k].latest = self._split_versions[k].versions[0].semver
         else:
             self._versions.sort(key=functools.cmp_to_key(self._cmp_semver_version), reverse=True)
-            self._latest_version = self._versions[0].semver
+
+            if self._download_urls:
+                self._download_links = self._build_download_links(self._versions[0].groups, self._download_urls)
 
     def _cmp_semver_version(self, x: Version, y: Version) -> int:
         if x.semver == y.semver:
