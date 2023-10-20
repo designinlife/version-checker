@@ -14,7 +14,7 @@ from app.inspect import InspectRunner
 @click.pass_obj
 @click.pass_context
 def cli(ctx: Context, cfg: Configuration, filter_name: Optional[str] = None):
-    logger.info(f'app cli inspect called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})')
+    logger.debug(f'app cli inspect called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})')
 
     ir = InspectRunner(ctx, cfg)
     ir.start(filter_name)
