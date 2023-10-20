@@ -39,7 +39,7 @@ class InspectRunner:
             f.write(json.dumps(data, ensure_ascii=True, separators=(',', ':')))
 
     async def _worker(self, name, queue):
-        assistant = Assistant(self.cfg)
+        # assistant = Assistant(self.cfg)
 
         while True:
             # Get a "work item" out of the queue.
@@ -47,14 +47,14 @@ class InspectRunner:
 
             if isinstance(queue_item, AppSettingSoftItem):
                 try:
-                    await Parser.create(queue_item.parser, assistant, queue_item)
+                    await Parser.create(queue_item.parser, Assistant(self.cfg), queue_item)
                 except Exception as exc:
                     logger.exception('[{}] {}'.format(queue_item.name, exc))
 
                     if self.cfg.debug:
                         sys.exit(1)
 
-            await asyncio.sleep(random.uniform(0.05, 2.0))
+            await asyncio.sleep(random.uniform(1.0, 3.0))
 
             # Notify the queue that the "work item" has been processed.
             queue.task_done()
@@ -73,7 +73,7 @@ class InspectRunner:
         # Create three worker tasks to process the queue concurrently.
         tasks = []
 
-        for i in range(4):
+        for i in range(1):
             task = asyncio.create_task(self._worker(f'worker-{i}', queue))
             tasks.append(task)
 

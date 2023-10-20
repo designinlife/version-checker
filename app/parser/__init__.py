@@ -38,7 +38,7 @@ class Assistant:
         async with aiofiles.open(output_path.joinpath(f'{name}.json'), 'w', encoding='utf-8') as f:
             await f.write(result)
 
-        logger.info(f'<{name}> data information has been generated.')
+        logger.info(f'<\033[1;32m{name}\033[0m> done.')
 
     async def get(self, url: str,
                   params: Optional[Dict[str, str]] = None,
