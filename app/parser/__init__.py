@@ -1,4 +1,3 @@
-import json
 import os
 from pathlib import Path
 from typing import Optional, Dict, List
@@ -84,7 +83,11 @@ class Assistant:
                 else:
                     raise ValueError(f'HTTP status code exception. ({resp.status} | {url})')
 
-    async def ratelimit(self):
+    @staticmethod
+    async def ratelimit():
+        """Print GitHub ratelimit data.
+
+        """
         github_token = os.environ.get("GITHUB_TOKEN")
 
         headers = {}
@@ -98,4 +101,12 @@ class Assistant:
 
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=15)) as session:
             async with session.get('https://api.github.com/rate_limit', headers=headers, proxy=os.environ.get('PROXY')) as resp:
-                logger.info(f'Rate Limit | Status: {resp.status} | {json.dumps(await resp.json())}')
+                if 200 <= resp.status < 300:
+                    data_r = await resp.json()
+
+                    logger.info(
+                        f'Rate Limit | Remaining: {data_r["rate"]["remaining"]}/{data_r["rate"]["limit"]}'
+                        f'| Current Time: {arrow.now().format("YYYY-MM-DD HH:mm:ss")} '
+                        f'| Reset: {arrow.get(data_r["rate"]["reset"]).format("YYYY-MM-DD HH:mm:ss")}')
+                else:
+                    logger.warning('Ratelimit data reading failed.')
