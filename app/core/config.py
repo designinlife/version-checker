@@ -43,7 +43,7 @@ class Configuration(BaseModel):
 class OutputResult(BaseModel):
     name: str
     url: str
-    latest: str
+    latest: str | None = Field(default=None)
     versions: List[str | None] = Field(default_factory=list)
     download_urls: List[str] = Field(default_factory=list)
     created_time: str
