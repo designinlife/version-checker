@@ -19,6 +19,8 @@ class InspectRunner:
         self.cfg = cfg
 
     def start(self, filter_name: Optional[str] = None):
+        asyncio.run(Assistant(self.cfg).ratelimit())
+
         asyncio.run(self._main(self.cfg.settings.softwares, filter_name))
 
         # Merging behavior is not performed in DEBUG mode.
@@ -39,7 +41,7 @@ class InspectRunner:
             f.write(json.dumps(data, ensure_ascii=True, separators=(',', ':')))
 
     async def _worker(self, name, queue):
-        # assistant = Assistant(self.cfg)
+        assistant = Assistant(self.cfg)
 
         while True:
             # Get a "work item" out of the queue.
@@ -47,7 +49,7 @@ class InspectRunner:
 
             if isinstance(queue_item, AppSettingSoftItem):
                 try:
-                    await Parser.create(queue_item.parser, Assistant(self.cfg), queue_item)
+                    await Parser.create(queue_item.parser, assistant, queue_item)
                 except Exception as exc:
                     logger.exception('[{}] {}'.format(queue_item.name, exc))
 

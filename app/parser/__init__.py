@@ -1,3 +1,4 @@
+import json
 import os
 from pathlib import Path
 from typing import Optional, Dict, List
@@ -60,10 +61,11 @@ class Assistant:
         hdr = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36'}
 
         if headers:
-            hdr = hdr.update(headers)
+            hdr.update(headers)
 
         if self.cfg.debug:
-            logger.debug(f'URL: {url}, PARAMS: {params}, HEADERS: {headers}, TIMEOUT: {timeout}, JSON RESULT: {is_json}')
+            # logger.debug(f'URL: {url}, PARAMS: {params}, HEADERS: {headers}, TIMEOUT: {timeout}, JSON RESULT: {is_json}')
+            logger.debug(f'URL: {url}, PARAMS: {params}, TIMEOUT: {timeout}, JSON RESULT: {is_json}')
 
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=timeout)) as session:
             async with session.get(url,
@@ -71,9 +73,29 @@ class Assistant:
                                    headers=hdr,
                                    proxy=os.environ.get('PROXY')) as resp:
                 if 200 <= resp.status < 300:
+                    # for k, v in resp.headers.items():
+                    #     if 'ratelimit' in k.lower():
+                    #         logger.debug(f'Response Header: {k}={v}')
+
                     if is_json:
                         return resp.url, resp.status, resp.headers, await resp.json()
                     else:
                         return resp.url, resp.status, resp.headers, await resp.text()
                 else:
                     raise ValueError(f'HTTP status code exception. ({resp.status} | {url})')
+
+    async def ratelimit(self):
+        github_token = os.environ.get("GITHUB_TOKEN")
+
+        headers = {}
+
+        if github_token:
+            headers = {
+                'Accept': 'application/vnd.github+json',
+                'Authorization': f'Bearer {github_token}',
+                'X-GitHub-Api-Version': '2022-11-28',
+            }
+
+        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=15)) as session:
+            async with session.get('https://api.github.com/rate_limit', headers=headers, proxy=os.environ.get('PROXY')) as resp:
+                logger.info(f'Rate Limit | Status: {resp.status} | {json.dumps(await resp.json())}')
