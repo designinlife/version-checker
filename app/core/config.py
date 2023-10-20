@@ -10,6 +10,7 @@ class AppSettingBase(BaseModel):
 
 class AppSettingSoftItem(BaseModel):
     name: str = Field()
+    code: Optional[str] = Field(default=None)
     repo: Optional[str] = Field(default=None)
     download_urls: List[str] = Field(default_factory=list)
     parser: Optional[str] = Field(default='gh')

@@ -855,3 +855,105 @@ url = "https://tortoisegit.org/"
 [[softwares]]
 name = "github-desktop"
 parser = "github-desktop"
+
+[[softwares]]
+name = "JetBrains.AppCode"
+code = "AC"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/objc/"
+
+[[softwares]]
+name = "JetBrains.CLion"
+code = "CL"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/clion/"
+
+[[softwares]]
+name = "JetBrains.ReSharperUltimate"
+code = "RSU"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/resharper/"
+
+[[softwares]]
+name = "JetBrains.DataGrip"
+code = "DG"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/datagrip/"
+
+[[softwares]]
+name = "JetBrains.Goland"
+code = "GO"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/go/"
+
+[[softwares]]
+name = "JetBrains.IntelliJIDEA"
+code = "IIU"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/idea/"
+
+[[softwares]]
+name = "JetBrains.PhpStorm"
+code = "PS"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/phpstorm/"
+
+[[softwares]]
+name = "JetBrains.PyCharm"
+code = "PCP"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/pycharm/"
+
+[[softwares]]
+name = "JetBrains.Rider"
+code = "RD"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/rider/"
+
+[[softwares]]
+name = "JetBrains.RubyMine"
+code = "RM"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/ruby/"
+
+[[softwares]]
+name = "JetBrains.WebStorm"
+code = "WS"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/webstorm/"
+
+[[softwares]]
+name = "JetBrains.Fleet"
+code = "FL"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/fleet/"
+
+[[softwares]]
+name = "JetBrains.RustRover"
+code = "RR"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/rust/"
+
+[[softwares]]
+name = "JetBrains.DataSpell"
+code = "DS"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/dataspell/"
+
+[[softwares]]
+name = "JetBrains.Aqua"
+code = "QA"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/aqua/"
+
+[[softwares]]
+name = "JetBrains.TeamCity"
+code = "TC"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/teamcity/"
+
+[[softwares]]
+name = "JetBrains.Writerside"
+code = "WRS"
+parser = "jetbrains"
+url = "https://www.jetbrains.com/writerside/"
