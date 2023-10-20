@@ -76,6 +76,36 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "swoole"
+repo = "swoole/swoole-src"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+by_release = true
+download_urls = [
+    "https://pecl.php.net/get/swoole-{version}.tgz",
+]
+
+[[softwares]]
+name = "grpc"
+repo = "grpc/grpc"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+by_release = true
+download_urls = [
+    "https://pecl.php.net/get/grpc-{version}.tgz",
+]
+
+[[softwares]]
+name = "protobuf"
+repo = "protocolbuffers/protobuf"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+by_release = true
+download_urls = [
+    "https://github.com/protocolbuffers/protobuf/releases/download/v{version}/protoc-{version}-win64.zip",
+    "https://github.com/protocolbuffers/protobuf/releases/download/v{version}/protoc-{version}-linux-x86_64.zip",
+    "https://github.com/protocolbuffers/protobuf/releases/download/v{version}/protobuf-{version}.zip",
+    "https://github.com/protocolbuffers/protobuf/releases/download/v{version}/protobuf-{version}.tar.gz",
+]
+
+[[softwares]]
 name = "compose"
 repo = "docker/compose"
 tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
