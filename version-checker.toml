@@ -155,8 +155,8 @@ name = "curl"
 repo = "curl/curl"
 tag_pattern = "^curl-(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
 download_urls = [
-    "https://curl.se/download/curl-{version}.tar.gz",
-    "https://github.com/stunnel/static-curl/releases/download/{version}/curl-static-amd64-{version}.tar.xz",
+    "https://curl.se/download/curl-{major}.{minor}.{patch}.tar.gz",
+    "https://github.com/stunnel/static-curl/releases/download/{version}/curl-static-amd64-{major}.{minor}.{patch}.tar.xz",
 ]
 
 [[softwares]]

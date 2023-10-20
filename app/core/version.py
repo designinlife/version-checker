@@ -1,6 +1,6 @@
 import functools
 import re
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -104,28 +104,6 @@ class VersionHelper:
             raise ValueError('Calling this property is not allowed in split mode. (Using foreach in split_versions property!)')
 
         return self._download_links
-
-    @property
-    def split_versions(self) -> Dict[str, VersionSplitLiteItem]:
-        if self._split_mode <= 0:
-            raise ValueError('Calling this property is not allowed in Non-split mode.')
-
-        r = {}
-
-        for k, v in self._all_split_versions.items():
-            versions = []
-
-            for v2 in v.versions:
-                versions.append(self._build_semver(v2))
-
-            download_links = []
-
-            if self._download_urls:
-                download_links = self._build_download_links(v.versions[0], self._download_urls)
-
-            r[k] = VersionSplitLiteItem(latest=versions[0], versions=versions, download_links=download_links)
-
-        return r
 
     def _build_semver(self, version: Version) -> Optional[str]:
         m = self._exp.match(version.origin)
