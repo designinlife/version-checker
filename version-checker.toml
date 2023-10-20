@@ -305,7 +305,7 @@ download_urls = [
 name = "maven"
 repo = "apache/maven"
 by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+tag_pattern = "^maven-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://dlcdn.apache.org/maven/maven-{major}/{version}/source/apache-maven-{version}-src.tar.gz",
     "https://dlcdn.apache.org/maven/maven-{major}/{version}/binaries/apache-maven-{version}-bin.tar.gz",
@@ -316,6 +316,7 @@ download_urls = [
 name = "hbase"
 repo = "apache/hbase"
 by_release = true
+by_release_name = true
 tag_pattern = "^Apache HBase (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)) is now available for download$"
 download_urls = [
     "https://dlcdn.apache.org/hbase/{version}/hbase-{version}-src.tar.gz",
@@ -380,7 +381,7 @@ download_urls = [
 name = "airflow"
 repo = "apache/airflow"
 by_release = true
-tag_pattern = "^Apache Airflow (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/apache/airflow/releases/download/{version}/apache-airflow-{version}-source.tar.gz",
     "https://github.com/apache/airflow/releases/download/{version}/apache-airflow-{version}.tar.gz",
@@ -401,7 +402,7 @@ download_urls = [
 name = "druid"
 repo = "apache/druid"
 by_release = true
-tag_pattern = "^Druid (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+tag_pattern = "^druid-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://archive.apache.org/dist/druid/{version}/apache-druid-{version}-src.tar.gz",
     "https://archive.apache.org/dist/druid/{version}/apache-druid-{version}-bin.tar.gz",
@@ -514,7 +515,7 @@ download_urls = [
 name = "elasticsearch"
 repo = "elastic/elasticsearch"
 by_release = true
-tag_pattern = "^Elasticsearch (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-windows-x86_64.zip",
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-linux-x86_64.tar.gz",
@@ -530,7 +531,7 @@ download_urls = [
 name = "logstash"
 repo = "elastic/logstash"
 by_release = true
-tag_pattern = "^Logstash (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://artifacts.elastic.co/downloads/logstash/logstash-{version}-linux-x86_64.tar.gz",
     "https://artifacts.elastic.co/downloads/logstash/logstash-{version}-windows-x86_64.zip",
@@ -546,7 +547,7 @@ download_urls = [
 name = "kibana"
 repo = "elastic/kibana"
 by_release = true
-tag_pattern = "^Kibana (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://artifacts.elastic.co/downloads/kibana/kibana-{version}-windows-x86_64.zip",
     "https://artifacts.elastic.co/downloads/kibana/kibana-{version}-linux-x86_64.tar.gz",
@@ -562,7 +563,7 @@ download_urls = [
 name = "beats"
 repo = "elastic/beats"
 by_release = true
-tag_pattern = "^Beats (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{version}-amd64.deb",
     "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{version}-x86_64.rpm",
@@ -594,7 +595,7 @@ download_urls = [
 name = "kubernetes"
 repo = "kubernetes/kubernetes"
 by_release = true
-tag_pattern = "^Kubernetes v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/kubernetes/kubernetes/archive/refs/tags/v{version}.tar.gz",
     "https://github.com/kubernetes/kubernetes/archive/refs/tags/v{version}.zip",
@@ -615,7 +616,7 @@ download_urls = [
 name = "gradle"
 repo = "gradle/gradle"
 by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)(?P<patch>\\.\\d+)?)$"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)(?P<patch>\\.\\d+)?)$"
 download_urls = [
     "https://services.gradle.org/distributions/gradle-{version}-bin.zip",
     "https://services.gradle.org/distributions/gradle-{version}-all.zip",
