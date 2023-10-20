@@ -44,6 +44,6 @@ class OutputResult(BaseModel):
     name: str
     url: str
     latest: str
-    versions: List[str] = Field(default_factory=list)
+    versions: List[str | None] = Field(default_factory=list)
     download_urls: List[str] = Field(default_factory=list)
     created_time: str

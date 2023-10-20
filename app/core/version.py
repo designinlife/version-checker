@@ -28,7 +28,7 @@ class VersionSplitItem(BaseModel):
 
 class VersionSplitLiteItem(BaseModel):
     latest: str = Field(default=None)
-    versions: List[str] = Field(default_factory=list)
+    versions: List[str | None] = Field(default_factory=list)
     download_links: List[str] = Field(default_factory=list)
 
 
