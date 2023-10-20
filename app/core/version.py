@@ -49,6 +49,11 @@ class VersionHelper:
 
     @property
     def latest(self):
+        """Get the latest SemVer version number.
+
+        Returns:
+
+        """
         if self.split_mode > 0:
             raise ValueError('Calling this property is not allowed in split mode. (Using foreach in split_versions property!)')
 
@@ -56,6 +61,11 @@ class VersionHelper:
 
     @property
     def versions(self):
+        """Get a list of all semantic version numbers.
+
+        Returns:
+
+        """
         if self.split_mode > 0:
             return self.split_versions
         else:
@@ -75,6 +85,9 @@ class VersionHelper:
 
     @property
     def split_versions(self) -> Dict[str, VersionSplitLiteItem]:
+        if self.split_mode <= 0:
+            raise ValueError('Calling this property is not allowed in Non-split mode.')
+
         r = {}
 
         for k, v in self._split_versions.items():
@@ -96,7 +109,7 @@ class VersionHelper:
         m = self.exp.match(version.origin)
         if m:
             # 剔除第一个 group 项, 因为第一项固定位 <version>
-            groups = m.groups()[1:]
+            groups = self._non_as_zero(m.groups()[1:])
 
             return '.'.join(groups)
         else:
@@ -113,7 +126,7 @@ class VersionHelper:
     def add(self, v: str):
         m = self.exp.match(v)
         if m:
-            groupdict = m.groupdict()
+            groupdict = self._non_as_zero(m.groupdict())
 
             if 'version' not in groupdict:
                 raise ValueError('The version variable does not exist in the match pattern.')
@@ -142,6 +155,9 @@ class VersionHelper:
                 self._split_versions[key].versions.append(Version(origin=v, semver=m.group('version'), groups=groupdict))
 
     def done(self):
+        if len(self._versions) == 0:
+            raise ValueError('The version number list cannot be empty.')
+
         if self.split_mode > 0:
             for k, v in self._split_versions.items():
                 self._split_versions[k].versions.sort(key=functools.cmp_to_key(self._cmp_semver_version), reverse=True)
@@ -151,6 +167,25 @@ class VersionHelper:
 
             if self._download_urls:
                 self._download_links = self._build_download_links(self._versions[0], self._download_urls)
+
+    def _non_as_zero(self, items: dict | tuple):
+        if isinstance(items, dict):
+            for k, v in items.items():
+                if v is None:
+                    items[k] = 0
+                else:
+                    items[k] = v
+
+            return items
+        else:
+            r = []
+            for v in items:
+                if v is None:
+                    r.append('0')
+                else:
+                    r.append(v)
+
+            return tuple(r)
 
     def _cmp_semver_version(self, x: Version, y: Version) -> int:
         if x.semver == y.semver:

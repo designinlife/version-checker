@@ -15,7 +15,7 @@ async def parse(assist: Assistant, item: AppSettingSoftItem):
     vhlp = VersionHelper(pattern=item.tag_pattern, download_urls=item.download_urls)
 
     # Analyzing HTML text data.
-    soup = BeautifulSoup(data_s, 'html.parser')
+    soup = BeautifulSoup(data_s, 'html5lib')
 
     latest_a_element = soup.select_one('#releases > p:nth-child(3) > a')
     other_a_elements = soup.select('#releases > div:nth-child(6) > ul > li > a')
@@ -29,13 +29,9 @@ async def parse(assist: Assistant, item: AppSettingSoftItem):
     # Perform actions such as sorting.
     vhlp.done()
 
-    latest_version = vhlp.latest
-    download_links = vhlp.download_links
-    all_versions = vhlp.versions
-
     # Output JSON file.
     await assist.create(name=item.name,
                         url='https://flume.apache.org/',
-                        version=latest_version,
-                        all_versions=all_versions,
-                        download_links=download_links)
+                        version=vhlp.latest,
+                        all_versions=vhlp.versions,
+                        download_links=vhlp.download_links)
