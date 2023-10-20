@@ -1,5 +1,6 @@
 import asyncio
 import json
+import random
 import sys
 from pathlib import Path
 from typing import List, Optional
@@ -52,6 +53,8 @@ class InspectRunner:
 
                     if self.cfg.debug:
                         sys.exit(1)
+
+            await asyncio.sleep(random.uniform(0.05, 2.0))
 
             # Notify the queue that the "work item" has been processed.
             queue.task_done()
