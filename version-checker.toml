@@ -104,6 +104,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "solon"
+repo = "noear/solon"
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+by_release = true
+download_urls = [
+    "https://github.com/noear/solon/archive/refs/tags/v{version}.zip",
+    "https://github.com/noear/solon/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "libmaxminddb"
 repo = "maxmind/libmaxminddb"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
