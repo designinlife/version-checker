@@ -21,6 +21,7 @@ class InspectRunner:
     def start(self, filter_name: Optional[str] = None):
         asyncio.run(Assistant.ratelimit())
         asyncio.run(self._main(self.cfg.settings.softwares, filter_name))
+        asyncio.run(Assistant.ratelimit())
 
         # Merging behavior is not performed in DEBUG mode.
         if not self.cfg.debug:
