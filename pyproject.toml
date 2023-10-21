@@ -18,6 +18,7 @@ beautifulsoup4 = "^4.12.2"
 click = "^8.1.7"
 html5lib = "^1.1"
 loguru = "^0.7.2"
+lxml = "^4.9.3"
 pydantic = "^2.4.2"
 python-dotenv = "^1.0.0"
 requests = "^2.31.0"
@@ -32,3 +33,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 version-checker = "app.cli:start"
+
+[[tool.poetry.source]]
+name = "Stone"
+url = "http://pypi.stone.cs/simple/"
+priority = "default"

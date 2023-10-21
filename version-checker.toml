@@ -1007,3 +1007,13 @@ name = "JetBrains.Writerside"
 code = "WRS"
 parser = "jetbrains"
 url = "https://www.jetbrains.com/writerside/"
+
+[[softwares]]
+name = "dart"
+parser = "dart"
+url = "https://dart.dev/"
+download_urls = [
+    "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/sdk/dartsdk-windows-x64-release.zip",
+    "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/sdk/dartsdk-windows-ia32-release.zip",
+    "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/api-docs/dartdocs-gen-api.zip",
+]
