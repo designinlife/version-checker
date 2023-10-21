@@ -1036,3 +1036,18 @@ download_urls = [
     "https://redirector.gvt1.com/edgedl/android/studio/install/{version}/android-studio-{version}-windows.exe",
     "https://redirector.gvt1.com/edgedl/android/studio/ide-zips/{version}/android-studio-{version}-windows.zip",
 ]
+
+[[softwares]]
+name = "vscode"
+parser = "vscode"
+url = "https://code.visualstudio.com/"
+download_urls = [
+    "https://update.code.visualstudio.com/{version}/win32-x64/stable",
+    "https://update.code.visualstudio.com/{version}/win32-x64-user/stable",
+    "https://update.code.visualstudio.com/{version}/win32-arm64-user/stable",
+    "https://update.code.visualstudio.com/{version}/darwin-universal/stable",
+    "https://update.code.visualstudio.com/{version}/darwin/stable",
+    "https://update.code.visualstudio.com/{version}/darwin-arm64/stable",
+    "https://update.code.visualstudio.com/{version}/linux-deb-x64/stable",
+    "https://update.code.visualstudio.com/{version}/linux-rpm-x64/stable",
+]
