@@ -1064,4 +1064,5 @@ parser = "chrome"
 url = "https://www.google.com/chrome/"
 download_urls = [
     "https://www.google.com/intl/en/chrome/browser/desktop/index.html?standalone=1",
+    "https://www.google.com/chrome/?system=true&standalone=1&platform=win64",
 ]

@@ -6,6 +6,10 @@ from . import Assistant
 class Parser:
     @staticmethod
     async def parse(assist: Assistant, item: AppSettingSoftItem):
+        # See <https://www.chromium.org/getting-involved/download-chromium/#downloading-old-builds-of-chrome-chromium>
+        # See <https://developer.chrome.com/docs/versionhistory/>
+        # See <https://github.com/Bugazelle/chromium-all-old-stable-versions/blob/master/src/chromium.py>
+
         # Create VersionHelper instance.
         vhlp = VersionHelper(name=item.name, pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<fix>\d+))$',
                              download_urls=item.download_urls)
