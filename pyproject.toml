@@ -33,8 +33,3 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 version-checker = "app.cli:start"
-
-[[tool.poetry.source]]
-name = "Stone"
-url = "http://pypi.stone.cs/simple/"
-priority = "default"
