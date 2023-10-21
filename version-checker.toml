@@ -1017,3 +1017,13 @@ download_urls = [
     "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/sdk/dartsdk-windows-ia32-release.zip",
     "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/api-docs/dartdocs-gen-api.zip",
 ]
+
+[[softwares]]
+name = "flutter"
+parser = "flutter"
+url = "https://flutter.dev/"
+download_urls = [
+    "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_{version}-stable.zip",
+    "https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_{version}-stable.zip",
+    "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_{version}-stable.tar.xz",
+]
