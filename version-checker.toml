@@ -1039,7 +1039,8 @@ download_urls = [
 
 [[softwares]]
 name = "vscode"
-parser = "vscode"
+repo = "microsoft/vscode"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 url = "https://code.visualstudio.com/"
 download_urls = [
     "https://update.code.visualstudio.com/{version}/win32-x64/stable",
