@@ -1057,3 +1057,11 @@ download_urls = [
 name = "dotnet"
 parser = "dotnet"
 url = "https://dotnet.microsoft.com/"
+
+[[softwares]]
+name = "chrome"
+parser = "chrome"
+url = "https://www.google.com/chrome/"
+download_urls = [
+    "https://www.google.com/intl/en/chrome/browser/desktop/index.html?standalone=1",
+]
