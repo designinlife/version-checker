@@ -1027,3 +1027,12 @@ download_urls = [
     "https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_{version}-stable.zip",
     "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_{version}-stable.tar.xz",
 ]
+
+[[softwares]]
+name = "android-studio"
+parser = "android-studio"
+url = "https://developer.android.com/studio"
+download_urls = [
+    "https://redirector.gvt1.com/edgedl/android/studio/install/{version}/android-studio-{version}-windows.exe",
+    "https://redirector.gvt1.com/edgedl/android/studio/ide-zips/{version}/android-studio-{version}-windows.zip",
+]
