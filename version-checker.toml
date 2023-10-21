@@ -1051,3 +1051,8 @@ download_urls = [
     "https://update.code.visualstudio.com/{version}/linux-deb-x64/stable",
     "https://update.code.visualstudio.com/{version}/linux-rpm-x64/stable",
 ]
+
+[[softwares]]
+name = "dotnet"
+parser = "dotnet"
+url = "https://dotnet.microsoft.com/"
