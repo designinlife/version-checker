@@ -11,6 +11,8 @@ class Parser:
         # See <https://github.com/Bugazelle/chromium-all-old-stable-versions/blob/master/src/chromium.py>
         # See <https://serpapi.com/>
         # See <https://cloud.google.com/storage/docs/json_api/v1/objects/list>
+        # See <https://omahaproxy.appspot.com/all.json?channel=stable>
+        # See <https://chromium.cypress.io/>
 
         # Create VersionHelper instance.
         vhlp = VersionHelper(name=item.name, pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<fix>\d+))$',
