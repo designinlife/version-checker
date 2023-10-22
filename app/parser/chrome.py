@@ -9,6 +9,8 @@ class Parser:
         # See <https://www.chromium.org/getting-involved/download-chromium/#downloading-old-builds-of-chrome-chromium>
         # See <https://developer.chrome.com/docs/versionhistory/>
         # See <https://github.com/Bugazelle/chromium-all-old-stable-versions/blob/master/src/chromium.py>
+        # See <https://serpapi.com/>
+        # See <https://cloud.google.com/storage/docs/json_api/v1/objects/list>
 
         # Create VersionHelper instance.
         vhlp = VersionHelper(name=item.name, pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<fix>\d+))$',
