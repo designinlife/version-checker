@@ -851,6 +851,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "jenkins"
+repo = "jenkins/jenkins"
+parser = "docker-hub"
+url = "https://www.jenkins.io/download/"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))-lts-jdk17$"
+download_urls = [
+    "https://get.jenkins.io/war-stable/{version}/jenkins.war",
+    "https://get.jenkins.io/windows-stable/{version}/jenkins.msi",
+]
+
+[[softwares]]
 name = "flume"
 parser = "apache-flume"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
