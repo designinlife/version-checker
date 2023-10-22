@@ -1054,6 +1054,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "awscli"
+repo = "aws/aws-cli"
+tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://docs.aws.amazon.com/cli/latest/userguide/getting-started-version.html"
+download_urls = [
+    "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{version}.zip",
+    "https://awscli.amazonaws.com/AWSCLIV2-{version}.msi",
+    "https://awscli.amazonaws.com/AWSCLIV2-{version}.pkg",
+]
+
+[[softwares]]
 name = "dotnet"
 parser = "dotnet"
 url = "https://dotnet.microsoft.com/"
