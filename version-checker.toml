@@ -1213,3 +1213,16 @@ url = "https://www.vmware.com/products/vsphere.html"
 download_urls = [
     "https://customerconnect.vmware.com/en/downloads/info/slug/datacenter_cloud_infrastructure/vmware_vsphere/{major}_{minor}",
 ]
+
+[[softwares]]
+name = "sublime"
+parser = "sublime"
+url = "https://www.sublimetext.com/download"
+download_urls = [
+    "https://www.sublimetext.com/download_thanks?target=win-x64",
+    "https://www.sublimetext.com/download_thanks?target=win-x64-portable",
+    "https://www.sublimetext.com/download_thanks?target=mac",
+    "https://download.sublimetext.com/sublime_text_build_{version}_x64_setup.exe",
+    "https://download.sublimetext.com/sublime_text_build_{version}_x64.zip",
+    "https://download.sublimetext.com/sublime_text_build_{version}_mac.zip",
+]
