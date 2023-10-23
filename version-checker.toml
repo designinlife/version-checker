@@ -1226,3 +1226,11 @@ download_urls = [
     "https://download.sublimetext.com/sublime_text_build_{version}_x64.zip",
     "https://download.sublimetext.com/sublime_text_build_{version}_mac.zip",
 ]
+
+[[softwares]]
+name = "xshell"
+parser = "xshell"
+url = "https://www.netsarang.com/en/xshell/"
+download_urls = [
+    "https://cdn.netsarang.net/v{major}/Xshell-latest-p",
+]
