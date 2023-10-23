@@ -1120,6 +1120,14 @@ parser = "dotnet"
 url = "https://dotnet.microsoft.com/"
 
 [[softwares]]
+name = "vs"
+parser = "visualstudio"
+url = "https://visualstudio.microsoft.com/"
+download_urls = [
+    "https://learn.microsoft.com/en-us/visualstudio/install/create-an-offline-installation-of-visual-studio",
+]
+
+[[softwares]]
 name = "chrome"
 parser = "chrome"
 url = "https://www.google.com/chrome/"
