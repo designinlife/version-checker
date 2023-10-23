@@ -1120,6 +1120,14 @@ parser = "dotnet"
 url = "https://dotnet.microsoft.com/"
 
 [[softwares]]
+name = "dotnetfx"
+parser = "dotnetfx"
+url = "https://dotnet.microsoft.com/en-us/download/dotnet-framework"
+download_urls = [
+    "https://dotnet.microsoft.com/en-us/download/dotnet-framework/net{major}{minor}{patch}",
+]
+
+[[softwares]]
 name = "vs"
 parser = "visualstudio"
 url = "https://visualstudio.microsoft.com/"
