@@ -1,5 +1,6 @@
 import functools
 import re
+from collections import defaultdict
 from typing import List, Optional
 
 from pydantic import BaseModel, Field
@@ -33,7 +34,7 @@ class VersionSplitLiteItem(BaseModel):
 
 
 class VersionHelper:
-    def __init__(self, name: str, pattern: str, split_mode: int = 0, download_urls: List[str] = None, *args, **kwargs):
+    def __init__(self, name: str, pattern: str, split_mode: int = 0, download_urls: List[str] = None, drop_none: bool = True, *args, **kwargs):
         self._name = name
         self._exp = re.compile(pattern)
         self._split_mode = split_mode
@@ -41,6 +42,7 @@ class VersionHelper:
         self._all_versions = []
         self._all_split_versions = {}
         self._download_links = []
+        self._drop_none = drop_none
 
     def __del__(self):
         self._all_versions = []
@@ -119,7 +121,8 @@ class VersionHelper:
         r = []
 
         for v in download_urls:
-            r.append(v.format(**version.groups))
+            # r.append(v.format(**version.groups))
+            r.append(v.format_map(defaultdict(str, **version.groups)))
 
         return r
 
@@ -170,18 +173,22 @@ class VersionHelper:
 
     def _non_as_zero(self, items: dict | tuple):
         if isinstance(items, dict):
+            r = {}
+
             for k, v in items.items():
                 if v is None:
-                    items[k] = 0
+                    if not self._drop_none:
+                        r[k] = 0
                 else:
-                    items[k] = v
+                    r[k] = v
 
-            return items
+            return r
         else:
             r = []
             for v in items:
                 if v is None:
-                    r.append('0')
+                    if not self._drop_none:
+                        r.append('0')
                 else:
                     r.append(v)
 
@@ -202,7 +209,8 @@ class VersionHelper:
                 if is_numeric(n):
                     kk.append(int(n))
                 elif n is None:
-                    kk.append(0)
+                    if not self._drop_none:
+                        kk.append(0)
                 else:
                     kk.append(n)
             v1 = tuple(kk)
@@ -215,7 +223,8 @@ class VersionHelper:
                 if is_numeric(n):
                     kk.append(int(n))
                 elif n is None:
-                    kk.append(0)
+                    if not self._drop_none:
+                        kk.append(0)
                 else:
                     kk.append(n)
             v2 = tuple(kk)

@@ -9,7 +9,7 @@ class Parser:
     @staticmethod
     async def parse(assist: Assistant, item: AppSettingSoftItem):
         # Create VersionHelper instance.
-        vhlp = VersionHelper(name=item.name, pattern=r'^\.NET Framework (?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+))$',
+        vhlp = VersionHelper(name=item.name, pattern=r'^\.NET Framework (?P<version>(?P<major>\d+)\.(?P<minor>\d+)(?:\.(?P<patch>\d+))?)$',
                              download_urls=item.download_urls)
 
         # Make an HTTP request.
