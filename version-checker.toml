@@ -747,6 +747,27 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "prometheus"
+repo = "prometheus/prometheus"
+by_release = true
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/prometheus/prometheus/releases/download/v{version}/prometheus-{version}.linux-amd64.tar.gz",
+    "https://github.com/prometheus/prometheus/releases/download/v{version}/prometheus-{version}.windows-amd64.zip",
+    "https://github.com/prometheus/prometheus/releases/download/v{version}/prometheus-web-ui-{version}.tar.gz",
+]
+
+[[softwares]]
+name = "pushgateway"
+repo = "prometheus/pushgateway"
+by_release = true
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/prometheus/pushgateway/releases/download/v{version}/pushgateway-{version}.linux-amd64.tar.gz",
+    "https://github.com/prometheus/pushgateway/releases/download/v{version}/pushgateway-{version}.windows-amd64.zip",
+]
+
+[[softwares]]
 name = "haproxy"
 parser = "docker-library"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
