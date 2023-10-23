@@ -56,6 +56,14 @@ class VersionHelper:
             return True
         return False
 
+    def fetch_groups(self, v: str):
+        m = self._exp.match(v)
+
+        if m:
+            return m.groupdict()
+
+        return None
+
     @property
     def latest(self):
         """Get the latest SemVer version number.

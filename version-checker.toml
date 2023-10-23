@@ -1189,3 +1189,27 @@ download_urls = [
     "https://www.google.com/intl/en/chrome/browser/desktop/index.html?standalone=1",
     "https://www.google.com/chrome/?system=true&standalone=1&platform=win64",
 ]
+
+[[softwares]]
+name = "vmware-workstation-pro"
+code = "workstation"
+parser = "vmware"
+url = "https://www.vmware.com/products/workstation-pro.html"
+
+[[softwares]]
+name = "vmware-esxi"
+code = "esxi"
+parser = "vmware"
+url = "https://www.vmware.com/products/vsphere.html"
+download_urls = [
+    "https://customerconnect.vmware.com/en/downloads/info/slug/datacenter_cloud_infrastructure/vmware_vsphere/{major}_{minor}",
+]
+
+[[softwares]]
+name = "vmware-vsphere"
+code = "vsphere"
+parser = "vmware"
+url = "https://www.vmware.com/products/vsphere.html"
+download_urls = [
+    "https://customerconnect.vmware.com/en/downloads/info/slug/datacenter_cloud_infrastructure/vmware_vsphere/{major}_{minor}",
+]
