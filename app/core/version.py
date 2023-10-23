@@ -34,7 +34,8 @@ class VersionSplitLiteItem(BaseModel):
 
 
 class VersionHelper:
-    def __init__(self, name: str, pattern: str, split_mode: int = 0, download_urls: List[str] = None, drop_none: bool = True, *args, **kwargs):
+    def __init__(self, name: str, pattern: str, split_mode: int = 0, download_urls: List[str] = None, drop_none: bool = True,
+                 use_semver: bool = True, *args, **kwargs):
         self._name = name
         self._exp = re.compile(pattern)
         self._split_mode = split_mode
@@ -43,6 +44,7 @@ class VersionHelper:
         self._all_split_versions = {}
         self._download_links = []
         self._drop_none = drop_none
+        self._use_semver = use_semver
 
     def __del__(self):
         self._all_versions = []
@@ -74,7 +76,10 @@ class VersionHelper:
         if self._split_mode > 0:
             raise ValueError('Calling this property is not allowed in split mode. (Using foreach in split_versions property!)')
 
-        return self._build_semver(self._all_versions[0])
+        if self._use_semver:
+            return self._build_semver(self._all_versions[0])
+        else:
+            return self._all_versions[0].groups['version']
 
     @property
     def versions(self):
@@ -90,7 +95,11 @@ class VersionHelper:
                 versions = []
 
                 for v2 in v.versions:
-                    versions.append(self._build_semver(v2))
+                    if self._use_semver:
+                        versions.append(self._build_semver(v2))
+                    else:
+                        if isinstance(v2, Version):
+                            versions.append(v2.groups['version'])
 
                 download_links = []
 
@@ -104,7 +113,11 @@ class VersionHelper:
             r = []
 
             for v in self._all_versions:
-                r.append(self._build_semver(v))
+                if self._use_semver:
+                    r.append(self._build_semver(v))
+                else:
+                    if isinstance(v, Version):
+                        r.append(v.groups['version'])
 
             return r
 

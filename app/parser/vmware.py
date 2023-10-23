@@ -74,8 +74,9 @@ class Parser:
     @staticmethod
     async def vmware_vsphere(assist: Assistant, item: AppSettingSoftItem):
         # Create VersionHelper instance.
-        vhlp = VersionHelper(name=item.name, pattern=r'^VMware vSphere Hypervisor \(ESXi\) (?P<version>(?P<major>\d+)\.(?P<minor>\d)[a-zA-Z](?P<patch>\d+))$',
-                             download_urls=item.download_urls)
+        vhlp = VersionHelper(name=item.name,
+                             pattern=r'^VMware vSphere Hypervisor \(ESXi\) (?P<version>(?P<major>\d+)\.(?P<minor>\d)[a-zA-Z](?P<patch>\d+)[a-zA-Z]?)$',
+                             download_urls=item.download_urls, use_semver=False)
 
         # Make an HTTP request.
         url, http_status_code, _, data_r = await assist.get('https://www.virten.net/repo/vTracker.json', is_json=True)
