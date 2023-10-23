@@ -738,6 +738,15 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "msys2"
+repo = "msys2/msys2-installer"
+by_release = true
+tag_pattern = "^(?P<version>(?P<year>\\d+)-(?P<month>\\d+)-(?P<day>\\d+))$"
+download_urls = [
+    "https://github.com/msys2/msys2-installer/releases/download/{year}-{month}-{day}/msys2-x86_64-{year}{month}{day}.exe",
+]
+
+[[softwares]]
 name = "haproxy"
 parser = "docker-library"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
