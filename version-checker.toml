@@ -768,6 +768,19 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "helm"
+repo = "helm/helm"
+by_release = true
+tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://get.helm.sh/helm-v{version}-linux-amd64.tar.gz",
+    "https://get.helm.sh/helm-v{version}-darwin-amd64.tar.gz",
+    "https://get.helm.sh/helm-v{version}-darwin-arm64.tar.gz",
+    "https://get.helm.sh/helm-v{version}-linux-arm64.tar.gz",
+    "https://get.helm.sh/helm-v{version}-windows-amd64.zip",
+]
+
+[[softwares]]
 name = "haproxy"
 parser = "docker-library"
 tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
