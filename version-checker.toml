@@ -1248,3 +1248,12 @@ url = "https://www.netsarang.com/en/xshell/"
 download_urls = [
     "https://cdn.netsarang.net/v{major}/Xshell-latest-p",
 ]
+
+[[softwares]]
+name = "firefox"
+parser = "firefox"
+url = "https://www.mozilla.org/en-US/firefox/new/"
+download_urls = [
+    "https://ftp.mozilla.org/pub/firefox/releases/{major}.{minor}/win64/en-US/Firefox%20Setup%20{major}.{minor}.exe",
+    "https://ftp.mozilla.org/pub/firefox/releases/{major}.{minor}/win64/zh-CN/Firefox%20Setup%20{major}.{minor}.exe",
+]
