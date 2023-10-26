@@ -1,0 +1,11 @@
+{
+    "[markdown]": {
+        "editor.wordWrap": "off",
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "prettier.embeddedLanguageFormatting": "auto",
+    "prettier.enable": true,
+    "prettier.endOfLine": "lf",
+    "prettier.tabWidth": 4,
+    "prettier.useTabs": false
+}

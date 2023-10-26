@@ -4,7 +4,6 @@
 *.pyo
 .idea/
 .venv/
-.vscode/
 .build/
 .tox/
 .cache/
