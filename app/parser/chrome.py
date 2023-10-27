@@ -4,8 +4,8 @@ import json
 import uuid
 from typing import List
 
-from pydantic import BaseModel
 from loguru import logger
+from pydantic import BaseModel
 
 from app.core.config import AppSettingSoftItem
 from app.core.version import VersionHelper
@@ -135,6 +135,9 @@ class Parser:
         logger.info(f'Protocol: {data.response.protocol} Stable Version: {data.response.app[0].updatecheck.manifest.version}')
 
         vhlp.add(data.response.app[0].updatecheck.manifest.version)
+
+        vhlp.add_download_url(
+            *[f'{v1.codebase}{data.response.app[0].updatecheck.manifest.packages.package[0].name}' for v1 in data.response.app[0].updatecheck.urls.url])
 
         # Perform actions such as sorting.
         vhlp.done()

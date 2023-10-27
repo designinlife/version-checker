@@ -128,6 +128,10 @@ class VersionHelper:
 
         return self._download_links
 
+    def add_download_url(self, *urls: str):
+        for url in urls:
+            self._download_urls.append(url)
+
     def _build_semver(self, version: Version) -> Optional[str]:
         m = self._exp.match(version.origin)
         if m:
