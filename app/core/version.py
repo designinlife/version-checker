@@ -1,7 +1,7 @@
 import functools
 import re
 from collections import defaultdict
-from typing import List, Optional
+from typing import List, Optional, Mapping
 
 from pydantic import BaseModel, Field
 
@@ -36,15 +36,15 @@ class VersionSplitLiteItem(BaseModel):
 class VersionHelper:
     def __init__(self, name: str, pattern: str, split_mode: int = 0, download_urls: List[str] = None, drop_none: bool = True,
                  use_semver: bool = True, *args, **kwargs):
-        self._name = name
+        self._name: str = name
         self._exp = re.compile(pattern)
-        self._split_mode = split_mode
-        self._download_urls = download_urls
-        self._all_versions = []
-        self._all_split_versions = {}
-        self._download_links = []
-        self._drop_none = drop_none
-        self._use_semver = use_semver
+        self._split_mode: int = split_mode
+        self._download_urls: List[str] = download_urls
+        self._all_versions: List[Version] = []
+        self._all_split_versions: Mapping[str, VersionSplitItem] = {}
+        self._download_links: List[str] = []
+        self._drop_none: bool = drop_none
+        self._use_semver: bool = use_semver
 
     def __del__(self):
         self._all_versions = []
@@ -98,8 +98,7 @@ class VersionHelper:
                     if self._use_semver:
                         versions.append(self._build_semver(v2))
                     else:
-                        if isinstance(v2, Version):
-                            versions.append(v2.groups['version'])
+                        versions.append(v2.groups['version'])
 
                 download_links = []
 
@@ -116,8 +115,7 @@ class VersionHelper:
                 if self._use_semver:
                     r.append(self._build_semver(v))
                 else:
-                    if isinstance(v, Version):
-                        r.append(v.groups['version'])
+                    r.append(v.groups['version'])
 
             return r
 
