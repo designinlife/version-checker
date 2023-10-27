@@ -1,1 +1,1 @@
-{"name":"debian","url":"https://www.debian.org/","latest":"12.2","versions":["12.2","12.1","11.8","11.7","10.13"],"download_urls":["https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.2.0-amd64-netinst.iso"],"created_time":"2023-10-26 16:00:40"}
+{"name":"debian","url":"https://www.debian.org/","latest":"12.2","versions":["12.2","12.1","11.8","11.7","10.13"],"download_urls":["https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-12.2.0-amd64-netinst.iso"],"created_time":"2023-10-27 03:06:16"}
