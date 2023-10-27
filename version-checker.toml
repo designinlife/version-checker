@@ -1247,6 +1247,7 @@ parser = "xshell"
 url = "https://www.netsarang.com/en/xshell/"
 download_urls = [
     "https://cdn.netsarang.net/v{major}/Xshell-latest-p",
+    "https://cdn.netsarang.net/v{major}/Xftp-latest-p",
 ]
 
 [[softwares]]
