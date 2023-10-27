@@ -85,6 +85,52 @@ class Assistant:
                 else:
                     raise ValueError(f'HTTP status code exception. ({resp.status} | {url})')
 
+    async def post(self, url: str,
+                   params: Optional[Dict[str, str]] = None,
+                   headers: Optional[Dict[str, str]] = None,
+                   json: Optional[dict] = None,
+                   is_json: bool = False,
+                   timeout: float = 15):
+        """Performs an HTTP POST request and returns JSON object results.
+
+        Args:
+            url:
+            params:
+            headers:
+            json:
+            is_text:
+            timeout:
+
+        Returns:
+
+        """
+        hdr = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36'}
+
+        if headers:
+            hdr.update(headers)
+
+        if self.cfg.debug:
+            # logger.debug(f'URL: {url}, PARAMS: {params}, HEADERS: {headers}, TIMEOUT: {timeout}, JSON RESULT: {is_json}')
+            logger.debug(f'URL: {url}, PARAMS: {params}, TIMEOUT: {timeout}, JSON: {json}')
+
+        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=timeout)) as session:
+            async with session.post(url,
+                                    params=params,
+                                    headers=hdr,
+                                    json=json,
+                                    proxy=os.environ.get('PROXY')) as resp:
+                if 200 <= resp.status < 300:
+                    # for k, v in resp.headers.items():
+                    #     if 'ratelimit' in k.lower():
+                    #         logger.debug(f'Response Header: {k}={v}')
+
+                    if is_json:
+                        return resp.url, resp.status, resp.headers, await resp.json()
+                    else:
+                        return resp.url, resp.status, resp.headers, await resp.text()
+                else:
+                    raise ValueError(f'HTTP status code exception. ({resp.status} | {url})')
+
     @staticmethod
     async def ratelimit():
         """Print GitHub ratelimit data.
