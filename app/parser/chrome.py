@@ -92,7 +92,8 @@ class Parser:
 
         if isinstance(data_r, dict) and 'releases' in data_r:
             for v in data_r['releases']:
-                vhlp.add(v['version'])
+                if v['fraction'] >= 1:
+                    vhlp.add(v['version'])
 
         # Stable supplement.
         url, http_status_code, _, data_s = await assist.post('https://update.googleapis.com/service/update2/json', json={
