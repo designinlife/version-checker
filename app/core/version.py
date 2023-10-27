@@ -105,7 +105,7 @@ class VersionHelper:
                 if self._download_urls:
                     download_links = self._build_download_links(v.versions[0], self._download_urls)
 
-                r[k] = VersionSplitLiteItem(latest=versions[0], versions=versions, download_links=download_links)
+                r[k] = VersionSplitLiteItem(latest=versions[0], versions=self._remove_duplicates(versions), download_links=download_links)
 
             return r
         else:
@@ -117,7 +117,7 @@ class VersionHelper:
                 else:
                     r.append(v.groups['version'])
 
-            return r
+            return self._remove_duplicates(r)
 
     @property
     def download_links(self) -> List[str]:
@@ -146,6 +146,15 @@ class VersionHelper:
         for v in download_urls:
             # r.append(v.format(**version.groups))
             r.append(v.format_map(defaultdict(str, **version.groups)))
+
+        return r
+
+    def _remove_duplicates(self, items: List[str]) -> List[str]:
+        r: List[str] = []
+
+        for v in items:
+            if v not in r:
+                r.append(v)
 
         return r
 
