@@ -82,7 +82,7 @@ class Parser:
         # See <https://chromium.googlesource.com/chromium/src.git/+/master/docs/updater/protocol_3_1.md>
 
         # Create VersionHelper instance.
-        vhlp = VersionHelper(name=item.name, pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<fix>\d+))$',
+        vhlp = VersionHelper(name=item.name, pattern=r'^(?P<version>(?P<major>\d{3,})\.(?P<minor>\d+)\.(?P<patch>\d+)\.(?P<fix>\d+))$',
                              download_urls=item.download_urls)
 
         # Make an HTTP request.
