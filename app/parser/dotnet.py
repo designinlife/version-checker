@@ -24,7 +24,7 @@ class ReleasesIndexItem(BaseModel):
     product: str
     release_type: str = Field(..., alias='release-type')
     support_phase: str = Field(..., alias='support-phase')
-    eol_date: Optional[str] = Field(..., alias='eol-date')
+    eol_date: Optional[str] | None = Field(default=None, alias='eol-date')
     releases_json: str = Field(..., alias='releases.json')
 
 
@@ -42,7 +42,8 @@ class Parser:
     @staticmethod
     async def parse(assist: Assistant, item: AppSettingSoftItem):
         # Make an HTTP request.
-        url, http_status_code, _, data_s = await assist.get('https://raw.githubusercontent.com/dotnet/core/main/release-notes/releases-index.json')
+        url, http_status_code, _, data_s = await assist.get(
+            'https://raw.githubusercontent.com/dotnet/core/main/release-notes/releases-index.json')
 
         data_r = json.loads(data_s)
         dotnet_release = Model.model_validate(data_r)
@@ -52,7 +53,8 @@ class Parser:
 
         async with aiohttp.ClientSession() as session:
             for v in dotnet_release.releases_index:
-                if v.release_type in ('lts', 'sts') and v.eol_date is not None and arrow.get(v.eol_date, 'YYYY-MM-DD') > arrow.now():
+                if v.release_type in ('lts', 'sts') and v.eol_date is not None and arrow.get(v.eol_date,
+                                                                                             'YYYY-MM-DD') > arrow.now():
                     tasks.append(Parser.get(session, v.releases_json))
 
             results = await asyncio.gather(*tasks, return_exceptions=True)
@@ -63,7 +65,8 @@ class Parser:
                 download_links = []
 
                 # Create VersionHelper instance.
-                vhlp = VersionHelper(name=item.name, pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+))$',
+                vhlp = VersionHelper(name=item.name,
+                                     pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+))$',
                                      download_urls=item.download_urls)
 
                 for v2 in v['releases']:

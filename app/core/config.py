@@ -21,6 +21,7 @@ class AppSettingSoftItem(BaseModel):
     by_release: bool = Field(default=False)
     by_release_name: bool = Field(default=False)
     by_tag: Optional[str] = Field(default=None)
+    disabled: bool = Field(default=False)
 
 
 class AppSetting(BaseModel):
