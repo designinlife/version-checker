@@ -1179,7 +1179,9 @@ parser = "dotnetfx"
 url = "https://dotnet.microsoft.com/en-us/download/dotnet-framework"
 download_urls = [
     "https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net{major}{minor}{patch}-developer-pack-offline-installer",
-    "https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net{major}{minor}{patch}-developer-pack-chs"
+    "https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net{major}{minor}{patch}-developer-pack-chs",
+    "https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net{major}{minor}{patch}-offline-installer",
+    "https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net{major}{minor}{patch}-chs"
 ]
 
 [[softwares]]
