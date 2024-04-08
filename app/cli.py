@@ -11,23 +11,27 @@ from dotenv import load_dotenv
 from loguru import logger
 
 from app import __version__
-from app.commands.inspect import cli as cli_init
+from app.commands.inspect import cli as cli_inspect
+from app.commands.sync import cli as cli_sync
 from app.core.click import ClickStdOption
 from app.core.config import Configuration, AppSetting
 from app.core.utils import strtobool
 
 logger.remove()
-logger.add(sys.stderr, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level='ERROR', backtrace=False, diagnose=False)
+logger.add(sys.stderr, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level='ERROR', backtrace=False,
+           diagnose=False)
 
 # The following code adds a filter so that the STDOUT pipe does not print exception information!
 if strtobool(os.environ.get('DEBUG', 'false')):
-    logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", filter=lambda record: record["level"].no < 40, level='DEBUG')
+    logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}",
+               filter=lambda record: record["level"].no < 40, level='DEBUG')
 
     load_dotenv('.env.dev')
 
     logger.info('Mode: Debug')
 else:
-    logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", filter=lambda record: record["level"].no < 40, level='INFO')
+    logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}",
+               filter=lambda record: record["level"].no < 40, level='INFO')
 
     load_dotenv()
 
@@ -72,7 +76,9 @@ def app_version():
 
 
 # noinspection PyTypeChecker
-cli.add_command(cli_init)
+cli.add_command(cli_inspect)
+# noinspection PyTypeChecker
+cli.add_command(cli_sync)
 
 
 def start():
