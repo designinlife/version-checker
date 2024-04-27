@@ -212,7 +212,7 @@ class VersionHelper:
                     if not self._drop_none:
                         r[k] = 0
                 else:
-                    r[k] = v
+                    r[k] = str(v).strip('.')
 
             return r
         else:
@@ -222,7 +222,7 @@ class VersionHelper:
                     if not self._drop_none:
                         r.append('0')
                 else:
-                    r.append(v)
+                    r.append(str(v).strip('.'))
 
             return tuple(r)
 

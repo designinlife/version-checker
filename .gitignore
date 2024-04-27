@@ -31,4 +31,5 @@ htmlcov/
 # For current project.
 poetry.lock
 test*.py
+test*.toml
 .env.dev
