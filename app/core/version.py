@@ -2,7 +2,7 @@ import functools
 import re
 from collections import defaultdict
 from typing import List, Optional, Mapping
-
+import importlib
 from pydantic import BaseModel, Field
 
 
@@ -35,7 +35,7 @@ class VersionSplitLiteItem(BaseModel):
 
 class VersionHelper:
     def __init__(self, name: str, pattern: str, split_mode: int = 0, download_urls: List[str] = None, drop_none: bool = True,
-                 use_semver: bool = True, *args, **kwargs):
+                 use_semver: bool = True, use_link_assembler: bool = False, *args, **kwargs):
         self._name: str = name
         self._exp = re.compile(pattern)
         self._split_mode: int = split_mode
@@ -45,6 +45,7 @@ class VersionHelper:
         self._download_links: List[str] = []
         self._drop_none: bool = drop_none
         self._use_semver: bool = use_semver
+        self._use_link_assembler: bool = use_link_assembler
 
     def __del__(self):
         self._all_versions = []
@@ -103,7 +104,10 @@ class VersionHelper:
                 download_links = []
 
                 if self._download_urls:
-                    download_links = self._build_download_links(v.versions[0], self._download_urls)
+                    if self._use_link_assembler:
+                        download_links = self.use_link_assembler(self._name, v.versions[0], self._download_urls)
+                    else:
+                        download_links = self._build_download_links(v.versions[0], self._download_urls)
 
                 r[k] = VersionSplitLiteItem(latest=versions[0], versions=self._remove_duplicates(versions), download_links=download_links)
 
@@ -201,7 +205,10 @@ class VersionHelper:
             self._all_versions.sort(key=functools.cmp_to_key(self._cmp_semver_version), reverse=True)
 
             if self._download_urls:
-                self._download_links = self._build_download_links(self._all_versions[0], self._download_urls)
+                if self._use_link_assembler:
+                    self._download_links = self.use_link_assembler(self._name, self._all_versions[0], self._download_urls)
+                else:
+                    self._download_links = self._build_download_links(self._all_versions[0], self._download_urls)
 
     def _non_as_zero(self, items: dict | tuple):
         if isinstance(items, dict):
@@ -270,3 +277,10 @@ class VersionHelper:
                 return 0
         else:
             return -1
+
+    @staticmethod
+    def use_link_assembler(name: str, version: Version, download_urls: List[str]) -> List[str]:
+        module = importlib.import_module('app.links.%s' % name.replace('-', '_'))
+        cls = getattr(module, 'LinkAssembler')
+
+        return cls.assemble(version, download_urls)

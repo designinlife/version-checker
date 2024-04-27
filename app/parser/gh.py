@@ -26,7 +26,8 @@ class Parser:
             logger.debug('Using GITHUB_TOKEN env.')
 
         # Create VersionHelper instance.
-        vhlp = VersionHelper(name=item.name, pattern=item.tag_pattern, download_urls=item.download_urls, split_mode=item.split_mode)
+        vhlp = VersionHelper(name=item.name, pattern=item.tag_pattern, download_urls=item.download_urls, split_mode=item.split_mode,
+                             use_link_assembler=item.dynamic_links)
 
         # Make an HTTP request.
         url, http_status_code, _, data_r = await assist.get(f'https://api.github.com/repos/{item.repo}/{api_by}',

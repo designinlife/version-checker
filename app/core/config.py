@@ -13,6 +13,7 @@ class AppSettingSoftItem(BaseModel):
     code: Optional[str] = Field(default=None)
     repo: Optional[str] = Field(default=None)
     download_urls: List[str] = Field(default_factory=list)
+    dynamic_links: bool = Field(default=False)
     parser: Optional[str] = Field(default='gh')
     split_mode: int = Field(default=0)
     tag_pattern: Optional[str] = Field(default=None)
