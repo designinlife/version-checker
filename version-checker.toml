@@ -668,6 +668,7 @@ download_urls = [
     "https://services.gradle.org/distributions/gradle-{version}-src.zip",
     "https://services.gradle.org/distributions/gradle-{version}-docs.zip",
 ]
+dynamic_links = true
 
 [[softwares]]
 name = "memcached"
