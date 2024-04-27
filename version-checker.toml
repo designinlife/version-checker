@@ -315,6 +315,7 @@ tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))
 download_urls = [
     "https://getcomposer.org/download/{version}/composer.phar",
 ]
+dynamic_links = true
 
 [[softwares]]
 name = "httpd"
