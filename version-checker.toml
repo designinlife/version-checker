@@ -991,6 +991,7 @@ url = "https://tortoisegit.org/"
 [[softwares]]
 name = "github-desktop"
 parser = "github-desktop"
+dynamic_links = true
 
 [[softwares]]
 name = "JetBrains.AppCode"
