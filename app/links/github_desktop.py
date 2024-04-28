@@ -12,6 +12,9 @@ class LinkAssembler:
         r = []
 
         for v in download_urls:
-            r.append(f'{v.format(version=version.semver)}#composer-{version.semver}.phar')
+            if 'win32' in v:
+                r.append(f'{v.format(version=version.semver)}#GitHubDesktopSetup-x64-{version.semver}.exe')
+            elif 'darwin' in v:
+                r.append(f'{v.format(version=version.semver)}#GitHubDesktop-x64-{version.semver}.zip')
 
         return r
