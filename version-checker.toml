@@ -217,7 +217,7 @@ name = "openssl"
 repo = "openssl/openssl"
 by_release = true
 split_mode = 2
-tag_pattern = "^(?:openssl-|OpenSSL_)(?P<version>(?P<major>\\d+)[_.](?P<minor>\\d+)[_.](?P<patch>\\d+[a-z]?))$"
+tag_pattern = "^(?:openssl-|OpenSSL_)(?P<version>(?P<major>\\d+)[_.](?P<minor>\\d+)[_.](?P<patch>(?P<number>\\d+)(?P<letter>[a-z]?)))$"
 download_urls = [
     "https://www.openssl.org/source/openssl-{version}.tar.gz",
 ]
