@@ -344,7 +344,7 @@ by_release_name = true
 split_mode = 2
 tag_pattern = "^Apache Doris (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:\\.\\d+)?) Release$"
 download_urls = [
-    "https://downloads.apache.org/doris/{major}.{minor}/{version}/apache-doris-{version}-src.tar.gz",
+    "https://downloads.apache.org/doris/{major}.{minor}/{major}.{minor}.{patch}/apache-doris-{major}.{minor}.{patch}-src.tar.gz",
     "https://apache-doris-releases.oss-accelerate.aliyuncs.com/apache-doris-{version}-bin-x64.tar.gz",
 ]
 
