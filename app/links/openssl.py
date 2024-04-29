@@ -15,7 +15,7 @@ class LinkAssembler:
         for v in download_urls:
             if 'major' in version.groups and version.groups['major'] == '1':
                 r.append(
-                    f'https://www.openssl.org/source/old/{version.groups['major']}.{version.groups['minor']}.{version.groups['number']}/openssl-{version.groups['version']}.tar.gz')
+                    f'https://www.openssl.org/source/old/{version.groups['major']}.{version.groups['minor']}.{version.groups['number']}/openssl-{version.groups['major']}.{version.groups['minor']}.{version.groups['patch']}.tar.gz')
             else:
                 r.append(v.format_map(defaultdict(str, **version.groups)))
 
