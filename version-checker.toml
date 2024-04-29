@@ -221,6 +221,7 @@ tag_pattern = "^(?:openssl-|OpenSSL_)(?P<version>(?P<major>\\d+)[_.](?P<minor>\\
 download_urls = [
     "https://www.openssl.org/source/openssl-{version}.tar.gz",
 ]
+dynamic_links = true
 
 [[softwares]]
 name = "corretto-8"
