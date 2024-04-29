@@ -17,7 +17,7 @@ repo = "git-for-windows/git"
 tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.windows\\.(?P<suffix>\\d))$"
 by_release = true
 download_urls = [
-    "https://github.com/git-for-windows/git/releases/download/v{version}/Git-{major}.{minor}.{patch}.{suffix}-64-bit.exe",
+    "https://github.com/git-for-windows/git/releases/download/v{version}/Git-{major}.{minor}.{patch}-64-bit.exe",
 ]
 
 [[softwares]]
