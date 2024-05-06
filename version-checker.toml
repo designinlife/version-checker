@@ -714,6 +714,15 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "android-studio"
+url = "https://developer.android.com/studio"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))$"
+parser = "android-studio"
+download_urls = [
+    "https://redirector.gvt1.com/edgedl/android/studio/install/{version}/android-studio-{version}-windows.exe",
+]
+
+[[softwares]]
 name = "chrome"
 url = "https://www.google.com/chrome/"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))$"
