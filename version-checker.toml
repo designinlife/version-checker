@@ -712,3 +712,12 @@ download_urls = [
     "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/sdk/dartsdk-windows-x64-release.zip#dartsdk-{version}-windows-x64-release.zip",
     "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/api-docs/dartdocs-gen-api.zip#dartdocs-{version}-gen-api.zip",
 ]
+
+[[softwares]]
+name = "chrome"
+url = "https://www.google.com/chrome/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))$"
+parser = "chrome"
+download_urls = [
+    "https://dl.google.com/update2/installers/ChromeStandaloneSetup64.exe#ChromeStandaloneSetup64-{version}.exe",
+]
