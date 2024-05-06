@@ -1,17 +1,15 @@
-from __future__ import annotations
-
 import asyncio
 import json
-import os
-from typing import List, Optional
+from asyncio import Semaphore
+from typing import Optional, List
 
-import aiohttp
 import arrow
+from loguru import logger
 from pydantic import BaseModel, Field
 
-from app.core.config import AppSettingSoftItem
+from app.core.config import DotNetSoftware
 from app.core.version import VersionHelper
-from . import Assistant
+from . import Base
 
 
 class ReleasesIndexItem(BaseModel):
@@ -33,64 +31,60 @@ class Model(BaseModel):
     releases_index: List[ReleasesIndexItem] = Field(..., alias='releases-index')
 
 
-class Parser:
-    @staticmethod
-    async def get(session: aiohttp.ClientSession, url: str):
-        async with session.get(url, proxy=os.environ.get('PROXY')) as response:
-            return await response.json()
+class Parser(Base):
+    async def handle(self, sem: Semaphore, soft: DotNetSoftware):
+        logger.debug(f'Name: {soft.name} ({soft.parser})')
 
-    @staticmethod
-    async def parse(assist: Assistant, item: AppSettingSoftItem):
-        # Make an HTTP request.
-        url, http_status_code, _, data_s = await assist.get(
-            'https://raw.githubusercontent.com/dotnet/core/main/release-notes/releases-index.json')
+        async with sem:
+            # Make an HTTP request.
+            _, status, _, data_s = await self.request('GET',
+                                                      'https://raw.githubusercontent.com/dotnet/core/main'
+                                                      '/release-notes/releases-index.json',
+                                                      is_json=False)
 
-        data_r = json.loads(data_s)
-        dotnet_release = Model.model_validate(data_r)
+            data_r = json.loads(data_s)
+            dotnet_release = Model.model_validate(data_r)
 
         # Make a batch request.
         tasks = []
 
-        async with aiohttp.ClientSession() as session:
-            for v in dotnet_release.releases_index:
-                if v.release_type in ('lts', 'sts') and v.eol_date is not None and arrow.get(v.eol_date,
-                                                                                             'YYYY-MM-DD') > arrow.now():
-                    tasks.append(Parser.get(session, v.releases_json))
+        for v in dotnet_release.releases_index:
+            if v.release_type in ('lts',) and v.eol_date is not None and arrow.get(v.eol_date,
+                                                                                   'YYYY-MM-DD') > arrow.now():
+                tasks.append(self.request('GET', v.releases_json, is_json=True))
 
-            results = await asyncio.gather(*tasks, return_exceptions=True)
+        results = await asyncio.gather(*tasks, return_exceptions=True)
 
         # Iterate over a list of versions
         if isinstance(results, list):
-            for v in results:
-                download_links = []
-
-                # Create VersionHelper instance.
-                vhlp = VersionHelper(name=item.name,
-                                     pattern=r'^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+))$',
-                                     download_urls=item.download_urls)
+            for _, _, _, v in results:
+                vhlp = VersionHelper(pattern=soft.pattern, split=0, download_urls=[])
 
                 for v2 in v['releases']:
-                    vhlp.add(v2['release-version'])
+                    vhlp.append(v2['release-version'])
 
                     # Runtime download links.
                     if v2['runtime']['version'] == v['latest-runtime']:
                         for v3 in v2['runtime']['files']:
-                            download_links.append(v3['url'])
+                            if 'win-x64.exe' in v3['url'] or 'linux-x64.tar.gz' in v3['url']:
+                                vhlp.add_download_url(v3['url'])
+
                     # SDK download links.
                     if v2['sdk']['version'] == v['latest-sdk']:
                         for v3 in v2['sdk']['files']:
-                            download_links.append(v3['url'])
+                            if 'win-x64.exe' in v3['url'] or 'linux-x64.tar.gz' in v3['url']:
+                                vhlp.add_download_url(v3['url'])
+
                     # Windows Desktop download links.
                     if v2['windowsdesktop']['version'] == v['latest-runtime']:
-                        for v3 in v2['sdk']['files']:
-                            download_links.append(v3['url'])
+                        for v3 in v2['windowsdesktop']['files']:
+                            if 'win-x64.exe' in v3['url'] or 'linux-x64.tar.gz' in v3['url']:
+                                vhlp.add_download_url(v3['url'])
 
-                # Perform actions such as sorting.
-                vhlp.done()
+                logger.debug(
+                    f'Name: {soft.name}-{v['channel-version']}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 
-                # Output JSON file.
-                await assist.create(name=f'{item.name}-{v["channel-version"]}',
-                                    url=item.url if item.url else 'https://dotnet.microsoft.com/',
-                                    version=vhlp.latest,
-                                    all_versions=vhlp.versions,
-                                    download_links=download_links)
+                # Write data to file.
+                vlatest = vhlp.versions[0]
+
+                await self.write(soft, vhlp.summary, suffix=f'-{vlatest.major}.{vlatest.minor}')

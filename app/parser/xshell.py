@@ -1,41 +1,44 @@
 import json
+from asyncio import Semaphore
 
 from bs4 import BeautifulSoup
+from loguru import logger
 
-from app.core.config import AppSettingSoftItem
+from app.core.config import XShellSoftware
 from app.core.version import VersionHelper
-from . import Assistant
+from . import Base
 
 
-class Parser:
-    @staticmethod
-    async def parse(assist: Assistant, item: AppSettingSoftItem):
-        # Create VersionHelper instance.
-        vhlp = VersionHelper(name=item.name, pattern=r'^Xshell (?P<version>(?P<major>\d+) Build (?P<build>\d+))(?:.+)$',
-                             download_urls=item.download_urls, use_semver=False)
+class Parser(Base):
+    async def handle(self, sem: Semaphore, soft: XShellSoftware):
+        logger.debug(f'Name: {soft.name} ({soft.parser})')
 
-        # Make an HTTP request.
-        url, http_status_code, _, data_s = await assist.get('https://update.netsarang.com/json/download/process.html', params={
-            'md': 'getUpdateHistory',
-            'language': '2',
-            'productName': 'xshell-update-history',
-        })
-        data_r = json.loads(data_s)
+        vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
-        content = data_r['message']
+        async with sem:
+            # Make an HTTP request.
+            _, status, _, data_s = await self.request('GET', 'https://update.netsarang.com/json/download/process.html',
+                                                      params={
+                                                          'md': 'getUpdateHistory',
+                                                          'language': '2',
+                                                          'productName': 'xshell-update-history',
+                                                      },
+                                                      is_json=False)
 
-        soup = BeautifulSoup(content, 'html5lib')
-        elements = soup.select('dt.h4')
+            data_r = json.loads(data_s)
 
-        for element in elements:
-            vhlp.add(element.text.strip())
+            content = data_r['message']
 
-        # Perform actions such as sorting.
-        vhlp.done()
+            soup = BeautifulSoup(content, 'html5lib')
+            elements = soup.select('dt.h4')
 
-        # Output JSON file.
-        await assist.create(name=item.name,
-                            url=item.url if item.url else 'https://www.netsarang.com/en/xshell-download/',
-                            version=vhlp.latest,
-                            all_versions=vhlp.versions,
-                            download_links=vhlp.download_links)
+            for element in elements:
+                vhlp.append(element.text.strip())
+
+            logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
+
+            if soft.split > 0:
+                logger.debug(f'Split Versions: {vhlp.split_versions}')
+
+            # Write data to file.
+            await self.write(soft, vhlp.summary)

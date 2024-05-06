@@ -1,27 +1,52 @@
-from app.core.config import AppSettingSoftItem
+from asyncio import Semaphore
+from typing import List
+
+from loguru import logger
+from pydantic import BaseModel, TypeAdapter
+
+from app.core.config import GoSoftware
 from app.core.version import VersionHelper
-from . import Assistant
+from . import Base
 
 
-class Parser:
-    @staticmethod
-    async def parse(assist: Assistant, item: AppSettingSoftItem):
-        # Create VersionHelper instance.
-        vhlp = VersionHelper(name=item.name, pattern=item.tag_pattern, download_urls=item.download_urls, split_mode=2)
+class File(BaseModel):
+    filename: str
+    os: str
+    arch: str
+    version: str
+    sha256: str
+    size: int
+    kind: str
 
-        # Make an HTTP request.
-        url, http_status_code, _, data_r = await assist.get('https://go.dev/dl/?mode=json&include=all', is_json=True)
 
-        for v in data_r:
-            vhlp.add(v['version'])
+class DataItem(BaseModel):
+    version: str
+    stable: bool
+    files: List[File]
 
-        # Perform actions such as sorting.
-        vhlp.done()
 
-        for k, v in vhlp.versions.items():
-            # Output JSON file.
-            await assist.create(name=f'{item.name}-{k}',
-                                url='https://go.dev/dl/',
-                                version=v.latest,
-                                all_versions=v.versions,
-                                download_links=v.download_links)
+class Parser(Base):
+    async def handle(self, sem: Semaphore, soft: GoSoftware):
+        logger.debug(f'Name: {soft.name} ({soft.parser})')
+
+        async with sem:
+            # Make an HTTP request.
+            _, status, _, data_r = await self.request('GET', 'https://go.dev/dl/?mode=json&include=all', is_json=True)
+
+            ta = TypeAdapter(List[DataItem])
+            data = ta.validate_python(data_r)
+
+            vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
+
+            for v in data:
+                # 仅支持 Stable 版本号 ...
+                if v.stable:
+                    vhlp.append(v.version)
+
+            logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
+
+            if soft.split > 0:
+                logger.debug(f'Split Versions: {vhlp.split_versions}')
+
+            # Write data to file.
+            await self.write(soft, vhlp.summary)

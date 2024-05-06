@@ -1,4 +1,4 @@
-from typing import Optional, List
+from typing import Optional, List, Literal
 
 from pydantic import BaseModel, Field
 
@@ -9,25 +9,66 @@ class AppSettingBase(BaseModel):
 
 
 class AppSettingSoftItem(BaseModel):
-    name: str = Field()
-    code: Optional[str] = Field(default=None)
-    repo: Optional[str] = Field(default=None)
-    download_urls: List[str] = Field(default_factory=list)
-    dynamic_links: bool = Field(default=False)
-    parser: Optional[str] = Field(default='gh')
-    split_mode: int = Field(default=0)
-    tag_pattern: Optional[str] = Field(default=None)
-    url: Optional[str] = Field(default=None)
-    major: List[int] = Field(default_factory=list)
-    by_release: bool = Field(default=False)
-    by_release_name: bool = Field(default=False)
-    by_tag: Optional[str] = Field(default=None)
+    name: str = ...
+    url: Optional[str] = None
+    pattern: Optional[str] = Field(default=None)
+    split: int = Field(default=0)
     disabled: bool = Field(default=False)
+    download_dynamic: bool = Field(default=False, description='动态生成下载地址')
+    download_urls: List[str] = Field(default_factory=list)
+
+
+class GithubSoftware(AppSettingSoftItem):
+    parser: Literal['gh'] = Field(default='gh')
+    repo: str
+    release: bool = Field(default=False)
+    max_page: int = Field(default=1)
+
+
+class GoSoftware(AppSettingSoftItem):
+    parser: Literal['go']
+
+
+class PhpSoftware(AppSettingSoftItem):
+    parser: Literal['php']
+    major: List[int]
+
+
+class ApacheFlumeSoftware(AppSettingSoftItem):
+    parser: Literal['apache-flume']
+
+
+class NodeJsSoftware(AppSettingSoftItem):
+    parser: Literal['nodejs']
+
+
+class VirtualBoxSoftware(AppSettingSoftItem):
+    parser: Literal['virtualbox']
+
+
+class DotNetSoftware(AppSettingSoftItem):
+    parser: Literal['dotnet']
+
+
+class DotNetFxSoftware(AppSettingSoftItem):
+    parser: Literal['dotnetfx']
+
+
+class SublimeSoftware(AppSettingSoftItem):
+    parser: Literal['sublime']
+
+
+class XShellSoftware(AppSettingSoftItem):
+    parser: Literal['xshell']
 
 
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
-    softwares: List[AppSettingSoftItem] = Field(alias='softwares', default_factory=list)
+    softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
+                    | GoSoftware | PhpSoftware | GithubSoftware
+                    | DotNetFxSoftware | DotNetSoftware
+                    | SublimeSoftware | XShellSoftware] = Field(alias='softwares',
+                                                                default_factory=list)
 
 
 class Configuration(BaseModel):

@@ -1,37 +1,40 @@
+from asyncio import Semaphore
+
 from bs4 import BeautifulSoup
+from loguru import logger
 
-from app.core.config import AppSettingSoftItem
+from app.core.config import ApacheFlumeSoftware
 from app.core.version import VersionHelper
-from . import Assistant
+from . import Base
 
 
-class Parser:
-    @staticmethod
-    async def parse(assist: Assistant, item: AppSettingSoftItem):
-        # Make an HTTP request.
-        url, http_status_code, _, data_s = await assist.get('https://flume.apache.org/releases/index.html')
+class Parser(Base):
+    async def handle(self, sem: Semaphore, soft: ApacheFlumeSoftware):
+        logger.debug(f'Name: {soft.name} ({soft.parser})')
 
-        # Create VersionHelper instance.
-        vhlp = VersionHelper(name=item.name, pattern=item.tag_pattern, download_urls=item.download_urls)
+        vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
-        # Analyzing HTML text data.
-        soup = BeautifulSoup(data_s, 'html5lib')
+        async with sem:
+            # Make an HTTP request.
+            _, status, _, data_s = await self.request('GET', 'https://flume.apache.org/releases/index.html',
+                                                      is_json=False)
 
-        latest_a_element = soup.select_one('#releases > p:nth-child(3) > a')
-        other_a_elements = soup.select('#releases > div:nth-child(6) > ul > li > a')
+            # Analyzing HTML text data.
+            soup = BeautifulSoup(data_s, 'html5lib')
 
-        vhlp.add(latest_a_element.attrs['href'].removesuffix('.html'))
+            latest_a_element = soup.select_one('#releases > p:nth-child(3) > a')
+            other_a_elements = soup.select('#releases > div:nth-child(6) > ul > li > a')
 
-        for v in other_a_elements:
-            if v:
-                vhlp.add(v.attrs['href'].removesuffix('.html'))
+            vhlp.append(latest_a_element.attrs['href'].removesuffix('.html'))
 
-        # Perform actions such as sorting.
-        vhlp.done()
+            for v in other_a_elements:
+                if v:
+                    vhlp.append(v.attrs['href'].removesuffix('.html'))
 
-        # Output JSON file.
-        await assist.create(name=item.name,
-                            url='https://flume.apache.org/',
-                            version=vhlp.latest,
-                            all_versions=vhlp.versions,
-                            download_links=vhlp.download_links)
+            logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
+
+            if soft.split > 0:
+                logger.debug(f'Split Versions: {vhlp.split_versions}')
+
+            # Write data to file.
+            await self.write(soft, vhlp.summary)

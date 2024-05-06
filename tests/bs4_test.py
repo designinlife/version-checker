@@ -6,7 +6,6 @@ import requests
 from bs4 import BeautifulSoup
 
 from app.core.config import AppSettingSoftItem
-from app.parser.virtualbox import parse as virtualbox_parse
 from base import MyTestCase
 
 
@@ -39,9 +38,6 @@ class BeautifulSoupTestCase(MyTestCase):
 
         for v in items:
             print(v.text.strip())
-
-    def test_virtualbox(self):
-        asyncio.run(virtualbox_parse(self.cfg, AppSettingSoftItem(name='virtualbox', url='https://www.virtualbox.org/wiki/Downloads')))
 
 
 if __name__ == '__main__':

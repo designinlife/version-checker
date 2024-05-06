@@ -1,56 +1,61 @@
 import re
+from asyncio import Semaphore
 
 from bs4 import BeautifulSoup
 from loguru import logger
 
-from app.core.config import AppSettingSoftItem
-from . import Assistant
+from app.core.config import VirtualBoxSoftware
+from app.core.version import VersionHelper
+from . import Base
 
 
-class Parser:
-    @staticmethod
-    async def parse(assist: Assistant, item: AppSettingSoftItem):
-        all_versions = []
-        download_links = []
+class Parser(Base):
+    async def handle(self, sem: Semaphore, soft: VirtualBoxSoftware):
+        logger.debug(f'Name: {soft.name} ({soft.parser})')
 
-        # Make an HTTP request.
-        url, http_status_code, _, data_s = await assist.get('https://www.virtualbox.org/wiki/Downloads')
+        vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
-        soup = BeautifulSoup(data_s, 'html5lib')
+        async with sem:
+            # Make an HTTP request.
+            _, status, _, data_s = await self.request('GET', 'https://www.virtualbox.org/wiki/Downloads',
+                                                      is_json=False)
 
-        latest_element = soup.select_one('#wikipage > h3:nth-of-type(1)')
-        download_link_elements = soup.select('#wikipage > ul:nth-of-type(1) > li > a[class=ext-link]')
-        extension_pack_link_elements = soup.select('#wikipage > ul:nth-of-type(3) > li > a[class=ext-link]')
-        sdk_link_elements = soup.select('#wikipage > ul:nth-of-type(4) > li > a[class=ext-link]')
+            soup = BeautifulSoup(data_s, 'html5lib')
 
-        exp_ver = re.compile(r'^VirtualBox (?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)) platform packages$', flags=re.I)
+            latest_element = soup.select_one('#wikipage > h3:nth-of-type(1)')
+            download_link_elements = soup.select('#wikipage > ul:nth-of-type(1) > li > a[class=ext-link]')
+            extension_pack_link_elements = soup.select('#wikipage > ul:nth-of-type(3) > li > a[class=ext-link]')
+            sdk_link_elements = soup.select('#wikipage > ul:nth-of-type(4) > li > a[class=ext-link]')
 
-        m = exp_ver.match(latest_element.text.strip())
+            exp_ver = re.compile(
+                r'^VirtualBox (?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+)) platform packages$',
+                flags=re.I)
 
-        if m:
-            latest_version = m.group('version')
-            all_versions.append(latest_version)
+            m = exp_ver.match(latest_element.text.strip())
 
-            # Installer
-            if download_link_elements:
-                for v in download_link_elements:
-                    download_links.append(v.attrs['href'])
+            if m:
+                latest_version = m.group('version')
+                vhlp.append(latest_version)
 
-            # Extension Pack
-            if extension_pack_link_elements:
-                for v in extension_pack_link_elements:
-                    download_links.append(v.attrs['href'])
+                # Installer
+                if download_link_elements:
+                    for v in download_link_elements:
+                        vhlp.add_download_url(v.attrs['href'])
 
-            # SDK
-            if sdk_link_elements:
-                for v in sdk_link_elements:
-                    download_links.append(v.attrs['href'])
+                # Extension Pack
+                if extension_pack_link_elements:
+                    for v in extension_pack_link_elements:
+                        vhlp.add_download_url(v.attrs['href'])
 
-            # Output JSON file.
-            await assist.create(name=item.name,
-                                url='https://www.virtualbox.org/wiki/Downloads',
-                                version=latest_version,
-                                all_versions=all_versions,
-                                download_links=download_links)
-        else:
-            logger.error(f'[{item.name}] Regular expression fails when matching latest version pattern.')
+                # SDK
+                if sdk_link_elements:
+                    for v in sdk_link_elements:
+                        vhlp.add_download_url(v.attrs['href'])
+
+            logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
+
+            if soft.split > 0:
+                logger.debug(f'Split Versions: {vhlp.split_versions}')
+
+            # Write data to file.
+            await self.write(soft, vhlp.summary)

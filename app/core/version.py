@@ -1,286 +1,156 @@
-import functools
 import re
-from collections import defaultdict
-from typing import List, Optional, Mapping
-import importlib
-from pydantic import BaseModel, Field
+from typing import Optional, List, Mapping
 
-
-def is_numeric(s: Optional[str]):
-    if not s:
-        return False
-
-    m = re.match(r'^\d+$', s)
-    if m:
-        return True
-    return False
+from pydantic import BaseModel
 
 
 class Version(BaseModel):
-    origin: str | None = Field(default=None)
-    semver: str | None = Field(default=None)
-    groups: dict = Field(default_factory=dict)
+    major: int
+    minor: Optional[int] = None
+    patch: Optional[int] = None
+    build: Optional[int] = None
+    letter: Optional[str] = None
+    version: Optional[str] = None
+    year: Optional[str] = None
+    month: Optional[str] = None
+    day: Optional[str] = None
+
+    def __repr__(self):
+        d = [f'{self.major}']
+
+        if self.minor is not None:
+            d.append(f'.{self.minor}')
+
+        if self.patch is not None:
+            d.append(f'.{self.patch}')
+
+        if self.build is not None:
+            d.append(f'.{self.build}')
+
+        if self.letter is not None:
+            d.append(f'{self.letter}')
+
+        # if self.year is not None:
+        #     d.append(f'{self.year}')
+        # if self.month is not None:
+        #     d.append(f'{self.month}')
+        # if self.day is not None:
+        #     d.append(f'{self.day}')
+
+        return ''.join(d)
 
 
-class VersionSplitItem(BaseModel):
-    latest: str | None = Field(default=None)
-    versions: List[Version] = Field(default_factory=list)
+class VersionSummary(BaseModel):
+    latest: Optional[Version] = None
+    versions: List[Version] = ...
+    downloads: Optional[List[str]] = None
 
-
-class VersionSplitLiteItem(BaseModel):
-    latest: str | None = Field(default=None)
-    versions: List[str | None] = Field(default_factory=list)
-    download_links: List[str] = Field(default_factory=list)
+    def __repr__(self):
+        return f'Latest: {self.latest}, Versions: {self.versions}, Downloads: {self.downloads}'
 
 
 class VersionHelper:
-    def __init__(self, name: str, pattern: str, split_mode: int = 0, download_urls: List[str] = None, drop_none: bool = True,
-                 use_semver: bool = True, use_link_assembler: bool = False, *args, **kwargs):
-        self._name: str = name
-        self._exp = re.compile(pattern)
-        self._split_mode: int = split_mode
-        self._download_urls: List[str] = download_urls
-        self._all_versions: List[Version] = []
-        self._all_split_versions: Mapping[str, VersionSplitItem] = {}
-        self._download_links: List[str] = []
-        self._drop_none: bool = drop_none
-        self._use_semver: bool = use_semver
-        self._use_link_assembler: bool = use_link_assembler
+    def __init__(self, pattern: str, split: int = 0, download_urls: List[str] = None):
+        self.split = split
+        self.exp = re.compile(pattern, flags=re.IGNORECASE)
+        self._versions: List[Version] = []
+        self.download_urls = download_urls
 
-    def __del__(self):
-        self._all_versions = []
-        self._split_mode = 0
-        self._all_split_versions = {}
-        self._download_links = []
-        self._exp = None
+    def append(self, version: str):
+        """追加版本号。
 
-    def is_match(self, v: str):
-        if self._exp.match(v):
-            return True
-        return False
-
-    def fetch_groups(self, v: str):
-        m = self._exp.match(v)
+        Args:
+            version:
+        """
+        m = self.exp.match(version)
 
         if m:
-            return m.groupdict()
+            d = m.groupdict()
+            v = Version(major=d.get('major'), minor=d.get('minor', None), patch=d.get('patch', None),
+                        build=d.get('build', None), letter=d.get('letter', None),
+                        version=d.get('version', None), year=d.get('year', None), month=d.get('month', None),
+                        day=d.get('day', None))
 
-        return None
+            self._versions.append(v)
+
+    def add_download_url(self, url: str):
+        self.download_urls.append(url)
+
+    # def unique_download_urls(self):
+    #     self.download_urls = list(set(self.download_urls))
 
     @property
-    def latest(self):
-        """Get the latest SemVer version number.
+    def versions(self) -> List[Version]:
+        """返回已排序的版本号列表。
 
         Returns:
 
         """
-        if self._split_mode > 0:
-            raise ValueError('Calling this property is not allowed in split mode. (Using foreach in split_versions property!)')
-
-        if self._use_semver:
-            return self._build_semver(self._all_versions[0])
-        else:
-            return self._all_versions[0].groups['version']
+        return sorted(self._versions, key=lambda x: (x.major, x.minor, x.patch if x.patch else -1, x.build, x.letter),
+                      reverse=True)
 
     @property
-    def versions(self):
-        """Get a list of all semantic version numbers.
+    def split_versions(self) -> Mapping[str, List[Version]]:
+        """返回切割后的版本号列表。
 
         Returns:
 
         """
-        if self._split_mode > 0:
-            r = {}
+        d = dict()
 
-            for k, v in self._all_split_versions.items():
-                versions = []
+        if self.split == 1:
+            for version in self._versions:
+                k = f'{version.major}'
 
-                for v2 in v.versions:
-                    if self._use_semver:
-                        versions.append(self._build_semver(v2))
-                    else:
-                        versions.append(v2.groups['version'])
+                if k not in d:
+                    d[k] = []
 
-                download_links = []
+                d[k].append(version)
+        elif self.split == 2:
+            for version in self._versions:
+                if version.minor is not None:
+                    k = f'{version.major}.{version.minor}'
 
-                if self._download_urls:
-                    if self._use_link_assembler:
-                        download_links = self.use_link_assembler(self._name, v.versions[0], self._download_urls)
-                    else:
-                        download_links = self._build_download_links(v.versions[0], self._download_urls)
+                    if k not in d:
+                        d[k] = []
 
-                r[k] = VersionSplitLiteItem(latest=versions[0], versions=self._remove_duplicates(versions), download_links=download_links)
+                    d[k].append(version)
 
-            return r
-        else:
-            r = []
+        if len(d) > 0:
+            for k, v in d.items():
+                d[k] = sorted(v, key=lambda x: (x.major, x.minor, x.patch, x.build, x.letter), reverse=True)
 
-            for v in self._all_versions:
-                if self._use_semver:
-                    r.append(self._build_semver(v))
-                else:
-                    r.append(v.groups['version'])
-
-            return self._remove_duplicates(r)
+        return d
 
     @property
-    def download_links(self) -> List[str]:
-        if self._split_mode > 0:
-            raise ValueError('Calling this property is not allowed in split mode. (Using foreach in split_versions property!)')
+    def summary(self) -> VersionSummary | Mapping[str, VersionSummary]:
+        """返回摘要数据。
 
-        return self._download_links
+        Returns:
 
-    def add_download_url(self, *urls: str):
-        for url in urls:
-            self._download_urls.append(url)
+        """
+        if self.split == 0:
+            versions = self.versions  # 引用已排序的版本号数组
 
-    def _build_semver(self, version: Version) -> Optional[str]:
-        m = self._exp.match(version.origin)
-        if m:
-            # 剔除第一个 group 项, 因为第一项固定位 <version>
-            groups = self._non_as_zero(m.groups()[1:])
-
-            return '.'.join(groups)
+            return VersionSummary(latest=versions[0], versions=versions,
+                                  downloads=self._format_download_link(versions[0], self.download_urls))
         else:
-            return None
+            d = dict()
 
-    def _build_download_links(self, version: Version, download_urls: List[str]) -> List[str]:
-        r = []
+            for k, v in self.split_versions.items():
+                d[k] = VersionSummary(latest=v[0], versions=v,
+                                      downloads=self._format_download_link(v[0], self.download_urls))
 
-        for v in download_urls:
-            # r.append(v.format(**version.groups))
-            r.append(v.format_map(defaultdict(str, **version.groups)))
-
-        return r
-
-    def _remove_duplicates(self, items: List[str]) -> List[str]:
-        r: List[str] = []
-
-        for v in items:
-            if v not in r:
-                r.append(v)
-
-        return r
-
-    def add(self, v: str):
-        m = self._exp.match(v)
-        if m:
-            groupdict = self._non_as_zero(m.groupdict())
-
-            if 'version' not in groupdict:
-                raise ValueError('The version variable does not exist in the match pattern.')
-
-            self._all_versions.append(Version(origin=v, semver=m.group('version'), groups=groupdict))
-
-            if self._split_mode > 0:
-                if 1 == self._split_mode:  # 依据 <major> 划分
-                    if 'major' not in groupdict:
-                        raise ValueError('The major variable does not exist in the match pattern.')
-
-                    key = '{}'.format(m.group('major'))
-                elif 2 == self._split_mode:  # 依据 <major>.<minor> 划分
-                    if 'major' not in groupdict:
-                        raise ValueError('The major variable does not exist in the match pattern.')
-                    if 'minor' not in groupdict:
-                        raise ValueError('The minor variable does not exist in the match pattern.')
-
-                    key = '{}.{}'.format(m.group('major'), m.group('minor'))
-                else:
-                    raise ValueError(f'Unsupported split mode. (split_mode={self._split_mode})')
-
-                if key not in self._all_split_versions:
-                    self._all_split_versions[key] = VersionSplitItem()
-
-                self._all_split_versions[key].versions.append(Version(origin=v, semver=m.group('version'), groups=groupdict))
-
-    def done(self):
-        if len(self._all_versions) == 0:
-            raise ValueError('The version number list cannot be empty.')
-
-        if self._split_mode > 0:
-            for k, v in self._all_split_versions.items():
-                self._all_split_versions[k].versions.sort(key=functools.cmp_to_key(self._cmp_semver_version), reverse=True)
-                self._all_split_versions[k].latest = self._all_split_versions[k].versions[0].semver
-        else:
-            self._all_versions.sort(key=functools.cmp_to_key(self._cmp_semver_version), reverse=True)
-
-            if self._download_urls:
-                if self._use_link_assembler:
-                    self._download_links = self.use_link_assembler(self._name, self._all_versions[0], self._download_urls)
-                else:
-                    self._download_links = self._build_download_links(self._all_versions[0], self._download_urls)
-
-    def _non_as_zero(self, items: dict | tuple):
-        if isinstance(items, dict):
-            r = {}
-
-            for k, v in items.items():
-                if v is None:
-                    if not self._drop_none:
-                        r[k] = 0
-                else:
-                    r[k] = str(v).strip('.')
-
-            return r
-        else:
-            r = []
-            for v in items:
-                if v is None:
-                    if not self._drop_none:
-                        r.append('0')
-                else:
-                    r.append(str(v).strip('.'))
-
-            return tuple(r)
-
-    def _cmp_semver_version(self, x: Version, y: Version) -> int:
-        if x.semver == y.semver:
-            return 0
-
-        v1 = None
-        v2 = None
-
-        m = self._exp.match(x.origin)
-        if m:
-            v1 = m.groups()[1:]
-            kk = []
-            for n in v1:
-                if is_numeric(n):
-                    kk.append(int(n))
-                elif n is None:
-                    if not self._drop_none:
-                        kk.append(0)
-                else:
-                    kk.append(n)
-            v1 = tuple(kk)
-
-        m = self._exp.match(y.origin)
-        if m:
-            v2 = m.groups()[1:]
-            kk = []
-            for n in v2:
-                if is_numeric(n):
-                    kk.append(int(n))
-                elif n is None:
-                    if not self._drop_none:
-                        kk.append(0)
-                else:
-                    kk.append(n)
-            v2 = tuple(kk)
-
-        if v1 and v2:
-            if v1 > v2:
-                return 1
-            elif v1 < v2:
-                return -1
-            else:
-                return 0
-        else:
-            return -1
+            return d
 
     @staticmethod
-    def use_link_assembler(name: str, version: Version, download_urls: List[str]) -> List[str]:
-        module = importlib.import_module('app.links.%s' % name.replace('-', '_'))
-        cls = getattr(module, 'LinkAssembler')
+    def _format_download_link(latest: Version, download_urls: Optional[List[str]] = None) -> List[str]:
+        d = []
 
-        return cls.assemble(version, download_urls)
+        if download_urls:
+            for v in download_urls:
+                p = latest.dict(exclude_none=True)
+
+                d.append(v.format(**p))
+
+        return d

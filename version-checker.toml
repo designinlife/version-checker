@@ -4,7 +4,8 @@ title = "Software version checker"
 [[softwares]]
 name = "git"
 repo = "git/git"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://git-scm.com/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://kernel.org/pub/software/scm/git/git-{version}.tar.gz",
     "https://kernel.org/pub/software/scm/git/git-htmldocs-{version}.tar.gz",
@@ -14,67 +15,41 @@ download_urls = [
 [[softwares]]
 name = "git-for-windows"
 repo = "git-for-windows/git"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.windows\\.(?P<suffix>\\d))$"
-by_release = true
+url = "https://gitforwindows.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.windows\\.(?P<build>\\d+))$"
+release = true
 download_urls = [
-    "https://github.com/git-for-windows/git/releases/download/v{version}/Git-{major}.{minor}.{patch}-64-bit.exe",
+    "https://github.com/git-for-windows/git/releases/download/v{major}.{minor}.{patch}.windows.{build}/Git-{major}.{minor}.{patch}-64-bit.exe",
 ]
 
 [[softwares]]
-name = "clash"
-repo = "Dreamacro/clash"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+name = "go"
+url = "https://go.dev/"
+parser = "go"
+pattern = "^go(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+split = 2
 download_urls = [
-    "https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-linux-amd64-v{version}.gz",
-    "https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-linux-amd64-v3-v{version}.gz",
-    "https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-windows-amd64-v{version}.zip",
-    "https://github.com/Dreamacro/clash/releases/download/v1.18.0/clash-windows-amd64-v3-v{version}.zip",
+    "https://go.dev/dl/go{version}.src.tar.gz",
+    "https://go.dev/dl/go{version}.linux-amd64.tar.gz",
+    "https://go.dev/dl/go{version}.windows-amd64.zip",
+    "https://go.dev/dl/go{version}.windows-amd64.msi",
 ]
-disabled = true
 
 [[softwares]]
-name = "clash-premium"
-repo = "Dreamacro/clash"
-parser = "gh-releases"
-by_tag = "premium"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-disabled = true
-
-[[softwares]]
-name = "ClashForAndroid"
-repo = "Kr328/ClashForAndroid"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-foss-arm64-v8a-release.apk",
-    "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-foss-armeabi-v7a-release.apk",
-    "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-foss-universal-release.apk",
-    "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-foss-x86-release.apk",
-    "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-foss-x86_64-release.apk",
-    "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-premium-arm64-v8a-release.apk",
-    "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-premium-armeabi-v7a-release.apk",
-    "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-premium-universal-release.apk",
-    "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-premium-x86-release.apk",
-    "https://github.com/Kr328/ClashForAndroid/releases/download/v{version}/cfa-{version}-premium-x86_64-release.apk",
-]
-disabled = true
-
-[[softwares]]
-name = "Clash.Meta"
-repo = "MetaCubeX/Clash.Meta"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://github.com/MetaCubeX/Clash.Meta/releases/download/v{version}/clash.meta-linux-amd64-v{version}.gz",
-    "https://github.com/MetaCubeX/Clash.Meta/releases/download/v{version}/clash.meta-linux-amd64-cgo-v{version}.gz",
-    "https://github.com/MetaCubeX/Clash.Meta/releases/download/v{version}/clash.meta-windows-amd64-v{version}.zip",
-    "https://github.com/MetaCubeX/Clash.Meta/releases/download/v{version}/clash.meta-windows-amd64-cgo-v{version}.zip",
-]
-disabled = true
+name = "openssl"
+repo = "openssl/openssl"
+url = "https://www.openssl.org/"
+pattern = "^(?:openssl-|OpenSSL_)(?P<version>(?P<major>\\d+)[_.](?P<minor>\\d+)[_.](?P<patch>(?P<number>\\d+))(?P<letter>[a-z]?))$"
+release = true
+split = 2
+download_dynamic = true
 
 [[softwares]]
 name = "swoole"
 repo = "swoole/swoole-src"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-by_release = true
+url = "https://www.swoole.com/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://pecl.php.net/get/swoole-{version}.tgz",
 ]
@@ -82,8 +57,9 @@ download_urls = [
 [[softwares]]
 name = "grpc"
 repo = "grpc/grpc"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-by_release = true
+url = "https://grpc.io/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://pecl.php.net/get/grpc-{version}.tgz",
 ]
@@ -91,8 +67,9 @@ download_urls = [
 [[softwares]]
 name = "protobuf"
 repo = "protocolbuffers/protobuf"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
-by_release = true
+url = "https://protobuf.dev/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
 download_urls = [
     "https://github.com/protocolbuffers/protobuf/releases/download/v{version}/protoc-{version}-win64.zip",
     "https://github.com/protocolbuffers/protobuf/releases/download/v{version}/protoc-{version}-linux-x86_64.zip",
@@ -103,26 +80,29 @@ download_urls = [
 [[softwares]]
 name = "harbor"
 repo = "goharbor/harbor"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-by_release = true
+url = "https://goharbor.io/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://github.com/goharbor/harbor/releases/download/v{version}/harbor-online-installer-v{version}.tgz",
-    "https://github.com/goharbor/harbor/releases/download/v{version}/harbor-offline-installer-v{version}.tgz",
 ]
 
 [[softwares]]
 name = "compose"
 repo = "docker/compose"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://docs.docker.com/compose/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
-    "https://github.com/docker/compose/releases/download/v{version}/docker-compose-linux-x86_64",
-    "https://github.com/docker/compose/releases/download/v{version}/docker-compose-windows-x86_64.exe",
+    "https://github.com/docker/compose/releases/download/v{version}/docker-compose-linux-x86_64"
 ]
 
 [[softwares]]
 name = "graalvm-ce-builds"
 repo = "graalvm/graalvm-ce-builds"
-tag_pattern = "^vm-ce-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://www.graalvm.org/"
+pattern = "^jdk-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+split = 1
 download_urls = [
     "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-{version}/graalvm-community-jdk-{version}_linux-x64_bin.tar.gz",
     "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-{version}/graalvm-community-jdk-{version}_windows-x64_bin.zip",
@@ -131,7 +111,8 @@ download_urls = [
 [[softwares]]
 name = "stonedb"
 repo = "stoneatom/stonedb"
-tag_pattern = "^5\\.7-v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))-GA$"
+url = "https://stonedb.io/"
+pattern = "^5\\.7-v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))-GA$"
 download_urls = [
     "https://github.com/stoneatom/stonedb/releases/download/5.7-v{version}-GA/stonedb-ce-5.7-v{version}.el7.x86_64.rpm",
     "https://github.com/stoneatom/stonedb/releases/download/5.7-v{version}-GA/stonedb-ce-5.7_v{version}.ubuntu.amd64.deb",
@@ -141,8 +122,9 @@ download_urls = [
 [[softwares]]
 name = "solon"
 repo = "noear/solon"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-by_release = true
+url = "https://solon.noear.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://github.com/noear/solon/archive/refs/tags/v{version}.zip",
     "https://github.com/noear/solon/archive/refs/tags/v{version}.tar.gz",
@@ -151,7 +133,8 @@ download_urls = [
 [[softwares]]
 name = "libmaxminddb"
 repo = "maxmind/libmaxminddb"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://github.com/maxmind/libmaxminddb"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/maxmind/libmaxminddb/releases/download/{version}/libmaxminddb-{version}.tar.gz",
 ]
@@ -159,7 +142,8 @@ download_urls = [
 [[softwares]]
 name = "geoipupdate"
 repo = "maxmind/geoipupdate"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://dev.maxmind.com/geoip/updating-databases"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/maxmind/geoipupdate/releases/download/v{version}/geoipupdate_{version}_linux_amd64.deb",
     "https://github.com/maxmind/geoipupdate/releases/download/v{version}/geoipupdate_{version}_linux_amd64.rpm",
@@ -170,8 +154,9 @@ download_urls = [
 [[softwares]]
 name = "zfs"
 repo = "openzfs/zfs"
-by_release = true
-tag_pattern = "^zfs-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://openzfs.org/"
+pattern = "^zfs-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://github.com/openzfs/zfs/releases/download/zfs-{version}/zfs-{version}.tar.gz",
 ]
@@ -179,55 +164,39 @@ download_urls = [
 [[softwares]]
 name = "upx"
 repo = "upx/upx"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://upx.github.io/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-amd64_linux.tar.xz",
-    "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-arm64_linux.tar.xz",
-    "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-armeb_linux.tar.xz",
-    "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-arm_linux.tar.xz",
-    "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-dos.zip",
-    "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-i386_linux.tar.xz",
-    "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-mipsel_linux.tar.xz",
-    "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-mips_linux.tar.xz",
-    "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-powerpc64le_linux.tar.xz",
-    "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-powerpc_linux.tar.xz",
-    "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-win32.zip",
     "https://github.com/upx/upx/releases/download/v{version}/upx-{version}-win64.zip",
 ]
 
 [[softwares]]
 name = "curl"
 repo = "curl/curl"
-tag_pattern = "^curl-(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+url = "https://curl.se/"
+pattern = "^curl-(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
 download_urls = [
     "https://curl.se/download/curl-{major}.{minor}.{patch}.tar.gz",
-    "https://github.com/stunnel/static-curl/releases/download/{version}/curl-static-amd64-{major}.{minor}.{patch}.tar.xz",
+    "https://github.com/stunnel/static-curl/releases/download/{major}.{minor}.{patch}/curl-linux-x86_64-{major}.{minor}.{patch}.tar.xz",
+    "https://github.com/stunnel/static-curl/releases/download/{major}.{minor}.{patch}/curl-windows-x86_64-{major}.{minor}.{patch}.tar.xz",
 ]
 
 [[softwares]]
 name = "libgd"
 repo = "libgd/libgd"
-tag_pattern = "^gd-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://libgd.github.io/"
+pattern = "^gd-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/libgd/libgd/releases/download/gd-{version}/libgd-{version}.tar.gz",
 ]
 
 [[softwares]]
-name = "openssl"
-repo = "openssl/openssl"
-by_release = true
-split_mode = 2
-tag_pattern = "^(?:openssl-|OpenSSL_)(?P<version>(?P<major>\\d+)[_.](?P<minor>\\d+)[_.](?P<patch>(?P<number>\\d+)(?P<letter>[a-z]?)))$"
-download_urls = [
-    "https://www.openssl.org/source/openssl-{version}.tar.gz",
-]
-dynamic_links = true
-
-[[softwares]]
 name = "corretto-8"
 repo = "corretto/corretto-8"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<suffix>\\d+))$"
+url = "https://aws.amazon.com/corretto/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<suffix>\\d+))$"
+release = true
 download_urls = [
     "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-linux-x64.tar.gz",
     "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-windows-x64.msi",
@@ -237,8 +206,9 @@ download_urls = [
 [[softwares]]
 name = "corretto-11"
 repo = "corretto/corretto-11"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<suffix>\\d+)\\.(\\d+)?)$"
+url = "https://aws.amazon.com/corretto/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<suffix>\\d+)\\.(\\d+)?)$"
+release = true
 download_urls = [
     "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-linux-x64.tar.gz",
     "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-windows-x64.msi",
@@ -248,8 +218,9 @@ download_urls = [
 [[softwares]]
 name = "corretto-17"
 repo = "corretto/corretto-17"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<suffix>\\d+)\\.(\\d+)?)$"
+url = "https://aws.amazon.com/corretto/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<suffix>\\d+)\\.(\\d+)?)$"
+release = true
 download_urls = [
     "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-linux-x64.tar.gz",
     "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-windows-x64.msi",
@@ -259,8 +230,9 @@ download_urls = [
 [[softwares]]
 name = "corretto-21"
 repo = "corretto/corretto-21"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<suffix>\\d+)\\.(\\d+)?)$"
+url = "https://aws.amazon.com/corretto/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<suffix>\\d+)\\.(\\d+)?)$"
+release = true
 download_urls = [
     "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-linux-x64.tar.gz",
     "https://corretto.aws/downloads/resources/{version}/amazon-corretto-{version}-windows-x64.msi",
@@ -270,8 +242,9 @@ download_urls = [
 [[softwares]]
 name = "python"
 repo = "python/cpython"
-split_mode = 2
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://www.python.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+split = 2
 download_urls = [
     "https://www.python.org/ftp/python/{version}/Python-{version}.tgz",
     "https://www.python.org/ftp/python/{version}/Python-{version}.tar.xz",
@@ -279,30 +252,22 @@ download_urls = [
 
 [[softwares]]
 name = "php"
-major = [7, 8]
+url = "https://www.php.net/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "php"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+major = [7, 8]
+split = 2
 download_urls = [
     "https://www.php.net/distributions/php-{version}.tar.gz",
 ]
 
 [[softwares]]
-name = "go"
-parser = "go"
-tag_pattern = "^go(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://go.dev/dl/go{version}.src.tar.gz",
-    "https://go.dev/dl/go{version}.linux-amd64.tar.gz",
-    "https://go.dev/dl/go{version}.windows-amd64.zip",
-    "https://go.dev/dl/go{version}.windows-amd64.msi",
-]
-
-[[softwares]]
 name = "redis"
 repo = "redis/redis"
-by_release = true
-split_mode = 2
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://redis.io/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+split = 2
 download_urls = [
     "https://download.redis.io/releases/redis-{version}.tar.gz",
 ]
@@ -310,18 +275,19 @@ download_urls = [
 [[softwares]]
 name = "composer"
 repo = "composer/composer"
-by_release = true
-split_mode = 2
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://getcomposer.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+split = 2
 download_urls = [
-    "https://getcomposer.org/download/{version}/composer.phar",
+    "https://getcomposer.org/download/{version}/composer.phar#composer-{major}.{minor}.{patch}.phar",
 ]
-dynamic_links = true
 
 [[softwares]]
 name = "httpd"
 repo = "apache/httpd"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://httpd.apache.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://dlcdn.apache.org/httpd/httpd-{version}.tar.gz",
 ]
@@ -329,7 +295,9 @@ download_urls = [
 [[softwares]]
 name = "kafka"
 repo = "apache/kafka"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://kafka.apache.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+split = 2
 download_urls = [
     "https://downloads.apache.org/kafka/{version}/kafka-{version}-src.tgz",
     "https://downloads.apache.org/kafka/{version}/kafka_2.12-{version}.tgz",
@@ -339,20 +307,20 @@ download_urls = [
 [[softwares]]
 name = "doris"
 repo = "apache/doris"
-by_release = true
-by_release_name = true
-split_mode = 2
-tag_pattern = "^Apache Doris (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:\\.\\d+)?) Release$"
+url = "https://doris.apache.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(?:\\.\\d+)?)$"
+release = true
 download_urls = [
     "https://downloads.apache.org/doris/{major}.{minor}/{major}.{minor}.{patch}/apache-doris-{major}.{minor}.{patch}-src.tar.gz",
-    "https://apache-doris-releases.oss-accelerate.aliyuncs.com/apache-doris-{version}-bin-x64.tar.gz",
+    "https://apache-doris-releases.oss-accelerate.aliyuncs.com/apache-doris-{major}.{minor}.{patch}-bin-x64.tar.gz",
 ]
 
 [[softwares]]
 name = "maven"
 repo = "apache/maven"
-by_release = true
-tag_pattern = "^maven-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://maven.apache.org/"
+pattern = "^maven-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://dlcdn.apache.org/maven/maven-{major}/{version}/source/apache-maven-{version}-src.tar.gz",
     "https://dlcdn.apache.org/maven/maven-{major}/{version}/binaries/apache-maven-{version}-bin.tar.gz",
@@ -360,27 +328,14 @@ download_urls = [
 ]
 
 [[softwares]]
-name = "hbase"
-repo = "apache/hbase"
-by_release = true
-by_release_name = true
-tag_pattern = "^Apache HBase (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)) is now available for download$"
-download_urls = [
-    "https://dlcdn.apache.org/hbase/{version}/hbase-{version}-src.tar.gz",
-    "https://dlcdn.apache.org/hbase/{version}/hbase-{version}-bin.tar.gz",
-    "https://dlcdn.apache.org/hbase/{version}/hbase-{version}-client-bin.tar.gz",
-    "https://dlcdn.apache.org/hbase/{version}/hbase-{version}-hadoop3-bin.tar.gz",
-    "https://dlcdn.apache.org/hbase/{version}/hbase-{version}-hadoop3-client-bin.tar.gz",
-]
-
-[[softwares]]
 name = "groovy"
 repo = "apache/groovy"
-split_mode = 2
-tag_pattern = "^GROOVY_(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+url = "https://groovy-lang.org/"
+pattern = "^GROOVY_(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+split = 2
 download_urls = [
-    "https://dlcdn.apache.org/groovy/{major}.{minor}.{patch}/distribution/apache-groovy-binary-{major}.{minor}.{patch}.zip",
     "https://dlcdn.apache.org/groovy/{major}.{minor}.{patch}/sources/apache-groovy-src-{major}.{minor}.{patch}.zip",
+    "https://dlcdn.apache.org/groovy/{major}.{minor}.{patch}/distribution/apache-groovy-binary-{major}.{minor}.{patch}.zip",
     "https://dlcdn.apache.org/groovy/{major}.{minor}.{patch}/distribution/apache-groovy-docs-{major}.{minor}.{patch}.zip",
     "https://dlcdn.apache.org/groovy/{major}.{minor}.{patch}/distribution/apache-groovy-sdk-{major}.{minor}.{patch}.zip",
     "https://groovy.jfrog.io/artifactory/dist-release-local/groovy-windows-installer/groovy-{major}.{minor}.{patch}/groovy-{major}.{minor}.{patch}.msi",
@@ -389,85 +344,51 @@ download_urls = [
 [[softwares]]
 name = "dolphinscheduler"
 repo = "apache/dolphinscheduler"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://dolphinscheduler.apache.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://dlcdn.apache.org/dolphinscheduler/{version}/apache-dolphinscheduler-{version}-src.tar.gz",
     "https://dlcdn.apache.org/dolphinscheduler/{version}/apache-dolphinscheduler-{version}-bin.tar.gz",
 ]
 
 [[softwares]]
-name = "echarts"
-repo = "apache/echarts"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://dlcdn.apache.org/echarts/{version}/apache-echarts-{version}-src.zip",
-]
-
-[[softwares]]
 name = "dubbo"
 repo = "apache/dubbo"
-by_release = true
-tag_pattern = "^dubbo-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://dubbo.apache.org/"
+pattern = "^dubbo-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
-    "https://archive.apache.org/dist/dubbo/{version}/apache-dubbo-{version}.zip",
-]
-
-[[softwares]]
-name = "spark"
-repo = "apache/spark"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://archive.apache.org/dist/spark/spark-{version}/spark-{version}-bin-hadoop3.tgz",
-    "https://archive.apache.org/dist/spark/spark-{version}/spark-{version}-bin-without-hadoop.tgz",
-    "https://archive.apache.org/dist/spark/spark-{version}/spark-{version}.tgz",
-]
-
-[[softwares]]
-name = "airflow"
-repo = "apache/airflow"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://github.com/apache/airflow/releases/download/{version}/apache-airflow-{version}-source.tar.gz",
-    "https://github.com/apache/airflow/releases/download/{version}/apache-airflow-{version}.tar.gz",
-    "https://github.com/apache/airflow/releases/download/{version}/apache_airflow-{version}-py3-none-any.whl",
-]
-
-[[softwares]]
-name = "rocketmq"
-repo = "apache/rocketmq"
-by_release = true
-tag_pattern = "^rocketmq-all-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://archive.apache.org/dist/rocketmq/{version}/rocketmq-all-{version}-source-release.zip",
-    "https://archive.apache.org/dist/rocketmq/{version}/rocketmq-all-{version}-bin-release.zip",
+    "https://github.com/apache/dubbo/archive/refs/tags/{version}.zip",
 ]
 
 [[softwares]]
 name = "druid"
 repo = "apache/druid"
-by_release = true
-tag_pattern = "^druid-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://druid.apache.org/"
+pattern = "^druid-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
-    "https://archive.apache.org/dist/druid/{version}/apache-druid-{version}-src.tar.gz",
-    "https://archive.apache.org/dist/druid/{version}/apache-druid-{version}-bin.tar.gz",
+    "https://dlcdn.apache.org/druid/{version}/apache-druid-{version}-src.tar.gz",
+    "https://dlcdn.apache.org/druid/{version}/apache-druid-{version}-bin.tar.gz",
 ]
 
 [[softwares]]
 name = "zookeeper"
 repo = "apache/zookeeper"
-tag_pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://zookeeper.apache.org/"
+pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+split = 2
 download_urls = [
-    "https://archive.apache.org/dist/zookeeper/zookeeper-{version}/apache-zookeeper-{version}.tar.gz",
-    "https://archive.apache.org/dist/zookeeper/zookeeper-{version}/apache-zookeeper-{version}-bin.tar.gz",
+    "https://dlcdn.apache.org/zookeeper/zookeeper-{version}/apache-zookeeper-{version}.tar.gz",
+    "https://dlcdn.apache.org/zookeeper/zookeeper-{version}/apache-zookeeper-{version}-bin.tar.gz",
 ]
 
 [[softwares]]
 name = "nginx"
 repo = "nginx/nginx"
-tag_pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://nginx.org/"
+pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://nginx.org/download/nginx-{version}.tar.gz",
 ]
@@ -475,25 +396,18 @@ download_urls = [
 [[softwares]]
 name = "njs"
 repo = "nginx/njs"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://nginx.org/en/docs/njs/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/nginx/njs/archive/refs/tags/{version}.tar.gz",
 ]
 
 [[softwares]]
-name = "ansible"
-repo = "ansible/ansible"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://github.com/ansible/ansible/archive/refs/tags/v{version}.tar.gz",
-]
-
-[[softwares]]
 name = "coredns"
 repo = "coredns/coredns"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://coredns.io/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://github.com/coredns/coredns/releases/download/v{version}/coredns_{version}_linux_amd64.tgz",
     "https://github.com/coredns/coredns/releases/download/v{version}/coredns_{version}_windows_amd64.tgz",
@@ -502,8 +416,9 @@ download_urls = [
 [[softwares]]
 name = "etcd"
 repo = "etcd-io/etcd"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://etcd.io/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://github.com/etcd-io/etcd/releases/download/v{version}/etcd-v{version}-linux-amd64.tar.gz",
     "https://github.com/etcd-io/etcd/releases/download/v{version}/etcd-v{version}-windows-amd64.zip",
@@ -512,8 +427,9 @@ download_urls = [
 [[softwares]]
 name = "consul"
 repo = "hashicorp/consul"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://www.consul.io/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://releases.hashicorp.com/consul/{version}/consul_{version}_linux_amd64.zip",
     "https://releases.hashicorp.com/consul/{version}/consul_{version}_windows_amd64.zip",
@@ -522,38 +438,32 @@ download_urls = [
 [[softwares]]
 name = "vagrant"
 repo = "hashicorp/vagrant"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://www.vagrantup.com/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://releases.hashicorp.com/vagrant/{version}/vagrant-{version}-1.x86_64.rpm",
+    "https://releases.hashicorp.com/vagrant/{version}/vagrant_{version}_linux_amd64.zip",
     "https://releases.hashicorp.com/vagrant/{version}/vagrant_{version}_windows_amd64.msi",
 ]
 
 [[softwares]]
 name = "vault"
 repo = "hashicorp/vault"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://www.vaultproject.io/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://releases.hashicorp.com/vault/{version}/vault_{version}_linux_amd64.zip",
     "https://releases.hashicorp.com/vault/{version}/vault_{version}_windows_amd64.zip",
 ]
 
 [[softwares]]
-name = "gpdb"
-repo = "greenplum-db/gpdb"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://github.com/greenplum-db/gpdb/releases/download/{version}/{version}-src-full.tar.gz",
-    "https://github.com/greenplum-db/gpdb/releases/download/{version}/open-source-greenplum-db-{version}-el8-x86_64.rpm",
-]
-
-[[softwares]]
 name = "netdata"
 repo = "netdata/netdata"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://www.netdata.cloud/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://github.com/netdata/netdata/releases/download/v{version}/netdata-x86_64-v{version}.gz.run",
 ]
@@ -561,13 +471,10 @@ download_urls = [
 [[softwares]]
 name = "elasticsearch"
 repo = "elastic/elasticsearch"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://www.elastic.co/elasticsearch"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
-    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-windows-x86_64.zip",
-    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-linux-x86_64.tar.gz",
-    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-x86_64.rpm",
-    "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-{version}-amd64.deb",
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-{version}-windows-x86_64.zip",
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-{version}-linux-x86_64.tar.gz",
     "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-oss-{version}-x86_64.rpm",
@@ -577,13 +484,10 @@ download_urls = [
 [[softwares]]
 name = "logstash"
 repo = "elastic/logstash"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://www.elastic.co/logstash"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
-    "https://artifacts.elastic.co/downloads/logstash/logstash-{version}-linux-x86_64.tar.gz",
-    "https://artifacts.elastic.co/downloads/logstash/logstash-{version}-windows-x86_64.zip",
-    "https://artifacts.elastic.co/downloads/logstash/logstash-{version}-amd64.deb",
-    "https://artifacts.elastic.co/downloads/logstash/logstash-{version}-x86_64.rpm",
     "https://artifacts.elastic.co/downloads/logstash/logstash-oss-{version}-linux-x86_64.tar.gz",
     "https://artifacts.elastic.co/downloads/logstash/logstash-oss-{version}-windows-x86_64.zip",
     "https://artifacts.elastic.co/downloads/logstash/logstash-oss-{version}-amd64.deb",
@@ -593,13 +497,10 @@ download_urls = [
 [[softwares]]
 name = "kibana"
 repo = "elastic/kibana"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://www.elastic.co/kibana"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
-    "https://artifacts.elastic.co/downloads/kibana/kibana-{version}-windows-x86_64.zip",
-    "https://artifacts.elastic.co/downloads/kibana/kibana-{version}-linux-x86_64.tar.gz",
-    "https://artifacts.elastic.co/downloads/kibana/kibana-{version}-x86_64.rpm",
-    "https://artifacts.elastic.co/downloads/kibana/kibana-{version}-amd64.deb",
     "https://artifacts.elastic.co/downloads/kibana/kibana-oss-{version}-windows-x86_64.zip",
     "https://artifacts.elastic.co/downloads/kibana/kibana-oss-{version}-linux-x86_64.tar.gz",
     "https://artifacts.elastic.co/downloads/kibana/kibana-oss-{version}-x86_64.rpm",
@@ -609,13 +510,10 @@ download_urls = [
 [[softwares]]
 name = "beats"
 repo = "elastic/beats"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://www.elastic.co/beats"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
-    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{version}-amd64.deb",
-    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{version}-x86_64.rpm",
-    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{version}-linux-x86_64.tar.gz",
-    "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-{version}-windows-x86_64.zip",
     "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-{version}-amd64.deb",
     "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-{version}-x86_64.rpm",
     "https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-oss-{version}-linux-x86_64.tar.gz",
@@ -625,8 +523,9 @@ download_urls = [
 [[softwares]]
 name = "opensearch"
 repo = "opensearch-project/OpenSearch"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://opensearch.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://artifacts.opensearch.org/releases/bundle/opensearch/{version}/opensearch-{version}-linux-x64.tar.gz",
     "https://artifacts.opensearch.org/releases/bundle/opensearch/{version}/opensearch-{version}-windows-x64.zip",
@@ -639,107 +538,39 @@ download_urls = [
 ]
 
 [[softwares]]
-name = "kubernetes"
-repo = "kubernetes/kubernetes"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://github.com/kubernetes/kubernetes/archive/refs/tags/v{version}.tar.gz",
-    "https://github.com/kubernetes/kubernetes/archive/refs/tags/v{version}.zip",
-]
-
-[[softwares]]
-name = "rke2"
-repo = "rancher/rke2"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\+rke2r\\d)$"
-download_urls = [
-    "https://github.com/rancher/rke2/releases/download/v{version}/rke2-images.linux-amd64.tar.gz",
-    "https://github.com/rancher/rke2/releases/download/v{version}/rke2.linux-amd64",
-    "https://github.com/rancher/rke2/releases/download/v{version}/rke2-windows-amd64.exe",
-]
-
-[[softwares]]
 name = "gradle"
 repo = "gradle/gradle"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)(?P<patch>\\.\\d+)?)$"
-download_urls = [
-    "https://services.gradle.org/distributions/gradle-{version}-bin.zip",
-    "https://services.gradle.org/distributions/gradle-{version}-all.zip",
-    "https://services.gradle.org/distributions/gradle-{version}-src.zip",
-    "https://services.gradle.org/distributions/gradle-{version}-docs.zip",
-]
-dynamic_links = true
+url = "https://gradle.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_dynamic = true
 
 [[softwares]]
 name = "memcached"
 repo = "memcached/memcached"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://memcached.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://www.memcached.org/files/memcached-{version}.tar.gz",
 ]
 
 [[softwares]]
-name = "ant-design"
-repo = "ant-design/ant-design"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://github.com/ant-design/ant-design/archive/refs/tags/{version}.zip",
-    "https://github.com/ant-design/ant-design/archive/refs/tags/{version}.tar.gz",
-]
-
-[[softwares]]
-name = "ant-design-vue"
-repo = "vueComponent/ant-design-vue"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://github.com/vueComponent/ant-design-vue/archive/refs/tags/{version}.zip",
-    "https://github.com/vueComponent/ant-design-vue/archive/refs/tags/{version}.tar.gz",
-]
-
-[[softwares]]
-name = "bytebase"
-repo = "bytebase/bytebase"
-by_release = true
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://github.com/bytebase/bytebase/releases/download/{version}/bytebase_{version}_linux_amd64.tar.gz",
-]
-
-[[softwares]]
 name = "caddy"
 repo = "caddyserver/caddy"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://caddyserver.com/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://github.com/caddyserver/caddy/releases/download/v2.7.5/caddy_2.7.5_linux_amd64.tar.gz",
     "https://github.com/caddyserver/caddy/releases/download/v2.7.5/caddy_2.7.5_windows_amd64.zip",
 ]
 
 [[softwares]]
-name = "openwrt"
-repo = "openwrt/openwrt"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://downloads.openwrt.org/releases/{version}/targets/x86/64/openwrt-{version}-x86-64-generic-ext4-combined-efi.img.gz",
-    "https://downloads.openwrt.org/releases/{version}/targets/x86/64/openwrt-{version}-x86-64-generic-ext4-combined.img.gz",
-    "https://downloads.openwrt.org/releases/{version}/targets/x86/64/openwrt-{version}-x86-64-generic-ext4-rootfs.img.gz",
-    "https://downloads.openwrt.org/releases/{version}/targets/x86/64/openwrt-{version}-x86-64-generic-kernel.bin",
-    "https://downloads.openwrt.org/releases/{version}/targets/x86/64/openwrt-{version}-x86-64-generic-squashfs-combined-efi.img.gz",
-    "https://downloads.openwrt.org/releases/{version}/targets/x86/64/openwrt-{version}-x86-64-generic-squashfs-combined.img.gz",
-    "https://downloads.openwrt.org/releases/{version}/targets/x86/64/openwrt-{version}-x86-64-generic-squashfs-rootfs.img.gz",
-    "https://downloads.openwrt.org/releases/{version}/targets/x86/64/openwrt-{version}-x86-64-rootfs.tar.gz",
-]
-
-[[softwares]]
 name = "msys2"
 repo = "msys2/msys2-installer"
-by_release = true
-tag_pattern = "^(?P<version>(?P<year>\\d+)-(?P<month>\\d+)-(?P<day>\\d+))$"
+url = "https://www.msys2.org/"
+pattern = "^(?P<version>(?P<major>(?P<year>\\d+))-(?P<minor>(?P<month>\\d+))-(?P<patch>(?P<day>\\d+)))$"
+release = true
 download_urls = [
     "https://github.com/msys2/msys2-installer/releases/download/{year}-{month}-{day}/msys2-x86_64-{year}{month}{day}.exe",
 ]
@@ -747,8 +578,9 @@ download_urls = [
 [[softwares]]
 name = "prometheus"
 repo = "prometheus/prometheus"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://prometheus.io/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://github.com/prometheus/prometheus/releases/download/v{version}/prometheus-{version}.linux-amd64.tar.gz",
     "https://github.com/prometheus/prometheus/releases/download/v{version}/prometheus-{version}.windows-amd64.zip",
@@ -758,8 +590,9 @@ download_urls = [
 [[softwares]]
 name = "pushgateway"
 repo = "prometheus/pushgateway"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://prometheus.io/docs/practices/pushing/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://github.com/prometheus/pushgateway/releases/download/v{version}/pushgateway-{version}.linux-amd64.tar.gz",
     "https://github.com/prometheus/pushgateway/releases/download/v{version}/pushgateway-{version}.windows-amd64.zip",
@@ -768,8 +601,9 @@ download_urls = [
 [[softwares]]
 name = "helm"
 repo = "helm/helm"
-by_release = true
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+url = "https://helm.sh/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
 download_urls = [
     "https://get.helm.sh/helm-v{version}-linux-amd64.tar.gz",
     "https://get.helm.sh/helm-v{version}-darwin-amd64.tar.gz",
@@ -780,482 +614,74 @@ download_urls = [
 
 [[softwares]]
 name = "haproxy"
-parser = "docker-library"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+repo = "haproxy/haproxy"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://www.haproxy.org/download/{major}.{minor}/src/haproxy-{version}.tar.gz",
 ]
-
-[[softwares]]
-name = "mongo"
-parser = "docker-library"
-url = "https://www.mongodb.com/try/download/community"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://fastdl.mongodb.org/src/mongodb-src-r{version}.tar.gz",
-    "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-{version}-signed.msi",
-    "https://repo.mongodb.org/yum/redhat/7/mongodb-org/{major}.{minor}/x86_64/RPMS/mongodb-org-server-{version}-1.el7.x86_64.rpm",
-    "https://repo.mongodb.org/yum/redhat/8/mongodb-org/{major}.{minor}/x86_64/RPMS/mongodb-org-server-{version}-1.el8.x86_64.rpm",
-    "https://repo.mongodb.org/yum/redhat/9/mongodb-org/{major}.{minor}/x86_64/RPMS/mongodb-org-server-{version}-1.el9.x86_64.rpm",
-]
-
-[[softwares]]
-name = "rabbitmq"
-parser = "docker-library"
-url = "https://www.rabbitmq.com/download.html"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-generic-unix-{version}.tar.xz",
-    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-{version}-1.el8.noarch.rpm",
-    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-{version}.exe",
-    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-{version}.tar.xz",
-    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-generic-unix-latest-toolchain-{version}.tar.xz",
-    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-windows-{version}.zip",
-    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server_{version}-1_all.deb",
-]
-
-[[softwares]]
-name = "mysql"
-parser = "docker-library"
-url = "https://dev.mysql.com/downloads/"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://cdn.mysql.com/Downloads/MySQL-{major}.{minor}/mysql-{version}-winx64.zip",
-]
-
-[[softwares]]
-name = "postgres"
-parser = "docker-library"
-url = "https://www.postgresql.org/download/"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
-split_mode = 1
-download_urls = [
-    "https://ftp.postgresql.org/pub/source/v{version}/postgresql-{version}.tar.gz",
-    "https://ftp.postgresql.org/pub/source/v{version}/postgresql-{version}.tar.bz2",
-]
-
-[[softwares]]
-name = "centos"
-repo = "library/centos"
-parser = "docker-hub"
-url = "https://www.centos.org/"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-split_mode = 1
-download_urls = [
-    "https://mirrors.nju.edu.cn/centos/{major}/isos/x86_64/CentOS-{major}-x86_64-Minimal-{patch}.iso",
-]
-
-[[softwares]]
-name = "almalinux"
-repo = "library/almalinux"
-parser = "docker-hub"
-url = "https://almalinux.org/"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
-split_mode = 1
-download_urls = [
-    "https://hkg.mirror.rackspace.com/almalinux/{version}/isos/x86_64/AlmaLinux-{version}-x86_64-minimal.iso",
-    "https://mirrors.aliyun.com/almalinux/{version}/isos/x86_64/AlmaLinux-{version}-x86_64-minimal.iso",
-]
-
-[[softwares]]
-name = "rockylinux"
-repo = "library/rockylinux"
-parser = "docker-hub"
-url = "https://rockylinux.org/"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
-split_mode = 1
-download_urls = [
-    "https://download.rockylinux.org/pub/rocky/{major}/isos/x86_64/Rocky-{version}-x86_64-minimal.iso",
-    "https://mirrors.aliyun.com/rockylinux/{version}/isos/x86_64/Rocky-{version}-x86_64-minimal.iso",
-]
-
-[[softwares]]
-name = "debian"
-repo = "library/debian"
-parser = "docker-hub"
-url = "https://www.debian.org/"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
-download_urls = [
-    "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-{version}.0-amd64-netinst.iso",
-]
-
-[[softwares]]
-name = "ubuntu"
-repo = "library/ubuntu"
-parser = "docker-hub"
-url = "https://ubuntu.com/"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
-download_urls = [
-    "https://ubuntu.com/download",
-]
-
-[[softwares]]
-name = "gitlab-ce"
-repo = "gitlab/gitlab-ce"
-parser = "docker-hub"
-url = "https://gitlab.com/rluna-gitlab/gitlab-ce"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)-ce\\.\\d)$"
-download_urls = [
-    "https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/7/gitlab-ce-{version}.el7.x86_64.rpm",
-    "https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/8/gitlab-ce-{version}.el8.x86_64.rpm",
-    "https://packages.gitlab.com/gitlab/gitlab-ce/packages/el/9/gitlab-ce-{version}.el9.x86_64.rpm",
-    "https://packages.gitlab.com/gitlab/gitlab-ce/packages/ubuntu/jammy/gitlab-ce_{version}_amd64.deb",
-]
-
-[[softwares]]
-name = "gitlab-runner"
-repo = "gitlab/gitlab-runner"
-parser = "docker-hub"
-url = "https://gitlab.com/gitlab-org/gitlab-runner"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://packages.gitlab.com/runner/gitlab-runner/packages/el/7/gitlab-runner-{version}-1.x86_64.rpm",
-    "https://packages.gitlab.com/runner/gitlab-runner/packages/el/7/gitlab-runner-fips-{version}-1.x86_64.rpm",
-    "https://packages.gitlab.com/runner/gitlab-runner/packages/ubuntu/focal/gitlab-runner_{version}_amd64.deb",
-]
-
-[[softwares]]
-name = "percona-server"
-repo = "percona/percona-server"
-parser = "docker-hub"
-url = "https://www.percona.com/"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-split_mode = 2
-download_urls = [
-    "https://docs.percona.com/percona-server/{major}.{minor}/installation.html",
-    "https://www.percona.com/downloads",
-]
-
-[[softwares]]
-name = "jenkins"
-repo = "jenkins/jenkins"
-parser = "docker-hub"
-url = "https://www.jenkins.io/download/"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))-lts-jdk17$"
-download_urls = [
-    "https://get.jenkins.io/war-stable/{version}/jenkins.war",
-    "https://get.jenkins.io/windows-stable/{version}/jenkins.msi",
-]
+split = 2
+max_page = 2
 
 [[softwares]]
 name = "flume"
 parser = "apache-flume"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://dlcdn.apache.org/flume/{version}/apache-flume-{version}-src.tar.gz",
     "https://dlcdn.apache.org/flume/{version}/apache-flume-{version}-bin.tar.gz",
 ]
 
 [[softwares]]
-name = "nexus"
-parser = "sonatype-nexus"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)-(\\d+))$"
-download_urls = [
-    "https://download.sonatype.com/nexus/3/nexus-{version}-unix.tar.gz",
-    "https://download.sonatype.com/nexus/3/nexus-{version}-win64.zip",
-]
-
-[[softwares]]
-name = "nodejs"
-parser = "nodejs"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://nodejs.org/dist/v{version}/node-v{version}-x64.msi",
-    "https://nodejs.org/dist/v{version}/node-v{version}-win-x64.zip",
-    "https://nodejs.org/dist/v{version}/node-v{version}-linux-x64.tar.xz",
-    "https://nodejs.org/dist/v{version}/node-v{version}.tar.gz",
-]
-
-[[softwares]]
-name = "ruby"
-parser = "ruby"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
-download_urls = [
-    "https://cache.ruby-lang.org/pub/ruby/{major}.{minor}/ruby-{version}.tar.gz",
-]
-
-[[softwares]]
-name = "virtualbox"
-parser = "virtualbox"
-url = "https://www.virtualbox.org/wiki/Downloads"
-
-[[softwares]]
-name = "tortoisesvn"
-parser = "sourceforge"
-url = "https://tortoisesvn.net/downloads.html"
-
-[[softwares]]
-name = "tortoisegit"
-parser = "tortoisegit"
-url = "https://tortoisegit.org/"
-
-[[softwares]]
-name = "github-desktop"
-parser = "github-desktop"
-
-[[softwares]]
-name = "JetBrains.AppCode"
-code = "AC"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/objc/"
-
-[[softwares]]
-name = "JetBrains.CLion"
-code = "CL"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/clion/"
-
-[[softwares]]
-name = "JetBrains.ReSharperUltimate"
-code = "RSU"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/resharper/"
-
-[[softwares]]
-name = "JetBrains.DataGrip"
-code = "DG"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/datagrip/"
-
-[[softwares]]
-name = "JetBrains.Goland"
-code = "GO"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/go/"
-
-[[softwares]]
-name = "JetBrains.IntelliJIDEA"
-code = "IIU"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/idea/"
-
-[[softwares]]
-name = "JetBrains.PhpStorm"
-code = "PS"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/phpstorm/"
-
-[[softwares]]
-name = "JetBrains.PyCharm"
-code = "PCP"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/pycharm/"
-
-[[softwares]]
-name = "JetBrains.Rider"
-code = "RD"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/rider/"
-
-[[softwares]]
-name = "JetBrains.RubyMine"
-code = "RM"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/ruby/"
-
-[[softwares]]
-name = "JetBrains.WebStorm"
-code = "WS"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/webstorm/"
-
-[[softwares]]
-name = "JetBrains.Fleet"
-code = "FL"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/fleet/"
-
-[[softwares]]
-name = "JetBrains.RustRover"
-code = "RR"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/rust/"
-
-[[softwares]]
-name = "JetBrains.DataSpell"
-code = "DS"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/dataspell/"
-
-[[softwares]]
-name = "JetBrains.Aqua"
-code = "QA"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/aqua/"
-
-[[softwares]]
-name = "JetBrains.TeamCity"
-code = "TC"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/teamcity/"
-
-[[softwares]]
-name = "JetBrains.Writerside"
-code = "WRS"
-parser = "jetbrains"
-url = "https://www.jetbrains.com/writerside/"
-
-[[softwares]]
-name = "dart"
-parser = "dart"
-url = "https://dart.dev/"
-download_urls = [
-    "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/sdk/dartsdk-windows-x64-release.zip",
-    "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/sdk/dartsdk-windows-ia32-release.zip",
-    "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/api-docs/dartdocs-gen-api.zip",
-]
-
-[[softwares]]
-name = "flutter"
-parser = "flutter"
-url = "https://flutter.dev/"
-download_urls = [
-    "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_{version}-stable.zip",
-    "https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_{version}-stable.zip",
-    "https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_{version}-stable.tar.xz",
-]
-
-[[softwares]]
-name = "android-studio"
-parser = "android-studio"
-url = "https://developer.android.com/studio"
-download_urls = [
-    "https://redirector.gvt1.com/edgedl/android/studio/install/{version}/android-studio-{version}-windows.exe",
-    "https://redirector.gvt1.com/edgedl/android/studio/ide-zips/{version}/android-studio-{version}-windows.zip",
-]
-
-[[softwares]]
 name = "vscode"
 repo = "microsoft/vscode"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 url = "https://code.visualstudio.com/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://update.code.visualstudio.com/{version}/win32-x64/stable",
-    "https://update.code.visualstudio.com/{version}/win32-x64-user/stable",
-    "https://update.code.visualstudio.com/{version}/win32-arm64-user/stable",
-    "https://update.code.visualstudio.com/{version}/darwin-universal/stable",
-    "https://update.code.visualstudio.com/{version}/darwin/stable",
-    "https://update.code.visualstudio.com/{version}/darwin-arm64/stable",
-    "https://update.code.visualstudio.com/{version}/linux-deb-x64/stable",
-    "https://update.code.visualstudio.com/{version}/linux-rpm-x64/stable",
 ]
 
 [[softwares]]
 name = "awscli"
 repo = "aws/aws-cli"
-tag_pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 url = "https://docs.aws.amazon.com/cli/latest/userguide/getting-started-version.html"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://awscli.amazonaws.com/awscli-exe-linux-x86_64-{version}.zip",
     "https://awscli.amazonaws.com/AWSCLIV2-{version}.msi",
-    "https://awscli.amazonaws.com/AWSCLIV2-{version}.pkg",
 ]
 
 [[softwares]]
-name = "vue"
-repo = "vuejs/core"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-url = "https://vuejs.org/"
+name = "dotnetfx"
+url = "https://dotnet.microsoft.com/en-us/download/dotnet-framework"
+pattern = "^\\.NET Framework (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)(?:\\.(?P<patch>\\d+))?)$"
+parser = "dotnetfx"
 download_urls = [
-    "https://github.com/vuejs/core/archive/refs/tags/v{version}.zip",
-    "https://github.com/vuejs/core/archive/refs/tags/v{version}.tar.gz",
-]
-
-[[softwares]]
-name = "react"
-repo = "facebook/react"
-tag_pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-url = "https://react.dev/"
-download_urls = [
-    "https://github.com/facebook/react/archive/refs/tags/v{version}.zip",
-    "https://github.com/facebook/react/archive/refs/tags/v{version}.tar.gz",
+    "https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net{major}{minor}{patch}-developer-pack-offline-installer",
+    "https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net{major}{minor}{patch}-offline-installer",
 ]
 
 [[softwares]]
 name = "dotnet"
-parser = "dotnet"
 url = "https://dotnet.microsoft.com/"
-
-[[softwares]]
-name = "dotnetfx"
-parser = "dotnetfx"
-url = "https://dotnet.microsoft.com/en-us/download/dotnet-framework"
-download_urls = [
-    "https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net{major}{minor}{patch}-developer-pack-offline-installer",
-    "https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net{major}{minor}{patch}-developer-pack-chs",
-    "https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net{major}{minor}{patch}-offline-installer",
-    "https://dotnet.microsoft.com/zh-cn/download/dotnet-framework/thank-you/net{major}{minor}{patch}-chs"
-]
-
-[[softwares]]
-name = "vs"
-parser = "visualstudio"
-url = "https://visualstudio.microsoft.com/"
-download_urls = [
-    "https://learn.microsoft.com/en-us/visualstudio/install/create-an-offline-installation-of-visual-studio",
-]
-
-[[softwares]]
-name = "chrome"
-parser = "chrome"
-url = "https://www.google.com/chrome/"
-download_urls = [
-    "https://dl.google.com/chrome/install/ChromeStandaloneSetup64.exe#ChromeStandaloneSetup64-{version}.exe",
-    "https://www.google.com/intl/en/chrome/browser/desktop/index.html?standalone=1",
-    "https://www.google.com/chrome/?system=true&standalone=1&platform=win64",
-]
-
-[[softwares]]
-name = "vmware-workstation-pro"
-code = "workstation"
-parser = "vmware"
-url = "https://www.vmware.com/products/workstation-pro.html"
-
-[[softwares]]
-name = "vmware-esxi"
-code = "esxi"
-parser = "vmware"
-url = "https://www.vmware.com/products/vsphere.html"
-download_urls = [
-    "https://customerconnect.vmware.com/en/downloads/info/slug/datacenter_cloud_infrastructure/vmware_vsphere/{major}_{minor}",
-]
-
-[[softwares]]
-name = "vmware-vsphere"
-code = "vsphere"
-parser = "vmware"
-url = "https://www.vmware.com/products/vsphere.html"
-download_urls = [
-    "https://customerconnect.vmware.com/en/downloads/info/slug/datacenter_cloud_infrastructure/vmware_vsphere/{major}_{minor}",
-]
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "dotnet"
 
 [[softwares]]
 name = "sublime"
+url = "https://www.sublimetext.com/"
+pattern = "^Version: Build (?P<version>(?P<major>\\d+))$"
 parser = "sublime"
-url = "https://www.sublimetext.com/download"
 download_urls = [
-    "https://www.sublimetext.com/download_thanks?target=win-x64",
-    "https://www.sublimetext.com/download_thanks?target=win-x64-portable",
-    "https://www.sublimetext.com/download_thanks?target=mac",
     "https://download.sublimetext.com/sublime_text_build_{version}_x64_setup.exe",
     "https://download.sublimetext.com/sublime_text_build_{version}_x64.zip",
-    "https://download.sublimetext.com/sublime_text_build_{version}_mac.zip",
 ]
 
 [[softwares]]
 name = "xshell"
-parser = "xshell"
 url = "https://www.netsarang.com/en/xshell/"
+pattern = "^Xshell (?P<version>(?P<major>\\d+) Build (?P<build>\\d+))(?:.+)$"
+parser = "xshell"
 download_urls = [
     "https://cdn.netsarang.net/v{major}/Xshell-latest-p",
     "https://cdn.netsarang.net/v{major}/Xftp-latest-p",
-]
-
-[[softwares]]
-name = "firefox"
-parser = "firefox"
-url = "https://www.mozilla.org/en-US/firefox/new/"
-download_urls = [
-    "https://ftp.mozilla.org/pub/firefox/releases/{major}.{minor}/win64/en-US/Firefox%20Setup%20{major}.{minor}.exe",
-    "https://ftp.mozilla.org/pub/firefox/releases/{major}.{minor}/win64/zh-CN/Firefox%20Setup%20{major}.{minor}.exe",
 ]

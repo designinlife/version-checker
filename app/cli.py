@@ -12,7 +12,6 @@ from loguru import logger
 
 from app import __version__
 from app.commands.inspect import cli as cli_inspect
-from app.commands.sync import cli as cli_sync
 from app.core.click import ClickStdOption
 from app.core.config import Configuration, AppSetting
 from app.core.utils import strtobool
@@ -77,8 +76,6 @@ def app_version():
 
 # noinspection PyTypeChecker
 cli.add_command(cli_inspect)
-# noinspection PyTypeChecker
-cli.add_command(cli_sync)
 
 
 def start():

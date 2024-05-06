@@ -1,31 +1,33 @@
+from asyncio import Semaphore
+
 from bs4 import BeautifulSoup
+from loguru import logger
 
-from app.core.config import AppSettingSoftItem
+from app.core.config import SublimeSoftware
 from app.core.version import VersionHelper
-from . import Assistant
+from . import Base
 
 
-class Parser:
-    @staticmethod
-    async def parse(assist: Assistant, item: AppSettingSoftItem):
-        # Create VersionHelper instance.
-        vhlp = VersionHelper(name=item.name, pattern=r'^Version: Build (?P<version>(?P<build>\d+))$',
-                             download_urls=item.download_urls)
+class Parser(Base):
+    async def handle(self, sem: Semaphore, soft: SublimeSoftware):
+        logger.debug(f'Name: {soft.name} ({soft.parser})')
 
-        # Make an HTTP request.
-        url, http_status_code, _, data_s = await assist.get('https://www.sublimetext.com/download')
+        vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
-        soup = BeautifulSoup(data_s, 'html5lib')
-        element = soup.select_one('div.downloads > p.latest')
+        async with sem:
+            # Make an HTTP request.
+            _, status, _, data_s = await self.request('GET', 'https://www.sublimetext.com/download',
+                                                      is_json=False)
 
-        vhlp.add(element.text.strip())
+            soup = BeautifulSoup(data_s, 'html5lib')
+            element = soup.select_one('div.downloads > p.latest')
 
-        # Perform actions such as sorting.
-        vhlp.done()
+            vhlp.append(element.text.strip())
 
-        # Output JSON file.
-        await assist.create(name=item.name,
-                            url=item.url if item.url else 'https://www.sublimetext.com/',
-                            version=vhlp.latest,
-                            all_versions=vhlp.versions,
-                            download_links=vhlp.download_links)
+            logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
+
+            if soft.split > 0:
+                logger.debug(f'Split Versions: {vhlp.split_versions}')
+
+            # Write data to file.
+            await self.write(soft, vhlp.summary)

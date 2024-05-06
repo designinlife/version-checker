@@ -1,31 +1,31 @@
-from app.core.config import AppSettingSoftItem
+from asyncio import Semaphore
+
+from loguru import logger
+
+from app.core.config import ApacheFlumeSoftware
 from app.core.version import VersionHelper
-from . import Assistant
+from . import Base
 
 
-class Parser:
-    @staticmethod
-    async def parse(assist: Assistant, item: AppSettingSoftItem):
-        # Create VersionHelper instance.
-        vhlp = VersionHelper(name=item.name, pattern=item.tag_pattern, download_urls=item.download_urls)
+class Parser(Base):
+    async def handle(self, sem: Semaphore, soft: ApacheFlumeSoftware):
+        logger.debug(f'Name: {soft.name} ({soft.parser})')
 
-        # Make an HTTP request.
-        url, http_status_code, _, data_r = await assist.get('https://nodejs.org/download/release/index.json', is_json=True)
+        vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
-        for v in data_r:
-            if 'lts' in v and v['lts'] is not False:
-                vhlp.add(v['version'])
+        async with sem:
+            # Make an HTTP request.
+            _, status, _, data_r = await self.request('GET', 'https://nodejs.org/download/release/index.json',
+                                                      is_json=True)
 
-        # Perform actions such as sorting.
-        vhlp.done()
+            for v in data_r:
+                if 'lts' in v and v['lts'] is not False:
+                    vhlp.append(v['version'])
 
-        latest_version = vhlp.latest
-        download_links = vhlp.download_links
-        all_versions = vhlp.versions
+            logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 
-        # Output JSON file.
-        await assist.create(name=item.name,
-                            url='https://nodejs.org/',
-                            version=latest_version,
-                            all_versions=all_versions,
-                            download_links=download_links)
+            if soft.split > 0:
+                logger.debug(f'Split Versions: {vhlp.split_versions}')
+
+            # Write data to file.
+            await self.write(soft, vhlp.summary)
