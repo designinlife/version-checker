@@ -687,3 +687,9 @@ download_urls = [
     "https://cdn.netsarang.net/v{major}/Xshell-latest-p",
     "https://cdn.netsarang.net/v{major}/Xftp-latest-p",
 ]
+
+[[softwares]]
+name = "virtualbox"
+url = "https://www.virtualbox.org/wiki/Downloads"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "virtualbox"

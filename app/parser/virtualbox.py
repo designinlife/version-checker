@@ -40,12 +40,14 @@ class Parser(Base):
                 # Installer
                 if download_link_elements:
                     for v in download_link_elements:
-                        vhlp.add_download_url(v.attrs['href'])
+                        if v.attrs['href'].endswith('Win.exe'):
+                            vhlp.add_download_url(v.attrs['href'])
 
                 # Extension Pack
                 if extension_pack_link_elements:
                     for v in extension_pack_link_elements:
-                        vhlp.add_download_url(v.attrs['href'])
+                        if v.attrs['href'].endswith('.vbox-extpack'):
+                            vhlp.add_download_url(v.attrs['href'])
 
                 # SDK
                 if sdk_link_elements:
