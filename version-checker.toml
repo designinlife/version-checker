@@ -693,3 +693,22 @@ name = "virtualbox"
 url = "https://www.virtualbox.org/wiki/Downloads"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "virtualbox"
+
+[[softwares]]
+name = "flutter"
+url = "https://flutter.dev/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "flutter"
+download_urls = [
+    "https://storage.googleapis.com/flutter_infra_release/releases/stable/windows/flutter_windows_{version}-stable.zip",
+]
+
+[[softwares]]
+name = "dart"
+url = "https://dart.dev/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "dart"
+download_urls = [
+    "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/sdk/dartsdk-windows-x64-release.zip#dartsdk-{version}-windows-x64-release.zip",
+    "https://storage.googleapis.com/dart-archive/channels/stable/release/{version}/api-docs/dartdocs-gen-api.zip#dartdocs-{version}-gen-api.zip",
+]

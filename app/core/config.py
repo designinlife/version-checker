@@ -62,13 +62,22 @@ class XShellSoftware(AppSettingSoftItem):
     parser: Literal['xshell']
 
 
+class FlutterSoftware(AppSettingSoftItem):
+    parser: Literal['flutter']
+
+
+class DartSoftware(AppSettingSoftItem):
+    parser: Literal['dart']
+
+
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
                     | GoSoftware | PhpSoftware | GithubSoftware
                     | DotNetFxSoftware | DotNetSoftware
-                    | SublimeSoftware | XShellSoftware] = Field(alias='softwares',
-                                                                default_factory=list)
+                    | SublimeSoftware | XShellSoftware
+                    | FlutterSoftware | DartSoftware] = Field(alias='softwares',
+                                                              default_factory=list)
 
 
 class Configuration(BaseModel):
