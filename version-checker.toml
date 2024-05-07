@@ -93,7 +93,7 @@ repo = "docker/compose"
 url = "https://docs.docker.com/compose/"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
-    "https://github.com/docker/compose/releases/download/v{version}/docker-compose-linux-x86_64"
+    "https://github.com/docker/compose/releases/download/v{version}/docker-compose-linux-x86_64#docker-compose-v{version}-linux-x86_64"
 ]
 
 [[softwares]]
