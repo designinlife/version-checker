@@ -730,3 +730,15 @@ parser = "chrome"
 download_urls = [
     "https://dl.google.com/update2/installers/ChromeStandaloneSetup64.exe#ChromeStandaloneSetup64-{version}.exe",
 ]
+
+[[softwares]]
+name = "gh"
+repo = "cli/cli"
+url = "https://cli.github.com/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/cli/cli/releases/download/v{version}/gh_{version}_linux_amd64.rpm",
+    "https://github.com/cli/cli/releases/download/v{version}/gh_{version}_linux_amd64.tar.gz",
+    "https://github.com/cli/cli/releases/download/v{version}/gh_{version}_windows_amd64.zip",
+]
