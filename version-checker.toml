@@ -299,9 +299,9 @@ url = "https://kafka.apache.org/"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 split = 2
 download_urls = [
-    "https://downloads.apache.org/kafka/{version}/kafka-{version}-src.tgz",
-    "https://downloads.apache.org/kafka/{version}/kafka_2.12-{version}.tgz",
-    "https://downloads.apache.org/kafka/{version}/kafka_2.13-{version}.tgz",
+    "https://archive.apache.org/dist/kafka/{version}/kafka-{version}-src.tgz",
+    "https://archive.apache.org/dist/kafka/{version}/kafka_2.12-{version}.tgz",
+    "https://archive.apache.org/dist/kafka/{version}/kafka_2.13-{version}.tgz",
 ]
 
 [[softwares]]
