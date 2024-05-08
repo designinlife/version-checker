@@ -88,7 +88,7 @@ download_urls = [
 ]
 
 [[softwares]]
-name = "compose"
+name = "docker-compose"
 repo = "docker/compose"
 url = "https://docs.docker.com/compose/"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
