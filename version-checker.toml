@@ -248,6 +248,7 @@ split = 2
 download_urls = [
     "https://www.python.org/ftp/python/{version}/Python-{version}.tgz",
     "https://www.python.org/ftp/python/{version}/Python-{version}.tar.xz",
+    "https://www.python.org/ftp/python/{version}/python-{version}-amd64.exe",
 ]
 
 [[softwares]]
