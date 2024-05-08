@@ -30,7 +30,7 @@ curl -sSL --fail https://raw.githubusercontent.com/designinlife/version-checker/
 | gRPC | Google 出品的 RPC 框架 | [grpc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/grpc.json) |
 | Protobuf | Google Protobuf 序列化框架 | [protobuf](https://raw.githubusercontent.com/designinlife/version-checker/main/data/protobuf.json) |
 | Harbor | Docker 私有仓库服务器 | [harbor](https://raw.githubusercontent.com/designinlife/version-checker/main/data/harbor.json) |
-| Docker Compose | Docker 容器命令行管理工具 | [compose](https://raw.githubusercontent.com/designinlife/version-checker/main/data/compose.json) |
+| Docker Compose | Docker 容器命令行管理工具 | [compose](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-compose.json) |
 | GraalVM CE | GraalVM 社区版 | [graalvm-ce-builds](https://raw.githubusercontent.com/designinlife/version-checker/main/data/graalvm-ce-builds.json) |
 | StoneDB | 一个分布式 OLAP 数据库 | [stonedb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/stonedb.json) |
 | Solon | 国产 Java 生态框架 | [solon](https://raw.githubusercontent.com/designinlife/version-checker/main/data/solon.json) |
