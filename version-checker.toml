@@ -359,6 +359,7 @@ pattern = "^dubbo-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+
 release = true
 download_urls = [
     "https://github.com/apache/dubbo/archive/refs/tags/{version}.zip",
+    "https://github.com/apache/dubbo/archive/refs/tags/dubbo-{version}.zip",
 ]
 
 [[softwares]]
