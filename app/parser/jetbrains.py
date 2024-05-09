@@ -21,6 +21,8 @@ class Parser(Base):
 
         vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
+        vers = set()
+
         async with sem:
             # Make an HTTP request.
             _, status, _, data_r = await self.request('GET',
@@ -34,7 +36,9 @@ class Parser(Base):
                 for code, vitem in data_r.items():
                     if len(vitem) > 0:
                         for v2 in vitem:
-                            vhlp.append(v2['version'])
+                            if v2['version'] not in vers:
+                                vers.add(v2['version'])
+                                vhlp.append(v2['version'])
 
                             for os, v3 in v2['downloads'].items():
                                 if os in soft.os:
