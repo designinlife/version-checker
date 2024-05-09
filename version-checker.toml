@@ -744,3 +744,11 @@ download_urls = [
     "https://github.com/cli/cli/releases/download/v{version}/gh_{version}_linux_amd64.tar.gz",
     "https://github.com/cli/cli/releases/download/v{version}/gh_{version}_windows_amd64.zip",
 ]
+
+[[softwares]]
+name = "jetbrains"
+url = "https://www.jetbrains.com/"
+pattern = "^(?P<version>(?P<major>\\d{4})\\.(?P<minor>\\d)\\.(?P<patch>\\d))$"
+parser = "jetbrains"
+code = [ "AC", "CL", "RSU", "DG", "GO", "IIU", "PS", "PCP", "RD", "RM", "WS", "FL", "RR", "DS", "TC", "WRS" ]
+os = [ "windows" ]
