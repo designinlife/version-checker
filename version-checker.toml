@@ -752,3 +752,145 @@ pattern = "^(?P<version>(?P<major>\\d{4})\\.(?P<minor>\\d)\\.(?P<patch>\\d))$"
 parser = "jetbrains"
 code = [ "AC", "CL", "RSU", "DG", "GO", "IIU", "PS", "PCP", "RD", "RM", "WS", "FL", "RR", "DS", "TC", "WRS" ]
 os = [ "windows" ]
+
+[[softwares]]
+name = "libgd"
+repo = "libgd/libgd"
+url = "https://www.libgd.org/"
+pattern = "^gd-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/libgd/libgd/releases/download/gd-{version}/libgd-{version}.tar.gz",
+    "https://github.com/libgd/libgd/archive/refs/tags/gd-{version}.tar.gz",
+]
+
+[[softwares]]
+name = "libdatrie"
+repo = "tlwg/libdatrie"
+url = "https://github.com/tlwg/libdatrie"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/tlwg/libdatrie/releases/download/v{version}/libdatrie-{version}.tar.xz",
+    "https://github.com/tlwg/libdatrie/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "libvips"
+repo = "libvips/libvips"
+url = "https://github.com/libvips/libvips"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/libvips/libvips/releases/download/v{version}/vips-{version}.tar.xz",
+    "https://github.com/libvips/libvips/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "libzip"
+repo = "nih-at/libzip"
+url = "https://libzip.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/nih-at/libzip/releases/download/v{version}/libzip-{version}.tar.gz",
+]
+
+[[softwares]]
+name = "re2c"
+repo = "skvadrik/re2c"
+url = "https://re2c.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)(\\.(?P<patch>\\d+))?)$"
+release = true
+download_urls = [
+    "https://github.com/skvadrik/re2c/releases/download/{version}/re2c-{version}.tar.xz",
+    "https://github.com/skvadrik/re2c/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
+name = "libwebp"
+repo = "webmproject/libwebp"
+url = "https://www.webmproject.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/webmproject/libwebp/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "libpng"
+repo = "pnggroup/libpng"
+url = "http://www.libpng.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/pnggroup/libpng/archive/refs/tags/v{version}.tar.gz",
+]
+max_page = 2
+
+[[softwares]]
+name = "createrepo_c"
+repo = "rpm-software-management/createrepo_c"
+url = "https://github.com/rpm-software-management/createrepo_c"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/rpm-software-management/createrepo_c/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
+name = "libgit2"
+repo = "libgit2/libgit2"
+url = "https://libgit2.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/libgit2/libgit2/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "libbase58"
+repo = "bitcoin/libbase58"
+url = "https://github.com/bitcoin/libbase58"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/bitcoin/libbase58/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "librdkafka"
+repo = "confluentinc/librdkafka"
+url = "https://github.com/confluentinc/librdkafka"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/confluentinc/librdkafka/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "libxdiff"
+repo = "opencor/libxdiff"
+url = "https://github.com/opencor/libxdiff"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)(\\.(?P<patch>\\d+))?)$"
+release = true
+download_urls = [
+    "https://github.com/opencor/libxdiff/releases/download/v{version}/LibXDiff.{version}.linux.tar.gz",
+    "https://github.com/opencor/libxdiff/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "utf8proc"
+repo = "JuliaStrings/utf8proc"
+url = "https://github.com/JuliaStrings/utf8proc"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/JuliaStrings/utf8proc/releases/download/v{version}/utf8proc-{version}.tar.gz",
+]
+
+[[softwares]]
+name = "rsync"
+repo = "WayneD/rsync"
+url = "https://rsync.samba.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/RsyncProject/rsync/archive/refs/tags/v{version}.tar.gz",
+]
