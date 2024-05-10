@@ -80,6 +80,10 @@ class VersionHelper:
     #     self.download_urls = list(set(self.download_urls))
 
     @property
+    def latest_version(self) -> Version:
+        return self.versions[0]
+
+    @property
     def versions(self) -> List[Version]:
         """返回已排序的版本号列表。
 

@@ -746,6 +746,15 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "github-desktop"
+url = "https://desktop.github.com/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "github-desktop"
+download_urls = [
+    "https://central.github.com/deployments/desktop/desktop/latest/win32#GitHubDesktopSetup-x64-{version}.exe",
+]
+
+[[softwares]]
 name = "jetbrains"
 url = "https://www.jetbrains.com/"
 pattern = "^(?P<version>(?P<major>\\d{4})\\.(?P<minor>\\d)\\.(?P<patch>\\d))$"

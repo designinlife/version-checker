@@ -78,6 +78,10 @@ class ChromeSoftware(AppSettingSoftItem):
     parser: Literal['chrome']
 
 
+class GithubDesktopSoftware(AppSettingSoftItem):
+    parser: Literal['github-desktop']
+
+
 class JetbrainsSoftware(AppSettingSoftItem):
     parser: Literal['jetbrains']
     code: List[str] = Field(default_factory=list)
@@ -87,7 +91,7 @@ class JetbrainsSoftware(AppSettingSoftItem):
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
-                    | GoSoftware | PhpSoftware | GithubSoftware
+                    | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware
                     | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware
                     | SublimeSoftware | XShellSoftware | AndroidStudioSoftware
                     | FlutterSoftware | DartSoftware] = Field(alias='softwares',
