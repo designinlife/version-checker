@@ -636,6 +636,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "ant"
+repo = "apache/ant"
+url = "https://ant.apache.org/"
+pattern = "^rel/(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://archive.apache.org/dist/ant/binaries/apache-ant-{version}-bin.zip",
+    "https://archive.apache.org/dist/ant/source/apache-ant-{version}-src.tar.gz",
+]
+
+[[softwares]]
 name = "vscode"
 repo = "microsoft/vscode"
 url = "https://code.visualstudio.com/"
