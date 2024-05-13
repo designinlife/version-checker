@@ -387,6 +387,20 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "hbase"
+repo = "apache/hbase"
+url = "https://hbase.apache.org/"
+pattern = "^rel/(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://dlcdn.apache.org/hbase/{version}/hbase-{version}-src.tar.gz",
+    "https://dlcdn.apache.org/hbase/{version}/hbase-{version}-bin.tar.gz",
+    "https://dlcdn.apache.org/hbase/{version}/hbase-{version}-client-bin.tar.gz",
+    "https://dlcdn.apache.org/hbase/{version}/hbase-{version}-hadoop3-bin.tar.gz",
+    "https://dlcdn.apache.org/hbase/{version}/hbase-{version}-hadoop3-client-bin.tar.gz",
+]
+
+[[softwares]]
 name = "nginx"
 repo = "nginx/nginx"
 url = "https://nginx.org/"
