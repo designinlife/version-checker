@@ -424,6 +424,24 @@ download_urls = [
 max_page = 5
 
 [[softwares]]
+name = "foundationdb"
+repo = "apple/foundationdb"
+url = "https://www.foundationdb.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/apple/foundationdb/releases/download/{version}/fdbbackup.x86_64",
+    "https://github.com/apple/foundationdb/releases/download/{version}/fdbcli.x86_64",
+    "https://github.com/apple/foundationdb/releases/download/{version}/fdbdecode.x86_64",
+    "https://github.com/apple/foundationdb/releases/download/{version}/fdbmonitor.x86_64",
+    "https://github.com/apple/foundationdb/releases/download/{version}/fdbserver.x86_64",
+    "https://github.com/apple/foundationdb/releases/download/{version}/foundationdb-clients-{version}-1.el7.x86_64.rpm",
+    "https://github.com/apple/foundationdb/releases/download/{version}/foundationdb-server-{version}-1.el7.x86_64.rpm",
+    "https://github.com/apple/foundationdb/releases/download/{version}/libfdb_c.x86_64.so",
+    "https://github.com/apple/foundationdb/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "nginx"
 repo = "nginx/nginx"
 url = "https://nginx.org/"
