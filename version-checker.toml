@@ -413,6 +413,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "hadoop"
+repo = "apache/hadoop"
+url = "https://hadoop.apache.org/"
+pattern = "^rel/release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://dlcdn.apache.org/hadoop/common/hadoop-{version}/hadoop-{version}-src.tar.gz",
+    "https://dlcdn.apache.org/hadoop/common/hadoop-{version}/hadoop-{version}.tar.gz",
+]
+max_page = 5
+
+[[softwares]]
 name = "nginx"
 repo = "nginx/nginx"
 url = "https://nginx.org/"
