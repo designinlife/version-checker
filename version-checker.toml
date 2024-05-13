@@ -401,6 +401,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "spark"
+repo = "apache/spark"
+url = "https://spark.apache.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://dlcdn.apache.org/spark/spark-{version}/spark-{version}-bin-hadoop3.tgz",
+    "https://dlcdn.apache.org/spark/spark-{version}/spark-{version}-bin-without-hadoop.tgz",
+    "https://dlcdn.apache.org/spark/spark-{version}/spark-{version}.tgz",
+    "https://dlcdn.apache.org/spark/spark-{version}/pyspark-{version}.tar.gz",
+]
+
+[[softwares]]
 name = "nginx"
 repo = "nginx/nginx"
 url = "https://nginx.org/"
