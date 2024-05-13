@@ -17,7 +17,7 @@ from app.core.config import Configuration, AppSetting
 from app.core.utils import strtobool
 
 logger.remove()
-logger.add(sys.stderr, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level='ERROR', backtrace=False,
+logger.add(sys.stderr, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level='ERROR', backtrace=True,
            diagnose=False)
 
 # The following code adds a filter so that the STDOUT pipe does not print exception information!

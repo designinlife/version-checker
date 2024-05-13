@@ -57,4 +57,12 @@ async def process(cfg: Configuration, worker_num: int, filter_name: Optional[str
             if isinstance(cls_o, BaseParser):
                 task_list.append(asyncio.create_task(cls_o.handle(sem, v)))
 
-    await asyncio.gather(*task_list)
+    try:
+        results = await asyncio.gather(*task_list, return_exceptions=True)
+
+        if isinstance(results, list):
+            for result in results:
+                if isinstance(result, Exception):
+                    logger.error(result)
+    except Exception as e:
+        logger.error(e)

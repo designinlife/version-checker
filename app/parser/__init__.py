@@ -10,6 +10,7 @@ import aiohttp
 import arrow
 from loguru import logger
 
+from app.core import DEFAULT_USERAGENT
 from app.core.config import Configuration, AppSettingSoftItem, OutputResult
 from app.core.version import VersionSummary
 from app.link import UrlMakerBase
@@ -44,14 +45,14 @@ class Base(metaclass=ABCMeta):
         Returns:
 
         """
-        hdr = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36'}
+        hdr = {'User-Agent': DEFAULT_USERAGENT}
 
         if headers:
             hdr.update(headers)
 
         if self.cfg.debug:
-            # logger.debug(f'URL: {url}, PARAMS: {params}, HEADERS: {headers}, TIMEOUT: {timeout}, JSON RESULT: {is_json}')
+            # logger.debug(f'URL: {url}, PARAMS: {params}, HEADERS: {headers}, TIMEOUT: {timeout},
+            # JSON RESULT: {is_json}')
             logger.debug(f'URL: {url}, PARAMS: {params}, TIMEOUT: {timeout}, JSON RESULT: {is_json}')
 
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=timeout)) as session:
