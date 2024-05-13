@@ -913,3 +913,23 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/RsyncProject/rsync/archive/refs/tags/v{version}.tar.gz",
 ]
+
+[[softwares]]
+name = "minio"
+repo = "minio/minio"
+url = "https://min.io/"
+pattern = "^(?P<version>RELEASE.(?P<major>\\d{4})-(?P<minor>\\d{2})-(?P<patch>\\d{2})T\\d{2}-\\d{2}-\\d{2}Z)$"
+release = true
+download_urls = [
+    "https://dl.min.io/server/minio/release/linux-amd64/minio.{version}",
+]
+
+[[softwares]]
+name = "mc"
+repo = "minio/mc"
+url = "https://min.io/"
+pattern = "^(?P<version>RELEASE.(?P<major>\\d{4})-(?P<minor>\\d{2})-(?P<patch>\\d{2})T\\d{2}-\\d{2}-\\d{2}Z)$"
+release = true
+download_urls = [
+    "https://dl.min.io/client/mc/release/linux-amd64/mc.{version}",
+]
