@@ -356,11 +356,12 @@ download_urls = [
 name = "dubbo"
 repo = "apache/dubbo"
 url = "https://dubbo.apache.org/"
-pattern = "^dubbo-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+pattern = "^(dubbo-)?(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/apache/dubbo/archive/refs/tags/{version}.zip",
     "https://github.com/apache/dubbo/archive/refs/tags/dubbo-{version}.zip",
+    "https://archive.apache.org/dist/dubbo/{version}/apache-dubbo-{version}-src.zip",
 ]
 
 [[softwares]]
