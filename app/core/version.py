@@ -14,6 +14,7 @@ class Version(BaseModel):
     year: Optional[str] = None
     month: Optional[str] = None
     day: Optional[str] = None
+    other: Optional[str] = None
 
     def __repr__(self):
         d = [f'{self.major}']
@@ -69,7 +70,7 @@ class VersionHelper:
             v = Version(major=d.get('major'), minor=d.get('minor', None), patch=d.get('patch', None),
                         build=d.get('build', None), letter=d.get('letter', None),
                         version=d.get('version', None), year=d.get('year', None), month=d.get('month', None),
-                        day=d.get('day', None))
+                        day=d.get('day', None), other=d.get('other', None))
 
             self._versions.append(v)
 

@@ -25,6 +25,13 @@ class GithubSoftware(AppSettingSoftItem):
     max_page: int = Field(default=1)
 
 
+class GitlabSoftware(AppSettingSoftItem):
+    parser: Literal['gitlab']
+    id: int
+    release: bool = Field(default=False)
+    by_tag_name: bool = Field(default=False)
+
+
 class GoSoftware(AppSettingSoftItem):
     parser: Literal['go']
 
@@ -88,12 +95,17 @@ class JetbrainsSoftware(AppSettingSoftItem):
     os: List[str] = Field(default_factory=list)
 
 
+class SourceForgeSoftware(AppSettingSoftItem):
+    parser: Literal['sf']
+    project: str
+
+
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
-                    | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware
+                    | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GitlabSoftware
                     | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware
-                    | SublimeSoftware | XShellSoftware | AndroidStudioSoftware
+                    | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware
                     | FlutterSoftware | DartSoftware] = Field(alias='softwares',
                                                               default_factory=list)
 

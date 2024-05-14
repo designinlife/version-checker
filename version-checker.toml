@@ -1024,3 +1024,26 @@ download_urls = [
     "https://github.com/ByConity/ByConity/releases/download/{version}/byconity-worker-write-{version}-amd64.tgz",
     "https://github.com/ByConity/ByConity/releases/download/{version}/byconity-worker-write-{version}.x86_64.rpm",
 ]
+
+[[softwares]]
+name = "TortoiseGit"
+id = 384627
+url = "https://tortoisegit.org/"
+pattern = "^REL_(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))_EXTERNAL$"
+parser = "gitlab"
+by_tag_name = true
+download_urls = [
+    "https://download.tortoisegit.org/tgit/{version}/TortoiseGit-{version}-64bit.msi",
+    "https://download.tortoisegit.org/tgit/{version}/TortoiseGit-LanguagePack-{version}-64bit-zh_CN.msi",
+]
+
+[[softwares]]
+name = "TortoiseSVN"
+url = "https://tortoisesvn.net/"
+pattern = "^TortoiseSVN-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))-x64-svn-(?P<other>[.\\d]+).msi$"
+parser = "sf"
+project = "tortoisesvn"
+download_urls = [
+    "https://sourceforge.net/projects/tortoisesvn/files/{major}.{minor}.{patch}/Application/TortoiseSVN-{version}-x64-svn-{other}.msi/download",
+    "https://sourceforge.net/projects/tortoisesvn/files/{major}.{minor}.{patch}/Language%20Packs/LanguagePack_{version}-x64-zh_CN.msi/download",
+]
