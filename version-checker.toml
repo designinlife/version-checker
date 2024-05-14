@@ -424,6 +424,16 @@ download_urls = [
 max_page = 5
 
 [[softwares]]
+name = "flink"
+repo = "apache/flink"
+url = "https://flink.apache.org/"
+pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://dlcdn.apache.org/flink/flink-{version}/flink-{version}-src.tgz",
+    "https://dlcdn.apache.org/flink/flink-{version}/flink-{version}-bin-scala_2.12.tgz",
+]
+
+[[softwares]]
 name = "foundationdb"
 repo = "apple/foundationdb"
 url = "https://www.foundationdb.org/"
