@@ -1044,6 +1044,6 @@ pattern = "^TortoiseSVN-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patc
 parser = "sf"
 project = "tortoisesvn"
 download_urls = [
-    "https://sourceforge.net/projects/tortoisesvn/files/{major}.{minor}.{patch}/Application/TortoiseSVN-{version}-x64-svn-{other}.msi/download",
-    "https://sourceforge.net/projects/tortoisesvn/files/{major}.{minor}.{patch}/Language%20Packs/LanguagePack_{version}-x64-zh_CN.msi/download",
+    "https://sourceforge.net/projects/tortoisesvn/files/{major}.{minor}.{patch}/Application/TortoiseSVN-{version}-x64-svn-{other}.msi/download#TortoiseSVN-{version}-x64-svn-{other}.msi",
+    "https://sourceforge.net/projects/tortoisesvn/files/{major}.{minor}.{patch}/Language%20Packs/LanguagePack_{version}-x64-zh_CN.msi/download#LanguagePack_{version}-x64-zh_CN.msi",
 ]
