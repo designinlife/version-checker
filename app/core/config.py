@@ -81,6 +81,10 @@ class AndroidStudioSoftware(AppSettingSoftItem):
     parser: Literal['android-studio']
 
 
+class FirefoxSoftware(AppSettingSoftItem):
+    parser: Literal['firefox']
+
+
 class ChromeSoftware(AppSettingSoftItem):
     parser: Literal['chrome']
 
@@ -104,7 +108,7 @@ class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
                     | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GitlabSoftware
-                    | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware
+                    | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | FirefoxSoftware
                     | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware
                     | FlutterSoftware | DartSoftware] = Field(alias='softwares',
                                                               default_factory=list)

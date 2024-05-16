@@ -810,6 +810,15 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "firefox"
+url = "https://www.mozilla.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+parser = "firefox"
+download_urls = [
+    "https://download-installer.cdn.mozilla.net/pub/firefox/releases/{version}/win64/zh-CN/Firefox%20Setup%20{version}.exe",
+]
+
+[[softwares]]
 name = "gh"
 repo = "cli/cli"
 url = "https://cli.github.com/"
