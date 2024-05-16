@@ -128,6 +128,30 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "crun"
+repo = "containers/crun"
+url = "https://github.com/containers/crun"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/containers/crun/releases/download/1.15/crun-1.15-linux-amd64",
+    "https://github.com/containers/crun/releases/download/1.15/crun-1.15-linux-amd64-disable-systemd",
+    "https://github.com/containers/crun/releases/download/1.15/crun-1.15.tar.gz",
+]
+
+[[softwares]]
+name = "netavark"
+repo = "containers/netavark"
+url = "https://github.com/containers/netavark"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/containers/netavark/releases/download/v{version}/netavark-v{version}-vendor.tar.gz",
+    "https://github.com/containers/netavark/releases/download/v{version}/netavark.gz",
+    "https://github.com/containers/netavark/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "buildah"
 repo = "containers/buildah"
 url = "https://buildah.io/"
