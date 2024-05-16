@@ -181,6 +181,7 @@ download_urls = [
     "https://github.com/containers/podman/releases/download/v{version}/podman-{version}-setup.exe",
     "https://github.com/containers/podman/releases/download/v{version}/podman-remote-release-windows_amd64.zip",
     "https://github.com/containers/podman/releases/download/v{version}/podman-remote-static-linux_amd64.tar.gz",
+    "https://github.com/containers/podman/archive/refs/tags/v{version}.tar.gz",
 ]
 
 [[softwares]]
