@@ -38,8 +38,10 @@ def _combine_json(cfg: Configuration):
             with open(file, 'r', encoding='utf-8') as f:
                 data.append(json.loads(f.read()))
 
-    with open(Path(cfg.workdir).joinpath('data').joinpath('all.json'), 'w', encoding='utf-8') as f:
-        f.write(json.dumps(data, ensure_ascii=True, separators=(',', ':')))
+    data_w = sorted(data, key=lambda x: x['name'])
+
+    with open(p.joinpath('all.json'), 'w', encoding='utf-8') as f:
+        f.write(json.dumps(data_w, ensure_ascii=True, separators=(',', ':')))
 
 
 async def process(cfg: Configuration, worker_num: int, filter_name: Optional[str] = None):
