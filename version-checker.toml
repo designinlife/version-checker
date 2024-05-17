@@ -128,6 +128,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "containers-common"
+repo = "containers/common"
+url = "https://github.com/containers/common"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/containers/common/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "crun"
 repo = "containers/crun"
 url = "https://github.com/containers/crun"
