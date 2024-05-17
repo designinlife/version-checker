@@ -197,6 +197,28 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "dnsname"
+repo = "containers/dnsname"
+url = "https://github.com/containers/dnsname"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/containers/dnsname/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "catatonit"
+repo = "openSUSE/catatonit"
+url = "https://github.com/openSUSE/catatonit"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/openSUSE/catatonit/releases/download/v{version}/catatonit.x86_64",
+    "https://github.com/openSUSE/catatonit/releases/download/v{version}/catatonit.tar.xz",
+    "https://github.com/openSUSE/catatonit/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "graalvm-ce-builds"
 repo = "graalvm/graalvm-ce-builds"
 url = "https://www.graalvm.org/"
