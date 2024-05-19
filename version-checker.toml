@@ -2,6 +2,16 @@
 title = "Software version checker"
 
 [[softwares]]
+name = "almalinux"
+url = "https://almalinux.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
+parser = "almalinux"
+split = 1
+download_urls = [
+    "https://mirrors.nju.edu.cn/almalinux/{version}/isos/x86_64/AlmaLinux-{version}-x86_64-minimal.iso",
+]
+
+[[softwares]]
 name = "git"
 repo = "git/git"
 url = "https://git-scm.com/"

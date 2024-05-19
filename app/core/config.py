@@ -104,14 +104,18 @@ class SourceForgeSoftware(AppSettingSoftItem):
     project: str
 
 
+class AlmaLinuxSoftware(AppSettingSoftItem):
+    parser: Literal['almalinux']
+
+
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
                     | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GitlabSoftware
                     | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | FirefoxSoftware
                     | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware
-                    | FlutterSoftware | DartSoftware] = Field(alias='softwares',
-                                                              default_factory=list)
+                    | FlutterSoftware | DartSoftware | AlmaLinuxSoftware] = Field(alias='softwares',
+                                                                                  default_factory=list)
 
 
 class Configuration(BaseModel):
