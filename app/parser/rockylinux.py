@@ -22,7 +22,7 @@ class Parser(Base):
             # Analyzing HTML text data.
             soup = BeautifulSoup(data_s, 'html5lib')
 
-            # AlmaLinux 9
+            # RockyLinux 8/9
             el_table_rows = soup.select('.tabbed-block > table > tbody > tr')
 
             for el_row in el_table_rows:
