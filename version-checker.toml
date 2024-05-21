@@ -12,6 +12,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "rockylinux"
+url = "https://rockylinux.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
+parser = "rockylinux"
+download_urls = [
+    "https://mirrors.nju.edu.cn/rocky/{version}/isos/x86_64/Rocky-{version}-x86_64-minimal.iso",
+]
+split = 1
+
+[[softwares]]
 name = "git"
 repo = "git/git"
 url = "https://git-scm.com/"
