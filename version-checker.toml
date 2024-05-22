@@ -308,7 +308,7 @@ release = true
 download_urls = [
     "https://github.com/libjxl/libjxl/archive/refs/tags/v{version}.tar.gz",
     "https://github.com/libjxl/libjxl/releases/download/v{version}/jxl-linux-x86_64-static-v{version}.tar.gz",
-    "https://github.com/libjxl/libjxl/releases/download/v{version}/jxl-x64-windows-static.zip",
+    "https://github.com/libjxl/libjxl/releases/download/v{version}/jxl-x64-windows-static.zip#jxl-x64-windows-static-v{version}.zip",
     "https://github.com/libjxl/libjxl/releases/download/v{version}/jxl-x64-windows.zip",
 ]
 
