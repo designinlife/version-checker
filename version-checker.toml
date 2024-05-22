@@ -457,6 +457,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "utf8proc"
+repo = "JuliaStrings/utf8proc"
+url = "https://github.com/JuliaStrings/utf8proc"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/JuliaStrings/utf8proc/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "subversion"
 repo = "apache/subversion"
 url = "https://subversion.apache.org/"
