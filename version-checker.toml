@@ -74,6 +74,13 @@ split = 2
 download_dynamic = true
 
 [[softwares]]
+name = "sqlite"
+repo = "sqlite/sqlite"
+url = "https://www.sqlite.org/"
+pattern = "^version-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_dynamic = true
+
+[[softwares]]
 name = "swoole"
 repo = "swoole/swoole-src"
 url = "https://www.swoole.com/"
