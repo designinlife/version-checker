@@ -300,6 +300,28 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "libjxl"
+repo = "libjxl/libjxl"
+url = "https://github.com/libjxl/libjxl"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/libjxl/libjxl/archive/refs/tags/v{version}.tar.gz",
+    "https://github.com/libjxl/libjxl/releases/download/v{version}/jxl-linux-x86_64-static-v{version}.tar.gz",
+    "https://github.com/libjxl/libjxl/releases/download/v{version}/jxl-x64-windows-static.zip",
+    "https://github.com/libjxl/libjxl/releases/download/v{version}/jxl-x64-windows.zip",
+]
+
+[[softwares]]
+name = "libmustache"
+repo = "jbboehr/libmustache"
+url = "https://github.com/jbboehr/libmustache"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/jbboehr/libmustache/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "libmaxminddb"
 repo = "maxmind/libmaxminddb"
 url = "https://github.com/maxmind/libmaxminddb"
@@ -471,6 +493,16 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/JuliaStrings/utf8proc/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "serf"
+repo = "apache/serf"
+url = "https://serf.apache.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://archive.apache.org/dist/serf/serf-{version}.zip",
+    "https://archive.apache.org/dist/serf/serf-{version}.tar.bz2",
 ]
 
 [[softwares]]
@@ -1136,6 +1168,25 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/libgit2/libgit2/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "handlebars.c"
+repo = "jbboehr/handlebars.c"
+url = "https://github.com/jbboehr/handlebars.c"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/jbboehr/handlebars.c/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "ip2proxy-c"
+repo = "ip2location/ip2proxy-c"
+url = "https://github.com/ip2location/ip2proxy-c"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/ip2location/ip2proxy-c/archive/refs/tags/{version}.tar.gz",
 ]
 
 [[softwares]]
