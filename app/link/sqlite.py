@@ -21,6 +21,5 @@ class UrlMaker(UrlMakerBase):
         r.append(f'https://www.sqlite.org/{year}/sqlite-tools-linux-x64-{file_ver_str}.zip')
         r.append(f'https://www.sqlite.org/{year}/sqlite-dll-win-x64-{file_ver_str}.zip')
         r.append(f'https://www.sqlite.org/{year}/sqlite-tools-win-x64-{file_ver_str}.zip')
-        r.append(f'https://www.sqlite.org/{year}/sqlite-xxx-x64-{file_ver_str}.zip')
 
         return r
