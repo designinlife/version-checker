@@ -512,6 +512,7 @@ url = "https://subversion.apache.org/"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://dlcdn.apache.org/subversion/subversion-{version}.tar.gz",
+    "https://www.visualsvn.com/files/Apache-Subversion-{version}.zip",
 ]
 
 [[softwares]]
