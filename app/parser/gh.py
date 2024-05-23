@@ -2,7 +2,7 @@ import os
 import time
 from asyncio import Semaphore
 from datetime import timedelta
-from typing import Optional
+from typing import Optional, List
 
 import arrow
 from loguru import logger
@@ -46,11 +46,13 @@ class Parser(Base):
 
         vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
+        gns = soft.repo
+
         async with sem:
             for page in range(0, soft.max_page):
                 # Make an HTTP request.
                 url, http_status_code, _, data_r = await self.request('GET',
-                                                                      f'https://api.github.com/repos/{soft.repo}/{api_by}',
+                                                                      f'https://api.github.com/repos/{gns}/{api_by}',
                                                                       params={'per_page': '100', 'page': str(page + 1)},
                                                                       headers=headers,
                                                                       is_json=True)
@@ -58,9 +60,20 @@ class Parser(Base):
                 for v in data_r:
                     if soft.release:
                         if v['draft'] is False and v['prerelease'] is False:
-                            vhlp.append(v['tag_name'])
+                            if soft.assets:
+                                vhlp.append(v['tag_name'], raw_data={'tag_name': v['tag_name'], 'assets': v['assets']})
+                            else:
+                                vhlp.append(v['tag_name'])
                     else:
                         vhlp.append(v['name'])
+
+            # Do you want to download the assets attachment?
+            if soft.release and soft.assets:
+                rdata = vhlp.latest_version.raw_data
+
+                if isinstance(rdata['assets'], List):
+                    for v in rdata['assets']:
+                        vhlp.add_download_url(v['browser_download_url'])
 
         logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 

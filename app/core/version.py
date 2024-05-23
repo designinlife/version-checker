@@ -1,5 +1,5 @@
 import re
-from typing import Optional, List, Mapping
+from typing import Optional, List, Mapping, Any
 
 from pydantic import BaseModel
 
@@ -15,6 +15,7 @@ class Version(BaseModel):
     month: Optional[str] = None
     day: Optional[str] = None
     other: Optional[str] = None
+    raw_data: Optional[Any] = None
 
     def __repr__(self):
         d = [f'{self.major}']
@@ -57,11 +58,12 @@ class VersionHelper:
         self._versions: List[Version] = []
         self.download_urls = download_urls
 
-    def append(self, version: str):
+    def append(self, version: str, raw_data: Any = None):
         """追加版本号。
 
         Args:
-            version:
+            version: 版本号。
+            raw_data: 原数据。
         """
         m = self.exp.match(version)
 
@@ -70,7 +72,7 @@ class VersionHelper:
             v = Version(major=d.get('major'), minor=d.get('minor', None), patch=d.get('patch', None),
                         build=d.get('build', None), letter=d.get('letter', None),
                         version=d.get('version', None), year=d.get('year', None), month=d.get('month', None),
-                        day=d.get('day', None), other=d.get('other', None))
+                        day=d.get('day', None), other=d.get('other', None), raw_data=raw_data)
 
             self._versions.append(v)
 

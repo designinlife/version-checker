@@ -22,6 +22,7 @@ class GithubSoftware(AppSettingSoftItem):
     parser: Literal['gh'] = Field(default='gh')
     repo: str
     release: bool = Field(default=False)
+    assets: bool = Field(default=False)
     max_page: int = Field(default=1)
 
 

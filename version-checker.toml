@@ -655,6 +655,17 @@ download_urls = [
 max_page = 5
 
 [[softwares]]
+name = "dinky"
+repo = "DataLinkDC/dinky"
+url = "https://www.dinky.org.cn/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+assets = true
+download_urls = [
+    "https://github.com/DataLinkDC/dinky/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "flink"
 repo = "apache/flink"
 url = "https://flink.apache.org/"
