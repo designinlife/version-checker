@@ -897,6 +897,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "alertmanager"
+repo = "prometheus/alertmanager"
+url = "https://github.com/prometheus/alertmanager"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/prometheus/alertmanager/archive/refs/tags/v{version}.tar.gz",
+    "https://github.com/prometheus/alertmanager/releases/download/v{version}/alertmanager-{version}.linux-amd64.tar.gz",
+    "https://github.com/prometheus/alertmanager/releases/download/v{version}/alertmanager-{version}.windows-amd64.zip",
+]
+
+[[softwares]]
 name = "helm"
 repo = "helm/helm"
 url = "https://helm.sh/"
