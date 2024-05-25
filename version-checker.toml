@@ -1428,3 +1428,15 @@ download_urls = [
     "https://sourceforge.net/projects/tortoisesvn/files/{major}.{minor}.{patch}/Application/TortoiseSVN-{version}-x64-svn-{other}.msi/download#TortoiseSVN-{version}-x64-svn-{other}.msi",
     "https://sourceforge.net/projects/tortoisesvn/files/{major}.{minor}.{patch}/Language%20Packs/LanguagePack_{version}-x64-zh_CN.msi/download#LanguagePack_{version}-x64-zh_CN.msi",
 ]
+
+[[softwares]]
+name = "7-zip"
+url = "https://www.7-zip.org/"
+pattern = "^7z(?P<version>(?P<major>\\d{2})(?P<minor>\\d{2}))-x64.exe$"
+parser = "sf"
+project = "sevenzip"
+download_urls = [
+    "https://www.7-zip.org/a/7z{version}-x64.exe",
+    "https://www.7-zip.org/a/7z{version}-extra.7z",
+    "https://7-zip.org/a/7z{version}-linux-x64.tar.xz",
+]
