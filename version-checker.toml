@@ -1308,6 +1308,14 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "aria2"
+repo = "aria2/aria2"
+url = "https://aria2.github.io/"
+pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+assets = true
+
+[[softwares]]
 name = "rsync"
 repo = "WayneD/rsync"
 url = "https://rsync.samba.org/"
