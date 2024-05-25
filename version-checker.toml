@@ -1265,12 +1265,69 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "juicefs"
+repo = "juicedata/juicefs"
+url = "https://juicefs.com/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/juicedata/juicefs/releases/download/v{version}/juicefs-{version}-linux-amd64.tar.gz",
+    "https://github.com/juicedata/juicefs/releases/download/v{version}/juicefs-{version}-windows-amd64.tar.gz",
+    "https://github.com/juicedata/juicefs/releases/download/v{version}/juicefs-hadoop-{version}.jar",
+    "https://github.com/juicedata/juicefs/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "aliyun-ossfs"
+repo = "aliyun/ossfs"
+url = "https://github.com/aliyun/ossfs"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/aliyun/ossfs/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "cosfs"
+repo = "tencentyun/cosfs"
+url = "https://github.com/tencentyun/cosfs"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/tencentyun/cosfs/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "s3fs-fuse"
+repo = "s3fs-fuse/s3fs-fuse"
+url = "https://github.com/s3fs-fuse/s3fs-fuse"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/s3fs-fuse/s3fs-fuse/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "rsync"
 repo = "WayneD/rsync"
 url = "https://rsync.samba.org/"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
     "https://github.com/RsyncProject/rsync/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "rclone"
+repo = "rclone/rclone"
+url = "https://rclone.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/rclone/rclone/releases/download/v{version}/rclone-v{version}-linux-amd64.rpm",
+    "https://github.com/rclone/rclone/releases/download/v{version}/rclone-v{version}-linux-amd64.deb",
+    "https://github.com/rclone/rclone/releases/download/v{version}/rclone-v{version}-linux-amd64.zip",
+    "https://github.com/rclone/rclone/releases/download/v{version}/rclone-v{version}-windows-amd64.zip",
+    "https://github.com/rclone/rclone/releases/download/v{version}/rclone-v{version}.tar.gz",
 ]
 
 [[softwares]]
