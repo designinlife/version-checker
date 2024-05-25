@@ -1395,6 +1395,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "bind9"
+url = "https://www.isc.org/bind/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "gitlab"
+host = "gitlab.isc.org"
+id = 1
+download_urls = [
+    "https://downloads.isc.org/isc/bind9/{version}/BIND{version}.x64.zip",
+    "https://downloads.isc.org/isc/bind9/{version}/bind-{version}.tar.xz",
+]
+
+[[softwares]]
 name = "TortoiseGit"
 id = 384627
 url = "https://tortoisegit.org/"

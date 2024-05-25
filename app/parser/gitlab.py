@@ -17,9 +17,9 @@ class Parser(Base):
         async with sem:
             # Make an HTTP request.
             if soft.release:
-                api_url = f'https://gitlab.com/api/v4/projects/{soft.id}/releases'
+                api_url = f'https://{soft.host}/api/v4/projects/{soft.id}/releases'
             else:
-                api_url = f'https://gitlab.com/api/v4/projects/{soft.id}/repository/tags'
+                api_url = f'https://{soft.host}/api/v4/projects/{soft.id}/repository/tags'
 
             _, status, _, data_r = await self.request('GET', api_url, is_json=True)
 

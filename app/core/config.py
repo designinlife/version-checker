@@ -31,6 +31,7 @@ class GitlabSoftware(AppSettingSoftItem):
     id: int
     release: bool = Field(default=False)
     by_tag_name: bool = Field(default=False)
+    host: str = Field(default='gitlab.com')
 
 
 class GoSoftware(AppSettingSoftItem):
