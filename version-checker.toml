@@ -22,6 +22,31 @@ download_urls = [
 split = 1
 
 [[softwares]]
+name = "Sarasa-Gothic"
+repo = "be5invis/Sarasa-Gothic"
+url = "https://github.com/be5invis/Sarasa-Gothic"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaFixedSC-TTF-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaFixedSC-TTF-Unhinted-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaFixedSlabSC-TTF-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaFixedSlabSC-TTF-Unhinted-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaGothicSC-TTF-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaGothicSC-TTF-Unhinted-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaMonoSC-TTF-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaMonoSC-TTF-Unhinted-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaMonoSlabSC-TTF-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaMonoSlabSC-TTF-Unhinted-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaTermSC-TTF-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaTermSC-TTF-Unhinted-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaTermSlabSC-TTF-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaTermSlabSC-TTF-Unhinted-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaUiSC-TTF-{version}.7z",
+    "https://github.com/be5invis/Sarasa-Gothic/releases/download/v{version}/SarasaUiSC-TTF-Unhinted-{version}.7z",
+]
+
+[[softwares]]
 name = "git"
 repo = "git/git"
 url = "https://git-scm.com/"
