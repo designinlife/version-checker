@@ -114,13 +114,17 @@ class RockyLinuxSoftware(AppSettingSoftItem):
     parser: Literal['rockylinux']
 
 
+class NavicatSoftware(AppSettingSoftItem):
+    parser: Literal['navicat']
+
+
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
                     | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GitlabSoftware
                     | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | FirefoxSoftware
                     | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware
-                    | FlutterSoftware | DartSoftware
+                    | FlutterSoftware | DartSoftware | NavicatSoftware
                     | AlmaLinuxSoftware | RockyLinuxSoftware] = Field(alias='softwares',
                                                                       default_factory=list)
 
