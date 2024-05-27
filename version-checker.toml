@@ -47,6 +47,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "HeidiSQL"
+repo = "HeidiSQL/HeidiSQL"
+url = "https://www.heidisql.com/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://www.heidisql.com/downloads/releases/HeidiSQL_{version}_64_Portable.zip",
+]
+
+[[softwares]]
 name = "git"
 repo = "git/git"
 url = "https://git-scm.com/"
