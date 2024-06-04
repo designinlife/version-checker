@@ -66,6 +66,20 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "duckdb"
+repo = "duckdb/duckdb"
+url = "https://duckdb.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/duckdb/duckdb/archive/refs/tags/v{version}.tar.gz",
+    "https://github.com/duckdb/duckdb/releases/download/v{version}/duckdb_cli-linux-amd64.zip#duckdb_cli-{version}-linux-amd64.zip",
+    "https://github.com/duckdb/duckdb/releases/download/v{version}/duckdb_cli-windows-amd64.zip#duckdb_cli-{version}-windows-amd64.zip",
+    "https://github.com/duckdb/duckdb/releases/download/v{version}/libduckdb-linux-amd64.zip#libduckdb-{version}-linux-amd64.zip",
+    "https://github.com/duckdb/duckdb/releases/download/v{version}/libduckdb-windows-amd64.zip#libduckdb-{version}-windows-amd64.zip",
+]
+
+[[softwares]]
 name = "git"
 repo = "git/git"
 url = "https://git-scm.com/"
