@@ -313,6 +313,15 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "podman-machine-wsl-os"
+repo = "containers/podman-machine-wsl-os"
+url = "https://github.com/containers/podman-machine-wsl-os"
+pattern = "^v(?P<version>(?P<major>\\d{4})(?P<minor>\\d{2})(?P<patch>\\d+))$"
+release = true
+assets = true
+download_dynamic = true
+
+[[softwares]]
 name = "dnsname"
 repo = "containers/dnsname"
 url = "https://github.com/containers/dnsname"
