@@ -290,6 +290,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "bootc"
+repo = "containers/bootc"
+url = "https://github.com/containers/bootc"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/containers/bootc/archive/refs/tags/v{version}.tar.gz",
+    "https://github.com/containers/bootc/releases/download/v{version}/bootc-{version}-vendor.tar.zstd",
+    "https://github.com/containers/bootc/releases/download/v{version}/bootc-{version}.tar.zstd",
+]
+
+[[softwares]]
 name = "skopeo"
 repo = "containers/skopeo"
 url = "https://github.com/containers/skopeo"
