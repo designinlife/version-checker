@@ -65,6 +65,6 @@ async def process(cfg: Configuration, worker_num: int, filter_name: Optional[str
         if isinstance(results, list):
             for result in results:
                 if isinstance(result, Exception):
-                    logger.error(result)
+                    logger.exception(result)
     except Exception as e:
-        logger.error(e)
+        logger.exception(e)
