@@ -15,7 +15,7 @@ from app.parser import Base as BaseParser
 
 @click.command('inspect', help='Batch inspect the latest version of the software.')
 @click.option('--filter-name', '-i', 'filter_name', help='Filter name.', cls=ClickStdOption)
-@click.option('--worker', '-w', 'worker_num', help='The number of worker. (default: 4)', cls=ClickStdOption, default=4,
+@click.option('--worker', '-w', 'worker_num', help='The number of worker. (default: 2)', cls=ClickStdOption, default=2,
               type=int)
 @click.pass_obj
 @click.pass_context
