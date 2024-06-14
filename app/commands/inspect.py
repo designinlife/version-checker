@@ -1,13 +1,12 @@
 import asyncio
 import importlib
-import json
-from pathlib import Path
 from typing import Optional
 
 import click
 from click.core import Context
 from loguru import logger
 
+from app.commands.combine import cli as cli_combine
 from app.core.click import ClickStdOption
 from app.core.config import Configuration
 from app.parser import Base as BaseParser
@@ -25,23 +24,7 @@ def cli(ctx: Context, cfg: Configuration, worker_num: int, filter_name: Optional
     asyncio.run(process(cfg, worker_num, filter_name))
 
     # Merge the output JSON data files into all.json.
-    _combine_json(cfg)
-
-
-def _combine_json(cfg: Configuration):
-    p = Path(cfg.workdir).joinpath('data')
-
-    data = []
-
-    for file in p.glob('*.json'):
-        if file.name != 'all.json':
-            with open(file, 'r', encoding='utf-8') as f:
-                data.append(json.loads(f.read()))
-
-    data_w = sorted(data, key=lambda x: x['name'])
-
-    with open(p.joinpath('all.json'), 'w', encoding='utf-8') as f:
-        f.write(json.dumps(data_w, ensure_ascii=True, separators=(',', ':')))
+    ctx.invoke(cli_combine)
 
 
 async def process(cfg: Configuration, worker_num: int, filter_name: Optional[str] = None):

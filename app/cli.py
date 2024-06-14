@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from loguru import logger
 
 from app import __version__
+from app.commands.combine import cli as cli_combine
 from app.commands.inspect import cli as cli_inspect
 from app.core.click import ClickStdOption
 from app.core.config import Configuration, AppSetting
@@ -74,6 +75,8 @@ def app_version():
     print('version-checker v%s' % (__version__,))
 
 
+# noinspection PyTypeChecker
+cli.add_command(cli_combine)
 # noinspection PyTypeChecker
 cli.add_command(cli_inspect)
 
