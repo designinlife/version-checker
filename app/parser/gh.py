@@ -35,7 +35,13 @@ class Parser(Base):
             logger.info(f'[{soft.name}] SKIPPED: The last update time is: {last_update_time}, it has not been more than 6 hours, no need to update!')
             return
 
+        if soft.latest:
+            soft.release = True
+
         api_by = 'releases' if soft.release else 'tags'
+
+        if soft.latest:
+            api_by = 'releases/latest'
 
         github_token = os.environ.get("GITHUB_TOKEN")
 
@@ -56,30 +62,49 @@ class Parser(Base):
 
         async with sem:
             for page in range(0, soft.max_page):
+                params = None
+
+                if not soft.latest:
+                    params = {'per_page': '100', 'page': str(page + 1)}
+
                 # Make an HTTP request.
                 url, http_status_code, _, data_r = await self.request('GET',
                                                                       f'https://api.github.com/repos/{gns}/{api_by}',
-                                                                      params={'per_page': '100', 'page': str(page + 1)},
+                                                                      params=params,
                                                                       headers=headers,
                                                                       is_json=True)
 
-                for v in data_r:
-                    if soft.release:
-                        if v['draft'] is False and v['prerelease'] is False:
-                            if soft.assets:
-                                vhlp.append(v['tag_name'], raw_data={'tag_name': v['tag_name'], 'assets': v['assets']})
-                            else:
-                                vhlp.append(v['tag_name'])
-                    else:
-                        vhlp.append(v['name'])
+                if soft.latest:
+                    if data_r['draft'] is False and data_r['prerelease'] is False:
+                        if soft.assets:
+                            vhlp.append(data_r['tag_name'], raw_data={'tag_name': data_r['tag_name'], 'assets': data_r['assets']})
+                        else:
+                            vhlp.append(data_r['tag_name'])
 
-            # Do you want to download the assets attachment?
-            if soft.release and soft.assets:
-                rdata = vhlp.latest_version.raw_data
+                        if soft.assets:
+                            rdata = vhlp.latest_version.raw_data
 
-                if isinstance(rdata['assets'], List):
-                    for v in rdata['assets']:
-                        vhlp.add_download_url(v['browser_download_url'])
+                            if isinstance(rdata['assets'], List):
+                                for v in rdata['assets']:
+                                    vhlp.add_download_url(v['browser_download_url'])
+                else:
+                    for v in data_r:
+                        if soft.release:
+                            if v['draft'] is False and v['prerelease'] is False:
+                                if soft.assets:
+                                    vhlp.append(v['tag_name'], raw_data={'tag_name': v['tag_name'], 'assets': v['assets']})
+                                else:
+                                    vhlp.append(v['tag_name'])
+                        else:
+                            vhlp.append(v['name'])
+
+                    # Do you want to download the assets attachment?
+                    if soft.release and soft.assets:
+                        rdata = vhlp.latest_version.raw_data
+
+                        if isinstance(rdata['assets'], List):
+                            for v in rdata['assets']:
+                                vhlp.add_download_url(v['browser_download_url'])
 
         if vhlp.is_empty:
             logger.warning(f'[{soft.name}] versions is empty.')

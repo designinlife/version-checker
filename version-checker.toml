@@ -343,6 +343,7 @@ repo = "containers/podman-desktop"
 url = "https://podman-desktop.io/"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
+latest = true
 download_urls = [
     "https://github.com/containers/podman-desktop/releases/download/v{version}/podman-desktop-{version}-setup-x64.exe",
     "https://github.com/containers/podman-desktop/releases/download/v{version}/podman-desktop-{version}-x64.exe",

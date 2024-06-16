@@ -21,7 +21,8 @@ class AppSettingSoftItem(BaseModel):
 class GithubSoftware(AppSettingSoftItem):
     parser: Literal['gh'] = Field(default='gh')
     repo: str
-    release: bool = Field(default=False)
+    release: bool = Field(default=False)  # 当设置为 True 时, 按 /releases API 获取数据。否则，按 /tags API 获取。
+    latest: bool = Field(default=False)  # 仅获取最新版本 (API: /releases/latest)
     assets: bool = Field(default=False)
     max_page: int = Field(default=1)
 
