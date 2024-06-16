@@ -32,7 +32,7 @@ class Parser(Base):
         # Due to Github API current limit, you need to check whether the data update has expired!
         expired, last_update_time = self.is_expired(soft)
         if not expired:
-            logger.warning(f'[{soft.name}] The last update time is: {last_update_time}, it has not been more than 6 hours, no need to update!')
+            logger.info(f'[{soft.name}] SKIPPED: The last update time is: {last_update_time}, it has not been more than 6 hours, no need to update!')
             return
 
         api_by = 'releases' if soft.release else 'tags'
@@ -80,6 +80,10 @@ class Parser(Base):
                 if isinstance(rdata['assets'], List):
                     for v in rdata['assets']:
                         vhlp.add_download_url(v['browser_download_url'])
+
+        if vhlp.is_empty:
+            logger.warning(f'[{soft.name}] versions is empty.')
+            return
 
         logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 

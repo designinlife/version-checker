@@ -40,7 +40,7 @@ async def process(cfg: Configuration, worker_num: int, filter_name: Optional[str
             cls_o = cls(cfg)
 
             if isinstance(cls_o, BaseParser):
-                task_list.append(asyncio.create_task(cls_o.handle(sem, v)))
+                task_list.append(asyncio.create_task(cls_o.wrap_handle(sem, v)))
 
     try:
         results = await asyncio.gather(*task_list, return_exceptions=True)

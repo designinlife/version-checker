@@ -25,6 +25,13 @@ class Base(metaclass=ABCMeta):
     async def handle(self, sem: Semaphore, soft: AppSettingSoftItem):
         ...
 
+    async def wrap_handle(self, sem: Semaphore, soft: AppSettingSoftItem):
+        try:
+            await self.handle(sem, soft)
+        except Exception as e:
+            logger.error(f'[{soft.name}] error found.')
+            logger.exception(e)
+
     async def request(self, method: str, url: str,
                       params: Optional[Dict[str, str]] = None,
                       data: Optional[dict] = None,

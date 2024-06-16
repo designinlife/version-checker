@@ -83,6 +83,10 @@ class VersionHelper:
     #     self.download_urls = list(set(self.download_urls))
 
     @property
+    def is_empty(self) -> bool:
+        return len(self._versions) == 0
+
+    @property
     def latest_version(self) -> Version:
         return self.versions[0]
 
