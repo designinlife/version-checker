@@ -37,6 +37,7 @@ class Parser(Base):
 
         if soft.latest:
             soft.release = True
+            soft.max_page = 1
 
         api_by = 'releases' if soft.release else 'tags'
 
