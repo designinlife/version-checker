@@ -49,8 +49,9 @@ class Parser(Base):
         tasks = []
 
         for v in dotnet_release.releases_index:
-            if v.release_type in ('lts',) and v.eol_date is not None and arrow.get(v.eol_date,
-                                                                                   'YYYY-MM-DD') > arrow.now():
+            if v.release_type in ('lts',):
+                # if v.release_type in ('lts',) and v.eol_date is not None and arrow.get(v.eol_date,
+                #                                                                        'YYYY-MM-DD') > arrow.now():
                 tasks.append(self.request('GET', v.releases_json, is_json=True))
 
         results = await asyncio.gather(*tasks, return_exceptions=True)
@@ -64,19 +65,19 @@ class Parser(Base):
                     vhlp.append(v2['release-version'])
 
                     # Runtime download links.
-                    if v2['runtime']['version'] == v['latest-runtime']:
+                    if 'runtime' in v2 and v2['runtime']['version'] == v['latest-runtime']:
                         for v3 in v2['runtime']['files']:
                             if 'win-x64.exe' in v3['url'] or 'linux-x64.tar.gz' in v3['url']:
                                 vhlp.add_download_url(v3['url'])
 
                     # SDK download links.
-                    if v2['sdk']['version'] == v['latest-sdk']:
+                    if 'sdk' in v2 and v2['sdk']['version'] == v['latest-sdk']:
                         for v3 in v2['sdk']['files']:
                             if 'win-x64.exe' in v3['url'] or 'linux-x64.tar.gz' in v3['url']:
                                 vhlp.add_download_url(v3['url'])
 
                     # Windows Desktop download links.
-                    if v2['windowsdesktop']['version'] == v['latest-runtime']:
+                    if 'windowsdesktop' in v2 and v2['windowsdesktop']['version'] == v['latest-runtime']:
                         for v3 in v2['windowsdesktop']['files']:
                             if 'win-x64.exe' in v3['url'] or 'linux-x64.tar.gz' in v3['url']:
                                 vhlp.add_download_url(v3['url'])
