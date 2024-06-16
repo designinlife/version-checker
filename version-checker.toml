@@ -281,6 +281,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "youki"
+repo = "containers/youki"
+url = "https://containers.github.io/youki/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/containers/youki/archive/refs/tags/v{version}.tar.gz",
+    "https://github.com/containers/youki/releases/download/v{version}/youki-{version}-x86_64-gnu.tar.gz",
+    "https://github.com/containers/youki/releases/download/v{version}/youki-{version}-x86_64-musl.tar.gz",
+]
+
+[[softwares]]
 name = "netavark"
 repo = "containers/netavark"
 url = "https://github.com/containers/netavark"
