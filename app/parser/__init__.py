@@ -1,9 +1,10 @@
 import importlib
+import json
 import os
 from abc import ABCMeta, abstractmethod
 from asyncio import Semaphore
 from pathlib import Path
-from typing import Optional, Dict, Mapping, List
+from typing import Optional, Dict, Tuple, Mapping, List
 
 import aiofiles
 import aiohttp
@@ -85,6 +86,40 @@ class Base(metaclass=ABCMeta):
                 return cls_o.build_links(soft=soft, version_summary=version_summary, urls=download_urls)
         else:
             return download_urls
+
+    def is_expired(self, soft: AppSettingSoftItem) -> Tuple[bool, str]:
+        """检查数据是否过期。
+
+        Args:
+            soft:
+
+        Returns:
+
+        """
+        output_subdir = os.environ.get('OUTPUT_DATA_DIR', 'data')
+        output_path = Path(self.cfg.workdir).joinpath(output_subdir)
+
+        file = None
+
+        if soft.split == 0:
+            file = output_path.joinpath(f'{soft.name}.json')
+        else:
+            files = output_path.glob(f'{soft.name}-*.json', case_sensitive=True)
+            for cf in files:
+                file = cf
+                break
+
+        if file and file.is_file():
+            with open(file, 'r', encoding='utf-8') as f:
+                data = json.loads(f.read())
+
+                # Data will be considered expired if it has been updated for more than 6 hours!
+                if arrow.now().shift(hours=-6) >= arrow.get(data['created_time']):
+                    return True, data['created_time']
+                else:
+                    return False, data['created_time']
+
+        return True, '2000-01-01 00:00:00'
 
     async def write(self, soft: AppSettingSoftItem, version_summary: VersionSummary | Mapping[str, VersionSummary],
                     suffix: str = ''):

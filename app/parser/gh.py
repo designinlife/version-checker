@@ -29,6 +29,12 @@ class Parser(Base):
     async def handle(self, sem: Semaphore, soft: GithubSoftware):
         logger.debug(f'Name: {soft.name} ({soft.parser}, Release: {soft.release})')
 
+        # Due to Github API current limit, you need to check whether the data update has expired!
+        expired, last_update_time = self.is_expired(soft)
+        if not expired:
+            logger.warning(f'[{soft.name}] The last update time is: {last_update_time}, it has not been more than 6 hours, no need to update!')
+            return
+
         api_by = 'releases' if soft.release else 'tags'
 
         github_token = os.environ.get("GITHUB_TOKEN")
