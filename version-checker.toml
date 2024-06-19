@@ -35,6 +35,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "PowerShell"
+repo = "PowerShell/PowerShell"
+url = "https://learn.microsoft.com/en-us/powershell/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/PowerShell/PowerShell/archive/refs/tags/v{version}.tar.gz",
+    "https://github.com/PowerShell/PowerShell/releases/download/v{version}/PowerShell-{version}-win-x64.msi",
+    "https://github.com/PowerShell/PowerShell/releases/download/v{version}/PowerShell-{version}-win-x64.zip",
+]
+
+[[softwares]]
 name = "Sarasa-Gothic"
 repo = "be5invis/Sarasa-Gothic"
 url = "https://github.com/be5invis/Sarasa-Gothic"
