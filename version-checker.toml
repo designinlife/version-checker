@@ -1588,3 +1588,13 @@ download_urls = [
     "https://www.7-zip.org/a/7z{version}-extra.7z",
     "https://7-zip.org/a/7z{version}-linux-x64.tar.xz",
 ]
+
+[[softwares]]
+name = "rocksdb"
+repo = "facebook/rocksdb"
+url = "http://rocksdb.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/facebook/rocksdb/archive/refs/tags/v{version}.tar.gz",
+]
