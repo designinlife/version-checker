@@ -35,6 +35,14 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "Windows.Terminal"
+repo = "microsoft/terminal"
+url = "https://github.com/microsoft/terminal"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))$"
+release = true
+assets = true
+
+[[softwares]]
 name = "PowerShell"
 repo = "PowerShell/PowerShell"
 url = "https://learn.microsoft.com/en-us/powershell/"
