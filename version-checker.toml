@@ -155,6 +155,24 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "bun"
+repo = "oven-sh/bun"
+url = "https://bun.sh/"
+pattern = "^bun-v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/oven-sh/bun/archive/refs/tags/bun-v{version}.tar.gz",
+    "https://github.com/oven-sh/bun/releases/download/bun-v{version}/bun-linux-x64-baseline-profile.zip#bun-linux-x64-baseline-profile-v{version}.zip",
+    "https://github.com/oven-sh/bun/releases/download/bun-v{version}/bun-linux-x64-baseline.zip#bun-linux-x64-baseline-v{version}.zip",
+    "https://github.com/oven-sh/bun/releases/download/bun-v{version}/bun-linux-x64-profile.zip#bun-linux-x64-profile-v{version}.zip",
+    "https://github.com/oven-sh/bun/releases/download/bun-v{version}/bun-linux-x64.zip#bun-linux-x64-v{version}.zip",
+    "https://github.com/oven-sh/bun/releases/download/bun-v{version}/bun-windows-x64-baseline-profile.zip#bun-windows-x64-baseline-profile-v{version}.zip",
+    "https://github.com/oven-sh/bun/releases/download/bun-v{version}/bun-windows-x64-baseline.zip#bun-windows-x64-baseline-v{version}.zip",
+    "https://github.com/oven-sh/bun/releases/download/bun-v{version}/bun-windows-x64-profile.zip#bun-windows-x64-profile-v{version}.zip",
+    "https://github.com/oven-sh/bun/releases/download/bun-v{version}/bun-windows-x64.zip#bun-windows-x64-v{version}.zip",
+]
+
+[[softwares]]
 name = "nodejs"
 repo = "nodejs/node"
 url = "https://nodejs.org/"
