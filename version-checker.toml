@@ -1598,3 +1598,15 @@ release = true
 download_urls = [
     "https://github.com/facebook/rocksdb/archive/refs/tags/v{version}.tar.gz",
 ]
+
+[[softwares]]
+name = "frp"
+repo = "fatedier/frp"
+url = "https://gofrp.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/fatedier/frp/archive/refs/tags/v{version}.tar.gz",
+    "https://github.com/fatedier/frp/releases/download/v{version}/frp_{version}_linux_amd64.tar.gz",
+    "https://github.com/fatedier/frp/releases/download/v{version}/frp_{version}_windows_amd64.zip",
+]
