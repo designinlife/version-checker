@@ -5,7 +5,7 @@ from typing import Optional
 
 import arrow
 from loguru import logger
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.core.http import AsyncHttpClient
 
@@ -15,7 +15,7 @@ class GithubRateLimitRate(BaseModel):
     remaining: int
     reset: int
     used: int
-    resource: Optional[str]
+    resource: Optional[str] = Field(default=None)
 
 
 class GithubRateLimit(BaseModel):
