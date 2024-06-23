@@ -32,6 +32,7 @@ class Parser(Base):
             soup = BeautifulSoup(content, 'html5lib')
             elements = soup.select('dt.h4')
 
+            # noinspection DuplicatedCode
             for element in elements:
                 vhlp.append(element.text.strip())
 

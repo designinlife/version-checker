@@ -1,35 +1,19 @@
 import os
-import time
 from asyncio import Semaphore
-from datetime import timedelta
-from typing import Optional, List
+from typing import List
 
-import arrow
 from loguru import logger
-from pydantic import BaseModel
 
 from app.core.config import GithubSoftware
 from app.core.version import VersionHelper
 from . import Base
 
 
-class GithubRateLimitRate(BaseModel):
-    limit: int
-    remaining: int
-    reset: int
-    used: int
-    resource: Optional[str]
-
-
-class GithubRateLimit(BaseModel):
-    rate: GithubRateLimitRate
-
-
 class Parser(Base):
     async def handle(self, sem: Semaphore, soft: GithubSoftware):
         logger.debug(f'Name: {soft.name} ({soft.parser}, Release: {soft.release})')
 
-        # Due to Github API current limit, you need to check whether the data update has expired!
+        # Due to GitHub API current limit, you need to check whether the data update has expired!
         expired, last_update_time = self.is_expired(soft)
         if not expired:
             logger.info(f'[{soft.name}] SKIPPED: The last update time is: {last_update_time}, it has not been more than 6 hours, no need to update!')
@@ -99,7 +83,7 @@ class Parser(Base):
                         else:
                             vhlp.append(v['name'])
 
-                    # Do you want to download the assets attachment?
+                    # Do you want to download the assets' attachment?
                     if soft.release and soft.assets:
                         rdata = vhlp.latest_version.raw_data
 
@@ -118,30 +102,3 @@ class Parser(Base):
 
         # Write data to file.
         await self.write(soft, vhlp.summary)
-
-    async def github_ratelimit(self):
-        """Print GitHub ratelimit data.
-
-        """
-        github_token = os.environ.get("GITHUB_TOKEN")
-
-        headers = {}
-
-        if github_token:
-            headers = {
-                'Accept': 'application/vnd.github+json',
-                'Authorization': f'Bearer {github_token}',
-                'X-GitHub-Api-Version': '2022-11-28',
-            }
-
-        _, status, _, data_r = await self.request('GET', 'https://api.github.com/rate_limit', headers=headers,
-                                                  timeout=15, is_json=True)
-
-        dm = GithubRateLimit.model_validate(data_r, strict=False)
-
-        logger.info(
-            f'Rate Limit | CPU: {os.cpu_count()} '
-            f'| Remaining: \033[1;32m{dm.rate.remaining}\033[0m/\033[1;33m{dm.rate.limit}\033[0m'
-            f',\033[1;34m{timedelta(seconds=dm.rate.reset - int(time.time()))}\033[0m '
-            f'| Current Time: {arrow.now("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss ZZ")} '
-            f'| Reset: {arrow.get(dm.rate.reset).to("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss ZZ")}')

@@ -1,6 +1,7 @@
 from asyncio import Semaphore
 
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup
+from bs4.element import Tag
 from loguru import logger
 
 from app.core.config import RockyLinuxSoftware

@@ -7,12 +7,11 @@ from pathlib import Path
 from typing import Optional, Dict, Tuple, Mapping, List
 
 import aiofiles
-import aiohttp
 import arrow
 from loguru import logger
 
-from app.core import DEFAULT_USERAGENT
 from app.core.config import Configuration, AppSettingSoftItem, OutputResult
+from app.core.http import AsyncHttpClient
 from app.core.version import VersionSummary
 from app.link import UrlMakerBase
 
@@ -20,6 +19,7 @@ from app.link import UrlMakerBase
 class Base(metaclass=ABCMeta):
     def __init__(self, cfg: Configuration):
         self.cfg = cfg
+        self.httpc = AsyncHttpClient(debug=self.cfg.debug)
 
     @abstractmethod
     async def handle(self, sem: Semaphore, soft: AppSettingSoftItem):
@@ -53,33 +53,9 @@ class Base(metaclass=ABCMeta):
         Returns:
 
         """
-        hdr = {'User-Agent': DEFAULT_USERAGENT}
+        url, http_status_code, headers, data = await self.httpc.request(method, url, params, data, headers, timeout, is_json)
 
-        if headers:
-            hdr.update(headers)
-
-        if self.cfg.debug:
-            # logger.debug(f'URL: {url}, PARAMS: {params}, HEADERS: {headers}, TIMEOUT: {timeout},
-            # JSON RESULT: {is_json}')
-            logger.debug(f'URL: {url}, PARAMS: {params}, TIMEOUT: {timeout}, JSON RESULT: {is_json}')
-
-        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=timeout)) as session:
-            async with session.request(method=method, url=url,
-                                       params=params,
-                                       json=data,
-                                       headers=hdr,
-                                       proxy=os.environ.get('PROXY')) as resp:
-                if 200 <= resp.status < 300:
-                    # for k, v in resp.headers.items():
-                    #     if 'ratelimit' in k.lower():
-                    #         logger.debug(f'Response Header: {k}={v}')
-
-                    if is_json:
-                        return resp.url, resp.status, resp.headers, await resp.json()
-                    else:
-                        return resp.url, resp.status, resp.headers, await resp.text()
-                else:
-                    raise ValueError(f'HTTP status code exception. ({resp.status} | {url})')
+        return url, http_status_code, headers, data
 
     def _build_download_urls(self, soft: AppSettingSoftItem, version_summary: VersionSummary,
                              download_urls: List[str]) -> List[str]:

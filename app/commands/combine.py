@@ -28,3 +28,5 @@ def cli(ctx: Context, cfg: Configuration):
 
     with open(p.joinpath('all.json'), 'w', encoding='utf-8') as f:
         f.write(json.dumps(data_w, ensure_ascii=True, separators=(',', ':')))
+
+    logger.info('The all.json file has been generated.')

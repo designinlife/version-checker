@@ -28,6 +28,7 @@ class Parser(Base):
 
             elements = soup.select('div.note-title > b')
 
+            # noinspection DuplicatedCode
             for el in elements:
                 vhlp.append(el.text.strip())
 
