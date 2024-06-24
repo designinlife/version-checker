@@ -1116,11 +1116,11 @@ name = "haproxy"
 repo = "haproxy/haproxy"
 url = "https://www.haproxy.org/"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "haproxy"
+split = 2
 download_urls = [
     "https://www.haproxy.org/download/{major}.{minor}/src/haproxy-{version}.tar.gz",
 ]
-split = 2
-max_page = 2
 
 [[softwares]]
 name = "flume"
