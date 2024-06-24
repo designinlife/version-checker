@@ -1236,9 +1236,7 @@ name = "chrome"
 url = "https://www.google.com/chrome/"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))$"
 parser = "chrome"
-download_urls = [
-    "https://dl.google.com/update2/installers/ChromeStandaloneSetup64.exe#ChromeStandaloneSetup64-{version}.exe",
-]
+download_urls = []
 
 [[softwares]]
 name = "firefox"
