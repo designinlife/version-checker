@@ -119,13 +119,17 @@ class NavicatSoftware(AppSettingSoftItem):
     parser: Literal['navicat']
 
 
+class HAProxySoftware(AppSettingSoftItem):
+    parser: Literal['haproxy']
+
+
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
                     | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GitlabSoftware
                     | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | FirefoxSoftware
                     | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware
-                    | FlutterSoftware | DartSoftware | NavicatSoftware
+                    | FlutterSoftware | DartSoftware | NavicatSoftware | HAProxySoftware
                     | AlmaLinuxSoftware | RockyLinuxSoftware] = Field(alias='softwares',
                                                                       default_factory=list)
 
