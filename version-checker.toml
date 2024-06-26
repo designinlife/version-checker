@@ -1626,3 +1626,14 @@ download_urls = [
     "https://github.com/fatedier/frp/releases/download/v{version}/frp_{version}_linux_amd64.tar.gz",
     "https://github.com/fatedier/frp/releases/download/v{version}/frp_{version}_windows_amd64.zip",
 ]
+
+[[softwares]]
+name = "vtracer"
+repo = "visioncortex/vtracer"
+url = "https://www.visioncortex.org/vtracer/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/visioncortex/vtracer/archive/refs/tags/{version}.tar.gz",
+    "https://github.com/visioncortex/vtracer/releases/download/{version}/vtracer-x86_64-pc-windows-msvc.zip#vtracer-{version}-x86_64-pc-windows-msvc.zip",
+    "https://github.com/visioncortex/vtracer/releases/download/{version}/vtracer-x86_64-unknown-linux-musl.tar.gz#vtracer-{version}-x86_64-unknown-linux-musl.tar.gz",
+]
