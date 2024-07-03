@@ -1638,3 +1638,15 @@ download_urls = [
     "https://github.com/visioncortex/vtracer/releases/download/{version}/vtracer-x86_64-pc-windows-msvc.zip#vtracer-{version}-x86_64-pc-windows-msvc.zip",
     "https://github.com/visioncortex/vtracer/releases/download/{version}/vtracer-x86_64-unknown-linux-musl.tar.gz#vtracer-{version}-x86_64-unknown-linux-musl.tar.gz",
 ]
+
+[[softwares]]
+name = "meilisearch"
+repo = "meilisearch/meilisearch"
+url = "https://www.meilisearch.com/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/meilisearch/meilisearch/archive/refs/tags/v{version}.tar.gz",
+    "https://github.com/meilisearch/meilisearch/releases/download/v{version}/meilisearch-linux-amd64#meilisearch-linux-amd64-v{version}",
+    "https://github.com/meilisearch/meilisearch/releases/download/v{version}/meilisearch-windows-amd64.exe#meilisearch-windows-amd64-v{version}.exe",
+]
