@@ -1771,72 +1771,95 @@ parser = "docker-hub"
 
 [[softwares]]
 repo = "elastic/elasticsearch"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
+split = 1
 
 [[softwares]]
 repo = "elastic/kibana"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
+split = 1
 
 [[softwares]]
 repo = "elastic/logstash"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
+split = 1
 
 [[softwares]]
 repo = "gitea/gitea"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-rootless)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "valkey/valkey"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "hashicorp/consul"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "hashicorp/terraform"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "hashicorp/vault"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "hashicorp/packer"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "hashicorp/nomad"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "hashicorp/boundary"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "hashicorp/waypoint"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "timescale/timescaledb"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-pg1[56](-bitnami|-oss|-repmgr-bitnami)?)$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "pypiserver/pypiserver"
+pattern = "^(?P<version>v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "fluent/fluentd"
+pattern = "^(?P<version>v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-[\\d.]+)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "fluent/fluent-bit"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "percona/percona-server"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
+split = 2
 
 [[softwares]]
 repo = "percona/percona-xtrabackup"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
+split = 2
