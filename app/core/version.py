@@ -47,6 +47,13 @@ class VersionSummary(BaseModel):
     versions: List[Version] = ...
     downloads: Optional[List[str]] = None
 
+    def exists(self, version: str) -> bool:
+        for v in self.versions:
+            if v.version == version:
+                return True
+
+        return False
+
     def __repr__(self):
         return f'Latest: {self.latest}, Versions: {self.versions}, Downloads: {self.downloads}'
 
@@ -81,6 +88,13 @@ class VersionHelper:
 
     # def unique_download_urls(self):
     #     self.download_urls = list(set(self.download_urls))
+
+    def exists(self, version: str) -> bool:
+        for v in self._versions:
+            if v.version == version:
+                return True
+
+        return False
 
     @property
     def is_empty(self) -> bool:
