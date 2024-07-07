@@ -1680,26 +1680,32 @@ parser = "docker-hub"
 
 [[softwares]]
 repo = "library/fluentd"
+pattern = "^(?P<version>v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-[\\d+.]+)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "library/golang"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "library/gradle"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-jdk(17|21)-alpine)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "library/httpd"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "library/influxdb"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "library/mongo"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
