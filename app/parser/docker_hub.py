@@ -34,6 +34,7 @@ class OutputResult(BaseModel):
     name: str
     repo: str
     tags: List[RepositoryTagItem] = Field(default_factory=list)
+    suffix: List[str] = Field(default_factory=list)
     latest: List[str] = Field(default_factory=list)
     created_time: str
 
@@ -82,10 +83,16 @@ class Parser(Base):
         # 标签过滤
         tags = []
         latests = []
+        suffix = []
 
         for v in items:
             if vhlp.exists(v.name):
                 tags.append(v)
+
+        # 收集版本 Tag 可用的后缀
+        for v in vhlp.raw_versions:
+            if v.other and v.other not in suffix:
+                suffix.append(v.other)
 
         version_summary = vhlp.summary
 
@@ -98,7 +105,7 @@ class Parser(Base):
 
         soft_name = f'docker-{soft.repo.replace('/', '-')}'
 
-        result = OutputResult(name=soft_name, repo=soft.repo, tags=tags, latest=latests,
+        result = OutputResult(name=soft_name, repo=soft.repo, tags=tags, latest=latests, suffix=suffix,
                               created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
 
         async with aiofiles.open(output_path.joinpath(f'{soft_name}.json'), 'w', encoding='utf-8') as f:

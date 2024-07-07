@@ -1653,22 +1653,29 @@ download_urls = [
 
 [[softwares]]
 repo = "library/almalinux"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
 parser = "docker-hub"
+split = 1
 
 [[softwares]]
 repo = "library/alpine"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "library/amazoncorretto"
+pattern = "^(?P<version>(?P<major>(17|21))\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
+split = 1
 
 [[softwares]]
 repo = "library/caddy"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "library/composer"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
@@ -1697,7 +1704,9 @@ parser = "docker-hub"
 
 [[softwares]]
 repo = "library/mysql"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
+split = 2
 
 [[softwares]]
 repo = "library/nats"

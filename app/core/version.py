@@ -105,6 +105,10 @@ class VersionHelper:
         return self.versions[0]
 
     @property
+    def raw_versions(self) -> List[Version]:
+        return self._versions
+
+    @property
     def versions(self) -> List[Version]:
         """返回已排序的版本号列表。
 
