@@ -13,6 +13,7 @@ from loguru import logger
 from app import __version__
 from app.commands.combine import cli as cli_combine
 from app.commands.inspect import cli as cli_inspect
+from app.commands.skopeo import cli as cli_skopeo
 from app.core.click import ClickStdOption
 from app.core.config import Configuration, AppSetting
 from app.core.utils import strtobool
@@ -79,6 +80,8 @@ def app_version():
 cli.add_command(cli_combine)
 # noinspection PyTypeChecker
 cli.add_command(cli_inspect)
+# noinspection PyTypeChecker
+cli.add_command(cli_skopeo)
 
 
 def start():
