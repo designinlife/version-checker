@@ -1715,47 +1715,58 @@ parser = "docker-hub"
 split = 2
 
 [[softwares]]
+repo = "library/postgres"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))(?P<other>-alpine)?$"
+parser = "docker-hub"
+
+[[softwares]]
 repo = "library/nats"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "library/nginx"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
+fixed_tags = ["stable", "stable-alpine"]
 
 [[softwares]]
 repo = "library/node"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
-
-[[softwares]]
-repo = "library/openjdk"
-parser = "docker-hub"
+split = 1
+fixed_tags = ["lts", "lts-alpine"]
 
 [[softwares]]
 repo = "library/php"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-(alpine|apache|cli|cli-alpine|fpm|fpm-alpine|zts|zts-alpine))?$"
 parser = "docker-hub"
-
-[[softwares]]
-repo = "library/postgres"
-parser = "docker-hub"
+fixed_tags = ["zts", "zts-alpine"]
 
 [[softwares]]
 repo = "library/python"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-(alpine|slim))?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "library/redis"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "library/registry"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
 repo = "library/rockylinux"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
 parser = "docker-hub"
+split = 1
 
 [[softwares]]
 repo = "library/zookeeper"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-jre-[\\d]+)?$"
 parser = "docker-hub"
 
 [[softwares]]

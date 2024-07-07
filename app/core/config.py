@@ -127,6 +127,7 @@ class DockerHubSoftware(AppSettingSoftItem):
     parser: Literal['docker-hub']
     name: Optional[str] = None
     repo: str = ...
+    fixed_tags: List[str] = Field(default_factory=list)
 
 
 class AppSetting(BaseModel):
