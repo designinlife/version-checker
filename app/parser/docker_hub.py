@@ -1,7 +1,7 @@
 import os
 from asyncio import Semaphore
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 import aiofiles
 import arrow
@@ -21,6 +21,12 @@ class RepositoryTagItem(BaseModel):
 
 class RepositoryTags(BaseModel):
     results: List[RepositoryTagItem] = Field(default_factory=list)
+
+
+class RatelimitHeader(BaseModel):
+    rate_limit: Optional[str] = Field(alias='x-ratelimit-limit')
+    rate_remaining: Optional[str] = Field(alias='x-ratelimit-remaining')
+    rate_reset: Optional[str] = Field(alias='x-ratelimit-reset')
 
 
 class OutputResult(BaseModel):
@@ -47,16 +53,18 @@ class Parser(Base):
 
             if status == 200:
                 data = RepositoryTags.model_validate(data_r)
+                data_header = RatelimitHeader.model_validate(headers)
 
                 # Write data to file.
-                await self.write_data(soft, data.results)
+                await self.write_data(soft, data.results, data_header)
             else:
-                h1 = f'X-Ratelimit-Remaining: {headers['X-Ratelimit-Remaining']}' if 'X-Ratelimit-Remaining' in headers else ''
-                h2 = f'X-Ratelimit-Reset: {headers['X-Ratelimit-Reset']}' if 'X-Ratelimit-Reset' in headers else ''
+                data_header = RatelimitHeader.model_validate(headers)
 
-                logger.error(f'[Docker Hub][{soft.repo}] HTTP STATUS {status} ERROR. {h1} {h2}')
+                logger.error(f'[Docker Hub][{soft.repo}] HTTP STATUS {status} ERROR. '
+                             f'({data_header.rate_remaining}/{data_header.rate_limit}, '
+                             f'{arrow.get(int(data_header.rate_reset)).format('YYYY-MM-DD HH:mm:ss')})')
 
-    async def write_data(self, soft: DockerHubSoftware, items: List[RepositoryTagItem]):
+    async def write_data(self, soft: DockerHubSoftware, items: List[RepositoryTagItem], header: RatelimitHeader):
         output_subdir = os.environ.get('OUTPUT_DATA_DIR', 'data')
         output_path = Path(self.cfg.workdir).joinpath(output_subdir)
 
@@ -71,4 +79,5 @@ class Parser(Base):
         async with aiofiles.open(output_path.joinpath(f'{soft_name}.json'), 'w', encoding='utf-8') as f:
             await f.write(result)
 
-        logger.info(f'<\033[1;32m{soft.repo}\033[0m> done.')
+        logger.info(f'<\033[1;32m{soft.repo}\033[0m> done. '
+                    f'({header.rate_remaining}/{header.rate_limit}, {arrow.get(int(header.rate_reset)).format('YYYY-MM-DD HH:mm:ss')})')
