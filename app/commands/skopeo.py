@@ -74,6 +74,8 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
             with open(output, 'w') as f:
                 f.write('#!/bin/bash\n\n')
                 f.write('\n'.join(cmds))
+
+            logger.info(f'Output file: {output}')
         else:
             for cmd in cmds:
                 subprocess.run(cmd, shell=True)
