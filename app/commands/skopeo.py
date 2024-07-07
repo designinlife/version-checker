@@ -1,6 +1,7 @@
 import os
 from typing import List
 
+import arrow
 import click
 import requests
 from click.core import Context
@@ -12,9 +13,10 @@ from app.core.config import Configuration
 @click.command('skopeo', help='Generate skopeo copy command script.')
 @click.option('-o', '--output', 'output', help='Output file name.', required=True)
 @click.option('-r', '--repo', 'repo_name', help='Filter by repo.')
+@click.option('--since', 'since_time', help='Filter by tag pushed time. (Format: YYYY-MM-DD HH:mm:ss)')
 @click.pass_obj
 @click.pass_context
-def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None):
+def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, since_time: str | None):
     logger.debug(f'app cli skopeo called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})')
 
     http_proxy = os.environ.get('HTTPS_PROXY', None)
@@ -37,6 +39,11 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None):
                                     or 'alpha' in v2['name'].lower() \
                                     or 'arm' in v2['name'] or 'amd' in v2['name'] or 'windows' in v2['name'] or 'nightly' in v2['name'] \
                                     or 'rootless' in v2['name'] or 'builder' in v2['name']:
+                                continue
+
+                            # 按 Tag 推送时间过滤
+                            if since_time and arrow.get(v2['tag_last_pushed'], tzinfo='UTC').to(tz='Asia/Shanghai') \
+                                    < arrow.get(since_time, 'YYYY-MM-DD HH:mm:ss', tzinfo='Asia/Shanghai'):
                                 continue
 
                             f.write(f'{f'HTTPS_PROXY={http_proxy} ' if http_proxy else ''}'
