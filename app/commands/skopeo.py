@@ -42,11 +42,13 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
                                 continue
 
                             # 按 Tag 推送时间过滤
-                            if since_time and arrow.get(v2['tag_last_pushed'], tzinfo='UTC').to(tz='Asia/Shanghai') \
-                                    < arrow.get(since_time, 'YYYY-MM-DD HH:mm:ss', tzinfo='Asia/Shanghai'):
+                            tag_pushed_time = arrow.get(v2['tag_last_pushed'], tzinfo='UTC').to(tz='Asia/Shanghai')
+
+                            if since_time and tag_pushed_time < arrow.get(since_time, 'YYYY-MM-DD HH:mm:ss', tzinfo='Asia/Shanghai'):
                                 continue
 
                             f.write(f'{f'HTTPS_PROXY={http_proxy} ' if http_proxy else ''}'
+                                    f'DT={tag_pushed_time.format('YYYY-MM-DD')} '
                                     'skopeo copy '
                                     f'docker://docker.io/{v['repo']}:{v2['name']} '
                                     f'docker://{docker_registry_host}/{v['repo']}:{v2['name']}\n')
