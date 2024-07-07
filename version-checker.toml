@@ -1650,3 +1650,167 @@ download_urls = [
     "https://github.com/meilisearch/meilisearch/releases/download/v{version}/meilisearch-linux-amd64#meilisearch-linux-amd64-v{version}",
     "https://github.com/meilisearch/meilisearch/releases/download/v{version}/meilisearch-windows-amd64.exe#meilisearch-windows-amd64-v{version}.exe",
 ]
+
+[[softwares]]
+repo = "library/almalinux"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/alpine"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/amazoncorretto"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/caddy"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/composer"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/fluentd"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/golang"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/gradle"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/httpd"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/influxdb"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/mongo"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/mysql"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/nats"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/nginx"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/node"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/openjdk"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/php"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/postgres"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/python"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/redis"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/registry"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/rockylinux"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "library/zookeeper"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "elastic/elasticsearch"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "elastic/kibana"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "elastic/logstash"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "gitea/gitea"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "valkey/valkey"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "hashicorp/consul"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "hashicorp/terraform"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "hashicorp/vault"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "hashicorp/packer"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "hashicorp/nomad"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "hashicorp/boundary"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "hashicorp/waypoint"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "timescale/timescaledb"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "pypiserver/pypiserver"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "fluent/fluentd"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "fluent/fluent-bit"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "percona/percona-server"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "percona/percona-xtrabackup"
+parser = "docker-hub"
