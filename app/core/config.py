@@ -123,13 +123,19 @@ class HAProxySoftware(AppSettingSoftItem):
     parser: Literal['haproxy']
 
 
+class DockerHubSoftware(AppSettingSoftItem):
+    parser: Literal['docker-hub']
+    name: Optional[str] = None
+    repo: str = ...
+
+
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
                     | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GitlabSoftware
                     | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | FirefoxSoftware
                     | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware
-                    | FlutterSoftware | DartSoftware | NavicatSoftware | HAProxySoftware
+                    | FlutterSoftware | DartSoftware | NavicatSoftware | HAProxySoftware | DockerHubSoftware
                     | AlmaLinuxSoftware | RockyLinuxSoftware] = Field(alias='softwares',
                                                                       default_factory=list)
 
