@@ -89,11 +89,6 @@ class Parser(Base):
             if vhlp.exists(v.name):
                 tags.append(v)
 
-        # 收集版本 Tag 可用的后缀
-        for v in vhlp.raw_versions:
-            if v.other and v.other not in suffix:
-                suffix.append(v.other)
-
         version_summary = vhlp.summary
 
         if isinstance(version_summary, Mapping):
@@ -102,6 +97,20 @@ class Parser(Base):
                     latests.append(v.latest.version)
         elif isinstance(version_summary, VersionSummary):
             latests.append(version_summary.latest.version)
+
+        def is_latest_exists(sfix: str) -> bool:
+            for vv in latests:
+                fv = f'{vv}{sfix}'
+
+                if vhlp.raw_exists(fv):
+                    return True
+
+            return False
+
+        # 收集版本 Tag 可用的后缀
+        for v in vhlp.raw_versions:
+            if v.other and v.other not in suffix and is_latest_exists(v.other):
+                suffix.append(v.other)
 
         soft_name = f'docker-{soft.repo.replace('/', '-')}'
 

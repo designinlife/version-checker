@@ -16,6 +16,7 @@ class Version(BaseModel):
     day: Optional[str] = None
     other: Optional[str] = None
     raw_data: Optional[Any] = None
+    raw_str: Optional[str] = None
 
     def __repr__(self):
         d = [f'{self.major}']
@@ -79,7 +80,7 @@ class VersionHelper:
             v = Version(major=d.get('major'), minor=d.get('minor', None), patch=d.get('patch', None),
                         build=d.get('build', None), letter=d.get('letter', None),
                         version=d.get('version', None), year=d.get('year', None), month=d.get('month', None),
-                        day=d.get('day', None), other=d.get('other', None), raw_data=raw_data)
+                        day=d.get('day', None), other=d.get('other', None), raw_data=raw_data, raw_str=version)
 
             self._versions.append(v)
 
@@ -92,6 +93,13 @@ class VersionHelper:
     def exists(self, version: str) -> bool:
         for v in self._versions:
             if v.version == version:
+                return True
+
+        return False
+
+    def raw_exists(self, version: str) -> bool:
+        for v in self._versions:
+            if v.raw_str == version:
                 return True
 
         return False
