@@ -73,6 +73,7 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
         elif output:
             with open(output, 'w') as f:
                 f.write('#!/bin/bash\n\n')
+                f.write('set -x\n\n')
                 f.write('\n'.join(cmds))
 
             logger.info(f'Output file: {output}')
