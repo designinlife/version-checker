@@ -1780,6 +1780,11 @@ pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<
 parser = "docker-hub"
 
 [[softwares]]
+repo = "library/aerospike"
+pattern = "^(?P<version>ce-(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))$"
+parser = "docker-hub"
+
+[[softwares]]
 repo = "elastic/elasticsearch"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
@@ -1882,4 +1887,29 @@ parser = "docker-hub"
 [[softwares]]
 repo = "grafana/grafana-oss"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "sonatype/nexus3"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-java(8|11|17))?$"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "jenkins/jenkins"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-lts-jdk17)?$"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "apachepulsar/pulsar-all"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "v2fly/v2fly-core"
+pattern = "^(?P<version>v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "apache/apisix"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-(redhat|debian))?$"
 parser = "docker-hub"
