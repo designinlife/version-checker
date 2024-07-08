@@ -95,6 +95,6 @@ def do_skopeo_copy(cmd: str):
             logger.warning(f'Skipping {cmd}: {err}')
             return
 
-        raise RuntimeError(f'The exit code is non-zero. (command: {cmd})')
+        raise RuntimeError(f'The exit code is non-zero. (command: {cmd}, reason: {err})')
     else:
         logger.info(f'COMMAND: {cmd} (\033[1;32mOK\033[0m)')
