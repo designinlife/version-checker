@@ -1913,3 +1913,13 @@ parser = "docker-hub"
 repo = "apache/apisix"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-(redhat|debian))?$"
 parser = "docker-hub"
+
+[[softwares]]
+repo = "apache/apisix-dashboard"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-(alpine|centos))?$"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "drone/drone"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "docker-hub"
