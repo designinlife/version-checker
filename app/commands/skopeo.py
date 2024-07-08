@@ -89,7 +89,7 @@ def do_skopeo_copy(cmd: str):
     r = subprocess.run(cmd, stdout=sys.stdout, stderr=subprocess.PIPE, shell=True)
 
     if r.returncode != 0:
-        err = r.stderr.decode('utf-8')
+        err = r.stderr.decode('utf-8').strip()
 
         if 'manifest unknown' in err:
             logger.warning(f'Skipping {cmd}: {err}')
