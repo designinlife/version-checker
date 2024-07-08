@@ -1,5 +1,6 @@
 import os
 import subprocess
+import sys
 from typing import List
 
 import arrow
@@ -85,9 +86,15 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
 
 @retry(stop_max_attempt_number=3, wait_fixed=1500)
 def do_skopeo_copy(cmd: str):
-    r = subprocess.run(cmd, shell=True)
+    r = subprocess.run(cmd, stdout=sys.stdout, stderr=subprocess.PIPE, shell=True)
 
     if r.returncode != 0:
+        err = r.stderr.decode('utf-8')
+
+        if 'manifest unknown' in err:
+            logger.warning(f'Skipping {cmd}: {err}')
+            return
+
         raise RuntimeError(f'The exit code is non-zero. (command: {cmd})')
     else:
         logger.info(f'COMMAND: {cmd} (\033[1;32mOK\033[0m)')
