@@ -1720,6 +1720,11 @@ parser = "docker-hub"
 split = 2
 
 [[softwares]]
+repo = "library/mariadb"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "docker-hub"
+
+[[softwares]]
 repo = "library/postgres"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
@@ -1868,3 +1873,13 @@ repo = "percona/percona-xtrabackup"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 split = 2
+
+[[softwares]]
+repo = "grafana/grafana"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "grafana/grafana-oss"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "docker-hub"
