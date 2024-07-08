@@ -7,6 +7,7 @@ import click
 import requests
 from click.core import Context
 from loguru import logger
+from retrying import retry
 
 from app.core.config import Configuration
 
@@ -79,4 +80,14 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
             logger.info(f'Output file: {output}')
         else:
             for cmd in cmds:
-                subprocess.run(cmd, shell=True)
+                do_skopeo_copy(cmd)
+
+
+@retry(stop_max_attempt_number=3, wait_fixed=1500)
+def do_skopeo_copy(cmd: str):
+    r = subprocess.run(cmd, shell=True)
+
+    if r.returncode != 0:
+        raise RuntimeError(f'The exit code is non-zero. (command: {cmd})')
+    else:
+        logger.info(f'COMMAND: {cmd} (\033[1;32mOK\033[0m)')
