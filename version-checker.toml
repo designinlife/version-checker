@@ -1920,6 +1920,11 @@ pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<
 parser = "docker-hub"
 
 [[softwares]]
+repo = "apache/doris"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-(be|fe|broker)-x86_64)?$"
+parser = "docker-hub"
+
+[[softwares]]
 repo = "drone/drone"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
