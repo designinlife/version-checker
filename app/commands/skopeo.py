@@ -84,11 +84,18 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
 
             logger.info(f'Output file: {output}')
         else:
+            err_cmds = []
+
             for cmd in cmds:
                 try:
                     do_skopeo_copy(cmd)
                 except Exception as e:
+                    err_cmds.append(cmd)
                     logger.exception(e)
+
+            if err_cmds:
+                print('ERROR COMMANDS:')
+                print('\n'.join(err_cmds))
 
 
 @retry(stop_max_attempt_number=3, wait_fixed=1500)
