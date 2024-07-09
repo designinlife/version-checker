@@ -47,6 +47,10 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
                         for v3 in v['suffix']:
                             cmds.append(f'{f'HTTPS_PROXY={http_proxy} ' if http_proxy else ''}'
                                         f'skopeo copy docker://docker.io/{v['repo']}:{v2}{v3} docker://{docker_registry_host}/{v['repo']}:{v2}{v3}')
+
+                        for v4 in v['fixed_tags']:
+                            cmds.append(f'{f'HTTPS_PROXY={http_proxy} ' if http_proxy else ''}'
+                                        f'skopeo copy docker://docker.io/{v['repo']}:{v4} docker://{docker_registry_host}/{v['repo']}:{v4}')
                 else:
                     if not repo_name or repo_name == v['repo']:
                         for v2 in v['tags']:
