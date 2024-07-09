@@ -1730,6 +1730,11 @@ pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
 
 [[softwares]]
+repo = "library/rabbitmq"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-(alpine|management|management-alpine))$"
+parser = "docker-hub"
+
+[[softwares]]
 repo = "library/nats"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-alpine)?$"
 parser = "docker-hub"
@@ -1942,4 +1947,9 @@ parser = "docker-hub"
 [[softwares]]
 repo = "ollama/ollama"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-rocm)?$"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "nsqio/nsq"
+pattern = "^(?P<version>v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
