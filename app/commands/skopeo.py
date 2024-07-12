@@ -39,7 +39,7 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
         for v in data:
             if 'tags' in v and v['name'].startswith('docker-'):
                 if is_latest_only:
-                    for v2 in v['latest']:
+                    for v2 in v['latest_tags']:
                         cmds.append(f'{f'HTTPS_PROXY={http_proxy} ' if http_proxy else ''}skopeo copy '
                                     f'docker://docker.io/{v['repo']}:{v2} '
                                     f'docker://{docker_registry_host}/{v['repo']}:{v2}')
