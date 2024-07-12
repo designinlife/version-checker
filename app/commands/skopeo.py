@@ -13,7 +13,7 @@ from retrying import retry
 from app.core.config import Configuration
 
 
-@click.command('skopeo', help='Generate skopeo copy command script.')
+@click.command('skopeo', help='Generate skopeo copy command script.\n\nSupported environment variables:\n\nHTTPS_PROXY, DOCKER_REGISTRY_HOST')
 @click.option('-o', '--output', 'output', help='Output file name.')
 @click.option('-r', '--repo', 'repo_name', help='Filter by repo.')
 @click.option('--since', 'since_time', help='Filter by tag pushed time. (Format: YYYY-MM-DD HH:mm:ss)')
