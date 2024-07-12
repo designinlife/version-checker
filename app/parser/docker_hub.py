@@ -36,7 +36,7 @@ class OutputResult(BaseModel):
     tags: List[RepositoryTagItem] = Field(default_factory=list)
     suffix: List[str] = Field(default_factory=list)
     fixed_tags: List[str] = Field(default_factory=list)
-    latest: List[str] = Field(default_factory=list)
+    latest_tags: List[str] = Field(default_factory=list)
     created_time: str
 
 
@@ -115,7 +115,7 @@ class Parser(Base):
 
         soft_name = f'docker-{soft.repo.replace('/', '-')}'
 
-        result = OutputResult(name=soft_name, repo=soft.repo, tags=tags, latest=latests, suffix=suffix, fixed_tags=soft.fixed_tags,
+        result = OutputResult(name=soft_name, repo=soft.repo, tags=tags, latest_tags=latests, suffix=suffix, fixed_tags=soft.fixed_tags,
                               created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
 
         async with aiofiles.open(output_path.joinpath(f'{soft_name}.json'), 'w', encoding='utf-8') as f:
