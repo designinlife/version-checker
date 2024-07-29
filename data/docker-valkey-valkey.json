@@ -1,1 +1,1 @@
-{"name":"docker-valkey-valkey","repo":"valkey/valkey","tags":[{"name":"7.2.5","full_size":51451576,"v2":true,"tag_last_pushed":"2024-05-22T08:04:26.017982Z"}],"suffix":["-alpine"],"fixed_tags":[],"latest_tags":["7.2.5"],"created_time":"2024-07-25 04:01:34"}
+{"name":"docker-valkey-valkey","repo":"valkey/valkey","tags":[{"name":"7.2.5","full_size":51426930,"v2":true,"tag_last_pushed":"2024-07-26T22:22:32.989527Z"}],"suffix":["-alpine"],"fixed_tags":[],"latest_tags":["7.2.5"],"created_time":"2024-07-29 04:01:07"}
