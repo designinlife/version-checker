@@ -324,9 +324,9 @@ url = "https://github.com/containers/crun"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
 release = true
 download_urls = [
-    "https://github.com/containers/crun/releases/download/1.15/crun-1.15-linux-amd64",
-    "https://github.com/containers/crun/releases/download/1.15/crun-1.15-linux-amd64-disable-systemd",
-    "https://github.com/containers/crun/releases/download/1.15/crun-1.15.tar.gz",
+    "https://github.com/containers/crun/releases/download/{version}/crun-{version}-linux-amd64",
+    "https://github.com/containers/crun/releases/download/{version}/crun-{version}-linux-amd64-disable-systemd",
+    "https://github.com/containers/crun/releases/download/{version}/crun-{version}.tar.gz",
 ]
 
 [[softwares]]
@@ -1273,8 +1273,8 @@ name = "jetbrains"
 url = "https://www.jetbrains.com/"
 pattern = "^(?P<version>(?P<major>\\d{4})\\.(?P<minor>\\d)\\.(?P<patch>\\d))$"
 parser = "jetbrains"
-code = [ "AC", "CL", "RSU", "DG", "GO", "IIU", "PS", "PCP", "RD", "RM", "WS", "FL", "RR", "DS", "TC", "WRS" ]
-os = [ "windows" ]
+code = ["AC", "CL", "RSU", "DG", "GO", "IIU", "PS", "PCP", "RD", "RM", "WS", "FL", "RR", "DS", "TC", "WRS"]
+os = ["windows"]
 
 [[softwares]]
 name = "libgd"
