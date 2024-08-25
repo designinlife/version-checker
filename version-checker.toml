@@ -1983,3 +1983,8 @@ parser = "docker-hub"
 repo = "opensearchproject/data-prepper"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
+
+[[softwares]]
+repo = "bitnami/kafka"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "docker-hub"
