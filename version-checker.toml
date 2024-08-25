@@ -1988,3 +1988,4 @@ parser = "docker-hub"
 repo = "bitnami/kafka"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
+split = 2
