@@ -1662,6 +1662,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "antlr"
+repo = "antlr/antlr4"
+url = "https://github.com/antlr/antlr4"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://www.antlr.org/download/antlr-{version}-complete.jar",
+]
+
+[[softwares]]
 repo = "library/almalinux"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
 parser = "docker-hub"
