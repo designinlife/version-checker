@@ -1702,9 +1702,9 @@ url = "https://github.com/wiggin77/mailrelay"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
 release = true
 download_urls = [
-    "https://github.com/wiggin77/mailrelay/releases/download/v{raw_str}/mailrelay-linux-amd64#mailrelay-v{raw_str}-linux-amd64",
-    "https://github.com/wiggin77/mailrelay/releases/download/v{raw_str}/mailrelay-windows-amd64.exe#mailrelay-v{raw_str}-windows-amd64.exe",
-    "https://github.com/wiggin77/mailrelay/archive/refs/tags/v{raw_str}.tar.gz",
+    "https://github.com/wiggin77/mailrelay/releases/download/{raw_str}/mailrelay-linux-amd64#mailrelay-{raw_str}-linux-amd64",
+    "https://github.com/wiggin77/mailrelay/releases/download/{raw_str}/mailrelay-windows-amd64.exe#mailrelay-{raw_str}-windows-amd64.exe",
+    "https://github.com/wiggin77/mailrelay/archive/refs/tags/{raw_str}.tar.gz",
 ]
 
 [[softwares]]
