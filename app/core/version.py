@@ -186,7 +186,7 @@ class VersionHelper:
 
         if download_urls:
             for v in download_urls:
-                p = latest.dict(exclude_none=True)
+                p = latest.model_dump(exclude_none=True)
 
                 d.append(v.format(**p))
 
