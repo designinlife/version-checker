@@ -399,6 +399,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "podman-static"
+repo = "mgoltzsche/podman-static"
+url = "https://github.com/mgoltzsche/podman-static"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/mgoltzsche/podman-static/releases/download/v{version}/podman-linux-amd64.tar.gz#podman-v{version}-linux-amd64.tar.gz",
+    "https://github.com/mgoltzsche/podman-static/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "podman-desktop"
 repo = "containers/podman-desktop"
 url = "https://podman-desktop.io/"
