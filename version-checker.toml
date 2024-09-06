@@ -246,6 +246,19 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "gitea"
+repo = "go-gitea/gitea"
+url = "https://github.com/go-gitea/gitea"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/go-gitea/gitea/releases/download/v{version}/gitea-{version}-gogit-windows-4.0-amd64.exe",
+    "https://github.com/go-gitea/gitea/releases/download/v{version}/gitea-{version}-linux-amd64",
+    "https://github.com/go-gitea/gitea/releases/download/v{version}/gitea-{version}-windows-4.0-amd64.exe",
+    "https://github.com/go-gitea/gitea/releases/download/v{version}/gitea-src-{version}.tar.gz",
+]
+
+[[softwares]]
 name = "harbor"
 repo = "goharbor/harbor"
 url = "https://goharbor.io/"
