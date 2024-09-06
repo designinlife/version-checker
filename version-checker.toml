@@ -320,6 +320,14 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "cloudberrydb"
+repo = "cloudberrydb/cloudberrydb"
+url = "https://github.com/cloudberrydb/cloudberrydb"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+assets = true
+
+[[softwares]]
 name = "containers-common"
 repo = "containers/common"
 url = "https://github.com/containers/common"
