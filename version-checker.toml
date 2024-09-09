@@ -1660,6 +1660,27 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "zstd"
+repo = "facebook/zstd"
+url = "https://github.com/facebook/zstd"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/facebook/zstd/releases/download/v{version}/zstd-v{version}-win64.zip",
+    "https://github.com/facebook/zstd/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "python-build-standalone"
+repo = "indygreg/python-build-standalone"
+url = "https://github.com/indygreg/python-build-standalone"
+pattern = "^(?P<version>(?P<major>\\d{4})(?P<minor>\\d{2})(?P<patch>\\d{2}))$"
+release = true
+download_urls = [
+    "https://github.com/indygreg/python-build-standalone/archive/refs/tags/{raw_str}.tar.gz",
+]
+
+[[softwares]]
 name = "frp"
 repo = "fatedier/frp"
 url = "https://gofrp.org/"
