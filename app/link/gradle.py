@@ -9,7 +9,7 @@ class UrlMaker(UrlMakerBase):
     def build_links(self, soft: AppSettingSoftItem, version_summary: VersionSummary, urls: List[str]) -> List[str]:
         r = []
 
-        ver = repr(version_summary.latest.version)
+        ver = version_summary.latest.version
 
         if version_summary.latest.patch == 0:
             ver = f'{version_summary.latest.major}.{version_summary.latest.minor}'
