@@ -146,6 +146,27 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "tailscale"
+repo = "tailscale/tailscale"
+url = "https://github.com/tailscale/tailscale"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/tailscale/tailscale/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "headscale"
+repo = "juanfont/headscale"
+url = "https://github.com/juanfont/headscale"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/juanfont/headscale/releases/download/v{version}/headscale_{version}_linux_amd64",
+    "https://github.com/juanfont/headscale/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "beanstalkd"
 repo = "beanstalkd/beanstalkd"
 url = "https://beanstalkd.github.io/"
