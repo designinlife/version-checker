@@ -1,1 +1,1 @@
-{"name":"docker-library-nginx","repo":"library/nginx","tags":[],"suffix":["-alpine"],"fixed_tags":["stable","stable-alpine"],"latest_tags":["1.27.1"],"created_time":"2024-09-18 04:01:05"}
+{"name":"docker-library-nginx","repo":"library/nginx","tags":[],"suffix":["-alpine"],"fixed_tags":["stable","stable-alpine"],"latest_tags":["1.27.1"],"created_time":"2024-09-18 16:01:16"}
