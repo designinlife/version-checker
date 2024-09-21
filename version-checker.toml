@@ -298,8 +298,9 @@ url = "https://github.com/moby/moby"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
 release = true
 download_urls = [
-    "https://download.docker.com/linux/static/stable/x86_64/docker-{version}.tgz#docker-static-{version}.tgz",
-    "https://download.docker.com/linux/static/stable/x86_64/docker-rootless-extras-{version}.tgz#docker-rootless-extras-static-{version}.tgz",
+    "https://download.docker.com/linux/static/stable/x86_64/docker-{version}.tgz#docker-linux-static-{version}.tgz",
+    "https://download.docker.com/linux/static/stable/x86_64/docker-rootless-extras-{version}.tgz#docker-rootless-extras-linux-static-{version}.tgz",
+    "https://download.docker.com/win/static/stable/x86_64/docker-{version}.zip#docker-win64-static-{version}.zip",
     "https://github.com/moby/moby/archive/refs/tags/v{version}.tar.gz",
 ]
 
