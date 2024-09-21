@@ -1797,6 +1797,28 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "openvpn"
+repo = "OpenVPN/openvpn"
+url = "https://github.com/OpenVPN/openvpn"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/OpenVPN/openvpn/releases/download/v{version}/openvpn-{version}.tar.gz",
+]
+
+[[softwares]]
+name = "easy-rsa"
+repo = "OpenVPN/easy-rsa"
+url = "https://github.com/OpenVPN/easy-rsa"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/OpenVPN/easy-rsa/releases/download/v{version}/EasyRSA-{version}-win64.zip",
+    "https://github.com/OpenVPN/easy-rsa/releases/download/v{version}/EasyRSA-{version}.tgz",
+    "https://github.com/OpenVPN/easy-rsa/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 repo = "library/almalinux"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
 parser = "docker-hub"
