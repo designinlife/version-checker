@@ -15,7 +15,8 @@ class UrlMaker(UrlMakerBase):
                 f'.{version_summary.latest.patch}/openssl-{version_summary.latest.major}.{version_summary.latest.minor}'
                 f'.{version_summary.latest.patch}{version_summary.latest.letter}.tar.gz')
         else:
-            r.append(f'https://www.openssl.org/source/openssl-{version_summary.latest.major}'
-                     f'.{version_summary.latest.minor}.{version_summary.latest.patch}.tar.gz')
+            latest = version_summary.latest.version
+
+            r.append(f'https://github.com/openssl/openssl/releases/download/openssl-{latest}/openssl-{latest}.tar.gz')
 
         return r
