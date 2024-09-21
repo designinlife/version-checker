@@ -54,7 +54,7 @@ class Parser(Base):
                     #         vhlp.add_download_url(v.attrs['href'])
 
             latest_version = vhlp.latest_version
-            print(latest_version)
+            # print(latest_version)
 
             url, status, _, data_s = await self.request('GET', f'https://download.virtualbox.org/virtualbox/{latest_version.version}/',
                                                         is_json=False)
