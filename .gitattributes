@@ -1,5 +1,7 @@
 * text eol=lf
 
+poetry.lock text eol=crlf
+
 *.gif  binary
 *.jpg  binary
 *.png  binary

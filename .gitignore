@@ -29,7 +29,7 @@ htmlcov/
 *,cover
 
 # For current project.
-poetry.lock
+# poetry.lock
 test*.sh
 test*.py
 test*.toml
