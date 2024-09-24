@@ -1700,6 +1700,8 @@ repo = "indygreg/python-build-standalone"
 url = "https://github.com/indygreg/python-build-standalone"
 pattern = "^(?P<version>(?P<major>\\d{4})(?P<minor>\\d{2})(?P<patch>\\d{2}))$"
 release = true
+assets = true
+assets_pattern = "^cpython-(3\\.1[2]\\.\\d+)(?:.+)\\d{8}-x86_64-unknown-linux-gnu-pgo(?:.+)lto-full\\.tar\\.zst$"
 download_urls = [
     "https://github.com/indygreg/python-build-standalone/archive/refs/tags/{raw_str}.tar.gz",
 ]
