@@ -1931,6 +1931,7 @@ repo = "library/php"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-(alpine|apache|cli|cli-alpine|fpm|fpm-alpine|zts|zts-alpine))?$"
 parser = "docker-hub"
 fixed_tags = ["zts", "zts-alpine"]
+max_page = 5
 
 [[softwares]]
 repo = "library/python"

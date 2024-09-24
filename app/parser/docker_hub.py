@@ -51,27 +51,41 @@ class Parser(Base):
 
         repo_parts = soft.repo.split('/', 1)
 
+        current_page = 1
+        max_page = soft.max_page
+
+        results: List[RepositoryTagItem] = []
+
         async with sem:
-            # Make an HTTP request.
-            _, status, headers, data_r = await self.request('GET', f'https://hub.docker.com/v2/namespaces/{repo_parts[0]}/repositories/{repo_parts[1]}/tags',
-                                                            params={'status': 'active', 'page': '1', 'page_size': '100'},
-                                                            is_json=True)
+            while True:
+                if current_page > max_page:
+                    break
 
-            if status == 200:
-                data = RepositoryTags.model_validate(data_r)
-                data_header = RatelimitHeader.model_validate(headers)
+                # Make an HTTP request.
+                _, status, headers, data_r = await self.request('GET',
+                                                                f'https://hub.docker.com/v2/namespaces/{repo_parts[0]}/repositories/{repo_parts[1]}/tags',
+                                                                params={'status': 'active', 'page': f'{current_page}', 'page_size': '100'},
+                                                                is_json=True)
 
-                for v in data.results:
-                    vhlp.append(v.name)
+                if status == 200:
+                    data = RepositoryTags.model_validate(data_r)
+                    data_header = RatelimitHeader.model_validate(headers)
 
-                # Write data to file.
-                await self.write_data(soft, data.results, data_header, vhlp)
-            else:
-                data_header = RatelimitHeader.model_validate(headers)
+                    for v in data.results:
+                        vhlp.append(v.name)
 
-                logger.error(f'[Docker Hub][{soft.repo}] HTTP STATUS {status} ERROR. '
-                             f'({data_header.rate_remaining}/{data_header.rate_limit}, '
-                             f'{arrow.get(int(data_header.rate_reset)).format('YYYY-MM-DD HH:mm:ss')})')
+                    results.extend(data.results)
+                else:
+                    data_header = RatelimitHeader.model_validate(headers)
+
+                    logger.error(f'[Docker Hub][{soft.repo}] HTTP STATUS {status} ERROR. '
+                                 f'({data_header.rate_remaining}/{data_header.rate_limit}, '
+                                 f'{arrow.get(int(data_header.rate_reset)).format('YYYY-MM-DD HH:mm:ss')})')
+
+                current_page += 1
+
+            # Write data to file.
+            await self.write_data(soft, results, data_header, vhlp)
 
     async def write_data(self, soft: DockerHubSoftware, items: List[RepositoryTagItem], header: RatelimitHeader,
                          vhlp: VersionHelper):

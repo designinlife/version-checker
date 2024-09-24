@@ -1,4 +1,4 @@
-from typing import Optional, List, Literal
+from typing import Optional, List, Literal, Any
 
 from pydantic import BaseModel, Field
 
@@ -129,6 +129,11 @@ class DockerHubSoftware(AppSettingSoftItem):
     name: Optional[str] = None
     repo: str = ...
     fixed_tags: List[str] = Field(default_factory=list)
+    max_page: int = Field(default=1)
+
+    def model_post_init(self, __context: Any) -> None:
+        if self.name is None:
+            self.name = self.repo
 
 
 class AppSetting(BaseModel):
