@@ -11,6 +11,13 @@ from . import Base
 
 
 class Parser(Base):
+    def _check_assets_allowed(self, patterns: List[str], url: str):
+        for pattern in patterns:
+            if re.match(pattern, url):
+                return True
+
+        return False
+
     async def handle(self, sem: Semaphore, soft: GithubSoftware):
         logger.debug(f'Name: {soft.name} ({soft.parser}, Release: {soft.release})')
 
@@ -23,11 +30,6 @@ class Parser(Base):
         if soft.latest:
             soft.release = True
             soft.max_page = 1
-
-        assets_exp = None
-
-        if soft.assets_pattern:
-            assets_exp = re.compile(soft.assets_pattern, re.IGNORECASE)
 
         api_by = 'releases' if soft.release else 'tags'
 
@@ -77,8 +79,8 @@ class Parser(Base):
 
                             if isinstance(rdata['assets'], List):
                                 for v in rdata['assets']:
-                                    if assets_exp:
-                                        if assets_exp.match(os.path.basename(v['browser_download_url'])):
+                                    if soft.assets_patterns:
+                                        if self._check_assets_allowed(soft.assets_patterns, os.path.basename(v['browser_download_url'])):
                                             vhlp.add_download_url(v['browser_download_url'])
                                     else:
                                         vhlp.add_download_url(v['browser_download_url'])
@@ -99,8 +101,8 @@ class Parser(Base):
 
                         if isinstance(rdata['assets'], List):
                             for v in rdata['assets']:
-                                if assets_exp:
-                                    if assets_exp.match(os.path.basename(v['browser_download_url'])):
+                                if soft.assets_patterns:
+                                    if self._check_assets_allowed(soft.assets_patterns, os.path.basename(v['browser_download_url'])):
                                         vhlp.add_download_url(v['browser_download_url'])
                                 else:
                                     vhlp.add_download_url(v['browser_download_url'])
