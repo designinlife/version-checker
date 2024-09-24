@@ -1,4 +1,5 @@
 import os
+import re
 from asyncio import Semaphore
 from typing import List
 
@@ -22,6 +23,11 @@ class Parser(Base):
         if soft.latest:
             soft.release = True
             soft.max_page = 1
+
+        assets_exp = None
+
+        if soft.assets_pattern:
+            assets_exp = re.compile(soft.assets_pattern, re.IGNORECASE)
 
         api_by = 'releases' if soft.release else 'tags'
 
@@ -71,7 +77,11 @@ class Parser(Base):
 
                             if isinstance(rdata['assets'], List):
                                 for v in rdata['assets']:
-                                    vhlp.add_download_url(v['browser_download_url'])
+                                    if assets_exp:
+                                        if assets_exp.match(os.path.basename(v['browser_download_url'])):
+                                            vhlp.add_download_url(v['browser_download_url'])
+                                    else:
+                                        vhlp.add_download_url(v['browser_download_url'])
                 else:
                     for v in data_r:
                         if soft.release:
@@ -89,7 +99,11 @@ class Parser(Base):
 
                         if isinstance(rdata['assets'], List):
                             for v in rdata['assets']:
-                                vhlp.add_download_url(v['browser_download_url'])
+                                if assets_exp:
+                                    if assets_exp.match(os.path.basename(v['browser_download_url'])):
+                                        vhlp.add_download_url(v['browser_download_url'])
+                                else:
+                                    vhlp.add_download_url(v['browser_download_url'])
 
         if vhlp.is_empty:
             logger.warning(f'[{soft.name}] versions is empty.')
