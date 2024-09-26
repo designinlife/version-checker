@@ -1826,6 +1826,26 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "pcre2"
+repo = "PCRE2Project/pcre2"
+url = "https://github.com/PCRE2Project/pcre2"
+pattern = "^pcre2-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)(?P<patch>\\.\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/PCRE2Project/pcre2/releases/download/pcre2-{version}/pcre2-{version}.tar.gz",
+]
+
+[[softwares]]
+name = "zlib"
+repo = "madler/zlib"
+url = "https://github.com/madler/zlib"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/madler/zlib/releases/download/v{version}/zlib-{version}.tar.gz",
+]
+
+[[softwares]]
 repo = "library/almalinux"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
 parser = "docker-hub"
