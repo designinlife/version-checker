@@ -523,17 +523,6 @@ download_urls = [
 ]
 
 [[softwares]]
-name = "stonedb"
-repo = "stoneatom/stonedb"
-url = "https://stonedb.io/"
-pattern = "^5\\.7-v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))-GA$"
-download_urls = [
-    "https://github.com/stoneatom/stonedb/releases/download/5.7-v{version}-GA/stonedb-ce-5.7-v{version}.el7.x86_64.rpm",
-    "https://github.com/stoneatom/stonedb/releases/download/5.7-v{version}-GA/stonedb-ce-5.7-v{version}.ubuntu.amd64.deb",
-    "https://github.com/stoneatom/stonedb/releases/download/5.7-v{version}-GA/stonedb-ce-5.7-v{version}.el7.x86_64.tar.gz",
-]
-
-[[softwares]]
 name = "solon"
 repo = "noear/solon"
 url = "https://solon.noear.org/"
