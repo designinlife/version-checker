@@ -1803,6 +1803,39 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "linux-pam"
+repo = "linux-pam/linux-pam"
+url = "https://github.com/linux-pam/linux-pam"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/linux-pam/linux-pam/releases/download/v{version}/Linux-PAM-{version}-docs.tar.xz",
+    "https://github.com/linux-pam/linux-pam/releases/download/v{version}/Linux-PAM-{version}.tar.xz",
+    "https://github.com/linux-pam/linux-pam/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "libcap-ng"
+repo = "stevegrubb/libcap-ng"
+url = "https://github.com/stevegrubb/libcap-ng"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/stevegrubb/libcap-ng/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "pkcs11-helper"
+repo = "OpenSC/pkcs11-helper"
+url = "https://github.com/OpenSC/pkcs11-helper"
+pattern = "^pkcs11-helper-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/OpenSC/pkcs11-helper/releases/download/pkcs11-helper-{version}/pkcs11-helper-{version}.tar.bz2",
+    "https://github.com/OpenSC/pkcs11-helper/archive/refs/tags/pkcs11-helper-{version}.tar.gz",
+]
+
+[[softwares]]
 name = "openvpn"
 repo = "OpenVPN/openvpn"
 url = "https://github.com/OpenVPN/openvpn"
