@@ -1879,6 +1879,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "ffmpeg"
+repo = "FFmpeg/FFmpeg"
+url = "https://github.com/FFmpeg/FFmpeg"
+pattern = "^n(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+split = 2
+download_urls = [
+    "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz#linux|ffmpeg-release-amd64-static.tar.xz",
+    "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-{version}-full_build.7z#win64|ffmpeg-{version}-full_build.7z",
+    "https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-{version}-amd64-static.tar.xz#linux|ffmpeg-{version}-amd64-static.tar.xz",
+]
+
+[[softwares]]
 repo = "library/almalinux"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
 parser = "docker-hub"
