@@ -155,7 +155,7 @@ class VersionHelper:
 
         if len(d) > 0:
             for k, v in d.items():
-                d[k] = sorted(v, key=lambda x: (x.major, x.minor, x.patch, x.build, x.letter), reverse=True)
+                d[k] = sorted(v, key=lambda x: (x.major, x.minor, x.patch if x.patch else 0, x.build if x.build else 0, x.letter), reverse=True)
 
         return d
 

@@ -9,8 +9,8 @@ from loguru import logger
 from app.commands.combine import cli as cli_combine
 from app.core.click import ClickStdOption
 from app.core.config import Configuration
-from app.parser import Base as BaseParser
 from app.core.github import GithubHelper
+from app.parser import Base as BaseParser
 
 
 @click.command('inspect', help='Batch inspect the latest version of the software.')
@@ -22,11 +22,13 @@ from app.core.github import GithubHelper
 def cli(ctx: Context, cfg: Configuration, worker_num: int, filter_name: Optional[str] = None):
     logger.debug(f'app cli inspect called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})')
 
-    asyncio.run(GithubHelper.show_rate_limit())
+    if not cfg.debug:
+        asyncio.run(GithubHelper.show_rate_limit())
 
     asyncio.run(process(cfg, worker_num, filter_name))
 
-    asyncio.run(GithubHelper.show_rate_limit())
+    if not cfg.debug:
+        asyncio.run(GithubHelper.show_rate_limit())
 
     # Merge the output JSON data files into all.json.
     ctx.invoke(cli_combine)
