@@ -523,6 +523,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "brotli"
+repo = "google/brotli"
+url = "https://github.com/google/brotli"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/google/brotli/releases/download/v{version}/brotli-x64-windows-dynamic.zip#brotli-v{version}-x64-windows-dynamic.zip",
+    "https://github.com/google/brotli/releases/download/v{version}/brotli-x64-windows-static.zip#brotli-v{version}-x64-windows-static.zip",
+    "https://github.com/google/brotli/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "solon"
 repo = "noear/solon"
 url = "https://solon.noear.org/"
