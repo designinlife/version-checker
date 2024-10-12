@@ -535,6 +535,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "c-ares"
+repo = "c-ares/c-ares"
+url = "https://github.com/c-ares/c-ares"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/c-ares/c-ares/releases/download/v{version}/c-ares-{version}.tar.gz",
+]
+
+[[softwares]]
 name = "brotli"
 repo = "google/brotli"
 url = "https://github.com/google/brotli"
