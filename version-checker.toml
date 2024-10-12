@@ -545,6 +545,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "jansson"
+repo = "akheron/jansson"
+url = "https://github.com/akheron/jansson"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/akheron/jansson/releases/download/v{version}/jansson-{version}.tar.bz2",
+    "https://github.com/akheron/jansson/releases/download/v{version}/jansson-{version}.tar.gz",
+]
+
+[[softwares]]
 name = "brotli"
 repo = "google/brotli"
 url = "https://github.com/google/brotli"
