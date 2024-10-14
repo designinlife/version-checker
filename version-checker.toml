@@ -535,6 +535,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "nghttp3"
+repo = "ngtcp2/nghttp3"
+url = "https://github.com/ngtcp2/nghttp3"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/ngtcp2/nghttp3/releases/download/v{version}/nghttp3-{version}.tar.bz2",
+    "https://github.com/ngtcp2/nghttp3/releases/download/v{version}/nghttp3-{version}.tar.gz",
+    "https://github.com/ngtcp2/nghttp3/releases/download/v{version}/nghttp3-{version}.tar.xz",
+]
+
+[[softwares]]
 name = "c-ares"
 repo = "c-ares/c-ares"
 url = "https://github.com/c-ares/c-ares"
