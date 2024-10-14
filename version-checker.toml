@@ -547,6 +547,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "xz"
+repo = "tukaani-project/xz"
+url = "https://github.com/tukaani-project/xz"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/tukaani-project/xz/releases/download/v{version}/xz-{version}.tar.bz2",
+    "https://github.com/tukaani-project/xz/releases/download/v{version}/xz-{version}.tar.gz",
+    "https://github.com/tukaani-project/xz/releases/download/v{version}/xz-{version}.tar.xz",
+]
+
+[[softwares]]
 name = "c-ares"
 repo = "c-ares/c-ares"
 url = "https://github.com/c-ares/c-ares"
