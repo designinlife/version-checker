@@ -1993,6 +1993,14 @@ download_urls = [
     "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz#linux|ffmpeg-release-amd64-static.tar.xz",
     "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-{version}-full_build.7z#win64|ffmpeg-{version}-full_build.7z",
     "https://www.johnvansickle.com/ffmpeg/old-releases/ffmpeg-{version}-amd64-static.tar.xz#linux|ffmpeg-{version}-amd64-static.tar.xz",
+    "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n{major}.{minor}-latest-linux64-gpl-{major}.{minor}.tar.xz",
+    "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n{major}.{minor}-latest-linux64-lgpl-{major}.{minor}.tar.xz",
+    "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n{major}.{minor}-latest-linux64-gpl-shared-{major}.{minor}.tar.xz",
+    "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n{major}.{minor}-latest-linux64-lgpl-shared-{major}.{minor}.tar.xz",
+    "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n{major}.{minor}-latest-win64-gpl-{major}.{minor}.zip",
+    "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n{major}.{minor}-latest-win64-gpl-shared-{major}.{minor}.zip",
+    "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n{major}.{minor}-latest-win64-lgpl-{major}.{minor}.zip",
+    "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n{major}.{minor}-latest-win64-lgpl-shared-{major}.{minor}.zip",
 ]
 
 [[softwares]]
