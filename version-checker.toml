@@ -1188,6 +1188,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "manticoresearch"
+repo = "manticoresoftware/manticoresearch"
+url = "https://github.com/manticoresoftware/manticoresearch"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/manticoresoftware/manticoresearch/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "gradle"
 repo = "gradle/gradle"
 url = "https://gradle.org/"
