@@ -1984,6 +1984,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "libpsl"
+repo = "rockdaboot/libpsl"
+url = "https://github.com/rockdaboot/libpsl"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/rockdaboot/libpsl/releases/download/{version}/libpsl-{version}.tar.gz",
+    "https://github.com/rockdaboot/libpsl/releases/download/{version}/libpsl-{version}.tar.lz",
+]
+
+[[softwares]]
 name = "ffmpeg"
 repo = "FFmpeg/FFmpeg"
 url = "https://github.com/FFmpeg/FFmpeg"
