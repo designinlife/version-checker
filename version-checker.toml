@@ -559,6 +559,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "ninja"
+repo = "ninja-build/ninja"
+url = "https://github.com/ninja-build/ninja"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/ninja-build/ninja/releases/download/v{version}/ninja-linux.zip#ninja-{version}-linux.zip",
+    "https://github.com/ninja-build/ninja/releases/download/v{version}/ninja-win.zip#ninja-{version}-win.zip",
+    "https://github.com/ninja-build/ninja/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "wolfssl"
 repo = "wolfSSL/wolfssl"
 url = "https://github.com/wolfSSL/wolfssl"
