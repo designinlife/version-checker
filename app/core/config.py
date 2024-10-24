@@ -57,6 +57,10 @@ class VirtualBoxSoftware(AppSettingSoftItem):
     parser: Literal['virtualbox']
 
 
+class IndexSoftware(AppSettingSoftItem):
+    parser: Literal['index']
+
+
 class DotNetSoftware(AppSettingSoftItem):
     parser: Literal['dotnet']
 
@@ -143,8 +147,8 @@ class AppSetting(BaseModel):
                     | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | FirefoxSoftware
                     | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware
                     | FlutterSoftware | DartSoftware | NavicatSoftware | HAProxySoftware | DockerHubSoftware
-                    | AlmaLinuxSoftware | RockyLinuxSoftware] = Field(alias='softwares',
-                                                                      default_factory=list)
+                    | AlmaLinuxSoftware | RockyLinuxSoftware | IndexSoftware] = Field(alias='softwares',
+                                                                                      default_factory=list)
 
 
 class Configuration(BaseModel):
