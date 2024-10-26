@@ -523,6 +523,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "libbpf"
+repo = "libbpf/libbpf"
+url = "https://github.com/libbpf/libbpf"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/libbpf/libbpf/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "nghttp2"
 repo = "nghttp2/nghttp2"
 url = "https://github.com/nghttp2/nghttp2"
