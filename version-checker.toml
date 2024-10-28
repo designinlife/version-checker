@@ -523,6 +523,19 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "libssh2"
+repo = "libssh2/libssh2"
+url = "https://github.com/libssh2/libssh2"
+pattern = "^libssh2-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/libssh2/libssh2/releases/download/libssh2-{version}/libssh2-{version}.tar.bz2",
+    "https://github.com/libssh2/libssh2/releases/download/libssh2-{version}/libssh2-{version}.tar.gz",
+    "https://github.com/libssh2/libssh2/releases/download/libssh2-{version}/libssh2-{version}.tar.xz",
+    "https://github.com/libssh2/libssh2/releases/download/libssh2-{version}/libssh2-{version}.zip",
+]
+
+[[softwares]]
 name = "libbpf"
 repo = "libbpf/libbpf"
 url = "https://github.com/libbpf/libbpf"
