@@ -681,6 +681,15 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "util-linux"
+repo = "util-linux/util-linux"
+url = "https://github.com/util-linux/util-linux"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/util-linux/util-linux/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "libjxl"
 repo = "libjxl/libjxl"
 url = "https://github.com/libjxl/libjxl"
