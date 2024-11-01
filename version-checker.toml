@@ -2057,6 +2057,15 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "openvpn3"
+repo = "OpenVPN/openvpn3"
+url = "https://github.com/OpenVPN/openvpn3"
+pattern = "^release/(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+download_urls = [
+    "https://github.com/OpenVPN/openvpn3/archive/refs/tags/release/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "easy-rsa"
 repo = "OpenVPN/easy-rsa"
 url = "https://github.com/OpenVPN/easy-rsa"
