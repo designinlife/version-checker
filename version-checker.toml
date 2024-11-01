@@ -625,6 +625,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "openldap"
+url = "https://www.openldap.org/software/download/OpenLDAP/openldap-release/"
+pattern = "^openldap-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)).tgz$"
+parser = "index"
+split = 2
+download_urls = [
+    "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-{version}.tgz",
+]
+
+[[softwares]]
 name = "fontconfig"
 url = "https://www.freedesktop.org/software/fontconfig/release/"
 pattern = "^fontconfig-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)).tar.gz$"
