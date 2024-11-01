@@ -635,6 +635,33 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "tcpdump"
+url = "https://www.tcpdump.org/release/"
+pattern = "^tcpdump-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)).tar.gz$"
+parser = "index"
+download_urls = [
+    "https://www.tcpdump.org/release/tcpdump-{version}.tar.gz",
+]
+
+[[softwares]]
+name = "tcpslice"
+url = "https://www.tcpdump.org/release/"
+pattern = "^tcpslice-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)).tar.gz$"
+parser = "index"
+download_urls = [
+    "https://www.tcpdump.org/release/tcpslice-{version}.tar.gz",
+]
+
+[[softwares]]
+name = "libpcap"
+url = "https://www.tcpdump.org/release/"
+pattern = "^libpcap-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)).tar.gz$"
+parser = "index"
+download_urls = [
+    "https://www.tcpdump.org/release/libpcap-{version}.tar.gz",
+]
+
+[[softwares]]
 name = "fontconfig"
 url = "https://www.freedesktop.org/software/fontconfig/release/"
 pattern = "^fontconfig-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)).tar.gz$"
