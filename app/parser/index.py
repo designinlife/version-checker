@@ -1,4 +1,5 @@
 from asyncio import Semaphore
+from pathlib import Path
 
 from bs4 import BeautifulSoup
 from loguru import logger
@@ -20,10 +21,10 @@ class Parser(Base):
 
             soup = BeautifulSoup(data_s, 'html5lib')
 
-            link_elements = soup.select('pre > a[href]')
+            link_elements = soup.select('pre > a[href], td > a[href]')
 
             for v in link_elements:
-                vhlp.append(v.attrs['href'])
+                vhlp.append(Path(v.attrs['href']).name)
 
             logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 

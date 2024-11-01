@@ -625,6 +625,24 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "fontconfig"
+url = "https://www.freedesktop.org/software/fontconfig/release/"
+pattern = "^fontconfig-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)).tar.gz$"
+parser = "index"
+download_urls = [
+    "https://www.freedesktop.org/software/fontconfig/release/fontconfig-{version}.tar.gz",
+]
+
+[[softwares]]
+name = "pngquant"
+url = "https://pngquant.org/releases.html"
+pattern = "^pngquant-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))-src.tar.gz$"
+parser = "index"
+download_urls = [
+    "https://pngquant.org/pngquant-{version}-src.tar.gz",
+]
+
+[[softwares]]
 name = "xz"
 repo = "tukaani-project/xz"
 url = "https://github.com/tukaani-project/xz"
