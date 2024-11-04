@@ -680,6 +680,20 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "ab-download-manager"
+repo = "amir1376/ab-download-manager"
+url = "https://github.com/amir1376/ab-download-manager"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_linux.deb",
+    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_linux.tar.gz",
+    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_windows.exe",
+    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_windows.zip",
+    "https://github.com/amir1376/ab-download-manager/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "libexpat"
 repo = "libexpat/libexpat"
 url = "https://github.com/libexpat/libexpat"
