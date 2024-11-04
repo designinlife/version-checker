@@ -646,7 +646,7 @@ download_urls = [
 [[softwares]]
 name = "tcpslice"
 url = "https://www.tcpdump.org/release/"
-pattern = "^tcpslice-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)).tar.gz$"
+pattern = "^tcpslice-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?).tar.gz$"
 parser = "index"
 download_urls = [
     "https://www.tcpdump.org/release/tcpslice-{version}.tar.gz",
