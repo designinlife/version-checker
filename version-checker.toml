@@ -700,12 +700,12 @@ url = "https://github.com/libexpat/libexpat"
 pattern = "^R_(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
 release = true
 download_urls = [
-    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-{version}.tar.bz2",
-    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-{version}.tar.gz",
-    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-{version}.tar.lz",
-    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-{version}.tar.xz",
-    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-win32bin-{version}.exe",
-    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-win32bin-{version}.zip",
+    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-{major}.{minor}.{patch}.tar.bz2",
+    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-{major}.{minor}.{patch}.tar.gz",
+    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-{major}.{minor}.{patch}.tar.lz",
+    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-{major}.{minor}.{patch}.tar.xz",
+    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-win32bin-{major}.{minor}.{patch}.exe",
+    "https://github.com/libexpat/libexpat/releases/download/R_{major}_{minor}_{patch}/expat-win32bin-{major}.{minor}.{patch}.zip",
 ]
 
 [[softwares]]
