@@ -24,7 +24,7 @@ class Parser(Base):
             soup = BeautifulSoup(data_s, 'html5lib')
 
             # AlmaLinux 9
-            el_almalinux9 = soup.select_one('#almalinux-9')
+            el_almalinux9 = soup.select_one('#almalinux-os-9')
             # noinspection DuplicatedCode
             el_almalinux9_table = el_almalinux9.find_next_sibling('table')
             el_almalinux9_trs = el_almalinux9_table.select('tbody > tr')
@@ -38,7 +38,7 @@ class Parser(Base):
                         vhlp.append(link_ver)
 
             # AlmaLinux 8
-            el_almalinux8 = soup.select_one('#almalinux-8')
+            el_almalinux8 = soup.select_one('#almalinux-os-8')
             # noinspection DuplicatedCode
             el_almalinux8_table = el_almalinux8.find_next_sibling('table')
             el_almalinux8_trs = el_almalinux8_table.select('tbody > tr')
