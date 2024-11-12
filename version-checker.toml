@@ -754,6 +754,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "xxhash"
+repo = "Cyan4973/xxHash"
+url = "https://github.com/Cyan4973/xxHash"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/Cyan4973/xxHash/releases/download/v{version}/xxhsum_win64_v{major}_{minor}_{patch}.zip",
+    "https://github.com/Cyan4973/xxHash/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "solon"
 repo = "noear/solon"
 url = "https://solon.noear.org/"
