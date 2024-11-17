@@ -35,6 +35,20 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "cat-catch"
+repo = "xifangczy/cat-catch"
+url = "https://github.com/xifangczy/cat-catch"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/xifangczy/cat-catch/releases/download/{version}/cat-catch-{version}-chrome.crx",
+    "https://github.com/xifangczy/cat-catch/releases/download/{version}/cat-catch-{version}-edge.crx",
+    "https://github.com/xifangczy/cat-catch/releases/download/{version}/cat-catch-{version}-firefox.xpi",
+    "https://github.com/xifangczy/cat-catch/releases/download/{version}/cat-catch-{version}.crx",
+    "https://github.com/xifangczy/cat-catch/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "Windows.Terminal"
 repo = "microsoft/terminal"
 url = "https://github.com/microsoft/terminal"
