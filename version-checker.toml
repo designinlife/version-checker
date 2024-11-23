@@ -1739,6 +1739,8 @@ download_urls = [
     "https://imagemagick.org/archive/binaries/ImageMagick-{version}-Q16-HDRI-x64-dll.exe",
     "https://imagemagick.org/archive/binaries/ImageMagick-{version}-Q16-x64-dll.exe",
     "https://imagemagick.org/archive/binaries/magick#ImageMagick-{version}-linux-amd64",
+    "https://imagemagick.org/archive/linux/CentOS/x86_64/ImageMagick-{version}.x86_64.rpm",
+    "https://imagemagick.org/archive/linux/CentOS/x86_64/ImageMagick-libs-{version}.x86_64.rpm",
 ]
 
 [[softwares]]
