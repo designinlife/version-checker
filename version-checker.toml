@@ -1719,6 +1719,29 @@ download_urls = [
 max_page = 2
 
 [[softwares]]
+name = "ImageMagick"
+repo = "ImageMagick/ImageMagick"
+url = "https://github.com/ImageMagick/ImageMagick"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(-(?P<build>\\d+))?)$"
+release = true
+download_urls = [
+    "https://github.com/ImageMagick/ImageMagick/releases/download/{version}/ImageMagick.Q16-HDRI.msixbundle#ImageMagick-{version}.Q16-HDRI.msixbundle",
+    "https://github.com/ImageMagick/ImageMagick/releases/download/{version}/ImageMagick.Q16.msixbundle#ImageMagick-{version}.Q16.msixbundle",
+    "https://github.com/ImageMagick/ImageMagick/releases/download/{version}/ImageMagick.Q8.msixbundle#ImageMagick-{version}.Q8.msixbundle",
+    "https://github.com/ImageMagick/ImageMagick/archive/refs/tags/{version}.tar.gz",
+    "https://imagemagick.org/archive/binaries/ImageMagick-{version}-Q8-x64-static.exe",
+    "https://imagemagick.org/archive/binaries/ImageMagick-{version}-Q16-HDRI-x64-static.exe",
+    "https://imagemagick.org/archive/binaries/ImageMagick-{version}-Q16-x64-static.exe",
+    "https://imagemagick.org/archive/binaries/ImageMagick-{version}-portable-Q8-x64.zip",
+    "https://imagemagick.org/archive/binaries/ImageMagick-{version}-portable-Q16-HDRI-x64.zip",
+    "https://imagemagick.org/archive/binaries/ImageMagick-{version}-portable-Q16-x64.zip",
+    "https://imagemagick.org/archive/binaries/ImageMagick-{version}-Q8-x64-dll.exe",
+    "https://imagemagick.org/archive/binaries/ImageMagick-{version}-Q16-HDRI-x64-dll.exe",
+    "https://imagemagick.org/archive/binaries/ImageMagick-{version}-Q16-x64-dll.exe",
+    "https://imagemagick.org/archive/binaries/magick#ImageMagick-{version}-linux-amd64",
+]
+
+[[softwares]]
 name = "createrepo_c"
 repo = "rpm-software-management/createrepo_c"
 url = "https://github.com/rpm-software-management/createrepo_c"
