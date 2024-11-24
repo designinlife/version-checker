@@ -155,8 +155,10 @@ repo = "git-for-windows/git"
 url = "https://gitforwindows.org/"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.windows\\.(?P<build>\\d+))$"
 release = true
-download_urls = [
-    "https://github.com/git-for-windows/git/releases/download/v{major}.{minor}.{patch}.windows.{build}/Git-{major}.{minor}.{patch}-64-bit.exe",
+assets = true
+assets_patterns = [
+    "Git-\\d+\\.\\d+\\.\\d+(\\.\\d+)?-64-bit.exe",
+    "PortableGit-\\d+\\.\\d+\\.\\d+(\\.\\d+)?-64-bit.7z.exe",
 ]
 
 [[softwares]]
