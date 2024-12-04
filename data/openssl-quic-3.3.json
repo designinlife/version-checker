@@ -1,1 +1,1 @@
-{"name":"openssl-quic-3.3","url":"https://github.com/quictls/openssl","latest":"3.3.0","versions":["3.3.0"],"download_urls":["https://github.com/quictls/openssl/archive/refs/tags/openssl-3.3.0-quic1.tar.gz"],"created_time":"2024-12-04 04:00:44"}
+{"name":"openssl-quic-3.3","url":"https://github.com/quictls/openssl","latest":"3.3.0","versions":["3.3.0"],"download_urls":["https://github.com/quictls/openssl/archive/refs/tags/openssl-3.3.0-quic1.tar.gz"],"created_time":"2024-12-04 16:00:46"}
