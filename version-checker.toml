@@ -702,10 +702,10 @@ url = "https://github.com/amir1376/ab-download-manager"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
-    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_linux.deb",
-    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_linux.tar.gz",
-    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_windows.exe",
-    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_windows.zip",
+    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_linux_x64.deb",
+    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_linux_x64.tar.gz",
+    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_windows_x64.exe",
+    "https://github.com/amir1376/ab-download-manager/releases/download/v{version}/ABDownloadManager_{version}_windows_x64.zip",
     "https://github.com/amir1376/ab-download-manager/archive/refs/tags/v{version}.tar.gz",
 ]
 
