@@ -298,6 +298,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "forgejo"
+repo = "forgejo/forgejo"
+url = "https://github.com/nacos-group/r-nacos"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = 'codeberg'
+release = true
+download_urls = [
+    "https://codeberg.org/forgejo/forgejo/releases/download/v{version}/forgejo-{version}-linux-amd64.xz",
+    "https://codeberg.org/forgejo/forgejo/releases/download/v{version}/forgejo-src-{version}.tar.gz",
+]
+
+[[softwares]]
 name = "harbor"
 repo = "goharbor/harbor"
 url = "https://goharbor.io/"
