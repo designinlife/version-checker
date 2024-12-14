@@ -36,6 +36,16 @@ class GitlabSoftware(AppSettingSoftItem):
     host: str = Field(default='gitlab.com')
 
 
+class CodebergSoftware(AppSettingSoftItem):
+    parser: Literal['codeberg']
+    repo: str
+    release: bool = Field(default=False)
+    latest: bool = Field(default=False)
+    assets: bool = Field(default=False)
+    assets_patterns: List[str] = Field(default_factory=list)
+    max_page: int = Field(default=1)
+
+
 class GoSoftware(AppSettingSoftItem):
     parser: Literal['go']
 
@@ -143,7 +153,7 @@ class DockerHubSoftware(AppSettingSoftItem):
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
-                    | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GitlabSoftware
+                    | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GitlabSoftware | CodebergSoftware
                     | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | FirefoxSoftware
                     | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware
                     | FlutterSoftware | DartSoftware | NavicatSoftware | HAProxySoftware | DockerHubSoftware
