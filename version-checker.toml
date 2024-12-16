@@ -310,6 +310,24 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "localsend"
+repo = "localsend/localsend"
+url = "https://github.com/localsend/localsend"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/localsend/localsend/releases/download/v{version}/LocalSend-{version}-android-arm64v8.apk",
+    "https://github.com/localsend/localsend/releases/download/v{version}/LocalSend-{version}-android-arm32v7.apk",
+    "https://github.com/localsend/localsend/releases/download/v{version}/LocalSend-{version}-android-google-play.apk",
+    "https://github.com/localsend/localsend/releases/download/v{version}/LocalSend-{version}-android-x64.apk",
+    "https://github.com/localsend/localsend/releases/download/v{version}/LocalSend-{version}-linux-x86-64.deb",
+    "https://github.com/localsend/localsend/releases/download/v{version}/LocalSend-{version}-linux-x86-64.tar.gz",
+    "https://github.com/localsend/localsend/releases/download/v{version}/LocalSend-{version}-windows-x86-64.zip",
+    "https://github.com/localsend/localsend/releases/download/v{version}/LocalSend-{version}-windows-x86-64.exe",
+    "https://github.com/localsend/localsend/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "harbor"
 repo = "goharbor/harbor"
 url = "https://goharbor.io/"
