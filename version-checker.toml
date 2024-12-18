@@ -328,6 +328,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "btop"
+repo = "aristocratos/btop"
+url = "https://github.com/aristocratos/btop"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/aristocratos/btop/releases/download/v{version}/btop-x86_64-linux-musl.tbz#btop-v{version}-x86_64-linux-musl.tbz",
+    "https://github.com/aristocratos/btop/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "harbor"
 repo = "goharbor/harbor"
 url = "https://goharbor.io/"
