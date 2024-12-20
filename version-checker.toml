@@ -2356,6 +2356,7 @@ parser = "docker-hub"
 repo = "library/gradle"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-jdk(17|21)-alpine)?$"
 parser = "docker-hub"
+max_page = 3
 
 [[softwares]]
 repo = "library/httpd"
