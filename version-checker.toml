@@ -1598,6 +1598,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "code-server"
+repo = "coder/code-server"
+url = "https://github.com/coder/code-server"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/coder/code-server/releases/download/v{version}/code-server-{version}-amd64.rpm",
+    "https://github.com/coder/code-server/releases/download/v{version}/code-server_{version}_amd64.deb",
+    "https://github.com/coder/code-server/releases/download/v{version}/code-server-{version}-linux-amd64.tar.gz",
+]
+
+[[softwares]]
 name = "vscode"
 repo = "microsoft/vscode"
 url = "https://code.visualstudio.com/"
