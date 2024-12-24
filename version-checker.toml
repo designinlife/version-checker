@@ -49,6 +49,27 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "rustdesk"
+repo = "rustdesk/rustdesk"
+url = "https://github.com/rustdesk/rustdesk"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/rustdesk/rustdesk/releases/download/{version}/rustdesk-{version}-x86_64.msi",
+    "https://github.com/rustdesk/rustdesk/releases/download/{version}/rustdesk-{version}-x86_64.deb",
+    "https://github.com/rustdesk/rustdesk/releases/download/{version}/rustdesk-{version}-x86_64.dmg",
+    "https://github.com/rustdesk/rustdesk/releases/download/{version}/rustdesk-{version}-universal-signed.apk",
+    "https://github.com/rustdesk/rustdesk/releases/download/{version}/rustdesk-{version}-aarch64-signed.apk",
+    "https://github.com/rustdesk/rustdesk/releases/download/{version}/rustdesk-{version}-armv7-signed.apk",
+    "https://github.com/rustdesk/rustdesk/releases/download/{version}/rustdesk-{version}-x86_64.flatpak",
+    "https://github.com/rustdesk/rustdesk/releases/download/{version}/rustdesk-{version}-aarch64.flatpak",
+    "https://github.com/rustdesk/rustdesk/releases/download/{version}/rustdesk-{version}-0.x86_64.rpm",
+    "https://github.com/rustdesk/rustdesk/releases/download/{version}/rustdesk-{version}-0-x86_64.pkg.tar.zst",
+    "https://github.com/rustdesk/rustdesk/releases/download/{version}/rustdesk-{version}-unsigned.tar.gz",
+    "https://github.com/rustdesk/rustdesk/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "Windows.Terminal"
 repo = "microsoft/terminal"
 url = "https://github.com/microsoft/terminal"
