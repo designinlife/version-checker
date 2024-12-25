@@ -1699,6 +1699,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "AutoHotkey"
+repo = "AutoHotkey/AutoHotkey"
+url = "https://github.com/AutoHotkey/AutoHotkey"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/AutoHotkey/AutoHotkey/releases/download/v{version}/AutoHotkey_{version}.zip",
+    "https://github.com/AutoHotkey/AutoHotkey/releases/download/v{version}/AutoHotkey_{version}_setup.exe",
+    "https://github.com/AutoHotkey/AutoHotkey/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "chrome"
 url = "https://www.google.com/chrome/"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))$"
