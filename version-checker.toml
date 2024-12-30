@@ -22,6 +22,17 @@ download_urls = [
 split = 1
 
 [[softwares]]
+name = "gns3-gui"
+repo = "GNS3/gns3-gui"
+url = "https://github.com/GNS3/gns3-gui"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/GNS3/gns3-gui/releases/download/v{version}/GNS3-{version}-all-in-one.exe",
+    "https://github.com/GNS3/gns3-gui/releases/download/v{version}/GNS3-{version}.source.zip",
+]
+
+[[softwares]]
 name = "ventoy"
 repo = "ventoy/Ventoy"
 url = "https://www.ventoy.net/"
