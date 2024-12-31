@@ -786,6 +786,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "vmr"
+repo = "gvcgo/version-manager"
+url = "https://github.com/gvcgo/version-manager"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/gvcgo/version-manager/releases/download/v{version}/vmr_linux-amd64.zip#vmr-{version}_linux-amd64.zip",
+    "https://github.com/gvcgo/version-manager/releases/download/v{version}/vmr_windows-amd64.zip#vmr-{version}_windows-amd64.zip",
+    "https://github.com/gvcgo/version-manager/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "ChatBox"
 repo = "AIDotNet/ChatBox"
 url = "https://github.com/AIDotNet/ChatBox"
