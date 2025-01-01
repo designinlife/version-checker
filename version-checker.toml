@@ -798,6 +798,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "dufs"
+repo = "sigoden/dufs"
+url = "https://github.com/sigoden/dufs"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/sigoden/dufs/releases/download/v{version}/dufs-v{version}-x86_64-pc-windows-msvc.zip",
+    "https://github.com/sigoden/dufs/releases/download/v{version}/dufs-v{version}-x86_64-unknown-linux-musl.tar.gz",
+    "https://github.com/sigoden/dufs/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "ChatBox"
 repo = "AIDotNet/ChatBox"
 url = "https://github.com/AIDotNet/ChatBox"
