@@ -1,1 +1,1 @@
-{"name":"docker-library-gradle","repo":"library/gradle","tags":[{"name":"8.12.0","full_size":395092178,"v2":true,"tag_last_pushed":"2024-12-21T03:23:47.55571Z"}],"suffix":["-jdk21-alpine","-jdk17-alpine"],"fixed_tags":[],"latest_tags":["8.12.0"],"created_time":"2025-01-01 16:01:23"}
+{"name":"docker-library-gradle","repo":"library/gradle","tags":[{"name":"8.12.0","full_size":395092178,"v2":true,"tag_last_pushed":"2024-12-21T03:23:47.55571Z"}],"suffix":["-jdk21-alpine","-jdk17-alpine"],"fixed_tags":[],"latest_tags":["8.12.0"],"created_time":"2025-01-02 04:01:51"}
