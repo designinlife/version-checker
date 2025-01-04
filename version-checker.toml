@@ -74,6 +74,20 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "bat"
+repo = "sharkdp/bat"
+url = "https://github.com/sharkdp/bat"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/sharkdp/bat/releases/download/v{version}/bat-v{version}-x86_64-pc-windows-gnu.zip",
+    "https://github.com/sharkdp/bat/releases/download/v{version}/bat-v{version}-x86_64-pc-windows-msvc.zip",
+    "https://github.com/sharkdp/bat/releases/download/v{version}/bat-v{version}-x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/sharkdp/bat/releases/download/v{version}/bat-v{version}-x86_64-unknown-linux-musl.tar.gz",
+    "https://github.com/sharkdp/bat/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "darktable"
 repo = "darktable-org/darktable"
 url = "https://github.com/darktable-org/darktable"
