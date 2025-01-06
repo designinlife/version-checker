@@ -8,6 +8,7 @@ authors = [
 license = { text = "MIT" }
 readme = "README.md"
 packages = [{ include = "app" }]
+package-mode = false
 requires-python = ">=3.12,<4.0"
 dependencies = [
     "aiofiles (>=24.1.0,<25.0.0)",
