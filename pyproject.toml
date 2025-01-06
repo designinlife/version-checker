@@ -24,6 +24,9 @@ dependencies = [
     "retrying (>=1.3.4,<2.0.0)"
 ]
 
+[project.scripts]
+version-checker = "app.cli:start"
+
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
@@ -33,6 +36,3 @@ packages = [{ include = "app" }]
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.4"
-
-[tool.poetry.scripts]
-version-checker = "app.cli:start"
