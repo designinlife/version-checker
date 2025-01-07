@@ -1764,6 +1764,21 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "tabby"
+repo = "Eugeny/tabby"
+url = "https://github.com/Eugeny/tabby"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/Eugeny/tabby/releases/download/v{version}/tabby-{version}-linux-x64.deb",
+    "https://github.com/Eugeny/tabby/releases/download/v{version}/tabby-{version}-linux-x64.rpm",
+    "https://github.com/Eugeny/tabby/releases/download/v{version}/tabby-{version}-linux-x64.tar.gz",
+    "https://github.com/Eugeny/tabby/releases/download/v{version}/tabby-{version}-portable-x64.zip",
+    "https://github.com/Eugeny/tabby/releases/download/v{version}/tabby-{version}-setup-x64.exe",
+    "https://github.com/Eugeny/tabby/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "virtualbox"
 url = "https://www.virtualbox.org/wiki/Downloads"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
