@@ -812,6 +812,22 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "proxypin"
+repo = "wanghongenpin/proxypin"
+url = "https://github.com/wanghongenpin/proxypin"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/wanghongenpin/proxypin/releases/download/v{version}/ProxyPin-Android-arm64.apk#ProxyPin-v{version}-Android-arm64.apk",
+    "https://github.com/wanghongenpin/proxypin/releases/download/v{version}/ProxyPin-Android.apk#ProxyPin-v{version}-Android.apk",
+    "https://github.com/wanghongenpin/proxypin/releases/download/v{version}/ProxyPin-Linux.deb#ProxyPin-v{version}-Linux.deb",
+    "https://github.com/wanghongenpin/proxypin/releases/download/v{version}/ProxyPin-Mac.zip#ProxyPin-v{version}-Mac.zip",
+    "https://github.com/wanghongenpin/proxypin/releases/download/v{version}/ProxyPin-Windows.zip#ProxyPin-v{version}-Windows.zip",
+    "https://github.com/wanghongenpin/proxypin/releases/download/v{version}/ProxyPin-Windows7_x64.zip#ProxyPin-v{version}-Windows7_x64.zip",
+    "https://github.com/wanghongenpin/proxypin/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "vmr"
 repo = "gvcgo/version-manager"
 url = "https://github.com/gvcgo/version-manager"
