@@ -2146,6 +2146,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "syncthing"
+repo = "syncthing/syncthing"
+url = "https://github.com/syncthing/syncthing"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/syncthing/syncthing/releases/download/v{version}/syncthing-linux-amd64-v{version}.tar.gz",
+    "https://github.com/syncthing/syncthing/releases/download/v{version}/syncthing-windows-amd64-v{version}.zip",
+    "https://github.com/syncthing/syncthing/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "rclone"
 repo = "rclone/rclone"
 url = "https://rclone.org/"
