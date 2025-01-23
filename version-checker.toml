@@ -1191,6 +1191,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "AnotherRedisDesktopManager"
+repo = "qishibo/AnotherRedisDesktopManager"
+url = "https://github.com/qishibo/AnotherRedisDesktopManager"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/qishibo/AnotherRedisDesktopManager/releases/download/v{version}/Another-Redis-Desktop-Manager-win-{version}-x64.zip",
+    "https://github.com/qishibo/AnotherRedisDesktopManager/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "redis"
 repo = "redis/redis"
 url = "https://redis.io/"
