@@ -1736,7 +1736,7 @@ download_urls = [
     "https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v{version}/Clash.Verge_x64.app.tar.gz#Clash.Verge_x64_v{version}.app.tar.gz",
     "https://github.com/clash-verge-rev/clash-verge-rev/archive/refs/tags/v{version}.tar.gz",
 ]
-git
+
 [[softwares]]
 name = "code-server"
 repo = "coder/code-server"
