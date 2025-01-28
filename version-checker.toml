@@ -1724,6 +1724,20 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "clash-verge-rev"
+repo = "clash-verge-rev/clash-verge-rev"
+url = "https://github.com/clash-verge-rev/clash-verge-rev"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v{version}/Clash.Verge_{version}_amd64.deb",
+    "https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v{version}/Clash.Verge_{version}_x64-setup.exe",
+    "https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v{version}/Clash.Verge_{version}_x64.dmg",
+    "https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v{version}/Clash.Verge_x64.app.tar.gz#Clash.Verge_x64_v{version}.app.tar.gz",
+    "https://github.com/clash-verge-rev/clash-verge-rev/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "code-server"
 repo = "coder/code-server"
 url = "https://github.com/coder/code-server"
