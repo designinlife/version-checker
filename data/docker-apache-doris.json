@@ -1,1 +1,1 @@
-{"name":"docker-apache-doris","repo":"apache/doris","tags":[],"suffix":["-broker-x86_64","-fe-x86_64","-be-x86_64"],"fixed_tags":[],"latest_tags":["1.2.2"],"created_time":"2025-01-29 16:01:34"}
+{"name":"docker-apache-doris","repo":"apache/doris","tags":[],"suffix":["-broker-x86_64","-fe-x86_64","-be-x86_64"],"fixed_tags":[],"latest_tags":["1.2.2"],"created_time":"2025-01-30 04:01:58"}
