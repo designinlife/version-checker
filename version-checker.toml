@@ -1738,6 +1738,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "rathole"
+repo = "rapiz1/rathole"
+url = "https://github.com/rapiz1/rathole"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/rapiz1/rathole/releases/download/v{version}/rathole-x86_64-pc-windows-msvc.zip#rathole-v{version}-x86_64-pc-windows-msvc.zip",
+    "https://github.com/rapiz1/rathole/releases/download/v{version}/rathole-x86_64-unknown-linux-gnu.zip#rathole-v{version}-x86_64-unknown-linux-gnu.zip",
+    "https://github.com/rapiz1/rathole/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "code-server"
 repo = "coder/code-server"
 url = "https://github.com/coder/code-server"
