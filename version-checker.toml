@@ -1724,6 +1724,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "srs"
+repo = "ossrs/srs"
+url = "https://github.com/ossrs/srs"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)(\\.(?P<patch>\\d+))?-r\\d+)$"
+release = true
+download_urls = [
+    "https://github.com/ossrs/srs/releases/download/v{version}/srs-server-{version}.tar.gz",
+    "https://github.com/ossrs/srs/releases/download/v{version}/SRS-Windows-x86_64-{version}-setup.exe",
+]
+
+[[softwares]]
 name = "clash-verge-rev"
 repo = "clash-verge-rev/clash-verge-rev"
 url = "https://github.com/clash-verge-rev/clash-verge-rev"
