@@ -26,6 +26,7 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
 
     http_proxy = os.environ.get('HTTPS_PROXY', None)
     docker_registry_host = os.environ.get('DOCKER_REGISTRY_HOST', 'harbor.stone.cs')
+    docker_io = os.environ.get('DOCKER_IO', 'docker.io')
 
     r = requests.get('https://raw.githubusercontent.com/designinlife/version-checker/main/data/all.json',
                      proxies={'https_proxy': http_proxy},
@@ -41,16 +42,16 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
                 if is_latest_only:
                     for v2 in v['latest_tags']:
                         cmds.append(f'{f'HTTPS_PROXY={http_proxy} ' if http_proxy else ''}skopeo copy '
-                                    f'docker://docker.io/{v['repo']}:{v2} '
+                                    f'docker://{docker_io}/{v['repo']}:{v2} '
                                     f'docker://{docker_registry_host}/{v['repo']}:{v2}')
 
                         for v3 in v['suffix']:
                             cmds.append(f'{f'HTTPS_PROXY={http_proxy} ' if http_proxy else ''}'
-                                        f'skopeo copy docker://docker.io/{v['repo']}:{v2}{v3} docker://{docker_registry_host}/{v['repo']}:{v2}{v3}')
+                                        f'skopeo copy docker://{docker_io}/{v['repo']}:{v2}{v3} docker://{docker_registry_host}/{v['repo']}:{v2}{v3}')
 
                         for v4 in v['fixed_tags']:
                             cmds.append(f'{f'HTTPS_PROXY={http_proxy} ' if http_proxy else ''}'
-                                        f'skopeo copy docker://docker.io/{v['repo']}:{v4} docker://{docker_registry_host}/{v['repo']}:{v4}')
+                                        f'skopeo copy docker://{docker_io}/{v['repo']}:{v4} docker://{docker_registry_host}/{v['repo']}:{v4}')
                 else:
                     if not repo_name or repo_name == v['repo']:
                         for v2 in v['tags']:
@@ -70,7 +71,7 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
                             cmds.append(f'{f'HTTPS_PROXY={http_proxy} ' if http_proxy else ''}'
                                         f'DT={tag_pushed_time.format('YYYY-MM-DD')} '
                                         'skopeo copy '
-                                        f'docker://docker.io/{v['repo']}:{v2['name']} '
+                                        f'docker://{docker_io}/{v['repo']}:{v2['name']} '
                                         f'docker://{docker_registry_host}/{v['repo']}:{v2['name']}\n')
 
     if cmds:
