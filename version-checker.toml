@@ -2887,3 +2887,13 @@ repo = "bitnami/kafka"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 split = 2
+
+[[softwares]]
+repo = "stilleshan/frps"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "docker-hub"
+
+[[softwares]]
+repo = "stilleshan/frpc"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "docker-hub"
