@@ -89,12 +89,17 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
         else:
             err_cmds = []
 
+            progress = 1
+            total_progress = len(cmds)
+
             for cmd in cmds:
                 try:
-                    do_skopeo_copy(cmd)
+                    do_skopeo_copy(cmd, progress, total_progress)
                 except Exception as e:
                     err_cmds.append(cmd)
                     logger.exception(e)
+                finally:
+                    progress += 1
 
             if err_cmds:
                 print('ERROR COMMANDS:')
@@ -102,7 +107,7 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
 
 
 @retry(stop_max_attempt_number=3, wait_fixed=1500)
-def do_skopeo_copy(cmd: str):
+def do_skopeo_copy(cmd: str, progress: int, total_progress: int):
     r = subprocess.run(cmd, stdout=sys.stdout, stderr=subprocess.PIPE, shell=True)
 
     if r.returncode != 0:
@@ -114,4 +119,4 @@ def do_skopeo_copy(cmd: str):
 
         raise RuntimeError(f'The exit code is non-zero. (command: {cmd}, reason: {err})')
     else:
-        logger.info(f'COMMAND: {cmd} (\033[1;32mOK\033[0m)')
+        logger.info(f'Progress: {progress}/{total_progress} COMMAND: {cmd} (\033[1;32mOK\033[0m)')
