@@ -2897,3 +2897,8 @@ parser = "docker-hub"
 repo = "stilleshan/frpc"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
+
+[[softwares]]
+repo = "ossrs/srs"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)-r(?P<patch>\\d+))$"
+parser = "docker-hub"
