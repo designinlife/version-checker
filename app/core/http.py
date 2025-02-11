@@ -45,6 +45,7 @@ class AsyncHttpClient:
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=timeout)) as session:
             async with session.request(method=method, url=url,
                                        params=params,
+                                       allow_redirects=True,
                                        json=data,
                                        headers=hdr,
                                        proxy=os.environ.get('PROXY')) as resp:
