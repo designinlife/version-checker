@@ -26,7 +26,7 @@ def cli(ctx: Context, cfg: Configuration, output: str, repo_name: str | None, si
         is_dry_run: bool):
     logger.debug(f'app cli skopeo called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})')
 
-    http_proxy = os.environ.get('HTTPS_PROXY', None)
+    http_proxy = os.environ.get('PROXY', None)
     docker_registry_host = os.environ.get('DOCKER_REGISTRY_HOST', 'harbor.stone.cs')
     docker_io = os.environ.get('DOCKER_IO', 'docker.io')
 
