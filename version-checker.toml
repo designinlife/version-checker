@@ -2586,7 +2586,7 @@ parser = "docker-hub"
 
 [[softwares]]
 repo = "library/fluentd"
-pattern = "^(?P<version>v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-[\\d+.]+)?$"
+pattern = "^(?P<version>v(?P<major>\\d+)\\.(?P<minor>\\d+)(\\.(?P<patch>\\d+))?(?P<other>-[\\d+.]+)?)$"
 parser = "docker-hub"
 
 [[softwares]]
