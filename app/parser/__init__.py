@@ -1,5 +1,6 @@
 import importlib
 import json
+import operator
 import os
 from abc import ABCMeta, abstractmethod
 from asyncio import Semaphore
@@ -14,6 +15,75 @@ from app.core.config import Configuration, AppSettingSoftItem, OutputResult
 from app.core.http import AsyncHttpClient
 from app.core.version import VersionSummary
 from app.link import UrlMakerBase
+
+
+def check_requirements(requirement_string: str, major: int, minor: int) -> bool:
+    """
+    检查是否满足 requirements 字符串中的条件。
+
+    Args:
+        requirement_string: 包含条件的字符串，例如 "major >= 6 && minor < 2"。
+        major: major 版本号。
+        minor: minor 版本号。
+
+    Returns:
+        True 如果满足条件，否则返回 False。
+    """
+    # 定义运算符映射
+    ops = {
+        '>': operator.gt,
+        '<': operator.lt,
+        '>=': operator.ge,
+        '<=': operator.le,
+        '==': operator.eq,
+        '!=': operator.ne
+    }
+
+    try:
+        # 将 requirement_string 分割成条件
+        conditions = requirement_string.split('&&')
+        conditions = [c.strip() for c in conditions]  # 清理空格
+
+        # 逐个检查条件
+        for condition in conditions:
+            parts = condition.split()
+            if len(parts) != 3:
+                logger.warning(f"Warning: Invalid condition format: {condition}. Skipping.")
+                continue
+
+            variable, operator_str, value_str = parts
+
+            # 获取变量值
+            if variable == 'major':
+                value1 = major
+            elif variable == 'minor':
+                value1 = minor
+            else:
+                logger.warning(f"Warning: Unknown variable: {variable}. Skipping condition.")
+                continue
+
+            # 获取运算符
+            op = ops.get(operator_str)
+            if op is None:
+                logger.warning(f"Warning: Unknown operator: {operator_str}. Skipping condition.")
+                continue
+
+            # 获取值
+            try:
+                value2 = int(value_str)
+            except ValueError:
+                logger.error(f"Warning: Invalid value: {value_str}. Skipping condition.")
+                continue
+
+            # 检查条件是否满足
+            if not op(value1, value2):
+                return False  # 如果任何一个条件不满足，则返回 False
+
+        # 所有条件都满足，返回 True
+        return True
+    except Exception as e:
+        logger.error(f"Error evaluating requirement: {e}")
+        return False
 
 
 class Base(metaclass=ABCMeta):
