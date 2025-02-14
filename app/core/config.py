@@ -16,6 +16,7 @@ class AppSettingSoftItem(BaseModel):
     disabled: bool = Field(default=False)
     download_dynamic: bool = Field(default=False, description='动态生成下载地址')
     download_urls: List[str] = Field(default_factory=list)
+    condition: Optional[str] = None  # 条件表达式: major >= 6 && minor < 5 或 major >= 6
 
 
 class GithubSoftware(AppSettingSoftItem):

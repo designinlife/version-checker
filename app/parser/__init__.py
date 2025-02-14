@@ -17,7 +17,7 @@ from app.core.version import VersionSummary
 from app.link import UrlMakerBase
 
 
-def check_requirements(requirement_string: str, major: int, minor: int) -> bool:
+def check_requirements(requirement_string: str, major: int, minor: Optional[int] = None) -> bool:
     """
     检查是否满足 requirements 字符串中的条件。
 
@@ -57,7 +57,7 @@ def check_requirements(requirement_string: str, major: int, minor: int) -> bool:
             if variable == 'major':
                 value1 = major
             elif variable == 'minor':
-                value1 = minor
+                value1 = minor if isinstance(minor, int) else 0
             else:
                 logger.warning(f"Warning: Unknown variable: {variable}. Skipping condition.")
                 continue
@@ -185,6 +185,9 @@ class Base(metaclass=ABCMeta):
         if isinstance(version_summary, Mapping):
             for k, v in version_summary.items():
                 if isinstance(v, VersionSummary):
+                    if soft.condition and v.latest is not None and not check_requirements(soft.condition, v.latest.major, v.latest.minor):
+                        continue
+
                     result = OutputResult(name=f'{soft.name}-{k}', url=f'{soft.url}', latest=repr(v.latest),
                                           versions=[repr(x) for x in v.versions],
                                           download_urls=self._build_download_urls(soft, v, v.downloads),
