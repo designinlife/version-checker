@@ -2898,3 +2898,9 @@ parser = "docker-hub"
 repo = "ossrs/srs"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)-r(?P<patch>\\d+))$"
 parser = "docker-hub"
+
+[[softwares]]
+repo = "manticoresearch/manticore"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "docker-hub"
+split = 2
