@@ -2903,4 +2903,3 @@ parser = "docker-hub"
 repo = "manticoresearch/manticore"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
-split = 2
