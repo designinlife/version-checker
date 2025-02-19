@@ -112,6 +112,20 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "czkawka"
+repo = "qarmin/czkawka"
+url = "https://github.com/qarmin/czkawka"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/qarmin/czkawka/releases/download/{version}/linux_czkawka_cli#linux_czkawka_cli-{version}",
+    "https://github.com/qarmin/czkawka/releases/download/{version}/linux_czkawka_cli_static_eyra#linux_czkawka_cli_static_eyra-{version}",
+    "https://github.com/qarmin/czkawka/releases/download/{version}/windows_czkawka_cli.exe#windows_czkawka_cli-{version}.exe",
+    "https://github.com/qarmin/czkawka/releases/download/{version}/windows_czkawka_gui_410.zip#windows_czkawka_gui_410-{version}.zip",
+    "https://github.com/qarmin/czkawka/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "rustdesk"
 repo = "rustdesk/rustdesk"
 url = "https://github.com/rustdesk/rustdesk"
