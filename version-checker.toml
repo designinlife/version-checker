@@ -126,6 +126,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "cherry-studio"
+repo = "CherryHQ/cherry-studio"
+url = "https://github.com/CherryHQ/cherry-studio"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/CherryHQ/cherry-studio/releases/download/v{version}/Cherry-Studio-{version}-portable.exe",
+    "https://github.com/CherryHQ/cherry-studio/releases/download/v{version}/Cherry-Studio-{version}-setup.exe",
+    "https://github.com/CherryHQ/cherry-studio/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "rustdesk"
 repo = "rustdesk/rustdesk"
 url = "https://github.com/rustdesk/rustdesk"
