@@ -191,6 +191,14 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "gitextensions"
+repo = "gitextensions/gitextensions"
+url = "https://github.com/gitextensions/gitextensions"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+assets = true
+
+[[softwares]]
 name = "Sarasa-Gothic"
 repo = "be5invis/Sarasa-Gothic"
 url = "https://github.com/be5invis/Sarasa-Gothic"
