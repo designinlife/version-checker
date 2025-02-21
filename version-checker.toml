@@ -138,6 +138,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "reqable-app"
+repo = "reqable/reqable-app"
+url = "https://github.com/reqable/reqable-app"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/reqable/reqable-app/releases/download/{version}/reqable-app-windows-x86_64.zip#reqable-app-{version}-windows-x86_64.zip",
+    "https://github.com/reqable/reqable-app/releases/download/{version}/reqable-app-windows-x86_64.exe#reqable-app-{version}-windows-x86_64.exe",
+    "https://github.com/reqable/reqable-app/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "rustdesk"
 repo = "rustdesk/rustdesk"
 url = "https://github.com/rustdesk/rustdesk"
