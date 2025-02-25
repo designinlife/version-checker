@@ -40,6 +40,7 @@ class GitlabSoftware(AppSettingSoftItem):
 class CodebergSoftware(AppSettingSoftItem):
     parser: Literal['codeberg']
     repo: str
+    host: str = Field(default='codeberg.org')
     release: bool = Field(default=False)
     latest: bool = Field(default=False)
     assets: bool = Field(default=False)

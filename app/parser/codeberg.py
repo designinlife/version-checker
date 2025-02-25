@@ -17,9 +17,9 @@ class Parser(Base):
         async with sem:
             # Make an HTTP request.
             if soft.release:
-                api_url = f'https://codeberg.org/api/v1/repos/{soft.repo}/releases'
+                api_url = f'https://{soft.host}/api/v1/repos/{soft.repo}/releases'
             else:
-                api_url = f'https://codeberg.org/api/v1/repos/{soft.repo}/tags'
+                api_url = f'https://{soft.host}/api/v1/repos/{soft.repo}/tags'
 
             _, status, _, data_r = await self.request('GET', api_url, is_json=True)
 

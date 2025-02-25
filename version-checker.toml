@@ -430,13 +430,27 @@ download_urls = [
 [[softwares]]
 name = "forgejo"
 repo = "forgejo/forgejo"
-url = "https://github.com/nacos-group/r-nacos"
+url = "https://forgejo.org/"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = 'codeberg'
 release = true
 download_urls = [
     "https://codeberg.org/forgejo/forgejo/releases/download/v{version}/forgejo-{version}-linux-amd64.xz",
     "https://codeberg.org/forgejo/forgejo/releases/download/v{version}/forgejo-src-{version}.tar.gz",
+]
+
+[[softwares]]
+name = "forgejo-runner"
+repo = "forgejo/runner"
+url = "https://forgejo.org/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = 'codeberg'
+host = 'code.forgejo.org'
+release = true
+download_urls = [
+    "https://code.forgejo.org/forgejo/runner/releases/download/v{version}/forgejo-runner-{version}-linux-amd64",
+    "https://code.forgejo.org/forgejo/runner/releases/download/v{version}/forgejo-runner-{version}-linux-amd64.xz",
+    "https://code.forgejo.org/forgejo/runner/releases/download/v{version}/forgejo-runner-{version}-linux-arm64.xz",
 ]
 
 [[softwares]]
