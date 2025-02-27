@@ -9,42 +9,39 @@ from loguru import logger
 from app.core.config import Configuration
 
 
-def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = None) -> List[Tuple[str, str]]:
+def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = None) -> List[Tuple[str, str, str]]:
     """
-    比较两个JSON文件中的数据 latest 版本是否有更新。name 键名可能在其中一个文件中并不存在，应视为有新版本。
+    Compares the 'latest' version of data in two JSON-like lists of dictionaries.
 
     Args:
-        new_data: 新的JSON数据列表。
-        old_data: 旧的JSON数据列表，默认为None。
+        new_data: A list of dictionaries representing the new data.
+        old_data: An optional list of dictionaries representing the old data.  If None, it's treated as no previous data.
 
     Returns:
-        返回的数组中是一个元组对象，包含两个元素: name 和 latest，latest 是 new_data 中的值。
+        A list of tuples. Each tuple contains (name, latest, previous) where:
+            - name: The 'name' key from the new_data dictionary.
+            - latest: The 'latest' value from the new_data dictionary.
+            - previous: The 'latest' value from the old_data dictionary, or None if not found.
+
+        The list only contains tuples where the 'latest' version in new_data is different from the 'latest' version in old_data,
+        or when the 'name' key is not found in old_data.  Returns an empty list if old_data is None.
     """
-    updated_list: List[Tuple[str, str]] = []
 
     if old_data is None:
-        for item in new_data:
-            if "name" in item and "latest" in item:
-                updated_list.append((item["name"], item["latest"]))
-            else:
-                # 如果缺少 name 或 latest 键，跳过该条目或根据需求进行处理
-                pass  # 或 raise ValueError("JSON data is missing 'name' or 'latest' key.")
-        return updated_list
+        return []
 
-    old_data_dict: Dict[str, str] = {item.get("name"): item.get("latest") for item in old_data if "name" in item and "latest" in item}
+    updates: List[Tuple[str, str, str]] = []
+    old_data_dict: Dict[str, str] = {item['name']: item['latest'] for item in old_data if 'name' in item and 'latest' in item}
 
     for new_item in new_data:
-        if "name" not in new_item or "latest" not in new_item:
-            continue  # skip entries without name and latest keys
-        name = new_item["name"]
-        latest = new_item["latest"]
+        if 'name' in new_item and 'latest' in new_item:
+            name = new_item['name']
+            latest = new_item['latest']
+            previous = old_data_dict.get(name)
 
-        if name not in old_data_dict:
-            updated_list.append((name, latest))
-        elif old_data_dict[name] != latest:
-            updated_list.append((name, latest))
-
-    return updated_list
+            if previous != latest:
+                updates.append((name, latest, previous if previous is not None else ""))
+    return updates
 
 
 @click.command('combine', help='Merge JSON data into a file.')
@@ -83,7 +80,7 @@ def cli(ctx: Context, cfg: Configuration):
 
     if differences:
         logger.info('The following differences were found:')
-        for name, latest in differences:
-            logger.info(f'{name}: {latest}')
+        for name, latest, previous in differences:
+            logger.info(f'{name}: {previous} -> {latest}')
     else:
         logger.info('No differences were found.')
