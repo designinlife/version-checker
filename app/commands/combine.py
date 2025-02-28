@@ -97,7 +97,7 @@ def cli(ctx: Context, cfg: Configuration):
 
             ok_email = send_mail(
                 to=['codeplus@qq.com'],
-                subject='Github version-checker Notification',
+                subject='Github Notification: version-checker',
                 content='No Content',
                 html=html_content
             )
