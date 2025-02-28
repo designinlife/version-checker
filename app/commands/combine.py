@@ -4,9 +4,11 @@ from typing import List, Dict, Tuple, Optional
 
 import click
 from click.core import Context
+from jinja2 import Template
 from loguru import logger
 
 from app.core.config import Configuration
+from app.core.notify import send_mail
 
 
 def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = None) -> List[Tuple[str, str, str]]:
@@ -80,7 +82,26 @@ def cli(ctx: Context, cfg: Configuration):
 
     if differences:
         logger.info('The following differences were found:')
+
+        email_data = []
+
         for name, latest, previous in differences:
+            email_data.append({'name': name, 'latest': latest, 'previous': previous})
+
             logger.info(f'{name}: {previous} -> {latest}')
+
+        with open(Path(cfg.workdir).joinpath('email_notify.j2'), 'r', encoding='utf-8') as f:
+            html_template = f.read()
+            template = Template(html_template)
+            html_content = template.render(items=email_data)
+
+            ok_email = send_mail(
+                to=['codeplus@qq.com'],
+                subject='Github version-checker Notification',
+                content='No Content',
+                html=html_content
+            )
+
+            logger.info(f'Send email result: {ok_email}')
     else:
         logger.info('No differences were found.')
