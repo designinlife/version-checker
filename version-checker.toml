@@ -255,6 +255,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "beekeeper-studio"
+repo = "beekeeper-studio/beekeeper-studio"
+url = "https://github.com/beekeeper-studio/beekeeper-studio"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/beekeeper-studio/beekeeper-studio/releases/download/v{version}/Beekeeper-Studio-{version}-portable.exe",
+]
+
+[[softwares]]
 name = "duckdb"
 repo = "duckdb/duckdb"
 url = "https://duckdb.org/"
