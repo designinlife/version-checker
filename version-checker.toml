@@ -445,6 +445,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "greptimedb"
+repo = "GreptimeTeam/greptimedb"
+url = "https://github.com/GreptimeTeam/greptimedb"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/GreptimeTeam/greptimedb/releases/download/v{version}/greptime-linux-amd64-v{version}.tar.gz",
+    "https://github.com/GreptimeTeam/greptimedb/releases/download/v{version}/greptime-windows-amd64-v{version}.tar.gz",
+    "https://github.com/GreptimeTeam/greptimedb/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "swoole"
 repo = "swoole/swoole-src"
 url = "https://www.swoole.com/"
