@@ -49,8 +49,8 @@ class Parser(Base):
         tasks = []
 
         for v in dotnet_release.releases_index:
-            if v.release_type in ('lts', 'sts') and (v.eol_date is None or (v.eol_date is not None and arrow.get(v.eol_date,
-                                                                                                           'YYYY-MM-DD') > arrow.now())):
+            if v.release_type in ('lts', 'sts') and v.support_phase == 'active' and (v.eol_date is None or (v.eol_date is not None and arrow.get(v.eol_date,
+                                                                                                                                                 'YYYY-MM-DD') > arrow.now())):
                 tasks.append(self.request('GET', v.releases_json, is_json=True))
 
         results = await asyncio.gather(*tasks, return_exceptions=True)
