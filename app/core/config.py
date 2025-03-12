@@ -27,6 +27,7 @@ class GithubSoftware(AppSettingSoftItem):
     assets: bool = Field(default=False)
     assets_patterns: List[str] = Field(default_factory=list)
     max_page: int = Field(default=1)
+    page_size: int = Field(default=100)
 
 
 class GitlabSoftware(AppSettingSoftItem):

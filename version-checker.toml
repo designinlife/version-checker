@@ -2483,6 +2483,7 @@ assets_patterns = [
 download_urls = [
     "https://github.com/astral-sh/python-build-standalone/archive/refs/tags/{raw_str}.tar.gz",
 ]
+page_size = 5
 
 [[softwares]]
 name = "frp"

@@ -58,7 +58,7 @@ class Parser(Base):
                 params = None
 
                 if not soft.latest:
-                    params = {'per_page': '100', 'page': str(page + 1)}
+                    params = {'per_page': soft.page_size, 'page': str(page + 1)}
 
                 # Make an HTTP request.
                 url, http_status_code, _, data_r = await self.request('GET',
