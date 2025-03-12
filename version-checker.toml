@@ -2469,8 +2469,8 @@ download_urls = [
 
 [[softwares]]
 name = "python-build-standalone"
-repo = "indygreg/python-build-standalone"
-url = "https://github.com/indygreg/python-build-standalone"
+repo = "astral-sh/python-build-standalone"
+url = "https://github.com/astral-sh/python-build-standalone"
 pattern = "^(?P<version>(?P<major>\\d{4})(?P<minor>\\d{2})(?P<patch>\\d{2}))$"
 release = true
 assets = true
@@ -2481,7 +2481,7 @@ assets_patterns = [
     "^cpython-(3\\.1[0-3]\\.\\d+)(?:.+)\\d{8}-x86_64-pc-windows-msvc-pgo-full\\.tar\\.zst$",
 ]
 download_urls = [
-    "https://github.com/indygreg/python-build-standalone/archive/refs/tags/{raw_str}.tar.gz",
+    "https://github.com/astral-sh/python-build-standalone/archive/refs/tags/{raw_str}.tar.gz",
 ]
 
 [[softwares]]
