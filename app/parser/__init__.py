@@ -166,8 +166,8 @@ class Base(metaclass=ABCMeta):
             with open(file, 'r', encoding='utf-8') as f:
                 data = json.loads(f.read())
 
-                # Data will be considered expired if it has been updated for more than 6 hours!
-                if arrow.now().shift(hours=-6) >= arrow.get(data['created_time']):
+                # Data will be considered expired if it has been updated for more than 1 hours!
+                if arrow.now().shift(hours=-1) >= arrow.get(data['created_time']):
                     return True, data['created_time']
                 else:
                     return False, data['created_time']
