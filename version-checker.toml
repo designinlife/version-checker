@@ -3044,3 +3044,51 @@ parser = "docker-hub"
 repo = "getmeili/meilisearch"
 pattern = "^(?P<version>v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
+
+[[softwares]]
+name = "jbp-gemini-code-assist"
+parser = "jetbrains-plugin"
+plugin_id = 24198
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)-(?P<build>\\d+))$"
+
+[[softwares]]
+name = "jbp-string-manipulation"
+parser = "jetbrains-plugin"
+plugin_id = 2162
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+
+[[softwares]]
+name = "jbp-translation"
+parser = "jetbrains-plugin"
+plugin_id = 8579
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+
+[[softwares]]
+name = "jbp-tongyi-lingma"
+parser = "jetbrains-plugin"
+plugin_id = 17809
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+
+[[softwares]]
+name = "jbp-github-copilot"
+parser = "jetbrains-plugin"
+plugin_id = 17718
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)-(?P<build>\\d+))$"
+
+[[softwares]]
+name = "jbp-flutter"
+parser = "jetbrains-plugin"
+plugin_id = 9212
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+
+[[softwares]]
+name = "jbp-antlr-v4-tool"
+parser = "jetbrains-plugin"
+plugin_id = 23446
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+
+[[softwares]]
+name = "jbp-jetbrains-ai-assistant"
+parser = "jetbrains-plugin"
+plugin_id = 22282
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))$"
