@@ -10,6 +10,7 @@ class AppSettingBase(BaseModel):
 
 class AppSettingSoftItem(BaseModel):
     name: str = ...
+    display_name: Optional[str] = None
     url: Optional[str] = None
     pattern: Optional[str] = Field(default=None)
     split: int = Field(default=0)
@@ -120,6 +121,12 @@ class JetbrainsSoftware(AppSettingSoftItem):
     os: List[str] = Field(default_factory=list)
 
 
+class JetbrainsPluginSoftware(AppSettingSoftItem):
+    parser: Literal['jetbrains-plugin']
+    plugin_id: int
+    size: int = 5
+
+
 class SourceForgeSoftware(AppSettingSoftItem):
     parser: Literal['sf']
     project: str
@@ -157,7 +164,7 @@ class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
                     | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GitlabSoftware | CodebergSoftware
-                    | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | FirefoxSoftware
+                    | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | JetbrainsPluginSoftware | FirefoxSoftware
                     | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware
                     | FlutterSoftware | DartSoftware | NavicatSoftware | HAProxySoftware | DockerHubSoftware
                     | AlmaLinuxSoftware | RockyLinuxSoftware | IndexSoftware] = Field(alias='softwares',
@@ -180,7 +187,9 @@ class Configuration(BaseModel):
 class OutputResult(BaseModel):
     name: str
     url: str
+    display_name: Optional[str] = None
     latest: str | None = Field(default=None)
     versions: List[str | None] = Field(default_factory=list)
     download_urls: List[str] = Field(default_factory=list)
     created_time: str
+    additional: Optional[dict] = Field(default=None)

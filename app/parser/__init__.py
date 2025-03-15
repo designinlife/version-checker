@@ -175,7 +175,7 @@ class Base(metaclass=ABCMeta):
         return True, '2000-01-01 00:00:00'
 
     async def write(self, soft: AppSettingSoftItem, version_summary: VersionSummary | Mapping[str, VersionSummary],
-                    suffix: str = ''):
+                    suffix: str = '', additional: Optional[dict] = None):
         output_subdir = os.environ.get('OUTPUT_DATA_DIR', 'data')
         output_path = Path(self.cfg.workdir).joinpath(output_subdir)
 
@@ -188,22 +188,22 @@ class Base(metaclass=ABCMeta):
                     if soft.condition and v.latest is not None and not check_requirements(soft.condition, v.latest.major, v.latest.minor):
                         continue
 
-                    result = OutputResult(name=f'{soft.name}-{k}', url=f'{soft.url}', latest=repr(v.latest),
+                    result = OutputResult(name=f'{soft.name}-{k}', url=f'{soft.url}', display_name=soft.display_name, latest=repr(v.latest),
                                           versions=[repr(x) for x in v.versions],
                                           download_urls=self._build_download_urls(soft, v, v.downloads),
-                                          created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(
-                        by_alias=True)
+                                          created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss'),
+                                          additional=additional).model_dump_json(by_alias=True)
 
                     async with aiofiles.open(output_path.joinpath(f'{soft.name}-{k}.json'), 'w', encoding='utf-8') as f:
                         await f.write(result)
 
                     logger.info(f'<\033[1;32m{soft.name}-{k}\033[0m> done.')
         else:
-            result = OutputResult(name=f'{soft.name}{suffix}', url=f'{soft.url}', latest=repr(version_summary.latest),
+            result = OutputResult(name=f'{soft.name}{suffix}', url=f'{soft.url}', display_name=soft.display_name, latest=repr(version_summary.latest),
                                   versions=[repr(x) for x in version_summary.versions],
                                   download_urls=self._build_download_urls(soft, version_summary,
                                                                           version_summary.downloads),
-                                  created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss')).model_dump_json(by_alias=True)
+                                  created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss'), additional=additional).model_dump_json(by_alias=True)
 
             async with aiofiles.open(output_path.joinpath(f'{soft.name}{suffix}.json'), 'w', encoding='utf-8') as f:
                 await f.write(result)
