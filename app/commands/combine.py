@@ -59,7 +59,7 @@ def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = Non
 
     for new_item in new_data:
         if 'name' in new_item and 'latest' in new_item:
-            name = new_item['name']
+            name = new_item['display_name'] if 'display_name' in new_item and new_item['display_name'] != '' else new_item['name']
             latest = new_item['latest']
             previous = old_data_dict.get(name)
 
