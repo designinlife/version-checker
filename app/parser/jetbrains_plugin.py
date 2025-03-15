@@ -27,7 +27,6 @@ class JetbrainPluginVersion(BaseModel):
     recalculate_compatibility_allowed: bool = Field(..., alias='recalculateCompatibilityAllowed')
     cdate: str
     file: str
-    notes: str
     since: str
     until: str
     since_until: str = Field(..., alias='sinceUntil')
@@ -81,6 +80,8 @@ class Parser(Base):
             if isinstance(last_raw_data, JetbrainPluginVersion):
                 additional['since'] = last_raw_data.since
                 additional['until'] = last_raw_data.until
+
+                vhlp.add_download_url(f'https://downloads.marketplace.jetbrains.com/files/{last_raw_data.file}')
 
             logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 
