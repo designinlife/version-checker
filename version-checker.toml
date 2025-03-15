@@ -1963,6 +1963,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "Office-Tool"
+repo = "YerongAI/Office-Tool"
+url = "https://github.com/YerongAI/Office-Tool"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/YerongAI/Office-Tool/releases/download/v{version}/Office_Tool_with_runtime_v{version}_x64.zip",
+]
+
+[[softwares]]
 name = "tabby"
 repo = "Eugeny/tabby"
 url = "https://github.com/Eugeny/tabby"
