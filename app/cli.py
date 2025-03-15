@@ -14,6 +14,7 @@ from app import __version__
 from app.commands.combine import cli as cli_combine
 from app.commands.inspect import cli as cli_inspect
 from app.commands.skopeo import cli as cli_skopeo
+from app.commands.jbp import cli as cli_jbp
 from app.core.click import ClickStdOption
 from app.core.config import Configuration, AppSetting
 from app.core.utils import strtobool
@@ -82,6 +83,8 @@ cli.add_command(cli_combine)
 cli.add_command(cli_inspect)
 # noinspection PyTypeChecker
 cli.add_command(cli_skopeo)
+# noinspection PyTypeChecker
+cli.add_command(cli_jbp)
 
 
 def start():
