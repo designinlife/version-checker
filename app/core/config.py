@@ -1,6 +1,6 @@
 from typing import Optional, List, Literal, Any
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 
 class AppSettingBase(BaseModel):

@@ -11,6 +11,28 @@ from app.core.config import Configuration
 from app.core.notify import send_mail
 
 
+def filter_nones(obj):
+    """
+    Given a JSON-serializable object, return a copy without elements which have
+    a value of None.
+    """
+
+    if isinstance(obj, list):
+        # This version may or may not be easier to read depending on your
+        # preferences:
+        # return list(filter(None, map(remove_nones, obj)))
+
+        # This version uses a generator expression to avoid computing a full
+        # list only to immediately walk it again:
+        filtered_values = (filter_nones(j) for j in obj)
+        return [i for i in filtered_values if i is not None]
+    elif isinstance(obj, dict):
+        filtered_items = ((i, filter_nones(j)) for i, j in obj.items())
+        return {k: v for k, v in filtered_items if v is not None}
+    else:
+        return obj
+
+
 def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = None) -> List[Tuple[str, str, str]]:
     """
     Compares the 'latest' version of data in two JSON-like lists of dictionaries.
@@ -70,7 +92,7 @@ def cli(ctx: Context, cfg: Configuration):
             with open(file, 'r', encoding='utf-8') as f:
                 data.append(json.loads(f.read()))
 
-    new_all_json = sorted(data, key=lambda x: x['name'])
+    new_all_json = sorted(filter_nones(data), key=lambda x: x['name'])
 
     with open(p.joinpath('all.json'), 'w', encoding='utf-8') as f:
         f.write(json.dumps(new_all_json, ensure_ascii=True, separators=(',', ':')))

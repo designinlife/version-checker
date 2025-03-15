@@ -59,7 +59,7 @@ class Parser(Base):
             soft.display_name = f'Jetbrains Plugin: {plugin_info.name}'
             soft.url = f'https://plugins.jetbrains.com{plugin_info.link}'
 
-            additional = {'data_type': 'jbp', 'xml_id': plugin_info.xmlId}
+            additional = {'xml_id': plugin_info.xmlId}
 
             _, status, _, data_r = await self.request('GET',
                                                       f'https://plugins.jetbrains.com/api/plugins/{soft.plugin_id}/updates',

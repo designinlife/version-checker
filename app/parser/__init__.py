@@ -193,7 +193,7 @@ class Base(metaclass=ABCMeta):
                                           storage_dir=storage_dir,
                                           download_urls=self._build_download_urls(soft, v, v.downloads),
                                           created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss'),
-                                          **kwargs).model_dump_json(by_alias=True)
+                                          **kwargs).model_dump_json(by_alias=True, exclude_none=True)
 
                     async with aiofiles.open(output_path.joinpath(f'{soft.name}-{k}.json'), 'w', encoding='utf-8') as f:
                         await f.write(result)
@@ -205,7 +205,7 @@ class Base(metaclass=ABCMeta):
                                   storage_dir=storage_dir,
                                   download_urls=self._build_download_urls(soft, version_summary,
                                                                           version_summary.downloads),
-                                  created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss'), **kwargs).model_dump_json(by_alias=True)
+                                  created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss'), **kwargs).model_dump_json(by_alias=True, exclude_none=True)
 
             async with aiofiles.open(output_path.joinpath(f'{soft.name}{suffix}.json'), 'w', encoding='utf-8') as f:
                 await f.write(result)
