@@ -190,6 +190,7 @@ class OutputResult(BaseModel):
     display_name: Optional[str] = None
     latest: str | None = Field(default=None)
     versions: List[str | None] = Field(default_factory=list)
+    storage_dir: Optional[str] = None
     download_urls: List[str] = Field(default_factory=list)
     created_time: str
     additional: Optional[dict] = Field(default=None)
