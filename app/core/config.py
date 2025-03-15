@@ -193,4 +193,4 @@ class OutputResult(BaseModel):
     storage_dir: Optional[str] = None
     download_urls: List[str] = Field(default_factory=list)
     created_time: str
-    additional: Optional[dict] = Field(default=None)
+    jbp_extra: Optional[dict] = Field(default=None, alias='jbp_extra')

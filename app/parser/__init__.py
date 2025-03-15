@@ -175,7 +175,7 @@ class Base(metaclass=ABCMeta):
         return True, '2000-01-01 00:00:00'
 
     async def write(self, soft: AppSettingSoftItem, version_summary: VersionSummary | Mapping[str, VersionSummary],
-                    suffix: str = '', additional: Optional[dict] = None, storage_dir: Optional[str] = None):
+                    suffix: str = '', storage_dir: Optional[str] = None, **kwargs):
         output_subdir = os.environ.get('OUTPUT_DATA_DIR', 'data')
         output_path = Path(self.cfg.workdir).joinpath(output_subdir)
 
@@ -193,7 +193,7 @@ class Base(metaclass=ABCMeta):
                                           storage_dir=storage_dir,
                                           download_urls=self._build_download_urls(soft, v, v.downloads),
                                           created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss'),
-                                          additional=additional).model_dump_json(by_alias=True)
+                                          **kwargs).model_dump_json(by_alias=True)
 
                     async with aiofiles.open(output_path.joinpath(f'{soft.name}-{k}.json'), 'w', encoding='utf-8') as f:
                         await f.write(result)
@@ -205,7 +205,7 @@ class Base(metaclass=ABCMeta):
                                   storage_dir=storage_dir,
                                   download_urls=self._build_download_urls(soft, version_summary,
                                                                           version_summary.downloads),
-                                  created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss'), additional=additional).model_dump_json(by_alias=True)
+                                  created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss'), **kwargs).model_dump_json(by_alias=True)
 
             async with aiofiles.open(output_path.joinpath(f'{soft.name}{suffix}.json'), 'w', encoding='utf-8') as f:
                 await f.write(result)

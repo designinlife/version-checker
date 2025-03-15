@@ -86,4 +86,4 @@ class Parser(Base):
             logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 
             # Write data to file.
-            await self.write(soft, version_summary=vhlp.summary, additional=additional, storage_dir='jetbrains/plugins')
+            await self.write(soft, version_summary=vhlp.summary, storage_dir='jetbrains/plugins', jbp_extra=additional)
