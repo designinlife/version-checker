@@ -3092,6 +3092,12 @@ plugin_id = 20587
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)-(?P<build>\\d+))$"
 
 [[softwares]]
+name = "jbp-tencent-cloud-ai"
+parser = "jetbrains-plugin"
+plugin_id = 24379
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+
+[[softwares]]
 name = "jbp-github-copilot"
 parser = "jetbrains-plugin"
 plugin_id = 17718
