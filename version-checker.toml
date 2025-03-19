@@ -3056,6 +3056,18 @@ pattern = "^(?P<version>v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
+name = "ZeroOmega"
+repo = "zero-peak/ZeroOmega"
+url = "https://github.com/zero-peak/ZeroOmega"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/zero-peak/ZeroOmega/releases/download/{version}/zeroomega-{version}.crx",
+    "https://github.com/zero-peak/ZeroOmega/releases/download/{version}/zeroomega-{version}.xpi",
+    "https://github.com/zero-peak/ZeroOmega/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "jbp-gemini-code-assist"
 parser = "jetbrains-plugin"
 plugin_id = 24198
