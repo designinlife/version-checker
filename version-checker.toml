@@ -3056,6 +3056,21 @@ pattern = "^(?P<version>v(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
 
 [[softwares]]
+name = "osquery"
+repo = "osquery/osquery"
+url = "https://github.com/osquery/osquery"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/osquery/osquery/releases/download/{version}/osquery-{version}-1.linux.x86_64.rpm",
+    "https://github.com/osquery/osquery/releases/download/{version}/osquery-{version}.msi",
+    "https://github.com/osquery/osquery/releases/download/{version}/osquery-{version}.windows_x86_64.zip",
+    "https://github.com/osquery/osquery/releases/download/{version}/osquery-{version}_1.linux_x86_64.tar.gz",
+    "https://github.com/osquery/osquery/releases/download/{version}/osquery_{version}-1.linux_amd64.deb",
+    "https://github.com/osquery/osquery/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "ZeroOmega"
 repo = "zero-peak/ZeroOmega"
 url = "https://github.com/zero-peak/ZeroOmega"
