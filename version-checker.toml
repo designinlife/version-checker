@@ -112,6 +112,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "libxcrypt"
+repo = "besser82/libxcrypt"
+url = "https://github.com/besser82/libxcrypt"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/besser82/libxcrypt/releases/download/v{version}/libxcrypt-{version}.tar.xz",
+    "https://github.com/besser82/libxcrypt/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "czkawka"
 repo = "qarmin/czkawka"
 url = "https://github.com/qarmin/czkawka"
