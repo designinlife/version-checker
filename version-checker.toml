@@ -1226,7 +1226,8 @@ url = "https://curl.se/"
 pattern = "^curl-(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
 download_urls = [
     "https://curl.se/download/curl-{major}.{minor}.{patch}.tar.gz",
-    "https://github.com/stunnel/static-curl/releases/download/{major}.{minor}.{patch}/curl-linux-x86_64-{major}.{minor}.{patch}.tar.xz",
+    "https://github.com/stunnel/static-curl/releases/download/{major}.{minor}.{patch}/curl-linux-x86_64-glibc-{major}.{minor}.{patch}.tar.xz",
+    "https://github.com/stunnel/static-curl/releases/download/{major}.{minor}.{patch}/curl-linux-x86_64-musl-{major}.{minor}.{patch}.tar.xz",
     "https://github.com/stunnel/static-curl/releases/download/{major}.{minor}.{patch}/curl-windows-x86_64-{major}.{minor}.{patch}.tar.xz",
 ]
 
