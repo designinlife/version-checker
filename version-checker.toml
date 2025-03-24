@@ -290,6 +290,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "mixxx"
+repo = "mixxxdj/mixxx"
+url = "https://github.com/mixxxdj/mixxx"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://downloads.mixxx.org/releases/{version}/mixxx-{version}-win64.msi",
+]
+
+[[softwares]]
 name = "keepassxc"
 repo = "keepassxreboot/keepassxc"
 url = "https://github.com/keepassxreboot/keepassxc"
