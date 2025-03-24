@@ -290,6 +290,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "SwitchHosts"
+repo = "oldj/SwitchHosts"
+url = "https://github.com/oldj/SwitchHosts"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+assets = true
+assets_patterns = [
+    "^(.+)(win|windows)(.*).(zip|exe)$",
+]
+
+[[softwares]]
 name = "git"
 repo = "git/git"
 url = "https://git-scm.com/"
