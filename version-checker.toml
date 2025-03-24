@@ -235,6 +235,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "maple-font"
+repo = "subframe7536/maple-font"
+url = "https://github.com/subframe7536/maple-font"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/subframe7536/maple-font/releases/download/v{version}/MapleMono-NF-CN-unhinted.zip#MapleMono-{version}-NF-CN-unhinted.zip",
+    "https://github.com/subframe7536/maple-font/releases/download/v{version}/MapleMono-NF-CN.zip#MapleMono-{version}-NF-CN.zip",
+]
+
+[[softwares]]
 name = "mydumper"
 repo = "mydumper/mydumper"
 url = "https://github.com/mydumper/mydumper"
