@@ -545,6 +545,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "fossil-scm"
+repo = "drhsqlite/fossil-mirror"
+url = "https://fossil-scm.org/"
+pattern = "^version-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+download_urls = [
+    "https://fossil-scm.org/home/uv/fossil-linux-x64-{version}.tar.gz",
+    "https://fossil-scm.org/home/uv/fossil-w64-{version}.zip",
+]
+
+[[softwares]]
 name = "gitea"
 repo = "go-gitea/gitea"
 url = "https://github.com/go-gitea/gitea"
