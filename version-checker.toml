@@ -545,6 +545,15 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "windhawk"
+repo = "ramensoftware/windhawk"
+url = "https://github.com/ramensoftware/windhawk"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/ramensoftware/windhawk/releases/download/v{version}/windhawk_setup_offline.exe#windhawk-v{version}_setup_offline.exe",
+]
+
+[[softwares]]
 name = "fossil-scm"
 repo = "drhsqlite/fossil-mirror"
 url = "https://fossil-scm.org/"
