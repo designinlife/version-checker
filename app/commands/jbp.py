@@ -19,6 +19,7 @@ class JetbrainPluginExtra(BaseModel):
 
 
 class JetbrainPlugin(BaseModel):
+    display_name: str
     latest: str
     download_urls: List[str] = Field(default_factory=list)
     jbp_extra: JetbrainPluginExtra = Field(default=None, alias='jbp_extra')
@@ -33,6 +34,7 @@ class Plugin(BaseModel):
     id: str
     url: str
     version: str
+    name: str
     idea_version: IdeaVersion
 
 
@@ -48,6 +50,9 @@ def pydantic_to_xml(plugins_data: Plugins) -> str:
         plugin_elem.set("id", plugin_data.id)
         plugin_elem.set("url", plugin_data.url)
         plugin_elem.set("version", plugin_data.version)
+
+        name_elem = ET.SubElement(plugin_elem, 'name')
+        name_elem.text = plugin_data.name
 
         idea_version_elem = ET.SubElement(plugin_elem, "idea-version")
         idea_version_elem.set("since-build", plugin_data.idea_version.since_build)
@@ -82,6 +87,7 @@ def cli(ctx: Context, cfg: Configuration, output: str):
             plugins.plugin.append(Plugin(id=v_data.jbp_extra.xml_id,
                                          url=f'{os.environ.get('DOWNLOAD_URL', 'https://www.example.com/')}{os.path.basename(v_data.download_urls[0])}',
                                          version=v_data.latest,
+                                         name=v_data.display_name.replace('Jetbrains Plugin: ', ''),
                                          idea_version=IdeaVersion(since_build=v_data.jbp_extra.since, until_build=v_data.jbp_extra.until)))
 
     if output is not None:
