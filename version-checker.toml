@@ -3169,6 +3169,21 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "uv"
+repo = "astral-sh/uv"
+url = "https://github.com/astral-sh/uv"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/astral-sh/uv/releases/download/{version}/uv-{version}-x86_64-pc-windows-msvc.zip",
+    "https://github.com/astral-sh/uv/releases/download/{version}/uv-{version}-x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/astral-sh/uv/releases/download/{version}/uv-{version}-x86_64-unknown-linux-musl.tar.gz",
+    "https://github.com/astral-sh/uv/releases/download/{version}/uv-build-{version}-x86_64-pc-windows-msvc.zip",
+    "https://github.com/astral-sh/uv/releases/download/{version}/uv-build-{version}-x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/astral-sh/uv/releases/download/{version}/uv-build-{version}-x86_64-unknown-linux-musl.tar.gz",
+    "https://github.com/astral-sh/uv/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "libavif"
 repo = "AOMediaCodec/libavif"
 url = "https://github.com/AOMediaCodec/libavif"
