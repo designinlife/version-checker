@@ -3184,6 +3184,21 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "buf"
+repo = "bufbuild/buf"
+url = "https://github.com/bufbuild/buf"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/bufbuild/buf/releases/download/v{version}/buf-Linux-x86_64.tar.gz#v{version}|buf-Linux-x86_64.tar.gz",
+    "https://github.com/bufbuild/buf/releases/download/v{version}/buf-Windows-x86_64.zip#v{version}|buf-Windows-x86_64.zip",
+    "https://github.com/bufbuild/buf/releases/download/v{version}/protoc-gen-buf-breaking-Linux-x86_64#v{version}|protoc-gen-buf-breaking-Linux-x86_64",
+    "https://github.com/bufbuild/buf/releases/download/v{version}/protoc-gen-buf-breaking-Windows-x86_64.exe#v{version}|protoc-gen-buf-breaking-Windows-x86_64.exe",
+    "https://github.com/bufbuild/buf/releases/download/v{version}/protoc-gen-buf-lint-Linux-x86_64#v{version}|protoc-gen-buf-lint-Linux-x86_64",
+    "https://github.com/bufbuild/buf/releases/download/v{version}/protoc-gen-buf-lint-Windows-x86_64.exe#v{version}|protoc-gen-buf-lint-Windows-x86_64.exe",
+    "https://github.com/bufbuild/buf/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "libavif"
 repo = "AOMediaCodec/libavif"
 url = "https://github.com/AOMediaCodec/libavif"
