@@ -3169,6 +3169,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "libavif"
+repo = "AOMediaCodec/libavif"
+url = "https://github.com/AOMediaCodec/libavif"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/AOMediaCodec/libavif/releases/download/v{version}/linux-artifacts.zip#libavif-v{version}-linux-artifacts.zip",
+    "https://github.com/AOMediaCodec/libavif/releases/download/v{version}/windows-artifacts.zip#libavif-v{version}-windows-artifacts.zip",
+    "https://github.com/AOMediaCodec/libavif/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "jbp-gemini-code-assist"
 parser = "jetbrains-plugin"
 plugin_id = 24198
