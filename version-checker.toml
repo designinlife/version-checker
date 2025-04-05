@@ -3178,8 +3178,8 @@ download_urls = [
     "https://github.com/astral-sh/uv/releases/download/{version}/uv-x86_64-unknown-linux-gnu.tar.gz#uv-{version}-x86_64-unknown-linux-gnu.tar.gz",
     "https://github.com/astral-sh/uv/releases/download/{version}/uv-x86_64-unknown-linux-musl.tar.gz#uv-{version}-x86_64-unknown-linux-musl.tar.gz",
     "https://github.com/astral-sh/uv/releases/download/{version}/uv-build-x86_64-pc-windows-msvc.zip#uv-build-{version}-x86_64-pc-windows-msvc.zip",
-    "https://github.com/astral-sh/uv/releases/download/{version}/uv-build-x86_64-unknown-linux-gnu.tar.gz#uv-build-x86_-{version}64-unknown-linux-gnu.tar.gz",
-    "https://github.com/astral-sh/uv/releases/download/{version}/uv-build-x86_64-unknown-linux-musl.tar.gz#uv-build-x86_6-{version}4-unknown-linux-musl.tar.gz",
+    "https://github.com/astral-sh/uv/releases/download/{version}/uv-build-x86_64-unknown-linux-gnu.tar.gz#uv-build-{version}-x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/astral-sh/uv/releases/download/{version}/uv-build-x86_64-unknown-linux-musl.tar.gz#uv-build-{version}-x86_64-unknown-linux-musl.tar.gz",
     "https://github.com/astral-sh/uv/archive/refs/tags/{version}.tar.gz",
 ]
 
