@@ -2594,6 +2594,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "nodepass"
+repo = "yosebyte/nodepass"
+url = "https://github.com/yosebyte/nodepass"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/yosebyte/nodepass/releases/download/v{version}/nodepass_{version}_linux_amd64.tar.gz",
+    "https://github.com/yosebyte/nodepass/releases/download/v{version}/nodepass_{version}_windows_amd64.zip",
+    "https://github.com/yosebyte/nodepass/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "vtracer"
 repo = "visioncortex/vtracer"
 url = "https://www.visioncortex.org/vtracer/"
