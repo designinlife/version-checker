@@ -2796,6 +2796,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "zlib-ng"
+repo = "zlib-ng/zlib-ng"
+url = "https://github.com/zlib-ng/zlib-ng"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+download_urls = [
+    "https://github.com/zlib-ng/zlib-ng/releases/download/{version}/zlib-ng-win-x86-64-compat.zip#zlib-ng-{version}-win-x86-64-compat.zip",
+    "https://github.com/zlib-ng/zlib-ng/releases/download/{version}/zlib-ng-win-x86-64.zip#zlib-ng-{version}-win-x86-64.zip",
+    "https://github.com/zlib-ng/zlib-ng/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "libpsl"
 repo = "rockdaboot/libpsl"
 url = "https://github.com/rockdaboot/libpsl"
