@@ -30,6 +30,7 @@ htmlcov/
 
 # For current project.
 # poetry.lock
+uv.lock
 test*.sh
 test*.py
 test*.toml
