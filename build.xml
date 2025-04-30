@@ -11,7 +11,7 @@
     </tstamp>
 
     <target name="build">
-        <py dir="." remoteDir="/data/venv" dotenv="false" uv="true"/>
+        <py dir="." remoteDir="/data/venv" dotenv="false"/>
     </target>
 
     <target name="deploy" depends="build">
