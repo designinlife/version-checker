@@ -15,6 +15,6 @@
     </target>
 
     <target name="deploy" depends="build">
-        <echo message="Published."/>
+        <echo message="The ${WHL_FILE} package is installed."/>
     </target>
 </project>
