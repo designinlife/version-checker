@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="dop" default="deploy" basedir=".">
+    <property environment="env"/>
+
+    <!-- Load class JAR resource. -->
+    <taskdef name="py" classname="cs.stone.ant.builder.PythonBuilder"/>
+
+    <!-- Get the current system time. -->
+    <tstamp>
+        <format property="CDT" pattern="yyyy-MM-dd HH:mm:ss"/>
+    </tstamp>
+
+    <target name="build">
+        <py dir="." remoteDir="/data/venv" dotenv="false" uv="true"/>
+    </target>
+
+    <target name="deploy" depends="build">
+        <echo message="Published."/>
+    </target>
+</project>
