@@ -2577,6 +2577,7 @@ assets_patterns = [
     "^cpython-(3\\.1[0-3]\\.\\d+)(?:.+)\\d{8}-x86_64-unknown-linux-gnu-install_only_stripped\\.tar\\.gz$",
     "^cpython-(3\\.1[0-3]\\.\\d+)(?:.+)\\d{8}-x86_64-pc-windows-msvc-pgo-full\\.tar\\.zst$",
     "^cpython-(3\\.1[0-3]\\.\\d+)(?:.+)\\d{8}-x86_64-pc-windows-msvc-install_only_stripped\\.tar\\.gz$",
+    "^cpython-(3\\.1[0-3]\\.\\d+)(?:.+)\\d{8}-x86_64-(?:pc-windows-msvc|unknown-linux-gnu)-freethreaded(?:.+)\\.tar\\.zst$",
 ]
 download_urls = [
     "https://github.com/astral-sh/python-build-standalone/archive/refs/tags/{raw_str}.tar.gz",
