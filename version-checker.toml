@@ -981,7 +981,7 @@ url = "https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/"
 pattern = "^libressl-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)).tar.gz$"
 parser = "index"
 download_urls = [
-    "https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-{version}.tar.gz",
+    "https://cdn.openbsd.org/pub/OpenBSD/LibreSSL/libressl-{version}.tar.gz",
     "https://github.com/libressl/portable/releases/download/v{version}/libressl_v{version}_windows_x64.zip",
 ]
 
