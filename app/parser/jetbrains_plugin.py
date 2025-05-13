@@ -1,3 +1,4 @@
+import os.path
 from asyncio import Semaphore
 from typing import Optional, List
 
@@ -81,7 +82,8 @@ class Parser(Base):
                 additional['since'] = last_raw_data.since
                 additional['until'] = last_raw_data.until
 
-                vhlp.add_download_url(f'https://downloads.marketplace.jetbrains.com/files/{last_raw_data.file}')
+                vhlp.add_download_url(
+                    f'https://downloads.marketplace.jetbrains.com/files/{last_raw_data.file}#{last_raw_data.plugin_id}-{os.path.basename(last_raw_data.file)}')
 
             logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 
