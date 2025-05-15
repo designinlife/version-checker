@@ -23,10 +23,13 @@ jobs:
           python-version: '3.12'
           check-latest: true
 
+      - name: Setup Uv
+        uses: astral-sh/setup-uv@v5
+
       - name: Check Python version
         run: |
           python -V
-          pip install poetry
+          uv --version
 
       - name: Generate JSON Data Files
         run: |

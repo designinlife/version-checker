@@ -11,7 +11,7 @@ tidy:
 	poetry install
 
 inspect: clean tidy
-	poetry run version-checker inspect
+	uv run version-checker inspect
 
 lint:
 
