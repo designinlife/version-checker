@@ -8,6 +8,7 @@ import click
 import requests
 from click.core import Context
 from pydantic import BaseModel, Field
+from urllib.parse import urlparse
 
 from app.core.config import Configuration
 
@@ -85,7 +86,7 @@ def cli(ctx: Context, cfg: Configuration, output: str):
             v_data = JetbrainPlugin(**v)
 
             plugins.plugin.append(Plugin(id=v_data.jbp_extra.xml_id,
-                                         url=f'{os.environ.get('DOWNLOAD_URL', 'https://www.example.com/')}{os.path.basename(v_data.download_urls[0])}',
+                                         url=f'{os.environ.get('DOWNLOAD_URL', 'https://www.example.com/')}{urlparse(os.path.basename(v_data.download_urls[0])).fragment}',
                                          version=v_data.latest,
                                          name=v_data.display_name.replace('Jetbrains Plugin: ', ''),
                                          idea_version=IdeaVersion(since_build=v_data.jbp_extra.since, until_build=v_data.jbp_extra.until)))
