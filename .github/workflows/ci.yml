@@ -17,19 +17,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-          check-latest: true
-
       - name: Setup Uv
         uses: astral-sh/setup-uv@v5
 
+      - name: Set up Python
+        run: uv python install
+
       - name: Check Python version
         run: |
-          python -V
           uv --version
+          uv run python -V
 
       - name: Generate JSON Data Files
         run: |
