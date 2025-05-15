@@ -8,10 +8,11 @@ version := 1.0.0
 date := $(shell date '+%Y-%m-%d %H:%M:%S')
 
 tidy:
-	poetry install
 
 inspect: clean tidy
-	uv run version-checker inspect
+	@rm -f uv.lock
+	@uv sync
+	@uv run version-checker inspect
 
 lint:
 
