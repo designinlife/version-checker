@@ -1,6 +1,6 @@
 [project]
 name = "version-checker"
-version = "0.1.0"
+dynamic = ["version"]
 description = ""
 authors = [
     { name = "Lei.Lee", email = "codeplus@qq.com" }
@@ -29,14 +29,20 @@ dependencies = [
 version-checker = "app.cli:start"
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-vcs"]
 build-backend = "hatchling.build"
+
+[tool.hatch.version]
+# from <https://hatch.pypa.io/latest/version/>
+source = "vcs"
+#path = "src/app/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/app"]
 
 [dependency-groups]
 dev = [
+    "hatch-vcs>=0.4.0",
     "hatchling>=1.27.0",
     "pytest>=8.3.5",
 ]
