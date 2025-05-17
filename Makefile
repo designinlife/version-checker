@@ -10,7 +10,6 @@ date := $(shell date '+%Y-%m-%d %H:%M:%S')
 tidy:
 
 inspect: clean tidy
-	@rm -f uv.lock
 	@uv sync --default-index=https://pypi.org/simple
 	@uv run version-checker inspect
 
