@@ -1923,6 +1923,21 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "vdhcoapp"
+repo = "aclap-dev/vdhcoapp"
+url = "https://github.com/aclap-dev/vdhcoapp"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/aclap-dev/vdhcoapp/releases/download/v{version}/vdhcoapp-linux-x86_64.tar.bz2#vdhcoapp-{version}-linux-x86_64.tar.bz2",
+    "https://github.com/aclap-dev/vdhcoapp/releases/download/v{version}/vdhcoapp-linux-x86_64.deb#vdhcoapp-{version}-linux-x86_64.deb",
+    "https://github.com/aclap-dev/vdhcoapp/releases/download/v{version}/vdhcoapp-noffmpeg-linux-x86_64.deb#vdhcoapp-{version}-noffmpeg-linux-x86_64.deb",
+    "https://github.com/aclap-dev/vdhcoapp/releases/download/v{version}/vdhcoapp-noffmpeg-linux-x86_64.tar.bz2#vdhcoapp-{version}-noffmpeg-linux-x86_64.tar.bz2",
+    "https://github.com/aclap-dev/vdhcoapp/releases/download/v{version}/vdhcoapp-windows-x86_64-installer.exe#vdhcoapp-{version}-windows-x86_64-installer.exe",
+    "https://github.com/aclap-dev/vdhcoapp/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "helm"
 repo = "helm/helm"
 url = "https://helm.sh/"
