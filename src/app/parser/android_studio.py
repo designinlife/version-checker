@@ -36,7 +36,7 @@ class Parser(Base):
             await self.write(soft, vhlp.summary)
 
     @staticmethod
-    async def _fetch_json(self, url: str) -> dict:
+    async def _fetch_json(url: str) -> dict:
         async with aiohttp.ClientSession() as session:
             # 第一次请求，禁用自动重定向以捕获 307
             async with session.get(url, allow_redirects=False) as response:
