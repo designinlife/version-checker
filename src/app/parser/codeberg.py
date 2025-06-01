@@ -1,7 +1,8 @@
 from asyncio import Semaphore
-from typing import List
 
 from loguru import logger
+from rss_parser import RSSParser
+from rss_parser.models.types.tag import Tag
 
 from app.core.config import CodebergSoftware
 from app.core.version import VersionHelper
@@ -17,18 +18,18 @@ class Parser(Base):
         async with sem:
             # Make an HTTP request.
             if soft.release:
-                api_url = f'https://{soft.host}/api/v1/repos/{soft.repo}/releases'
+                api_url = f'https://{soft.host}/{soft.repo}/releases.rss'
             else:
-                api_url = f'https://{soft.host}/api/v1/repos/{soft.repo}/tags'
+                api_url = f'https://{soft.host}/{soft.repo}/tags.rss'
 
-            _, status, _, data_r = await self.request('GET', api_url, is_json=True)
+            _, status, _, data_s = await self.request('GET', api_url)
 
-            if isinstance(data_r, List):
-                for v in data_r:
-                    if soft.release:
-                        vhlp.append(v['tag_name'])
-                    else:
-                        vhlp.append(v['name'])
+            rss = RSSParser.parse(data_s)
+
+            for v in rss.channel.items:
+                title = v.title
+                if isinstance(title, Tag):
+                    vhlp.append(title.content)
 
             logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 
