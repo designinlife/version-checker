@@ -3376,7 +3376,13 @@ pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 name = "jbp-jetbrains-ai-assistant"
 parser = "jetbrains-plugin"
 plugin_id = 22282
-pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))$"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+
+[[softwares]]
+name = "jbp-jetbrains-junie"
+parser = "jetbrains-plugin"
+plugin_id = 26104
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 
 [[softwares]]
 name = "jbp-jenkins-development-support"
