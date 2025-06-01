@@ -24,7 +24,7 @@ class Parser(Base):
 
             if isinstance(data_r, dict) and 'content' in data_r:
                 for v in data_r['content']['item']:
-                    if v['channel'] == 'Release':
+                    if v['channel'] == 'Release':  # if v['channel'] == 'Release' or v['channel'] == 'Patch':
                         vhlp.append(v['version'])
 
             logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
@@ -35,6 +35,7 @@ class Parser(Base):
             # Write data to file.
             await self.write(soft, vhlp.summary)
 
+    @staticmethod
     async def _fetch_json(self, url: str) -> dict:
         async with aiohttp.ClientSession() as session:
             # 第一次请求，禁用自动重定向以捕获 307
