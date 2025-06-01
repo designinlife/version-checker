@@ -23,33 +23,20 @@ class Parser(Base):
             # Analyzing HTML text data.
             soup = BeautifulSoup(data_s, 'html5lib')
 
-            # AlmaLinux 9
-            el_almalinux9 = soup.select_one('#almalinux-os-9')
-            # noinspection DuplicatedCode
-            el_almalinux9_table = el_almalinux9.find_next_sibling('table')
-            el_almalinux9_trs = el_almalinux9_table.select('tbody > tr')
+            os_major_vers = (10, 9, 8)
 
-            for v in el_almalinux9_trs:
-                if isinstance(v, Tag):
-                    link_ver = v.select_one('td:nth-child(1) > a:nth-child(1)').text.strip()
-                    release_date = v.select_one('td:nth-child(4)').text.strip()
+            for os_ver in os_major_vers:
+                el_almalinux = soup.select_one(f'#almalinux-os-{os_ver}')
+                el_almalinux_table = el_almalinux.find_next_sibling('table')
+                el_almalinux_trs = el_almalinux_table.select('tbody > tr')
 
-                    if len(release_date) > 0:
-                        vhlp.append(link_ver)
+                for v in el_almalinux_trs:
+                    if isinstance(v, Tag):
+                        link_ver = v.select_one('td:nth-child(1) > a:nth-child(1)').text.strip()
+                        release_date = v.select_one('td:nth-child(4)').text.strip()
 
-            # AlmaLinux 8
-            el_almalinux8 = soup.select_one('#almalinux-os-8')
-            # noinspection DuplicatedCode
-            el_almalinux8_table = el_almalinux8.find_next_sibling('table')
-            el_almalinux8_trs = el_almalinux8_table.select('tbody > tr')
-
-            for v in el_almalinux8_trs:
-                if isinstance(v, Tag):
-                    link_ver = v.select_one('td:nth-child(1) > a:nth-child(1)').text.strip()
-                    release_date = v.select_one('td:nth-child(4)').text.strip()
-
-                    if len(release_date) > 0:
-                        vhlp.append(link_ver)
+                        if len(release_date) > 0:
+                            vhlp.append(link_ver)
 
             logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 
