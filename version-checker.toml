@@ -2153,6 +2153,7 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://packages.fluentbit.io/windows/fluent-bit-{version}-win64.zip",
+    "https://github.com/fluent/fluent-bit/archive/refs/tags/v{version}.tar.gz",
 ]
 
 [[softwares]]
