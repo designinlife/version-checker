@@ -16,6 +16,7 @@ class Parser(Base):
         vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
         async with sem:
+            # Download Links: https://download.rockylinux.org/pub/rocky/
             # Make an HTTP request.
             _, status, _, data_s = await self.request('GET', 'https://wiki.rockylinux.org/rocky/version/',
                                                       is_json=False)
