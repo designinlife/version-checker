@@ -907,6 +907,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "libuv"
+repo = "libuv/libuv"
+url = "https://github.com/libuv/libuv"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/libuv/libuv/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "libssh2"
 repo = "libssh2/libssh2"
 url = "https://github.com/libssh2/libssh2"
