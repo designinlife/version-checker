@@ -795,6 +795,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "air"
+repo = "air-verse/air"
+url = "https://github.com/air-verse/air"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/air-verse/air/releases/download/v{version}/air_{version}_linux_amd64.tar.gz",
+    "https://github.com/air-verse/air/releases/download/v{version}/air_{version}_windows_amd64.tar.gz",
+    "https://github.com/air-verse/air/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "buildah"
 repo = "containers/buildah"
 url = "https://buildah.io/"
