@@ -17,7 +17,7 @@ url = "https://rockylinux.org/"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+))$"
 parser = "rockylinux"
 download_urls = [
-    "https://mirrors.ustc.edu.cn/rocky/{version}/isos/x86_64/Rocky-{version}-x86_64-minimal.iso",
+    "https://mirror.sjtu.edu.cn/rocky/{version}/isos/x86_64/Rocky-{version}-x86_64-minimal.iso",
 ]
 split = 1
 
