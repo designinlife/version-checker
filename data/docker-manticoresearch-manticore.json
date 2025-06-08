@@ -1,1 +1,1 @@
-{"name":"docker-manticoresearch-manticore","repo":"manticoresearch/manticore","tags":[{"name":"9.3.2","full_size":150108424,"v2":true,"tag_last_pushed":"2025-05-02T12:19:54.239012Z"}],"suffix":[],"fixed_tags":[],"latest_tags":["9.3.2"],"created_time":"2025-06-08 04:01:32"}
+{"name":"docker-manticoresearch-manticore","repo":"manticoresearch/manticore","tags":[{"name":"9.3.2","full_size":150108424,"v2":true,"tag_last_pushed":"2025-05-02T12:19:54.239012Z"}],"suffix":[],"fixed_tags":[],"latest_tags":["9.3.2"],"created_time":"2025-06-08 16:01:42"}
