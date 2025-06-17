@@ -759,6 +759,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "cri-o"
+repo = "cri-o/cri-o"
+url = "https://github.com/cri-o/cri-o"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://storage.googleapis.com/cri-o/artifacts/cri-o.amd64.v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "crun"
 repo = "containers/crun"
 url = "https://github.com/containers/crun"
