@@ -863,6 +863,7 @@ download_urls = [
     "https://github.com/containerd/containerd/releases/download/v{version}/containerd-static-{version}-linux-amd64.tar.gz",
     "https://github.com/containerd/containerd/archive/refs/tags/v{version}.tar.gz",
 ]
+split = 1
 
 [[softwares]]
 name = "skopeo"
