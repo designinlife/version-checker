@@ -852,6 +852,19 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "containerd"
+repo = "containerd/containerd"
+url = "https://github.com/containerd/containerd"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/containerd/containerd/releases/download/v{version}/containerd-{version}-linux-amd64.tar.gz",
+    "https://github.com/containerd/containerd/releases/download/v{version}/containerd-{version}-windows-amd64.tar.gz",
+    "https://github.com/containerd/containerd/releases/download/v{version}/containerd-static-{version}-linux-amd64.tar.gz",
+    "https://github.com/containerd/containerd/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "skopeo"
 repo = "containers/skopeo"
 url = "https://github.com/containers/skopeo"
