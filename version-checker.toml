@@ -1547,6 +1547,25 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "rabbitmq-server"
+repo = "rabbitmq/rabbitmq-server"
+url = "https://github.com/rabbitmq/rabbitmq-server"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-{version}-1.el8.noarch.rpm",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-{version}-1.el8.src.rpm",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-{version}.exe",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-{version}.tar.xz",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-generic-unix-{version}.tar.xz",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-generic-unix-latest-toolchain-{version}.tar.xz",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server-windows-{version}.zip",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server_{version}-1.debian.tar.xz",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server_{version}-1_all.deb",
+    "https://github.com/rabbitmq/rabbitmq-server/releases/download/v{version}/rabbitmq-server_{version}.orig.tar.xz",
+]
+
+[[softwares]]
 name = "rocketmq"
 repo = "apache/rocketmq"
 url = "https://github.com/apache/rocketmq"
