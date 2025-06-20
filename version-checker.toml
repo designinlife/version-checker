@@ -1547,6 +1547,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "rocketmq"
+repo = "apache/rocketmq"
+url = "https://github.com/apache/rocketmq"
+pattern = "^rocketmq-all-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://dist.apache.org/repos/dist/release/rocketmq/{version}/rocketmq-all-{version}-source-release.zip",
+    "https://dist.apache.org/repos/dist/release/rocketmq/{version}/rocketmq-all-{version}-bin-release.zip",
+]
+
+[[softwares]]
 name = "serf"
 repo = "apache/serf"
 url = "https://serf.apache.org/"
