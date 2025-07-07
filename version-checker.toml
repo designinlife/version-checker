@@ -692,6 +692,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "registry"
+repo = "distribution/distribution"
+url = "https://github.com/distribution/distribution"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/distribution/distribution/releases/download/v{version}/registry_{version}_linux_amd64.tar.gz",
+    "https://github.com/distribution/distribution/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "docker"
 repo = "moby/moby"
 url = "https://github.com/moby/moby"
