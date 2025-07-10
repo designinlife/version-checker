@@ -22,6 +22,20 @@ download_urls = [
 split = 1
 
 [[softwares]]
+name = "grpcurl"
+repo = "fullstorydev/grpcurl"
+url = "https://github.com/fullstorydev/grpcurl"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/fullstorydev/grpcurl/releases/download/v{version}/grpcurl_{version}_linux_amd64.deb",
+    "https://github.com/fullstorydev/grpcurl/releases/download/v{version}/grpcurl_{version}_linux_amd64.rpm",
+    "https://github.com/fullstorydev/grpcurl/releases/download/v{version}/grpcurl_{version}_linux_x86_64.tar.gz",
+    "https://github.com/fullstorydev/grpcurl/releases/download/v{version}/grpcurl_{version}_windows_x86_64.zip",
+    "https://github.com/fullstorydev/grpcurl/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "oha"
 repo = "hatoo/oha"
 url = "https://github.com/hatoo/oha"
