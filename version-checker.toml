@@ -22,6 +22,35 @@ download_urls = [
 split = 1
 
 [[softwares]]
+name = "questdb"
+repo = "questdb/questdb"
+url = "https://github.com/questdb/questdb"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/questdb/questdb/releases/download/{version}/questdb-{version}-no-jre-bin.tar.gz",
+    "https://github.com/questdb/questdb/releases/download/{version}/questdb-{version}-rt-linux-x86-64.tar.gz",
+    "https://github.com/questdb/questdb/releases/download/{version}/questdb-{version}-rt-windows-x86-64.tar.gz",
+]
+
+[[softwares]]
+name = "trippy"
+repo = "fujiapple852/trippy"
+url = "https://github.com/fujiapple852/trippy"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/fujiapple852/trippy/releases/download/{version}/trippy-{version}-x86_64-pc-windows-gnu.zip",
+    "https://github.com/fujiapple852/trippy/releases/download/{version}/trippy-{version}-x86_64-pc-windows-msvc.zip",
+    "https://github.com/fujiapple852/trippy/releases/download/{version}/trippy-{version}-x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/fujiapple852/trippy/releases/download/{version}/trippy-{version}-x86_64-unknown-linux-musl.tar.gz",
+    "https://github.com/fujiapple852/trippy/releases/download/{version}/trippy-{version}-x86_64.rpm",
+    "https://github.com/fujiapple852/trippy/releases/download/{version}/trippy_x86_64-unknown-linux-gnu_{version}_amd64.deb",
+    "https://github.com/fujiapple852/trippy/releases/download/{version}/trippy_x86_64-unknown-linux-musl_{version}_amd64.deb",
+    "https://github.com/fujiapple852/trippy/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "grpcurl"
 repo = "fullstorydev/grpcurl"
 url = "https://github.com/fullstorydev/grpcurl"
