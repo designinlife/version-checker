@@ -2200,6 +2200,20 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "vscodium"
+repo = "VSCodium/vscodium"
+url = "https://github.com/VSCodium/vscodium"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/VSCodium/vscodium/releases/download/{version}/VSCodiumSetup-x64-{version}.exe",
+    "https://github.com/VSCodium/vscodium/releases/download/{version}/VSCodiumUserSetup-x64-{version}.exe",
+    "https://github.com/VSCodium/vscodium/releases/download/{version}/VSCodium-win32-x64-{version}.zip",
+    "https://github.com/VSCodium/vscodium/releases/download/{version}/VSCodium-x64-{version}.msi",
+    "https://github.com/VSCodium/vscodium/releases/download/{version}/VSCodium-x64-updates-disabled-{version}.msi",
+]
+
+[[softwares]]
 name = "awscli"
 repo = "aws/aws-cli"
 url = "https://docs.aws.amazon.com/cli/latest/userguide/getting-started-version.html"
