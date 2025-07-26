@@ -2179,6 +2179,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "lapce"
+repo = "lapce/lapce"
+url = "https://github.com/lapce/lapce"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/lapce/lapce/releases/download/v{version}/lapce-proxy-windows-x86_64.gz#lapce-{version}-proxy-windows-x86_64.gz",
+    "https://github.com/lapce/lapce/releases/download/v{version}/Lapce-windows-portable.zip#Lapce-{version}-windows-portable.zip",
+    "https://github.com/lapce/lapce/releases/download/v{version}/Lapce-windows.msi#Lapce-{version}-windows.msi",
+]
+
+[[softwares]]
 name = "code-server"
 repo = "coder/code-server"
 url = "https://github.com/coder/code-server"
