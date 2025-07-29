@@ -2226,6 +2226,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "drawio-desktop"
+repo = "jgraph/drawio-desktop"
+url = "https://github.com/jgraph/drawio-desktop"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/jgraph/drawio-desktop/releases/download/v{version}/draw.io-{version}-windows.zip",
+    "https://github.com/jgraph/drawio-desktop/releases/download/v{version}/draw.io-{version}.msi",
+]
+
+[[softwares]]
 name = "awscli"
 repo = "aws/aws-cli"
 url = "https://docs.aws.amazon.com/cli/latest/userguide/getting-started-version.html"
