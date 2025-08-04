@@ -485,6 +485,51 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "teleport"
+repo = "gravitational/teleport"
+url = "https://github.com/gravitational/teleport"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://cdn.teleport.dev/teleport-access-slack-v{version}-linux-amd64-bin.tar.gz",
+    "https://cdn.teleport.dev/teleport-access-mattermost-v{version}-linux-amd64-bin.tar.gz",
+    "https://cdn.teleport.dev/teleport-access-discord-v{version}-linux-amd64-bin.tar.gz",
+    "https://cdn.teleport.dev/terraform-provider-teleport-v{version}-linux-amd64-bin.tar.gz",
+    "https://cdn.teleport.dev/teleport-event-handler-v{version}-linux-amd64-bin.tar.gz",
+    "https://cdn.teleport.dev/teleport-access-pagerduty-v{version}-linux-amd64-bin.tar.gz",
+    "https://cdn.teleport.dev/teleport-access-jira-v{version}-linux-amd64-bin.tar.gz",
+    "https://cdn.teleport.dev/teleport-access-email-v{version}-linux-amd64-bin.tar.gz",
+    "https://cdn.teleport.dev/teleport-access-msteams-v{version}-linux-amd64-bin.tar.gz",
+    "https://github.com/gravitational/teleport/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "cfssl"
+repo = "cloudflare/cfssl"
+url = "https://github.com/cloudflare/cfssl"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssl-bundle_{version}_linux_amd64",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssl-bundle_{version}_windows_amd64.exe",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssl-certinfo_{version}_linux_amd64",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssl-certinfo_{version}_windows_amd64.exe",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssl-newkey_{version}_linux_amd64",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssl-newkey_{version}_windows_amd64.exe",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssl-scan_{version}_linux_amd64",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssl-scan_{version}_windows_amd64.exe",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssljson_{version}_linux_amd64",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssljson_{version}_windows_amd64.exe",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssl_{version}_linux_amd64",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/cfssl_{version}_windows_amd64.exe",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/mkbundle_{version}_linux_amd64",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/mkbundle_{version}_windows_amd64.exe",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/multirootca_{version}_linux_amd64",
+    "https://github.com/cloudflare/cfssl/releases/download/v{version}/multirootca_{version}_windows_amd64.exe",
+    "https://github.com/cloudflare/cfssl/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "openssl"
 repo = "openssl/openssl"
 url = "https://www.openssl.org/"
