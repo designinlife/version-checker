@@ -485,6 +485,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "tinygo"
+repo = "tinygo-org/tinygo"
+url = "https://github.com/tinygo-org/tinygo"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/tinygo-org/tinygo/releases/download/v{version}/tinygo{version}.linux-amd64.tar.gz",
+    "https://github.com/tinygo-org/tinygo/releases/download/v{version}/tinygo{version}.windows-amd64.zip",
+    "https://github.com/tinygo-org/tinygo/releases/download/v{version}/tinygo_{version}_amd64.deb",
+]
+
+[[softwares]]
 name = "teleport"
 repo = "gravitational/teleport"
 url = "https://github.com/gravitational/teleport"
