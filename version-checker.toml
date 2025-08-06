@@ -3655,7 +3655,7 @@ pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 name = "jbp-full-line-code-completion"
 parser = "jetbrains-plugin"
 plugin_id = 14823
-pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(\\.(?P<build>\\d++))?)$"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(\\.(?P<build>\\d+))?)$"
 
 [[softwares]]
 name = "jbp-jenkins-development-support"
