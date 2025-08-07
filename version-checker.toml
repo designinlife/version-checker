@@ -497,6 +497,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "golangci-lint"
+repo = "golangci/golangci-lint"
+url = "https://github.com/golangci/golangci-lint"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/golangci/golangci-lint/releases/download/v{version}/golangci-lint-{version}-linux-amd64.tar.gz",
+    "https://github.com/golangci/golangci-lint/releases/download/v{version}/golangci-lint-{version}-windows-amd64.zip",
+    "https://github.com/golangci/golangci-lint/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "teleport"
 repo = "gravitational/teleport"
 url = "https://github.com/gravitational/teleport"
