@@ -952,7 +952,7 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/containers/netavark/releases/download/v{version}/netavark-v{version}-vendor.tar.gz",
-    "https://github.com/containers/netavark/releases/download/v{version}/netavark.gz",
+    "https://github.com/containers/netavark/releases/download/v{version}/netavark.gz#netavark-v{version}.gz",
     "https://github.com/containers/netavark/archive/refs/tags/v{version}.tar.gz",
 ]
 
