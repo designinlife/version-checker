@@ -957,6 +957,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "aardvark-dns"
+repo = "containers/aardvark-dns"
+url = "https://github.com/containers/aardvark-dns"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/containers/aardvark-dns/releases/download/v{version}/aardvark-dns-v{version}-vendor.tar.gz",
+    "https://github.com/containers/aardvark-dns/releases/download/v{version}/aardvark-dns.gz#aardvark-dns-v{version}.gz",
+    "https://github.com/containers/aardvark-dns/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "air"
 repo = "air-verse/air"
 url = "https://github.com/air-verse/air"
