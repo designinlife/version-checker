@@ -1095,6 +1095,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "fuse-overlayfs"
+repo = "containers/fuse-overlayfs"
+url = "https://github.com/containers/fuse-overlayfs"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)(\\.(?P<patch>\\d+))?)$"
+release = true
+download_urls = [
+    "https://github.com/containers/fuse-overlayfs/releases/download/v{version}/fuse-overlayfs-x86_64#fuse-overlayfs-{version}-x86_64",
+    "https://github.com/containers/fuse-overlayfs/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "catatonit"
 repo = "openSUSE/catatonit"
 url = "https://github.com/openSUSE/catatonit"
