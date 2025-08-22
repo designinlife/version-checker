@@ -1106,6 +1106,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "slirp4netns"
+repo = "rootless-containers/slirp4netns"
+url = "https://github.com/rootless-containers/slirp4netns"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/rootless-containers/slirp4netns/releases/download/v{version}/slirp4netns-x86_64#slirp4netns-{version}-x86_64",
+    "https://github.com/rootless-containers/slirp4netns/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "catatonit"
 repo = "openSUSE/catatonit"
 url = "https://github.com/openSUSE/catatonit"
