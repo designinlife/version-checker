@@ -1824,6 +1824,33 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "nats-server"
+repo = "nats-io/nats-server"
+url = "https://github.com/nats-io/nats-server"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/nats-io/nats-server/releases/download/v{version}/nats-server-v{version}-amd64.deb",
+    "https://github.com/nats-io/nats-server/releases/download/v{version}/nats-server-v{version}-amd64.rpm",
+    "https://github.com/nats-io/nats-server/releases/download/v{version}/nats-server-v{version}-linux-amd64.tar.gz",
+    "https://github.com/nats-io/nats-server/releases/download/v{version}/nats-server-v{version}-windows-amd64.zip",
+    "https://github.com/nats-io/nats-server/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "redpanda"
+repo = "redpanda-data/redpanda"
+url = "https://github.com/redpanda-data/redpanda"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/redpanda-data/redpanda/releases/download/v{version}/rpk-darwin-amd64.zip#rpk-v{version}-darwin-amd64.zip",
+    "https://github.com/redpanda-data/redpanda/releases/download/v{version}/rpk-linux-amd64.zip#rpk-v{version}-linux-amd64.zip",
+    "https://github.com/redpanda-data/redpanda/releases/download/v{version}/rpk-windows-amd64.zip#rpk-v{version}-windows-amd64.zip",
+    "https://github.com/redpanda-data/redpanda/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "doris"
 repo = "apache/doris"
 url = "https://doris.apache.org/"
