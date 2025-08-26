@@ -1851,6 +1851,37 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "redpanda-console"
+repo = "redpanda-data/console"
+url = "https://github.com/redpanda-data/console"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/redpanda-data/console/releases/download/v{version}/redpanda-console_{version}_amd64.deb",
+    "https://github.com/redpanda-data/console/releases/download/v{version}/redpanda-console-{version}-1.x86_64.rpm",
+    "https://github.com/redpanda-data/console/releases/download/v{version}/redpanda_console_{version}_linux_amd64.tar.gz",
+    "https://github.com/redpanda-data/console/releases/download/v{version}/redpanda_console_{version}_windows_amd64.zip",
+    "https://github.com/redpanda-data/console/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
+name = "redpanda-connect"
+repo = "redpanda-data/connect"
+url = "https://github.com/redpanda-data/connect"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/redpanda-data/connect/releases/download/v{version}/redpanda-connect-{version}-1.x86_64.rpm",
+    "https://github.com/redpanda-data/connect/releases/download/v{version}/redpanda-connect-cloud_{version}_linux_amd64.tar.gz",
+    "https://github.com/redpanda-data/connect/releases/download/v{version}/redpanda-connect-fips_{version}_amd64.deb",
+    "https://github.com/redpanda-data/connect/releases/download/v{version}/redpanda-connect-lambda_{version}_linux_amd64.zip",
+    "https://github.com/redpanda-data/connect/releases/download/v{version}/redpanda-connect_{version}_amd64.deb",
+    "https://github.com/redpanda-data/connect/releases/download/v{version}/redpanda-connect_{version}_linux_amd64.tar.gz",
+    "https://github.com/redpanda-data/connect/releases/download/v{version}/redpanda-connect_{version}_windows_amd64.tar.gz",
+    "https://github.com/redpanda-data/connect/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "doris"
 repo = "apache/doris"
 url = "https://doris.apache.org/"
