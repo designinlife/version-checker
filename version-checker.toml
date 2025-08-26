@@ -65,6 +65,27 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "hoppscotch"
+repo = "hoppscotch/hoppscotch"
+url = "https://github.com/hoppscotch/hoppscotch"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/hoppscotch/hoppscotch/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
+name = "hoppscotch-releases"
+repo = "hoppscotch/releases"
+url = "https://github.com/hoppscotch/releases"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)(-\\d)?)$"
+release = true
+download_urls = [
+    "https://github.com/hoppscotch/releases/releases/download/v{version}/Hoppscotch_SelfHost_win_x64.msi#Hoppscotch-v{version}_SelfHost_win_x64.msi",
+    "https://github.com/hoppscotch/releases/releases/download/v{version}/Hoppscotch_win_x64.msi#Hoppscotch-v{version}_win_x64.msi",
+]
+
+[[softwares]]
 name = "oha"
 repo = "hatoo/oha"
 url = "https://github.com/hatoo/oha"
