@@ -1812,6 +1812,26 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "fluvio"
+repo = "infinyon/fluvio"
+url = "https://github.com/infinyon/fluvio"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/infinyon/fluvio/releases/download/v{version}/cdk-x86_64-unknown-linux-musl.zip#cdk-v{version}-x86_64-unknown-linux-musl.zip",
+    "https://github.com/infinyon/fluvio/releases/download/v{version}/fluvio-benchmark-x86_64-unknown-linux-musl.zip#fluvio-benchmark-v{version}-x86_64-unknown-linux-musl.zip",
+    "https://github.com/infinyon/fluvio/releases/download/v{version}/fluvio-benchmark.exe-x86_64-pc-windows-gnu.zip#fluvio-benchmark.exe-v{version}-x86_64-pc-windows-gnu.zip",
+    "https://github.com/infinyon/fluvio/releases/download/v{version}/fluvio-channel-x86_64-unknown-linux-musl.zip#fluvio-channel-v{version}-x86_64-unknown-linux-musl.zip",
+    "https://github.com/infinyon/fluvio/releases/download/v{version}/fluvio-channel.exe-x86_64-pc-windows-gnu.zip#fluvio-channel.exe-v{version}-x86_64-pc-windows-gnu.zip",
+    "https://github.com/infinyon/fluvio/releases/download/v{version}/fluvio-run-x86_64-unknown-linux-musl.zip#fluvio-run-v{version}-x86_64-unknown-linux-musl.zip",
+    "https://github.com/infinyon/fluvio/releases/download/v{version}/fluvio-x86_64-unknown-linux-musl.zip#fluvio-v{version}-x86_64-unknown-linux-musl.zip",
+    "https://github.com/infinyon/fluvio/releases/download/v{version}/fluvio.exe-x86_64-pc-windows-gnu.zip#fluvio.exe-v{version}-x86_64-pc-windows-gnu.zip",
+    "https://github.com/infinyon/fluvio/releases/download/v{version}/fvm-x86_64-unknown-linux-musl.zip#fvm-v{version}-x86_64-unknown-linux-musl.zip",
+    "https://github.com/infinyon/fluvio/releases/download/v{version}/smdk-x86_64-unknown-linux-musl.zip#smdk-v{version}-x86_64-unknown-linux-musl.zip",
+    "https://github.com/infinyon/fluvio/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "kafka"
 repo = "apache/kafka"
 url = "https://kafka.apache.org/"
