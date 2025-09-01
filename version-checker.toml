@@ -2103,6 +2103,15 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "dnsmasq"
+url = "https://thekelleys.org.uk/git/dnsmasq.git/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)(\\.(?P<patch>\\d+))?)$"
+parser = "git-ls-remote"
+download_urls = [
+    "https://thekelleys.org.uk/dnsmasq/dnsmasq-{version}.tar.gz",
+]
+
+[[softwares]]
 name = "coredns"
 repo = "coredns/coredns"
 url = "https://coredns.io/"

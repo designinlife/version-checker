@@ -59,6 +59,10 @@ class CodebergSoftware(AppSettingSoftItem):
     max_page: int = Field(default=1)
 
 
+class GitLsRemoteSoftware(AppSettingSoftItem):
+    parser: Literal['git-ls-remote']
+
+
 class GoSoftware(AppSettingSoftItem):
     parser: Literal['go']
 
@@ -174,7 +178,7 @@ class AppSetting(BaseModel):
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
                     | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GiteaSoftware | GitlabSoftware | CodebergSoftware
                     | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | JetbrainsPluginSoftware | FirefoxSoftware
-                    | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware
+                    | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware | GitLsRemoteSoftware
                     | FlutterSoftware | DartSoftware | NavicatSoftware | HAProxySoftware | DockerHubSoftware
                     | AlmaLinuxSoftware | RockyLinuxSoftware | IndexSoftware] = Field(alias='softwares',
                                                                                       default_factory=list)
