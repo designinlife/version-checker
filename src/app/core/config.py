@@ -31,6 +31,15 @@ class GithubSoftware(AppSettingSoftItem):
     page_size: int = Field(default=100)
 
 
+class GiteaSoftware(AppSettingSoftItem):
+    parser: Literal['gitea']
+    owner: str
+    repo: str
+    release: bool = Field(default=False)
+    by_tag_name: bool = Field(default=False)
+    host: str = Field(default='gitea.com')
+
+
 class GitlabSoftware(AppSettingSoftItem):
     parser: Literal['gitlab']
     id: int
@@ -163,7 +172,7 @@ class DockerHubSoftware(AppSettingSoftItem):
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
     softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
-                    | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GitlabSoftware | CodebergSoftware
+                    | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GiteaSoftware | GitlabSoftware | CodebergSoftware
                     | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | JetbrainsPluginSoftware | FirefoxSoftware
                     | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware
                     | FlutterSoftware | DartSoftware | NavicatSoftware | HAProxySoftware | DockerHubSoftware

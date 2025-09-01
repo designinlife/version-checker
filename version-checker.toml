@@ -732,6 +732,20 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "act_runner"
+owner = "gitea"
+repo = "act_runner"
+url = "https://gitea.com/gitea/act_runner"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+parser = "gitea"
+release = true
+download_urls = [
+    "https://gitea.com/gitea/act_runner/releases/download/v{version}/act_runner-{version}-linux-amd64",
+    "https://gitea.com/gitea/act_runner/releases/download/v{version}/act_runner-{version}-windows-amd64.exe",
+    "https://gitea.com/gitea/act_runner/archive/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "forgejo"
 repo = "forgejo/forgejo"
 url = "https://forgejo.org/"
