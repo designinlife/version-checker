@@ -3782,6 +3782,23 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "res-downloader"
+repo = "putyy/res-downloader"
+url = "https://github.com/putyy/res-downloader"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/putyy/res-downloader/releases/download/{version}/res-downloader_{version}_linux_amd64",
+    "https://github.com/putyy/res-downloader/releases/download/{version}/res-downloader_{version}_linux_amd64.deb",
+    "https://github.com/putyy/res-downloader/releases/download/{version}/res-downloader_{version}_linux_arm64",
+    "https://github.com/putyy/res-downloader/releases/download/{version}/res-downloader_{version}_linux_arm64.deb",
+    "https://github.com/putyy/res-downloader/releases/download/{version}/res-downloader_{version}_mac.dmg",
+    "https://github.com/putyy/res-downloader/releases/download/{version}/res-downloader_{version}_win_amd64.exe",
+    "https://github.com/putyy/res-downloader/releases/download/{version}/res-downloader_{version}_win_arm64.exe",
+    "https://github.com/putyy/res-downloader/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "libavif"
 repo = "AOMediaCodec/libavif"
 url = "https://github.com/AOMediaCodec/libavif"
