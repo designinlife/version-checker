@@ -1379,6 +1379,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "deepchat"
+repo = "ThinkInAIXYZ/deepchat"
+url = "https://deepchatai.cn/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/ThinkInAIXYZ/deepchat/releases/download/v{version}/DeepChat-{version}-windows-x64.exe",
+    "https://github.com/ThinkInAIXYZ/deepchat/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "chatbox"
 repo = "chatboxai/chatbox"
 url = "https://github.com/chatboxai/chatbox"
