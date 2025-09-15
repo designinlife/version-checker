@@ -1379,6 +1379,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "operit"
+repo = "AAswordman/Operit"
+url = "https://operit.dev.tc/"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/AAswordman/Operit/releases/download/v{version}/app-release.apk#app-release-v{version}.apk",
+    "https://github.com/AAswordman/Operit/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "deepchat"
 repo = "ThinkInAIXYZ/deepchat"
 url = "https://deepchatai.cn/"
