@@ -1379,15 +1379,14 @@ download_urls = [
 ]
 
 [[softwares]]
-name = "ChatBox"
-repo = "AIDotNet/ChatBox"
-url = "https://github.com/AIDotNet/ChatBox"
-pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+name = "chatbox"
+repo = "chatboxai/chatbox"
+url = "https://github.com/chatboxai/chatbox"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
-    "https://github.com/AIDotNet/ChatBox/releases/download/{version}/win-64-framework.exe#ChatBox-v{version}-win-64-framework.exe",
-    "https://github.com/AIDotNet/ChatBox/releases/download/{version}/win-64.exe#ChatBox-v{version}-win-64.exe",
-    "https://github.com/AIDotNet/ChatBox/archive/refs/tags/{version}.tar.gz",
+    "https://download.chatboxai.app/releases/Chatbox-{version}-Setup.exe",
+    "https://github.com/chatboxai/chatbox/archive/refs/tags/v{version}.tar.gz",
 ]
 
 [[softwares]]
