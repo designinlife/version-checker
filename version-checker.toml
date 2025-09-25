@@ -2439,6 +2439,24 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "hiddify-app"
+repo = "hiddify/hiddify-app"
+url = "https://github.com/hiddify/hiddify-app"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/hiddify/hiddify-app/releases/download/v{version}/Hiddify-Android-arm64.apk#v{version}|Hiddify-Android-arm64.apk",
+    "https://github.com/hiddify/hiddify-app/releases/download/v{version}/Hiddify-Android-arm7.apk#v{version}|Hiddify-Android-arm7.apk",
+    "https://github.com/hiddify/hiddify-app/releases/download/v{version}/Hiddify-Android-universal.apk#v{version}|Hiddify-Android-universal.apk",
+    "https://github.com/hiddify/hiddify-app/releases/download/v{version}/Hiddify-Android-x86_64.apk#v{version}|Hiddify-Android-x86_64.apk",
+    "https://github.com/hiddify/hiddify-app/releases/download/v{version}/Hiddify-Debian-x64.deb#v{version}|Hiddify-Debian-x64.deb",
+    "https://github.com/hiddify/hiddify-app/releases/download/v{version}/Hiddify-rpm-x64.rpm#v{version}|Hiddify-rpm-x64.rpm",
+    "https://github.com/hiddify/hiddify-app/releases/download/v{version}/Hiddify-Windows-Portable-x64.zip#v{version}|Hiddify-Windows-Portable-x64.zip",
+    "https://github.com/hiddify/hiddify-app/releases/download/v{version}/Hiddify-Windows-Setup-x64.exe#v{version}|Hiddify-Windows-Setup-x64.exe",
+    "https://github.com/hiddify/hiddify-app/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "clash-verge-rev"
 repo = "clash-verge-rev/clash-verge-rev"
 url = "https://github.com/clash-verge-rev/clash-verge-rev"
