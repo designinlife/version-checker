@@ -1793,6 +1793,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "robustmq"
+repo = "robustmq/robustmq"
+url = "https://github.com/robustmq/robustmq"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/robustmq/robustmq/releases/download/v{version}/robustmq-v{version}-linux-amd64.tar.gz",
+    "https://github.com/robustmq/robustmq/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "rabbitmq-server"
 repo = "rabbitmq/rabbitmq-server"
 url = "https://github.com/rabbitmq/rabbitmq-server"
