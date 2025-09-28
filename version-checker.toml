@@ -1390,6 +1390,16 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "prompt-optimizer"
+repo = "linshenkx/prompt-optimizer"
+url = "https://github.com/linshenkx/prompt-optimizer"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/linshenkx/prompt-optimizer/releases/download/v{version}/PromptOptimizer-{version}-win-x64.zip",
+]
+
+[[softwares]]
 name = "deepchat"
 repo = "ThinkInAIXYZ/deepchat"
 url = "https://deepchatai.cn/"
