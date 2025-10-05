@@ -11,8 +11,8 @@ class UrlMaker(UrlMakerBase):
 
         ver = version_summary.latest.version
 
-        if version_summary.latest.patch == 0:
-            ver = f'{version_summary.latest.major}.{version_summary.latest.minor}'
+        # if version_summary.latest.patch == 0:
+        #     ver = f'{version_summary.latest.major}.{version_summary.latest.minor}'
 
         r.append(f'https://services.gradle.org/distributions/gradle-{ver}-bin.zip')
         r.append(f'https://services.gradle.org/distributions/gradle-{ver}-all.zip')
