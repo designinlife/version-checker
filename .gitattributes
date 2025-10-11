@@ -6,3 +6,5 @@ poetry.lock text eol=crlf
 *.jpg  binary
 *.png  binary
 *.webp binary
+
+*.zst  binary
