@@ -1,4 +1,5 @@
 import json
+from compression import zstd
 from pathlib import Path
 from typing import List, Dict, Tuple, Optional
 
@@ -96,7 +97,11 @@ def cli(ctx: Context, cfg: Configuration):
     new_all_json = sorted(filter_nones(data), key=lambda x: x['name'])
 
     with open(p.joinpath('all.json'), 'w', encoding='utf-8') as f:
-        f.write(json.dumps(new_all_json, ensure_ascii=True, separators=(',', ':')))
+        b = json.dumps(new_all_json, ensure_ascii=True, separators=(',', ':'))
+        f.write(b)
+
+        with zstd.open(p.joinpath('all.json.zst'), 'wb') as zstf:
+            zstf.write(b.encode('utf-8'))
 
     logger.info('The all.json file has been generated.')
 
