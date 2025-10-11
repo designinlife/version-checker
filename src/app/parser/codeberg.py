@@ -1,8 +1,7 @@
 from asyncio import Semaphore
 
+import feedparser
 from loguru import logger
-from rss_parser import RSSParser
-from rss_parser.models.types.tag import Tag
 
 from app.core.config import CodebergSoftware
 from app.core.version import VersionHelper
@@ -24,12 +23,12 @@ class Parser(Base):
 
             _, status, _, data_s = await self.request('GET', api_url)
 
-            rss = RSSParser.parse(data_s)
+            rss = feedparser.parse(data_s)
 
-            for v in rss.channel.items:
-                title = v.title
-                if isinstance(title, Tag):
-                    vhlp.append(title.content)
+            if rss and isinstance(rss.entries, list):
+                for v in rss.entries:
+                    if isinstance(v, feedparser.FeedParserDict):
+                        vhlp.append(v['title'])
 
             logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 
