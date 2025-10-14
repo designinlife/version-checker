@@ -1,1 +1,1 @@
-{"name":"docker-library-nginx","repo":"library/nginx","tags":[{"name":"1.29.2","full_size":62685136,"v2":true,"tag_last_pushed":"2025-10-08T11:51:41.311956Z"}],"suffix":["-alpine"],"fixed_tags":["stable","stable-alpine"],"latest_tags":["1.29.2"],"created_time":"2025-10-14 04:01:57"}
+{"name":"docker-library-nginx","repo":"library/nginx","tags":[{"name":"1.29.2","full_size":62685136,"v2":true,"tag_last_pushed":"2025-10-08T11:51:41.311956Z"}],"suffix":["-alpine"],"fixed_tags":["stable","stable-alpine"],"latest_tags":["1.29.2"],"created_time":"2025-10-14 16:02:04"}
