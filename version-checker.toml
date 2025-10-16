@@ -2136,7 +2136,7 @@ name = "nginx"
 repo = "nginx/nginx"
 url = "https://nginx.org/"
 pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-filter = "<1.29.0"
+filter = "< 1.29.0"
 download_urls = [
     "https://nginx.org/download/nginx-{version}.tar.gz",
 ]
@@ -3427,7 +3427,7 @@ repo = "FFmpeg/FFmpeg"
 url = "https://github.com/FFmpeg/FFmpeg"
 pattern = "^n(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
 split = 2
-condition = 'major >= 6'
+filter = "> 6.0.0"
 download_urls = [
     "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz#linux|ffmpeg-release-amd64-static.tar.xz",
     "https://www.gyan.dev/ffmpeg/builds/packages/ffmpeg-{version}-full_build.7z#win64|ffmpeg-{version}-full_build.7z",

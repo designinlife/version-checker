@@ -141,7 +141,7 @@ class VersionHelper:
         d = dict()
 
         if self.split == 1:
-            for version in self._versions:
+            for version in self.versions:
                 k = f'{version.major}'
 
                 if k not in d:
@@ -149,7 +149,7 @@ class VersionHelper:
 
                 d[k].append(version)
         elif self.split == 2:
-            for version in self._versions:
+            for version in self.versions:
                 if version.minor is not None:
                     k = f'{version.major}.{version.minor}'
 
