@@ -1,5 +1,5 @@
 import re
-from typing import Optional, List, Mapping, Any
+from typing import Optional, List, Tuple, Mapping, Any
 
 from pydantic import BaseModel
 
@@ -199,53 +199,74 @@ class VersionHelper:
 
     @staticmethod
     def filter_versions(versions: List[Version], filter_expr: str) -> List[Version]:
-        # Step 1: 解析 filter 表达式，例如 '>= 1.28.0'
-        import re
+        if not filter_expr.strip():
+            return versions  # 如果没有 filter，返回全部
 
-        # 匹配类似 '>= 1.28.0', '<= 2.0.1', '== 1.0.0' 的表达式
-        op_version_match = re.match(r'^([<>=]=?|==)\s*(\d+(\.\d+){0,2})$', filter_expr.strip())
-        if not op_version_match:
-            raise ValueError(f"Invalid filter expression: '{filter_expr}'. Expected format like '>= 1.28.0'")
+        # Step 1: 拆分多个条件，例如 ">=1.28.0, <2.0.0" -> ['>=1.28.0', '<2.0.0']
+        sub_conditions = [cond.strip() for cond in filter_expr.split(',') if cond.strip()]
 
-        op, version_str, _ = op_version_match.groups()
-        # 只取第一个三个部分 (major.minor.patch)，忽略更多部分
-        version_parts = version_str.split('.')[:3]
-        if len(version_parts) < 1:
-            raise ValueError(f"Invalid version string in filter: '{version_str}'")
+        # Step 2: 解析每一个子条件，得到 (operator, (major, minor, patch))
+        parsed_conditions = []
+        for cond in sub_conditions:
+            import re
+            # 匹配操作符（>=, <=, >, <, ==）以及版本号（如 1.28.0, 1.0, 2 等）
+            match = re.match(r'^([<>=]=?|==)\s+(\d+(\.\d+){0,2})$', cond)
+            if not match:
+                raise ValueError(f"Invalid filter condition: '{cond}'. Expected format like '>=1.28.0' or '<2.0.0'")
 
-        try:
-            major = int(version_parts[0])
-            minor = int(version_parts[1]) if len(version_parts) > 1 else 0
-            patch = int(version_parts[2]) if len(version_parts) > 2 else 0
-        except ValueError:
-            raise ValueError(f"Version components must be integers in filter: '{version_str}'")
+            op, version_str, _ = match.groups()
+            version_parts = version_str.split('.')[:3]  # 最多取 major.minor.patch
+            if not version_parts:
+                raise ValueError(f"Invalid version in condition: '{version_str}'")
 
-        # 构造一个用于比较的目标 Version 对象（补全 minor 和 patch 为 0 如果未提供）
-        target_version = Version(major=major, minor=minor, patch=patch)
+            try:
+                major = int(version_parts[0])
+                minor = int(version_parts[1]) if len(version_parts) > 1 else 0
+                patch = int(version_parts[2]) if len(version_parts) > 2 else 0
+            except ValueError:
+                raise ValueError(f"Version numbers must be integers in condition: '{version_str}'")
 
-        def version_to_tuple(v: Version) -> tuple:
-            # 将 Version 对象转为一个元组，缺失的 minor/patch 当作 0
-            major_val = v.major
-            minor_val = v.minor if v.minor is not None else 0
-            patch_val = v.patch if v.patch is not None else 0
-            return major_val, minor_val, patch_val
+            target = Version(major=major, minor=minor, patch=patch)
+            parsed_conditions.append((op, target))
 
-        def satisfies_condition(ver: Version) -> bool:
-            ver_tuple = version_to_tuple(ver)
-            target_tuple = version_to_tuple(target_version)
+        # Step 3: 定义一个函数，将 Version 转为可比较的三元组 (major, minor, patch)，缺失字段补 0
+        def version_to_tuple(v: Version) -> Tuple[int, int, int]:
+            _major = v.major
+            _minor = v.minor if v.minor is not None else 0
+            _patch = v.patch if v.patch is not None else 0
+            return _major, _minor, _patch
 
-            if op == '>=':
-                return ver_tuple >= target_tuple
-            elif op == '<=':
-                return ver_tuple <= target_tuple
-            elif op == '>':
+        # Step 4: 定义一个函数，判断单个 Version 是否满足单个条件 (op, target)
+        def matches_condition(_ver: Version, _op: str, _target: Version) -> bool:
+            ver_tuple = version_to_tuple(_ver)
+            target_tuple = version_to_tuple(_target)
+
+            if _op == '>':
                 return ver_tuple > target_tuple
-            elif op == '<':
+            elif _op == '<':
                 return ver_tuple < target_tuple
-            elif op == '==':
+            elif _op == '>=':
+                return ver_tuple >= target_tuple
+            elif _op == '<=':
+                return ver_tuple <= target_tuple
+            elif _op == '==':
                 return ver_tuple == target_tuple
             else:
-                raise ValueError(f"Unsupported operator '{op}' in filter expression '{filter_expr}'")
+                raise ValueError(f"Unsupported operator '{_op}' in condition")
 
-        # 过滤满足条件的版本
-        return [ver for ver in versions if satisfies_condition(ver)]
+        # Step 5: 过滤：保留所有满足全部条件的版本
+        result = []
+        for ver in versions:
+            try:
+                # 检查该版本是否满足所有子条件
+                all_match = all(
+                    matches_condition(ver, op, target)
+                    for op, target in parsed_conditions
+                )
+                if all_match:
+                    result.append(ver)
+            except Exception as e:
+                # 如果出现意外错误（比如版本字段为 None 但未处理），可根据需求决定是否跳过或报错
+                raise ValueError(f"Error evaluating version {ver}: {e}")
+
+        return result
