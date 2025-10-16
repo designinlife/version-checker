@@ -60,11 +60,12 @@ class VersionSummary(BaseModel):
 
 
 class VersionHelper:
-    def __init__(self, pattern: str, split: int = 0, download_urls: List[str] = None):
+    def __init__(self, pattern: str, split: int = 0, download_urls: List[str] = None, filter_expr: str = None):
         self.split = split
         self.exp = re.compile(pattern, flags=re.IGNORECASE)
         self._versions: List[Version] = []
         self.download_urls = download_urls
+        self.filter_expr = filter_expr
 
     def append(self, version: str, raw_data: Any = None):
         """追加版本号。
@@ -123,8 +124,12 @@ class VersionHelper:
         Returns:
 
         """
-        return sorted(self._versions, key=lambda x: (x.major, x.minor, x.patch if x.patch else -1, x.build, x.letter),
-                      reverse=True)
+        if self.filter_expr:
+            return self.filter_versions(sorted(self._versions, key=lambda x: (x.major, x.minor, x.patch if x.patch else -1, x.build, x.letter),
+                                               reverse=True), self.filter_expr)
+        else:
+            return sorted(self._versions, key=lambda x: (x.major, x.minor, x.patch if x.patch else -1, x.build, x.letter),
+                          reverse=True)
 
     @property
     def split_versions(self) -> Mapping[str, List[Version]]:
@@ -191,3 +196,56 @@ class VersionHelper:
                 d.append(v.format(**p))
 
         return d
+
+    @staticmethod
+    def filter_versions(versions: List[Version], filter_expr: str) -> List[Version]:
+        # Step 1: 解析 filter 表达式，例如 '>= 1.28.0'
+        import re
+
+        # 匹配类似 '>= 1.28.0', '<= 2.0.1', '== 1.0.0' 的表达式
+        op_version_match = re.match(r'^([<>=]=?|==)\s*(\d+(\.\d+){0,2})$', filter_expr.strip())
+        if not op_version_match:
+            raise ValueError(f"Invalid filter expression: '{filter_expr}'. Expected format like '>= 1.28.0'")
+
+        op, version_str, _ = op_version_match.groups()
+        # 只取第一个三个部分 (major.minor.patch)，忽略更多部分
+        version_parts = version_str.split('.')[:3]
+        if len(version_parts) < 1:
+            raise ValueError(f"Invalid version string in filter: '{version_str}'")
+
+        try:
+            major = int(version_parts[0])
+            minor = int(version_parts[1]) if len(version_parts) > 1 else 0
+            patch = int(version_parts[2]) if len(version_parts) > 2 else 0
+        except ValueError:
+            raise ValueError(f"Version components must be integers in filter: '{version_str}'")
+
+        # 构造一个用于比较的目标 Version 对象（补全 minor 和 patch 为 0 如果未提供）
+        target_version = Version(major=major, minor=minor, patch=patch)
+
+        def version_to_tuple(v: Version) -> tuple:
+            # 将 Version 对象转为一个元组，缺失的 minor/patch 当作 0
+            major_val = v.major
+            minor_val = v.minor if v.minor is not None else 0
+            patch_val = v.patch if v.patch is not None else 0
+            return major_val, minor_val, patch_val
+
+        def satisfies_condition(ver: Version) -> bool:
+            ver_tuple = version_to_tuple(ver)
+            target_tuple = version_to_tuple(target_version)
+
+            if op == '>=':
+                return ver_tuple >= target_tuple
+            elif op == '<=':
+                return ver_tuple <= target_tuple
+            elif op == '>':
+                return ver_tuple > target_tuple
+            elif op == '<':
+                return ver_tuple < target_tuple
+            elif op == '==':
+                return ver_tuple == target_tuple
+            else:
+                raise ValueError(f"Unsupported operator '{op}' in filter expression '{filter_expr}'")
+
+        # 过滤满足条件的版本
+        return [ver for ver in versions if satisfies_condition(ver)]

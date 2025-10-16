@@ -13,6 +13,7 @@ class AppSettingSoftItem(BaseModel):
     display_name: Optional[str] = None
     url: Optional[str] = None
     pattern: Optional[str] = Field(default=None)
+    filter: Optional[str] = Field(default=None)
     split: int = Field(default=0)
     disabled: bool = Field(default=False)
     download_dynamic: bool = Field(default=False, description='动态生成下载地址')

@@ -49,7 +49,7 @@ class Parser(Base):
 
             logger.debug('Using GITHUB_TOKEN env.')
 
-        vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
+        vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls, filter_expr=soft.filter)
 
         gns = soft.repo
 
