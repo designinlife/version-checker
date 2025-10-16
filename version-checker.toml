@@ -2136,6 +2136,7 @@ name = "nginx"
 repo = "nginx/nginx"
 url = "https://nginx.org/"
 pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+filter = "<1.29.0"
 download_urls = [
     "https://nginx.org/download/nginx-{version}.tar.gz",
 ]
