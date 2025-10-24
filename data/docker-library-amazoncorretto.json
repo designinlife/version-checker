@@ -1,1 +1,1 @@
-{"name":"docker-library-amazoncorretto","repo":"library/amazoncorretto","tags":[{"name":"21.0.9","full_size":228428558,"v2":true,"tag_last_pushed":"2025-10-22T00:52:41.888224Z"}],"suffix":["-alpine"],"fixed_tags":[],"latest_tags":["21.0.9"],"created_time":"2025-10-23 16:02:41"}
+{"name":"docker-library-amazoncorretto","repo":"library/amazoncorretto","tags":[{"name":"21.0.9","full_size":228428558,"v2":true,"tag_last_pushed":"2025-10-22T00:52:41.888224Z"}],"suffix":["-alpine"],"fixed_tags":[],"latest_tags":["21.0.9"],"created_time":"2025-10-24 04:02:29"}
