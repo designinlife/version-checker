@@ -2482,6 +2482,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "sing-box"
+repo = "SagerNet/sing-box"
+url = "https://github.com/SagerNet/sing-box"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/SagerNet/sing-box/releases/download/v{version}/sing-box-{version}-linux-amd64.tar.gz",
+    "https://github.com/SagerNet/sing-box/releases/download/v{version}/sing-box-{version}-windows-amd64.zip",
+    "https://github.com/SagerNet/sing-box/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "vaultwarden"
 repo = "dani-garcia/vaultwarden"
 url = "https://github.com/dani-garcia/vaultwarden"
