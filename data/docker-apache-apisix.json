@@ -1,1 +1,1 @@
-{"name":"docker-apache-apisix","repo":"apache/apisix","tags":[],"suffix":["-debian","-redhat"],"fixed_tags":[],"latest_tags":["3.14.1"],"created_time":"2025-11-12 16:02:38"}
+{"name":"docker-apache-apisix","repo":"apache/apisix","tags":[],"suffix":["-debian","-redhat"],"fixed_tags":[],"latest_tags":["3.14.1"],"created_time":"2025-11-13 04:02:41"}
