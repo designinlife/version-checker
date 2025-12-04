@@ -858,7 +858,7 @@ download_urls = [
 name = "docker"
 repo = "moby/moby"
 url = "https://github.com/moby/moby"
-pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+pattern = "^(?:docker-)?v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
 release = true
 download_urls = [
     "https://download.docker.com/linux/static/stable/x86_64/docker-{version}.tgz#docker-linux-static-{version}.tgz",
