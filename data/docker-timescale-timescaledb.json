@@ -1,1 +1,1 @@
-{"name":"docker-timescale-timescaledb","repo":"timescale/timescaledb","tags":[],"suffix":["-pg15","-pg16","-pg15-oss","-pg16-oss"],"fixed_tags":[],"latest_tags":["2.24.0"],"created_time":"2025-12-14 04:03:43"}
+{"name":"docker-timescale-timescaledb","repo":"timescale/timescaledb","tags":[],"suffix":["-pg15","-pg16","-pg15-oss","-pg16-oss"],"fixed_tags":[],"latest_tags":["2.24.0"],"created_time":"2025-12-14 16:02:44"}
