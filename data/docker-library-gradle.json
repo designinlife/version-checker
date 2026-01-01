@@ -1,1 +1,1 @@
-{"name":"docker-library-gradle","repo":"library/gradle","tags":[],"suffix":["-jdk21-alpine","-jdk17-alpine"],"fixed_tags":[],"latest_tags":["9.2.1"],"created_time":"2026-01-01 04:02:04"}
+{"name":"docker-library-gradle","repo":"library/gradle","tags":[],"suffix":["-jdk21-alpine","-jdk17-alpine"],"fixed_tags":[],"latest_tags":["9.2.1"],"created_time":"2026-01-01 16:02:13"}
