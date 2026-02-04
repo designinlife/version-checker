@@ -2482,6 +2482,19 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "mihomo"
+repo = "MetaCubeX/mihomo"
+url = "https://github.com/MetaCubeX/mihomo"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/MetaCubeX/mihomo/releases/download/v{version}/mihomo-linux-amd64-compatible-v{version}.gz",
+    "https://github.com/MetaCubeX/mihomo/releases/download/v{version}/mihomo-linux-amd64-v3-v{version}.gz",
+    "https://github.com/MetaCubeX/mihomo/releases/download/v{version}/mihomo-windows-amd64-compatible-v{version}.zip",
+    "https://github.com/MetaCubeX/mihomo/releases/download/v{version}/mihomo-windows-amd64-v3-v{version}.zip",
+]
+
+[[softwares]]
 name = "sing-box"
 repo = "SagerNet/sing-box"
 url = "https://github.com/SagerNet/sing-box"
