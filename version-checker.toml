@@ -2495,6 +2495,20 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "clashmi"
+repo = "KaringX/clashmi"
+url = "https://github.com/KaringX/clashmi"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/KaringX/clashmi/releases/download/v{version}/clashmi_{version}_android_arm.apk",
+    "https://github.com/KaringX/clashmi/releases/download/v{version}/clashmi_{version}_android_arm64-v8a.apk",
+    "https://github.com/KaringX/clashmi/releases/download/v{version}/clashmi_{version}_android_armeabi-v7a.apk",
+    "https://github.com/KaringX/clashmi/releases/download/v{version}/clashmi_{version}_windows_x64.exe",
+    "https://github.com/KaringX/clashmi/releases/download/v{version}/clashmi_{version}_windows_x64.zip",
+]
+
+[[softwares]]
 name = "sing-box"
 repo = "SagerNet/sing-box"
 url = "https://github.com/SagerNet/sing-box"
