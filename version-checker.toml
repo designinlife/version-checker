@@ -2509,6 +2509,19 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "ClashMetaForAndroid"
+repo = "MetaCubeX/ClashMetaForAndroid"
+url = "https://github.com/MetaCubeX/ClashMetaForAndroid"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?\\.?(?P<build>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/MetaCubeX/ClashMetaForAndroid/releases/download/v{version}/cmfa-{version}-meta-arm64-v8a-release.apk",
+    "https://github.com/MetaCubeX/ClashMetaForAndroid/releases/download/v{version}/cmfa-{version}-meta-universal-release.apk",
+    "https://github.com/MetaCubeX/ClashMetaForAndroid/releases/download/v{version}/cmfa-{version}-meta-x86_64-release.apk",
+    "https://github.com/MetaCubeX/ClashMetaForAndroid/archive/refs/tags/v{version}.tar.gz",
+]
+
+[[softwares]]
 name = "sing-box"
 repo = "SagerNet/sing-box"
 url = "https://github.com/SagerNet/sing-box"
