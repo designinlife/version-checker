@@ -2568,6 +2568,17 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "opencode"
+repo = "anomalyco/opencode"
+url = "https://github.com/anomalyco/opencode"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
+release = true
+download_urls = [
+    "https://github.com/anomalyco/opencode/releases/download/v{version}/opencode-desktop-windows-x64.exe#opencode-desktop-v{version}-windows-x64.exe",
+    "https://github.com/anomalyco/opencode/releases/download/v{version}/opencode-windows-x64.zip#opencode-v{version}-windows-x64.zip",
+]
+
+[[softwares]]
 name = "code-server"
 repo = "coder/code-server"
 url = "https://github.com/coder/code-server"
