@@ -1620,6 +1620,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "static-curl"
+repo = "stunnel/static-curl"
+url = "https://curl.se/"
+pattern = "^(?P<version>(?P<major>\\d+)_(?P<minor>\\d+)_(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/stunnel/static-curl/releases/download/8.19.0/curl-linux-x86_64-glibc-8.19.0.tar.xz",
+    "https://github.com/stunnel/static-curl/releases/download/8.19.0/curl-linux-x86_64-musl-8.19.0.tar.xz",
+    "https://github.com/stunnel/static-curl/releases/download/8.19.0/curl-windows-x86_64-8.19.0.tar.xz",
+]
+
+[[softwares]]
 name = "libgd"
 repo = "libgd/libgd"
 url = "https://libgd.github.io/"
