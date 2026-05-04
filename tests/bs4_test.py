@@ -1,44 +1,34 @@
-import asyncio
-import re
 import unittest
 
-import requests
 from bs4 import BeautifulSoup
 
-from app.core.config import AppSettingSoftItem
-from base import MyTestCase
 
+class BeautifulSoupTestCase(unittest.TestCase):
+    def test_apache_flume_release_links(self):
+        html = """
+        <section id="releases">
+            <p><a href="/releases/1.12.0.html">Apache Flume 1.12.0</a></p>
+            <div>
+                <ul>
+                    <li><a href="/releases/1.11.0.html">Apache Flume 1.11.0</a></li>
+                    <li><a href="/releases/1.10.1.html">Apache Flume 1.10.1</a></li>
+                </ul>
+            </div>
+        </section>
+        """
 
-class BeautifulSoupTestCase(MyTestCase):
-    def test_bs4_apache_flume(self):
-        r = requests.get('https://flume.apache.org/releases/index.html')
-        r.raise_for_status()
-        soup = BeautifulSoup(r.text)
-        latest_a_element = soup.select_one('#releases > p:nth-child(3) > a')
-        other_a_elements = soup.select('#releases > div:nth-child(6) > ul > li > a')
-        print(latest_a_element.attrs['href'])
+        soup = BeautifulSoup(html, "html.parser")
 
-        for v in other_a_elements:
-            print(v.attrs['href'])
+        latest = soup.select_one("#releases > p > a")
+        others = soup.select("#releases > div > ul > li > a")
 
-    def test_sonatype_nexus3(self):
-        r = requests.get('https://raw.githubusercontent.com/sonatype/docker-nexus3/main/Dockerfile')
-        r.raise_for_status()
+        self.assertEqual("/releases/1.12.0.html", latest.attrs["href"])
+        self.assertEqual(["Apache Flume 1.11.0", "Apache Flume 1.10.1"], [v.text for v in others])
 
-        exp = re.compile(r'ARG NEXUS_VERSION=([0-9-.]+)')
-        m = exp.findall(r.text)
-        print(m)
+    def test_sonatype_nexus3_dockerfile_version(self):
+        dockerfile = """
+        FROM eclipse-temurin:17-jre
+        ARG NEXUS_VERSION=3.85.0-03
+        """
 
-    def test_ruby(self):
-        r = requests.get('https://rubychangelog.com/versions-latest/')
-        r.raise_for_status()
-
-        soup = BeautifulSoup(r.text, 'html.parser')
-        items = soup.select('body > div.md-container > main > div > div.md-sidebar.md-sidebar--secondary > div > div > nav > ul > li > a')
-
-        for v in items:
-            print(v.text.strip())
-
-
-if __name__ == '__main__':
-    unittest.main()
+        self.assertEqual(["3.85.0-03"], __import__("re").findall(r"ARG NEXUS_VERSION=([0-9-.]+)", dockerfile))

@@ -210,7 +210,7 @@ class VersionHelper:
         for cond in sub_conditions:
             import re
             # 匹配操作符（>=, <=, >, <, ==）以及版本号（如 1.28.0, 1.0, 2 等）
-            match = re.match(r'^([<>=]=?|==)\s+(\d+(\.\d+){0,2})$', cond)
+            match = re.match(r'^([<>=]=?|==)\s*(\d+(\.\d+){0,2})$', cond)
             if not match:
                 raise ValueError(f"Invalid filter condition: '{cond}'. Expected format like '>=1.28.0' or '<2.0.0'")
 

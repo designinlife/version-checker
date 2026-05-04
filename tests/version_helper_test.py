@@ -1,24 +1,46 @@
 import unittest
 
 from app.core.version import VersionHelper
-from app.core.config import JetbrainsPluginSoftware, AppSetting
-import tomllib
 
 
 class VersionHelperTestCase(unittest.TestCase):
-    def test_parse_pattern(self):
-        with open('../test.toml', encoding='utf-8', mode='r') as f:
-            cfg_data = tomllib.loads(f.read())
-            data = AppSetting.model_validate(cfg_data)
+    def test_parse_pattern_sorts_versions_and_formats_download_urls(self):
+        helper = VersionHelper(
+            pattern=r"^v(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+))$",
+            download_urls=["https://example.com/tool-{version}.zip"],
+        )
 
-            for soft in data.softwares:
-                vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
-                vhlp.append('252.23892.458')
-                vhlp.append('251.25410.999.1')
-                print(vhlp.versions)
+        helper.append("v1.2.0")
+        helper.append("v1.10.0")
+        helper.append("invalid")
 
-            # self.assertEqual(True, False)  # add assertion here
+        summary = helper.summary
 
+        self.assertEqual("1.10.0", summary.latest.version)
+        self.assertEqual(["1.10.0", "1.2.0"], [v.version for v in summary.versions])
+        self.assertEqual(["https://example.com/tool-1.10.0.zip"], summary.downloads)
 
-if __name__ == '__main__':
-    unittest.main()
+    def test_filter_versions_supports_range_conditions(self):
+        helper = VersionHelper(
+            pattern=r"^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+))$",
+            filter_expr=">=1.2.0, <2.0.0",
+        )
+
+        helper.append("1.1.9")
+        helper.append("1.2.0")
+        helper.append("2.0.0")
+
+        self.assertEqual(["1.2.0"], [v.version for v in helper.versions])
+
+    def test_split_versions_groups_by_major(self):
+        helper = VersionHelper(
+            pattern=r"^(?P<version>(?P<major>\d+)\.(?P<minor>\d+)\.(?P<patch>\d+))$",
+            split=1,
+        )
+
+        helper.append("1.1.0")
+        helper.append("1.2.0")
+        helper.append("2.0.0")
+
+        self.assertEqual({"1", "2"}, set(helper.split_versions.keys()))
+        self.assertEqual("1.2.0", helper.summary["1"].latest.version)
