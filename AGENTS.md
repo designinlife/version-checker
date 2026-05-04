@@ -19,7 +19,7 @@
 - `.ai/architecture/project-overview.md`：项目结构、运行链路和关键文件边界。
 - `.ai/style/python-style.md`：Python 代码、注释、日志和测试风格。
 - `.ai/workflow/development.md`：依赖兼容性检查、验证命令和 Windows 执行约束。
-- `.ai/workflow/github-release-config.md`：GitHub Releases 软件配置生成规则。
+- `.ai/workflow/add-software.md`：新增或更新软件检测配置工作流。
 
 ## 常用命令
 

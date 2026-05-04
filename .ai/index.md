@@ -10,7 +10,7 @@
    - 架构、配置、目录边界：`architecture/project-overview.md`
    - Python 代码修改、注释、日志、测试：`style/python-style.md`
    - 依赖、验证、Windows 命令、生成目录处理：`workflow/development.md`
-   - 新增或更新 GitHub Releases 软件配置：`workflow/github-release-config.md`
+   - 新增或更新软件检测配置：`workflow/add-software.md`
 
 ## 项目硬性边界
 
