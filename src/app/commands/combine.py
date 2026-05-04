@@ -1,7 +1,7 @@
 import json
 from compression import zstd
 from pathlib import Path
-from typing import List, Dict, Tuple, Optional
+from typing import Dict, List, Optional, Tuple
 
 import click
 from click.core import Context
@@ -57,13 +57,13 @@ def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = Non
         return []
 
     updates: List[Tuple[str, str, str]] = []
-    old_data_dict: Dict[str, str] = {item['name']: item['latest'] for item in old_data if 'name' in item and 'latest' in item}
+    old_data_dict: Dict[str, str] = {item["name"]: item["latest"] for item in old_data if "name" in item and "latest" in item}
 
     for new_item in new_data:
-        if 'name' in new_item and 'latest' in new_item:
-            name = new_item['name']
-            display_name = new_item['display_name'] if 'display_name' in new_item and new_item['display_name'] != '' else new_item['name']
-            latest = new_item['latest']
+        if "name" in new_item and "latest" in new_item:
+            name = new_item["name"]
+            display_name = new_item["display_name"] if "display_name" in new_item and new_item["display_name"] != "" else new_item["name"]
+            latest = new_item["latest"]
             previous = old_data_dict.get(name)
 
             if previous != latest:
@@ -73,28 +73,28 @@ def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = Non
 
 def combine_data(cfg: Configuration):
     p = get_output_dir(cfg.workdir)
-    all_json_file = p.joinpath('all.json')
+    all_json_file = p.joinpath("all.json")
     old_all_json = None
 
     if all_json_file.exists():
-        with open(all_json_file, 'r', encoding='utf-8') as f:
+        with open(all_json_file, "r", encoding="utf-8") as f:
             old_all_json = json.loads(f.read())
 
     data = []
 
-    for file in p.glob('*.json'):
-        if file.name != 'all.json':
-            with open(file, 'r', encoding='utf-8') as f:
+    for file in p.glob("*.json"):
+        if file.name != "all.json":
+            with open(file, "r", encoding="utf-8") as f:
                 data.append(json.loads(f.read()))
 
-    new_all_json = sorted(filter_nones(data), key=lambda x: x['name'])
+    new_all_json = sorted(filter_nones(data), key=lambda x: x["name"])
 
-    with open(p.joinpath('all.json'), 'w', encoding='utf-8') as f:
-        b = json.dumps(new_all_json, ensure_ascii=True, separators=(',', ':'))
+    with open(p.joinpath("all.json"), "w", encoding="utf-8") as f:
+        b = json.dumps(new_all_json, ensure_ascii=True, separators=(",", ":"))
         f.write(b)
 
-        with zstd.open(p.joinpath('all.json.zst'), 'wb') as zstf:
-            zstf.write(b.encode('utf-8'))
+        with zstd.open(p.joinpath("all.json.zst"), "wb") as zstf:
+            zstf.write(b.encode("utf-8"))
 
     # Compare the new and old data and print the differences.
     differences = compare_json_data(new_all_json, old_all_json)
@@ -102,38 +102,35 @@ def combine_data(cfg: Configuration):
     return new_all_json, differences
 
 
-@click.command('combine', help='Merge JSON data into a file.')
+@click.command("combine", help="Merge JSON data into a file.")
 @click.pass_obj
 @click.pass_context
 def cli(ctx: Context, cfg: Configuration):
-    logger.debug(f'app cli combine called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})')
+    logger.debug(f"app cli combine called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})")
 
     _, differences = combine_data(cfg)
 
-    logger.info('The all.json file has been generated.')
+    logger.info("The all.json file has been generated.")
 
     if differences:
-        logger.info('The following differences were found:')
+        logger.info("The following differences were found:")
 
         email_data = []
 
         for name, latest, previous in differences:
-            email_data.append({'name': name, 'latest': latest, 'previous': previous})
+            email_data.append({"name": name, "latest": latest, "previous": previous})
 
-            logger.info(f'{name}: {previous} -> {latest}')
+            logger.info(f"{name}: {previous} -> {latest}")
 
-        with open(Path(cfg.workdir).joinpath('email_notify.j2'), 'r', encoding='utf-8') as f:
+        with open(Path(cfg.workdir).joinpath("email_notify.j2"), "r", encoding="utf-8") as f:
             html_template = f.read()
             template = Template(html_template)
             html_content = template.render(items=email_data)
 
             ok_email = send_mail(
-                to=['codeplus@qq.com'],
-                subject='Github Notification from version-checker',
-                content='No Content',
-                html=html_content
+                to=["codeplus@qq.com"], subject="Github Notification from version-checker", content="No Content", html=html_content
             )
 
-            logger.info(f'Send email result: {ok_email}')
+            logger.info(f"Send email result: {ok_email}")
     else:
-        logger.info('No differences were found.')
+        logger.info("No differences were found.")

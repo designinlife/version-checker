@@ -3,7 +3,6 @@ from click.formatting import join_options
 
 
 class ClickStdOption(Option):
-
     def get_help_record(self, ctx):
         if self.hidden:
             return
@@ -20,12 +19,12 @@ class ClickStdOption(Option):
         if self.secondary_opts:
             rv.append(_write_opts(self.secondary_opts))
 
-        help_s = self.help or ''
+        help_s = self.help or ""
         extra = []
 
         if self.required:
-            extra.append('*')
+            extra.append("*")
         if extra:
-            help_s = '%s\033[38;5;196m%s\033[0m' % (help_s and help_s + ' ' or '', '; '.join(extra))
+            help_s = "%s\033[38;5;196m%s\033[0m" % (help_s and help_s + " " or "", "; ".join(extra))
 
-        return (any_prefix_is_slash and '; ' or ' / ').join(rv), help_s
+        return (any_prefix_is_slash and "; " or " / ").join(rv), help_s

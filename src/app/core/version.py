@@ -1,5 +1,5 @@
 import re
-from typing import Optional, List, Tuple, Mapping, Any
+from typing import Any, List, Mapping, Optional, Tuple
 
 from pydantic import BaseModel
 
@@ -19,19 +19,19 @@ class Version(BaseModel):
     raw_str: Optional[str] = None
 
     def __repr__(self):
-        d = [f'{self.major}']
+        d = [f"{self.major}"]
 
         if self.minor is not None:
-            d.append(f'.{self.minor}')
+            d.append(f".{self.minor}")
 
         if self.patch is not None:
-            d.append(f'.{self.patch}')
+            d.append(f".{self.patch}")
 
         if self.build is not None:
-            d.append(f'.{self.build}')
+            d.append(f".{self.build}")
 
         if self.letter is not None:
-            d.append(f'{self.letter}')
+            d.append(f"{self.letter}")
 
         # if self.year is not None:
         #     d.append(f'{self.year}')
@@ -40,7 +40,7 @@ class Version(BaseModel):
         # if self.day is not None:
         #     d.append(f'{self.day}')
 
-        return ''.join(d)
+        return "".join(d)
 
 
 class VersionSummary(BaseModel):
@@ -56,7 +56,7 @@ class VersionSummary(BaseModel):
         return False
 
     def __repr__(self):
-        return f'Latest: {self.latest}, Versions: {self.versions}, Downloads: {self.downloads}'
+        return f"Latest: {self.latest}, Versions: {self.versions}, Downloads: {self.downloads}"
 
 
 class VersionHelper:
@@ -78,10 +78,20 @@ class VersionHelper:
 
         if m:
             d = m.groupdict()
-            v = Version(major=d.get('major'), minor=d.get('minor', None), patch=d.get('patch', None),
-                        build=d.get('build', None), letter=d.get('letter', None),
-                        version=d.get('version', None), year=d.get('year', None), month=d.get('month', None),
-                        day=d.get('day', None), other=d.get('other', None), raw_data=raw_data, raw_str=version)
+            v = Version(
+                major=d.get("major"),
+                minor=d.get("minor", None),
+                patch=d.get("patch", None),
+                build=d.get("build", None),
+                letter=d.get("letter", None),
+                version=d.get("version", None),
+                year=d.get("year", None),
+                month=d.get("month", None),
+                day=d.get("day", None),
+                other=d.get("other", None),
+                raw_data=raw_data,
+                raw_str=version,
+            )
 
             self._versions.append(v)
 
@@ -126,11 +136,12 @@ class VersionHelper:
 
         """
         if self.filter_expr:
-            return self.filter_versions(sorted(self._versions, key=lambda x: (x.major, x.minor, x.patch if x.patch else -1, x.build, x.letter),
-                                               reverse=True), self.filter_expr)
+            return self.filter_versions(
+                sorted(self._versions, key=lambda x: (x.major, x.minor, x.patch if x.patch else -1, x.build, x.letter), reverse=True),
+                self.filter_expr,
+            )
         else:
-            return sorted(self._versions, key=lambda x: (x.major, x.minor, x.patch if x.patch else -1, x.build, x.letter),
-                          reverse=True)
+            return sorted(self._versions, key=lambda x: (x.major, x.minor, x.patch if x.patch else -1, x.build, x.letter), reverse=True)
 
     @property
     def split_versions(self) -> Mapping[str, List[Version]]:
@@ -143,7 +154,7 @@ class VersionHelper:
 
         if self.split == 1:
             for version in self.versions:
-                k = f'{version.major}'
+                k = f"{version.major}"
 
                 if k not in d:
                     d[k] = []
@@ -152,7 +163,7 @@ class VersionHelper:
         elif self.split == 2:
             for version in self.versions:
                 if version.minor is not None:
-                    k = f'{version.major}.{version.minor}'
+                    k = f"{version.major}.{version.minor}"
 
                     if k not in d:
                         d[k] = []
@@ -161,7 +172,9 @@ class VersionHelper:
 
         if len(d) > 0:
             for k, v in d.items():
-                d[k] = sorted(v, key=lambda x: (x.major, x.minor, x.patch if x.patch else 0, x.build if x.build else 0, x.letter), reverse=True)
+                d[k] = sorted(
+                    v, key=lambda x: (x.major, x.minor, x.patch if x.patch else 0, x.build if x.build else 0, x.letter), reverse=True
+                )
 
         return d
 
@@ -178,14 +191,14 @@ class VersionHelper:
             if not versions:
                 raise ValueError("No versions matched the configured pattern.")
 
-            return VersionSummary(latest=versions[0], versions=versions,
-                                  downloads=self._format_download_link(versions[0], self.download_urls))
+            return VersionSummary(
+                latest=versions[0], versions=versions, downloads=self._format_download_link(versions[0], self.download_urls)
+            )
         else:
             d = dict()
 
             for k, v in self.split_versions.items():
-                d[k] = VersionSummary(latest=v[0], versions=v,
-                                      downloads=self._format_download_link(v[0], self.download_urls))
+                d[k] = VersionSummary(latest=v[0], versions=v, downloads=self._format_download_link(v[0], self.download_urls))
 
             return d
 
@@ -207,19 +220,20 @@ class VersionHelper:
             return versions  # 如果没有 filter，返回全部
 
         # Step 1: 拆分多个条件，例如 ">=1.28.0, <2.0.0" -> ['>=1.28.0', '<2.0.0']
-        sub_conditions = [cond.strip() for cond in filter_expr.split(',') if cond.strip()]
+        sub_conditions = [cond.strip() for cond in filter_expr.split(",") if cond.strip()]
 
         # Step 2: 解析每一个子条件，得到 (operator, (major, minor, patch))
         parsed_conditions = []
         for cond in sub_conditions:
             import re
+
             # 匹配操作符（>=, <=, >, <, ==）以及版本号（如 1.28.0, 1.0, 2 等）
-            match = re.match(r'^([<>=]=?|==)\s*(\d+(\.\d+){0,2})$', cond)
+            match = re.match(r"^([<>=]=?|==)\s*(\d+(\.\d+){0,2})$", cond)
             if not match:
                 raise ValueError(f"Invalid filter condition: '{cond}'. Expected format like '>=1.28.0' or '<2.0.0'")
 
             op, version_str, _ = match.groups()
-            version_parts = version_str.split('.')[:3]  # 最多取 major.minor.patch
+            version_parts = version_str.split(".")[:3]  # 最多取 major.minor.patch
             if not version_parts:
                 raise ValueError(f"Invalid version in condition: '{version_str}'")
 
@@ -245,15 +259,15 @@ class VersionHelper:
             ver_tuple = version_to_tuple(_ver)
             target_tuple = version_to_tuple(_target)
 
-            if _op == '>':
+            if _op == ">":
                 return ver_tuple > target_tuple
-            elif _op == '<':
+            elif _op == "<":
                 return ver_tuple < target_tuple
-            elif _op == '>=':
+            elif _op == ">=":
                 return ver_tuple >= target_tuple
-            elif _op == '<=':
+            elif _op == "<=":
                 return ver_tuple <= target_tuple
-            elif _op == '==':
+            elif _op == "==":
                 return ver_tuple == target_tuple
             else:
                 raise ValueError(f"Unsupported operator '{_op}' in condition")
@@ -263,10 +277,7 @@ class VersionHelper:
         for ver in versions:
             try:
                 # 检查该版本是否满足所有子条件
-                all_match = all(
-                    matches_condition(ver, op, target)
-                    for op, target in parsed_conditions
-                )
+                all_match = all(matches_condition(ver, op, target) for op, target in parsed_conditions)
                 if all_match:
                     result.append(ver)
             except Exception as e:

@@ -1,9 +1,9 @@
 import unittest
 
-from app.parser import check_requirements
-from app.parser.gh import Parser
 from app.core.config import GithubSoftware
 from app.core.version import VersionHelper
+from app.parser import check_requirements
+from app.parser.gh import Parser
 
 
 class ParserTestCase(unittest.TestCase):

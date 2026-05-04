@@ -9,9 +9,9 @@ def strtobool(val):
     'val' is anything else.
     """
     val = val.lower()
-    if val in ('y', 'yes', 't', 'true', 'on', '1'):
+    if val in ("y", "yes", "t", "true", "on", "1"):
         return 1
-    elif val in ('n', 'no', 'f', 'false', 'off', '0'):
+    elif val in ("n", "no", "f", "false", "off", "0"):
         return 0
     else:
         raise ValueError("invalid truth value %r" % (val,))
@@ -21,7 +21,7 @@ def safe_strtobool(val, default=False):
     """安全解析布尔环境变量。"""
     try:
         return bool(strtobool(val))
-    except (AttributeError, ValueError):
+    except AttributeError, ValueError:
         return default
 
 
@@ -29,7 +29,7 @@ def is_numeric(s: Optional[str]):
     if not s:
         return False
 
-    m = re.match(r'^\d+$', s)
+    m = re.match(r"^\d+$", s)
     if m:
         return True
     return False

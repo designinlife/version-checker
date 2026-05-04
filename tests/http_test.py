@@ -2,8 +2,8 @@ import asyncio
 import unittest
 from unittest.mock import AsyncMock
 
-from app.core.http import AsyncHttpClient
 from app.core.config import AndroidStudioSoftware
+from app.core.http import AsyncHttpClient
 from app.parser.android_studio import Parser as AndroidStudioParser
 
 

@@ -5,12 +5,13 @@ from loguru import logger
 
 from app.core.config import NavicatSoftware
 from app.core.version import VersionHelper
+
 from . import Base
 
 
 class Parser(Base):
     async def handle(self, sem: Semaphore, soft: NavicatSoftware):
-        logger.debug(f'Name: {soft.name} ({soft.parser})')
+        logger.debug(f"Name: {soft.name} ({soft.parser})")
 
         vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
@@ -19,23 +20,23 @@ class Parser(Base):
 
         async with sem:
             # Make an HTTP request.
-            _, status, _, data_s = await self.request('GET',
-                                                      'https://www.navicat.com.cn/products/navicat-premium-release-note',
-                                                      is_json=False)
+            _, status, _, data_s = await self.request(
+                "GET", "https://www.navicat.com.cn/products/navicat-premium-release-note", is_json=False
+            )
 
             # Analyzing HTML text data.
-            soup = BeautifulSoup(data_s, 'html5lib')
+            soup = BeautifulSoup(data_s, "html5lib")
 
-            elements = soup.select('div.note-title > b')
+            elements = soup.select("div.note-title > b")
 
             # noinspection DuplicatedCode
             for el in elements:
                 vhlp.append(el.text.strip())
 
-            logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
+            logger.debug(f"Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}")
 
             if soft.split > 0:
-                logger.debug(f'Split Versions: {vhlp.split_versions}')
+                logger.debug(f"Split Versions: {vhlp.split_versions}")
 
             # Write data to file.
             await self.write(soft, vhlp.summary)

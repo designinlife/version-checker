@@ -16,15 +16,14 @@ from app.core.inspect_result import InspectItemResult, InspectResult
 from app.parser import Base as BaseParser
 
 
-@click.command('inspect', help='Batch inspect the latest version of the software.')
-@click.option('--filter-name', '-i', 'filter_name', help='Filter name.', cls=ClickStdOption)
-@click.option('--worker', '-w', 'worker_num', help='The number of worker. (default: 2)', cls=ClickStdOption, default=2,
-              type=int)
+@click.command("inspect", help="Batch inspect the latest version of the software.")
+@click.option("--filter-name", "-i", "filter_name", help="Filter name.", cls=ClickStdOption)
+@click.option("--worker", "-w", "worker_num", help="The number of worker. (default: 2)", cls=ClickStdOption, default=2, type=int)
 @click.option("--strict", "strict", help="Exit with non-zero code if any item fails.", is_flag=True)
 @click.pass_obj
 @click.pass_context
 def cli(ctx: Context, cfg: Configuration, worker_num: int, strict: bool, filter_name: Optional[str] = None):
-    logger.debug(f'app cli inspect called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})')
+    logger.debug(f"app cli inspect called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})")
 
     if not cfg.debug:
         asyncio.run(GithubHelper.show_rate_limit())
@@ -54,8 +53,8 @@ async def process(cfg: Configuration, worker_num: int, filter_name: Optional[str
     async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=15)) as session:
         for v in cfg.settings.softwares:
             if filter_name is None or filter_name == v.name:
-                module = importlib.import_module('app.parser.%s' % v.parser.replace('-', '_'))
-                cls = getattr(module, 'Parser')
+                module = importlib.import_module("app.parser.%s" % v.parser.replace("-", "_"))
+                cls = getattr(module, "Parser")
                 # cls_handler = getattr(cls(cfg), 'handle')
                 cls_o = cls(cfg)
                 cls_o.httpc = AsyncHttpClient(debug=cfg.debug, session=session)

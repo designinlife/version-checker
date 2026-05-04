@@ -6,6 +6,7 @@ from pydantic import BaseModel, TypeAdapter
 
 from app.core.config import GoSoftware
 from app.core.version import VersionHelper
+
 from . import Base
 
 
@@ -27,11 +28,11 @@ class DataItem(BaseModel):
 
 class Parser(Base):
     async def handle(self, sem: Semaphore, soft: GoSoftware):
-        logger.debug(f'Name: {soft.name} ({soft.parser})')
+        logger.debug(f"Name: {soft.name} ({soft.parser})")
 
         async with sem:
             # Make an HTTP request.
-            _, status, _, data_r = await self.request('GET', 'https://go.dev/dl/?mode=json&include=all', is_json=True)
+            _, status, _, data_r = await self.request("GET", "https://go.dev/dl/?mode=json&include=all", is_json=True)
 
             ta = TypeAdapter(List[DataItem])
             data = ta.validate_python(data_r)
@@ -43,10 +44,10 @@ class Parser(Base):
                 if v.stable:
                     vhlp.append(v.version)
 
-            logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
+            logger.debug(f"Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}")
 
             if soft.split > 0:
-                logger.debug(f'Split Versions: {vhlp.split_versions}')
+                logger.debug(f"Split Versions: {vhlp.split_versions}")
 
             # Write data to file.
             await self.write(soft, vhlp.summary)

@@ -3,13 +3,13 @@ import json
 import operator
 from abc import ABCMeta, abstractmethod
 from asyncio import Semaphore
-from typing import Optional, Dict, Tuple, Mapping, List
+from typing import Dict, List, Mapping, Optional, Tuple
 
 import aiofiles
 import arrow
 from loguru import logger
 
-from app.core.config import Configuration, AppSettingSoftItem, OutputResult
+from app.core.config import AppSettingSoftItem, Configuration, OutputResult
 from app.core.http import AsyncHttpClient
 from app.core.inspect_result import InspectItemResult
 from app.core.output import get_output_dir
@@ -30,18 +30,11 @@ def check_requirements(requirement_string: str, major: int, minor: Optional[int]
         True 如果满足条件，否则返回 False。
     """
     # 定义运算符映射
-    ops = {
-        '>': operator.gt,
-        '<': operator.lt,
-        '>=': operator.ge,
-        '<=': operator.le,
-        '==': operator.eq,
-        '!=': operator.ne
-    }
+    ops = {">": operator.gt, "<": operator.lt, ">=": operator.ge, "<=": operator.le, "==": operator.eq, "!=": operator.ne}
 
     try:
         # 将 requirement_string 分割成条件
-        conditions = requirement_string.split('&&')
+        conditions = requirement_string.split("&&")
         conditions = [c.strip() for c in conditions]  # 清理空格
 
         # 逐个检查条件
@@ -54,9 +47,9 @@ def check_requirements(requirement_string: str, major: int, minor: Optional[int]
             variable, operator_str, value_str = parts
 
             # 获取变量值
-            if variable == 'major':
+            if variable == "major":
                 value1 = major
-            elif variable == 'minor':
+            elif variable == "minor":
                 value1 = minor if isinstance(minor, int) else 0
             else:
                 logger.warning(f"Warning: Unknown variable: {variable}. Skipping condition.")
@@ -92,24 +85,27 @@ class Base(metaclass=ABCMeta):
         self.httpc = AsyncHttpClient(debug=self.cfg.debug)
 
     @abstractmethod
-    async def handle(self, sem: Semaphore, soft: AppSettingSoftItem):
-        ...
+    async def handle(self, sem: Semaphore, soft: AppSettingSoftItem): ...
 
     async def wrap_handle(self, sem: Semaphore, soft: AppSettingSoftItem):
         try:
             await self.handle(sem, soft)
             return InspectItemResult.success(soft.name)
         except Exception as e:
-            logger.error(f'[{soft.name}] error found.')
+            logger.error(f"[{soft.name}] error found.")
             logger.exception(e)
             return InspectItemResult.failed(soft.name, type(e).__name__, str(e))
 
-    async def request(self, method: str, url: str,
-                      params: Optional[Dict[str, str]] = None,
-                      data: Optional[dict] = None,
-                      headers: Optional[Dict[str, str]] = None,
-                      timeout: float = 15,
-                      is_json: bool = False):
+    async def request(
+        self,
+        method: str,
+        url: str,
+        params: Optional[Dict[str, str]] = None,
+        data: Optional[dict] = None,
+        headers: Optional[Dict[str, str]] = None,
+        timeout: float = 15,
+        is_json: bool = False,
+    ):
         """
         Send an HTTP request.
 
@@ -129,12 +125,11 @@ class Base(metaclass=ABCMeta):
 
         return url, http_status_code, headers, data
 
-    def _build_download_urls(self, soft: AppSettingSoftItem, version_summary: VersionSummary,
-                             download_urls: List[str]) -> List[str]:
+    def _build_download_urls(self, soft: AppSettingSoftItem, version_summary: VersionSummary, download_urls: List[str]) -> List[str]:
         if soft.download_dynamic:
             # Dynamically create an UrlMaker instance.
-            module = importlib.import_module('app.link.%s' % soft.name.replace('-', '_'))
-            cls = getattr(module, 'UrlMaker')
+            module = importlib.import_module("app.link.%s" % soft.name.replace("-", "_"))
+            cls = getattr(module, "UrlMaker")
             cls_o = cls(self.cfg)
 
             if isinstance(cls_o, UrlMakerBase):
@@ -156,27 +151,33 @@ class Base(metaclass=ABCMeta):
         file = None
 
         if soft.split == 0:
-            file = output_path.joinpath(f'{soft.name}.json')
+            file = output_path.joinpath(f"{soft.name}.json")
         else:
-            files = output_path.glob(f'{soft.name}-*.json', case_sensitive=True)
+            files = output_path.glob(f"{soft.name}-*.json", case_sensitive=True)
             for cf in files:
                 file = cf
                 break
 
         if file and file.is_file():
-            with open(file, 'r', encoding='utf-8') as f:
+            with open(file, "r", encoding="utf-8") as f:
                 data = json.loads(f.read())
 
                 # Data will be considered expired if it has been updated for more than 1 hours!
-                if arrow.now().shift(hours=-1) >= arrow.get(data['created_time']):
-                    return True, data['created_time']
+                if arrow.now().shift(hours=-1) >= arrow.get(data["created_time"]):
+                    return True, data["created_time"]
                 else:
-                    return False, data['created_time']
+                    return False, data["created_time"]
 
-        return True, '2000-01-01 00:00:00'
+        return True, "2000-01-01 00:00:00"
 
-    async def write(self, soft: AppSettingSoftItem, version_summary: VersionSummary | Mapping[str, VersionSummary],
-                    suffix: str = '', storage_dir: Optional[str] = None, **kwargs):
+    async def write(
+        self,
+        soft: AppSettingSoftItem,
+        version_summary: VersionSummary | Mapping[str, VersionSummary],
+        suffix: str = "",
+        storage_dir: Optional[str] = None,
+        **kwargs,
+    ):
         output_path = get_output_dir(self.cfg.workdir)
 
         if not output_path.is_dir():
@@ -188,26 +189,36 @@ class Base(metaclass=ABCMeta):
                     if soft.condition and v.latest is not None and not check_requirements(soft.condition, v.latest.major, v.latest.minor):
                         continue
 
-                    result = OutputResult(name=f'{soft.name}-{k}', url=f'{soft.url}', display_name=soft.display_name, latest=repr(v.latest),
-                                          versions=[repr(x) for x in v.versions],
-                                          storage_dir=storage_dir,
-                                          download_urls=self._build_download_urls(soft, v, v.downloads),
-                                          created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss'),
-                                          **kwargs).model_dump_json(by_alias=True, exclude_none=True)
+                    result = OutputResult(
+                        name=f"{soft.name}-{k}",
+                        url=f"{soft.url}",
+                        display_name=soft.display_name,
+                        latest=repr(v.latest),
+                        versions=[repr(x) for x in v.versions],
+                        storage_dir=storage_dir,
+                        download_urls=self._build_download_urls(soft, v, v.downloads),
+                        created_time=arrow.now().format("YYYY-MM-DD HH:mm:ss"),
+                        **kwargs,
+                    ).model_dump_json(by_alias=True, exclude_none=True)
 
-                    async with aiofiles.open(output_path.joinpath(f'{soft.name}-{k}.json'), 'w', encoding='utf-8') as f:
+                    async with aiofiles.open(output_path.joinpath(f"{soft.name}-{k}.json"), "w", encoding="utf-8") as f:
                         await f.write(result)
 
-                    logger.info(f'<\033[1;32m{soft.name}-{k}\033[0m> done.')
+                    logger.info(f"<\033[1;32m{soft.name}-{k}\033[0m> done.")
         else:
-            result = OutputResult(name=f'{soft.name}{suffix}', url=f'{soft.url}', display_name=soft.display_name, latest=repr(version_summary.latest),
-                                  versions=[repr(x) for x in version_summary.versions],
-                                  storage_dir=storage_dir,
-                                  download_urls=self._build_download_urls(soft, version_summary,
-                                                                          version_summary.downloads),
-                                  created_time=arrow.now().format('YYYY-MM-DD HH:mm:ss'), **kwargs).model_dump_json(by_alias=True, exclude_none=True)
+            result = OutputResult(
+                name=f"{soft.name}{suffix}",
+                url=f"{soft.url}",
+                display_name=soft.display_name,
+                latest=repr(version_summary.latest),
+                versions=[repr(x) for x in version_summary.versions],
+                storage_dir=storage_dir,
+                download_urls=self._build_download_urls(soft, version_summary, version_summary.downloads),
+                created_time=arrow.now().format("YYYY-MM-DD HH:mm:ss"),
+                **kwargs,
+            ).model_dump_json(by_alias=True, exclude_none=True)
 
-            async with aiofiles.open(output_path.joinpath(f'{soft.name}{suffix}.json'), 'w', encoding='utf-8') as f:
+            async with aiofiles.open(output_path.joinpath(f"{soft.name}{suffix}.json"), "w", encoding="utf-8") as f:
                 await f.write(result)
 
-            logger.info(f'<\033[1;32m{soft.name}{suffix}\033[0m> done.')
+            logger.info(f"<\033[1;32m{soft.name}{suffix}\033[0m> done.")

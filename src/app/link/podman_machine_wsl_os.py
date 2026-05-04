@@ -3,6 +3,7 @@ from typing import List
 
 from app.core.config import AppSettingSoftItem
 from app.core.version import VersionSummary
+
 from . import UrlMakerBase
 
 
@@ -13,7 +14,7 @@ class UrlMaker(UrlMakerBase):
         latest = version_summary.latest
 
         for url in urls:
-            if 'amd64' in url and 'rootfs' in url and url.endswith('.tar.zst'):
-                r.append(f'{url}#{latest.version}|{Path(url).name}')
+            if "amd64" in url and "rootfs" in url and url.endswith(".tar.zst"):
+                r.append(f"{url}#{latest.version}|{Path(url).name}")
 
         return r

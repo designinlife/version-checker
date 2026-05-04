@@ -8,6 +8,8 @@
 - 常用命令：
   - `uv sync`
   - `uv run version-checker inspect`
+  - `uv run ruff check src tests`
+  - `uv run ruff format --check src tests`
   - `uv run pytest`
   - `uv pip check`
   - `uv build`
@@ -34,6 +36,16 @@ uv sync
 3. `uv pip check`，确认已安装包之间无依赖冲突。
 4. `uv tree --depth 2`，必要时查看实际解析版本。
 5. `uv run pytest`，确认项目测试状态。
+
+## Lint 与格式化
+
+- 本项目使用 Ruff 作为 Python linter 和 formatter。
+- 提交 Python 代码前应运行：
+  - `uv run ruff check src tests`
+  - `uv run ruff format --check src tests`
+- 需要主动格式化时运行：
+  - `uv run ruff format src tests`
+- 当前首批启用规则为 `E`、`F`、`I`，覆盖 pycodestyle 基础错误、Pyflakes 和 import 排序；`UP`、`B`、`SIM` 等规则应在后续专项整改中逐步启用。
 
 如果 `uv sync` 输出间接依赖的旧式版本声明规范化警告，但命令退出码为 0 且 `uv pip check` 通过，应记录为上游元数据警告，而不是直接认定依赖不兼容。
 

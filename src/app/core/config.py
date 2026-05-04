@@ -1,6 +1,6 @@
-from typing import Optional, List, Literal, Any
+from typing import Any, List, Literal, Optional
 
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field
 
 
 class AppSettingBase(BaseModel):
@@ -16,13 +16,13 @@ class AppSettingSoftItem(BaseModel):
     filter: Optional[str] = Field(default=None)
     split: int = Field(default=0)
     disabled: bool = Field(default=False)
-    download_dynamic: bool = Field(default=False, description='动态生成下载地址')
+    download_dynamic: bool = Field(default=False, description="动态生成下载地址")
     download_urls: List[str] = Field(default_factory=list)
     condition: Optional[str] = None  # 条件表达式: major >= 6 && minor < 5 或 major >= 6
 
 
 class GithubSoftware(AppSettingSoftItem):
-    parser: Literal['gh'] = Field(default='gh')
+    parser: Literal["gh"] = Field(default="gh")
     repo: str
     release: bool = Field(default=False)  # 当设置为 True 时, 按 /releases API 获取数据。否则，按 /tags API 获取。
     latest: bool = Field(default=False)  # 仅获取最新版本 (API: /releases/latest)
@@ -33,26 +33,26 @@ class GithubSoftware(AppSettingSoftItem):
 
 
 class GiteaSoftware(AppSettingSoftItem):
-    parser: Literal['gitea']
+    parser: Literal["gitea"]
     owner: str
     repo: str
     release: bool = Field(default=False)
     by_tag_name: bool = Field(default=False)
-    host: str = Field(default='gitea.com')
+    host: str = Field(default="gitea.com")
 
 
 class GitlabSoftware(AppSettingSoftItem):
-    parser: Literal['gitlab']
+    parser: Literal["gitlab"]
     id: int
     release: bool = Field(default=False)
     by_tag_name: bool = Field(default=False)
-    host: str = Field(default='gitlab.com')
+    host: str = Field(default="gitlab.com")
 
 
 class CodebergSoftware(AppSettingSoftItem):
-    parser: Literal['codeberg']
+    parser: Literal["codeberg"]
     repo: str
-    host: str = Field(default='codeberg.org')
+    host: str = Field(default="codeberg.org")
     release: bool = Field(default=False)
     latest: bool = Field(default=False)
     assets: bool = Field(default=False)
@@ -61,109 +61,109 @@ class CodebergSoftware(AppSettingSoftItem):
 
 
 class GitLsRemoteSoftware(AppSettingSoftItem):
-    parser: Literal['git-ls-remote']
+    parser: Literal["git-ls-remote"]
 
 
 class GoSoftware(AppSettingSoftItem):
-    parser: Literal['go']
+    parser: Literal["go"]
 
 
 class PhpSoftware(AppSettingSoftItem):
-    parser: Literal['php']
+    parser: Literal["php"]
     major: List[int]
 
 
 class ApacheFlumeSoftware(AppSettingSoftItem):
-    parser: Literal['apache-flume']
+    parser: Literal["apache-flume"]
 
 
 class NodeJsSoftware(AppSettingSoftItem):
-    parser: Literal['nodejs']
+    parser: Literal["nodejs"]
 
 
 class VirtualBoxSoftware(AppSettingSoftItem):
-    parser: Literal['virtualbox']
+    parser: Literal["virtualbox"]
 
 
 class IndexSoftware(AppSettingSoftItem):
-    parser: Literal['index']
+    parser: Literal["index"]
 
 
 class DotNetSoftware(AppSettingSoftItem):
-    parser: Literal['dotnet']
+    parser: Literal["dotnet"]
 
 
 class DotNetFxSoftware(AppSettingSoftItem):
-    parser: Literal['dotnetfx']
+    parser: Literal["dotnetfx"]
 
 
 class SublimeSoftware(AppSettingSoftItem):
-    parser: Literal['sublime']
+    parser: Literal["sublime"]
 
 
 class XShellSoftware(AppSettingSoftItem):
-    parser: Literal['xshell']
+    parser: Literal["xshell"]
 
 
 class FlutterSoftware(AppSettingSoftItem):
-    parser: Literal['flutter']
+    parser: Literal["flutter"]
 
 
 class DartSoftware(AppSettingSoftItem):
-    parser: Literal['dart']
+    parser: Literal["dart"]
 
 
 class AndroidStudioSoftware(AppSettingSoftItem):
-    parser: Literal['android-studio']
+    parser: Literal["android-studio"]
 
 
 class FirefoxSoftware(AppSettingSoftItem):
-    parser: Literal['firefox']
+    parser: Literal["firefox"]
 
 
 class ChromeSoftware(AppSettingSoftItem):
-    parser: Literal['chrome']
+    parser: Literal["chrome"]
 
 
 class GithubDesktopSoftware(AppSettingSoftItem):
-    parser: Literal['github-desktop']
+    parser: Literal["github-desktop"]
 
 
 class JetbrainsSoftware(AppSettingSoftItem):
-    parser: Literal['jetbrains']
+    parser: Literal["jetbrains"]
     code: List[str] = Field(default_factory=list)
     os: List[str] = Field(default_factory=list)
 
 
 class JetbrainsPluginSoftware(AppSettingSoftItem):
-    parser: Literal['jetbrains-plugin']
+    parser: Literal["jetbrains-plugin"]
     plugin_id: int
     size: int = 5
 
 
 class SourceForgeSoftware(AppSettingSoftItem):
-    parser: Literal['sf']
+    parser: Literal["sf"]
     project: str
 
 
 class AlmaLinuxSoftware(AppSettingSoftItem):
-    parser: Literal['almalinux']
+    parser: Literal["almalinux"]
 
 
 class RockyLinuxSoftware(AppSettingSoftItem):
-    parser: Literal['rockylinux']
+    parser: Literal["rockylinux"]
 
 
 class NavicatSoftware(AppSettingSoftItem):
-    parser: Literal['navicat']
+    parser: Literal["navicat"]
 
 
 class HAProxySoftware(AppSettingSoftItem):
-    parser: Literal['haproxy']
+    parser: Literal["haproxy"]
 
 
 class DockerHubSoftware(AppSettingSoftItem):
-    parser: Literal['docker-hub']
+    parser: Literal["docker-hub"]
     name: Optional[str] = None
     repo: str = ...
     fixed_tags: List[str] = Field(default_factory=list)
@@ -176,13 +176,37 @@ class DockerHubSoftware(AppSettingSoftItem):
 
 class AppSetting(BaseModel):
     app: Optional[AppSettingBase] = None
-    softwares: List[ApacheFlumeSoftware | NodeJsSoftware | VirtualBoxSoftware
-                    | GoSoftware | PhpSoftware | GithubSoftware | GithubDesktopSoftware | GiteaSoftware | GitlabSoftware | CodebergSoftware
-                    | DotNetFxSoftware | DotNetSoftware | ChromeSoftware | JetbrainsSoftware | JetbrainsPluginSoftware | FirefoxSoftware
-                    | SublimeSoftware | XShellSoftware | AndroidStudioSoftware | SourceForgeSoftware | GitLsRemoteSoftware
-                    | FlutterSoftware | DartSoftware | NavicatSoftware | HAProxySoftware | DockerHubSoftware
-                    | AlmaLinuxSoftware | RockyLinuxSoftware | IndexSoftware] = Field(alias='softwares',
-                                                                                      default_factory=list)
+    softwares: List[
+        ApacheFlumeSoftware
+        | NodeJsSoftware
+        | VirtualBoxSoftware
+        | GoSoftware
+        | PhpSoftware
+        | GithubSoftware
+        | GithubDesktopSoftware
+        | GiteaSoftware
+        | GitlabSoftware
+        | CodebergSoftware
+        | DotNetFxSoftware
+        | DotNetSoftware
+        | ChromeSoftware
+        | JetbrainsSoftware
+        | JetbrainsPluginSoftware
+        | FirefoxSoftware
+        | SublimeSoftware
+        | XShellSoftware
+        | AndroidStudioSoftware
+        | SourceForgeSoftware
+        | GitLsRemoteSoftware
+        | FlutterSoftware
+        | DartSoftware
+        | NavicatSoftware
+        | HAProxySoftware
+        | DockerHubSoftware
+        | AlmaLinuxSoftware
+        | RockyLinuxSoftware
+        | IndexSoftware
+    ] = Field(alias="softwares", default_factory=list)
 
 
 class Configuration(BaseModel):
@@ -207,4 +231,4 @@ class OutputResult(BaseModel):
     storage_dir: Optional[str] = None
     download_urls: List[str] = Field(default_factory=list)
     created_time: str
-    jbp_extra: dict | None = Field(default=None, alias='jbp_extra')
+    jbp_extra: dict | None = Field(default=None, alias="jbp_extra")

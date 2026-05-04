@@ -1,5 +1,5 @@
 import os
-from typing import Optional, Dict, Tuple, Any
+from typing import Any, Dict, Optional, Tuple
 
 import aiohttp
 from loguru import logger
@@ -25,14 +25,18 @@ class AsyncHttpClient:
             else:
                 return resp.url, resp.status, resp.headers, await resp.text()
         else:
-            raise ValueError(f'HTTP status code exception. ({resp.status} | {url})')
+            raise ValueError(f"HTTP status code exception. ({resp.status} | {url})")
 
-    async def request(self, method: str, url: str,
-                      params: Optional[Dict[str, str]] = None,
-                      data: Optional[dict] = None,
-                      headers: Optional[Dict[str, str]] = None,
-                      timeout: float = 15,
-                      is_json: bool = False) -> Tuple[URL, int, "CIMultiDictProxy[str]", Any | str]:
+    async def request(
+        self,
+        method: str,
+        url: str,
+        params: Optional[Dict[str, str]] = None,
+        data: Optional[dict] = None,
+        headers: Optional[Dict[str, str]] = None,
+        timeout: float = 15,
+        is_json: bool = False,
+    ) -> Tuple[URL, int, "CIMultiDictProxy[str]", Any | str]:
         """
         Send an HTTP request.
 
@@ -48,13 +52,13 @@ class AsyncHttpClient:
         Returns:
 
         """
-        hdr = {'User-Agent': DEFAULT_USERAGENT}
+        hdr = {"User-Agent": DEFAULT_USERAGENT}
 
         if headers:
             hdr.update(headers)
 
         if self.debug:
-            logger.debug(f'URL: {url}, PARAMS: {params}, TIMEOUT: {timeout}, JSON RESULT: {is_json}')
+            logger.debug(f"URL: {url}, PARAMS: {params}, TIMEOUT: {timeout}, JSON RESULT: {is_json}")
 
         request_kwargs = {
             "method": method,
