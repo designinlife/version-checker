@@ -10,6 +10,7 @@ from loguru import logger
 
 from app.core.config import Configuration
 from app.core.notify import send_mail
+from app.core.output import get_output_dir
 
 
 def filter_nones(obj):
@@ -70,17 +71,9 @@ def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = Non
     return updates
 
 
-@click.command('combine', help='Merge JSON data into a file.')
-@click.pass_obj
-@click.pass_context
-def cli(ctx: Context, cfg: Configuration):
-    logger.debug(f'app cli combine called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})')
-
-    # Merge the output JSON data files into all.json.
-    p = Path(cfg.workdir).joinpath('data')
-
+def combine_data(cfg: Configuration):
+    p = get_output_dir(cfg.workdir)
     all_json_file = p.joinpath('all.json')
-
     old_all_json = None
 
     if all_json_file.exists():
@@ -103,10 +96,21 @@ def cli(ctx: Context, cfg: Configuration):
         with zstd.open(p.joinpath('all.json.zst'), 'wb') as zstf:
             zstf.write(b.encode('utf-8'))
 
-    logger.info('The all.json file has been generated.')
-
     # Compare the new and old data and print the differences.
     differences = compare_json_data(new_all_json, old_all_json)
+
+    return new_all_json, differences
+
+
+@click.command('combine', help='Merge JSON data into a file.')
+@click.pass_obj
+@click.pass_context
+def cli(ctx: Context, cfg: Configuration):
+    logger.debug(f'app cli combine called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})')
+
+    _, differences = combine_data(cfg)
+
+    logger.info('The all.json file has been generated.')
 
     if differences:
         logger.info('The following differences were found:')

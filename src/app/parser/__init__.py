@@ -1,10 +1,8 @@
 import importlib
 import json
 import operator
-import os
 from abc import ABCMeta, abstractmethod
 from asyncio import Semaphore
-from pathlib import Path
 from typing import Optional, Dict, Tuple, Mapping, List
 
 import aiofiles
@@ -13,6 +11,8 @@ from loguru import logger
 
 from app.core.config import Configuration, AppSettingSoftItem, OutputResult
 from app.core.http import AsyncHttpClient
+from app.core.inspect_result import InspectItemResult
+from app.core.output import get_output_dir
 from app.core.version import VersionSummary
 from app.link import UrlMakerBase
 
@@ -98,9 +98,11 @@ class Base(metaclass=ABCMeta):
     async def wrap_handle(self, sem: Semaphore, soft: AppSettingSoftItem):
         try:
             await self.handle(sem, soft)
+            return InspectItemResult.success(soft.name)
         except Exception as e:
             logger.error(f'[{soft.name}] error found.')
             logger.exception(e)
+            return InspectItemResult.failed(soft.name, type(e).__name__, str(e))
 
     async def request(self, method: str, url: str,
                       params: Optional[Dict[str, str]] = None,
@@ -149,8 +151,7 @@ class Base(metaclass=ABCMeta):
         Returns:
 
         """
-        output_subdir = os.environ.get('OUTPUT_DATA_DIR', 'data')
-        output_path = Path(self.cfg.workdir).joinpath(output_subdir)
+        output_path = get_output_dir(self.cfg.workdir)
 
         file = None
 
@@ -176,8 +177,7 @@ class Base(metaclass=ABCMeta):
 
     async def write(self, soft: AppSettingSoftItem, version_summary: VersionSummary | Mapping[str, VersionSummary],
                     suffix: str = '', storage_dir: Optional[str] = None, **kwargs):
-        output_subdir = os.environ.get('OUTPUT_DATA_DIR', 'data')
-        output_path = Path(self.cfg.workdir).joinpath(output_subdir)
+        output_path = get_output_dir(self.cfg.workdir)
 
         if not output_path.is_dir():
             output_path.mkdir(parents=True, exist_ok=True)

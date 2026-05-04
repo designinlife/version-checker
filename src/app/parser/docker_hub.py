@@ -1,6 +1,4 @@
-import os
 from asyncio import Semaphore
-from pathlib import Path
 from typing import List, Mapping, Optional
 
 import aiofiles
@@ -9,6 +7,7 @@ from loguru import logger
 from pydantic import BaseModel, Field
 
 from app.core.config import DockerHubSoftware
+from app.core.output import get_output_dir
 from app.core.version import VersionHelper, VersionSummary
 from . import Base
 
@@ -89,8 +88,7 @@ class Parser(Base):
 
     async def write_data(self, soft: DockerHubSoftware, items: List[RepositoryTagItem], header: RatelimitHeader,
                          vhlp: VersionHelper):
-        output_subdir = os.environ.get('OUTPUT_DATA_DIR', 'data')
-        output_path = Path(self.cfg.workdir).joinpath(output_subdir)
+        output_path = get_output_dir(self.cfg.workdir)
 
         if not output_path.is_dir():
             output_path.mkdir(parents=True, exist_ok=True)

@@ -18,6 +18,21 @@ class Parser(Base):
 
         return False
 
+    def _append_latest_assets(self, soft: GithubSoftware, vhlp: VersionHelper):
+        if not soft.assets or vhlp.is_empty:
+            return
+
+        rdata = vhlp.latest_version.raw_data
+        if not rdata or not isinstance(rdata.get("assets"), list):
+            return
+
+        for item in rdata["assets"]:
+            url = item["browser_download_url"]
+            if soft.assets_patterns and not self._check_assets_allowed(soft.assets_patterns, os.path.basename(url)):
+                continue
+
+            vhlp.add_download_url(url)
+
     async def handle(self, sem: Semaphore, soft: GithubSoftware):
         logger.debug(f'Name: {soft.name} ({soft.parser}, Release: {soft.release})')
 
@@ -74,16 +89,6 @@ class Parser(Base):
                         else:
                             vhlp.append(data_r['tag_name'])
 
-                        if soft.assets:
-                            rdata = vhlp.latest_version.raw_data
-
-                            if isinstance(rdata['assets'], List):
-                                for v in rdata['assets']:
-                                    if soft.assets_patterns:
-                                        if self._check_assets_allowed(soft.assets_patterns, os.path.basename(v['browser_download_url'])):
-                                            vhlp.add_download_url(v['browser_download_url'])
-                                    else:
-                                        vhlp.add_download_url(v['browser_download_url'])
                 else:
                     for v in data_r:
                         if soft.release:
@@ -95,21 +100,11 @@ class Parser(Base):
                         else:
                             vhlp.append(v['name'])
 
-                    # Do you want to download the assets' attachment?
-                    if soft.release and soft.assets:
-                        rdata = vhlp.latest_version.raw_data
-
-                        if isinstance(rdata['assets'], List):
-                            for v in rdata['assets']:
-                                if soft.assets_patterns:
-                                    if self._check_assets_allowed(soft.assets_patterns, os.path.basename(v['browser_download_url'])):
-                                        vhlp.add_download_url(v['browser_download_url'])
-                                else:
-                                    vhlp.add_download_url(v['browser_download_url'])
-
         if vhlp.is_empty:
             logger.warning(f'[{soft.name}] versions is empty.')
             return
+
+        self._append_latest_assets(soft, vhlp)
 
         logger.debug(f'Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}')
 

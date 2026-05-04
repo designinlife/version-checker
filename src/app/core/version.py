@@ -64,7 +64,7 @@ class VersionHelper:
         self.split = split
         self.exp = re.compile(pattern, flags=re.IGNORECASE)
         self._versions: List[Version] = []
-        self.download_urls = download_urls
+        self.download_urls = download_urls or []
         self.filter_expr = filter_expr
 
     def append(self, version: str, raw_data: Any = None):
@@ -86,7 +86,8 @@ class VersionHelper:
             self._versions.append(v)
 
     def add_download_url(self, url: str):
-        self.download_urls.append(url)
+        if url not in self.download_urls:
+            self.download_urls.append(url)
 
     # def unique_download_urls(self):
     #     self.download_urls = list(set(self.download_urls))
@@ -173,6 +174,9 @@ class VersionHelper:
         """
         if self.split == 0:
             versions = self.versions  # 引用已排序的版本号数组
+
+            if not versions:
+                raise ValueError("No versions matched the configured pattern.")
 
             return VersionSummary(latest=versions[0], versions=versions,
                                   downloads=self._format_download_link(versions[0], self.download_urls))

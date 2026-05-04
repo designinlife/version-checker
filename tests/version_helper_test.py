@@ -44,3 +44,24 @@ class VersionHelperTestCase(unittest.TestCase):
 
         self.assertEqual({"1", "2"}, set(helper.split_versions.keys()))
         self.assertEqual("1.2.0", helper.summary["1"].latest.version)
+
+    def test_summary_raises_clear_error_when_versions_empty(self):
+        helper = VersionHelper(pattern=r"^(?P<version>(?P<major>\d+))$")
+
+        with self.assertRaisesRegex(ValueError, "No versions matched"):
+            _ = helper.summary
+
+    def test_add_download_url_deduplicates_urls(self):
+        helper = VersionHelper(pattern=r"^(?P<version>(?P<major>\d+))$", download_urls=[])
+
+        helper.add_download_url("https://example.com/a.zip")
+        helper.add_download_url("https://example.com/a.zip")
+
+        self.assertEqual(["https://example.com/a.zip"], helper.download_urls)
+
+    def test_add_download_url_initializes_default_download_list(self):
+        helper = VersionHelper(pattern=r"^(?P<version>(?P<major>\d+))$")
+
+        helper.add_download_url("https://example.com/a.zip")
+
+        self.assertEqual(["https://example.com/a.zip"], helper.download_urls)

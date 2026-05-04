@@ -17,6 +17,14 @@ def strtobool(val):
         raise ValueError("invalid truth value %r" % (val,))
 
 
+def safe_strtobool(val, default=False):
+    """安全解析布尔环境变量。"""
+    try:
+        return bool(strtobool(val))
+    except (AttributeError, ValueError):
+        return default
+
+
 def is_numeric(s: Optional[str]):
     if not s:
         return False

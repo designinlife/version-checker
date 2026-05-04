@@ -17,14 +17,16 @@ from app.commands.skopeo import cli as cli_skopeo
 from app.commands.jbp import cli as cli_jbp
 from app.core.click import ClickStdOption
 from app.core.config import Configuration, AppSetting
-from app.core.utils import strtobool
+from app.core.utils import safe_strtobool
 
 logger.remove()
 logger.add(sys.stderr, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level='ERROR', backtrace=True,
            diagnose=False)
 
 # The following code adds a filter so that the STDOUT pipe does not print exception information!
-if strtobool(os.environ.get('DEBUG', 'false')):
+is_debug = safe_strtobool(os.environ.get('VERSION_CHECKER_DEBUG', os.environ.get('DEBUG', 'false')))
+
+if is_debug:
     logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}",
                filter=lambda record: record["level"].no < 40, level='DEBUG')
 

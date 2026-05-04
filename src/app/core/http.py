@@ -10,8 +10,22 @@ from . import DEFAULT_USERAGENT
 
 
 class AsyncHttpClient:
-    def __init__(self, debug: bool = False):
+    def __init__(self, debug: bool = False, session: aiohttp.ClientSession | None = None):
         self.debug: bool = debug
+        self.session = session
+
+    async def _read_response(self, resp, url: str, is_json: bool):
+        if 200 <= resp.status < 300:
+            # for k, v in resp.headers.items():
+            #     if 'ratelimit' in k.lower():
+            #         logger.debug(f'Response Header: {k}={v}')
+
+            if is_json:
+                return resp.url, resp.status, resp.headers, await resp.json()
+            else:
+                return resp.url, resp.status, resp.headers, await resp.text()
+        else:
+            raise ValueError(f'HTTP status code exception. ({resp.status} | {url})')
 
     async def request(self, method: str, url: str,
                       params: Optional[Dict[str, str]] = None,
@@ -42,21 +56,20 @@ class AsyncHttpClient:
         if self.debug:
             logger.debug(f'URL: {url}, PARAMS: {params}, TIMEOUT: {timeout}, JSON RESULT: {is_json}')
 
-        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=timeout)) as session:
-            async with session.request(method=method, url=url,
-                                       params=params,
-                                       allow_redirects=True,
-                                       json=data,
-                                       headers=hdr,
-                                       proxy=os.environ.get('PROXY')) as resp:
-                if 200 <= resp.status < 300:
-                    # for k, v in resp.headers.items():
-                    #     if 'ratelimit' in k.lower():
-                    #         logger.debug(f'Response Header: {k}={v}')
+        request_kwargs = {
+            "method": method,
+            "url": url,
+            "params": params,
+            "allow_redirects": True,
+            "json": data,
+            "headers": hdr,
+            "proxy": os.environ.get("PROXY"),
+        }
 
-                    if is_json:
-                        return resp.url, resp.status, resp.headers, await resp.json()
-                    else:
-                        return resp.url, resp.status, resp.headers, await resp.text()
-                else:
-                    raise ValueError(f'HTTP status code exception. ({resp.status} | {url})')
+        if self.session is not None:
+            async with self.session.request(**request_kwargs) as resp:
+                return await self._read_response(resp, url, is_json)
+
+        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=timeout)) as session:
+            async with session.request(**request_kwargs) as resp:
+                return await self._read_response(resp, url, is_json)
