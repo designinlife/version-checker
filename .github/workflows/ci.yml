@@ -1,4 +1,4 @@
-name: 'Generate JSON'
+name: "Generate JSON"
 
 on:
   workflow_dispatch:
@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Setup Uv
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v8
 
       - name: Set up Python
         run: uv python install
@@ -38,10 +38,10 @@ jobs:
           AUTH_PASSWORD: ${{ secrets.AUTH_PASSWORD }}
 
       - name: Commit
-        uses: EndBug/add-and-commit@v9
+        uses: EndBug/add-and-commit@v10
         with:
           fetch: false
-          message: 'Update'
-          add: 'data'
-          author_name: 'L.STONE'
-          author_email: 'codeplus@qq.com'
+          message: "Update"
+          add: "data"
+          author_name: "L.STONE"
+          author_email: "codeplus@qq.com"
