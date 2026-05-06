@@ -55,11 +55,15 @@ class CombineCliTestCase(unittest.TestCase):
             cfg = Configuration(workdir=tmp, settings=AppSetting(app=AppSettingBase(title="test")))
             runner = CliRunner()
 
-            with patch("app.commands.combine.send_mail") as send_mail:
+            with (
+                patch("app.commands.combine.send_mail") as send_mail,
+                patch("app.commands.combine.send_feishu_updates") as send_feishu_updates,
+            ):
                 result = runner.invoke(combine_cli, [], obj=cfg)
 
         self.assertEqual(0, result.exit_code)
         send_mail.assert_not_called()
+        send_feishu_updates.assert_not_called()
 
     def test_combine_notify_missing_template_does_not_fail(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -68,6 +72,8 @@ class CombineCliTestCase(unittest.TestCase):
             cfg = Configuration(workdir=tmp, settings=AppSetting(app=AppSettingBase(title="test")))
             runner = CliRunner()
 
-            result = runner.invoke(combine_cli, ["--notify"], obj=cfg)
+            with patch("app.commands.combine.send_feishu_updates", return_value=True) as send_feishu_updates:
+                result = runner.invoke(combine_cli, ["--notify"], obj=cfg)
 
         self.assertEqual(0, result.exit_code)
+        send_feishu_updates.assert_called_once_with([{"name": "demo", "latest": "1.0.0", "previous": "0.9.0"}])

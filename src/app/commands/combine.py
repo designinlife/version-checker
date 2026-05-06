@@ -9,7 +9,7 @@ from jinja2 import Template
 from loguru import logger
 
 from app.core.config import Configuration
-from app.core.notify import send_mail
+from app.core.notify import send_feishu_updates, send_mail
 from app.core.output import get_output_dir
 
 
@@ -87,21 +87,24 @@ def combine_data(cfg: Configuration):
 
 
 def send_update_notification(cfg: Configuration, email_data: List[Dict[str, str]]) -> bool:
-    """按差异列表渲染邮件模板并发送通知，模板缺失或发送失败都不影响合并结果。"""
+    """按差异列表发送邮件和飞书通知，通知失败不影响合并结果。"""
+    ok_email = False
     template_file = Path(cfg.workdir).joinpath("email_notify.j2")
-    if not template_file.is_file():
+    if template_file.is_file():
+        with open(template_file, "r", encoding="utf-8") as f:
+            template = Template(f.read())
+
+        html_content = template.render(items=email_data)
+        ok_email = send_mail(
+            to=["codeplus@qq.com"], subject="Github Notification from version-checker", content="No Content", html=html_content
+        )
+        logger.info(f"Send email result: {ok_email}")
+    else:
         logger.warning("Email notification skipped: template file does not exist.")
-        return False
 
-    with open(template_file, "r", encoding="utf-8") as f:
-        template = Template(f.read())
-
-    html_content = template.render(items=email_data)
-    ok_email = send_mail(
-        to=["codeplus@qq.com"], subject="Github Notification from version-checker", content="No Content", html=html_content
-    )
-    logger.info(f"Send email result: {ok_email}")
-    return ok_email
+    ok_feishu = send_feishu_updates(email_data)
+    logger.info(f"Send Feishu result: {ok_feishu}")
+    return ok_email or ok_feishu
 
 
 @click.command("combine", help="Merge JSON data into a file.")
