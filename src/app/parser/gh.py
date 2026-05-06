@@ -13,6 +13,7 @@ from . import Base
 
 class Parser(Base):
     def _check_assets_allowed(self, patterns: List[str], url: str):
+        """检查 Release 附件文件名是否命中配置中的任一 assets_patterns。"""
         for pattern in patterns:
             if re.match(pattern, url):
                 return True
@@ -20,6 +21,7 @@ class Parser(Base):
         return False
 
     def _append_latest_assets(self, soft: GithubSoftware, vhlp: VersionHelper):
+        """把最新稳定 Release 的附件下载地址追加到版本摘要的下载列表。"""
         if not soft.assets or vhlp.is_empty:
             return
 
@@ -35,9 +37,10 @@ class Parser(Base):
             vhlp.add_download_url(url)
 
     async def handle(self, sem: Semaphore, soft: GithubSoftware):
+        """通过 GitHub Tags 或 Releases API 获取版本，并按配置过滤草稿和预发布版本。"""
         logger.debug(f"Name: {soft.name} ({soft.parser}, Release: {soft.release})")
 
-        # Due to GitHub API current limit, you need to check whether the data update has expired!
+        # GitHub API 有限额，未过期的数据直接复用本地输出。
         expired, last_update_time = self.is_expired(soft)
         if not expired:
             logger.info(f"[{soft.name}] SKIPPED: The last update time is: {last_update_time}, cache is still valid.")
@@ -76,7 +79,6 @@ class Parser(Base):
                 if not soft.latest:
                     params = {"per_page": soft.page_size, "page": str(page + 1)}
 
-                # Make an HTTP request.
                 url, http_status_code, _, data_r = await self.request(
                     "GET", f"https://api.github.com/repos/{gns}/{api_by}", params=params, headers=headers, is_json=True
                 )
@@ -110,5 +112,4 @@ class Parser(Base):
         if soft.split > 0:
             logger.debug(f"Split Versions: {vhlp.split_versions}")
 
-        # Write data to file.
         await self.write(soft, vhlp.summary)

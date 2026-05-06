@@ -17,7 +17,6 @@ class Parser(Base):
         # See <https://plugins.jetbrains.com/docs/intellij/android-studio-releases-list.html>
 
         async with sem:
-            # Make an HTTP request.
             _, status, _, data_r = await self.request("GET", "https://jb.gg/android-studio-releases-list.json", is_json=True)
 
             if isinstance(data_r, dict) and "content" in data_r:
@@ -29,6 +28,4 @@ class Parser(Base):
 
             if soft.split > 0:
                 logger.debug(f"Split Versions: {vhlp.split_versions}")
-
-            # Write data to file.
             await self.write(soft, vhlp.summary)

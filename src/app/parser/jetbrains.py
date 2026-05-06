@@ -25,7 +25,6 @@ class Parser(Base):
         vers = set()
 
         async with sem:
-            # Make an HTTP request.
             _, status, _, data_r = await self.request(
                 "GET",
                 "https://data.services.jetbrains.com/products/releases",
@@ -53,6 +52,4 @@ class Parser(Base):
 
             if soft.split > 0:
                 logger.debug(f"Split Versions: {vhlp.split_versions}")
-
-            # Write data to file.
             await self.write(soft, vhlp.summary)

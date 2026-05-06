@@ -15,6 +15,7 @@ class AsyncHttpClient:
         self.session = session
 
     async def _response_excerpt(self, resp, limit: int = 300) -> str:
+        """读取响应正文摘要，用于错误日志，避免把完整远端响应写入异常。"""
         try:
             text = await resp.text()
         except Exception:
@@ -24,11 +25,8 @@ class AsyncHttpClient:
         return text[:limit]
 
     async def _read_response(self, resp, url: str, is_json: bool):
+        """解析 HTTP 响应，并把状态码或 JSON 解析问题转换为带上下文的异常。"""
         if 200 <= resp.status < 300:
-            # for k, v in resp.headers.items():
-            #     if 'ratelimit' in k.lower():
-            #         logger.debug(f'Response Header: {k}={v}')
-
             if is_json:
                 try:
                     return resp.url, resp.status, resp.headers, await resp.json()
@@ -51,20 +49,9 @@ class AsyncHttpClient:
         timeout: float = 15,
         is_json: bool = False,
     ) -> Tuple[URL, int, "CIMultiDictProxy[str]", Any | str]:
-        """
-        Send an HTTP request.
+        """发送 HTTP 请求并返回最终 URL、状态码、响应头和响应内容。
 
-        Args:
-            method:
-            url:
-            params:
-            data:
-            headers:
-            timeout:
-            is_json:
-
-        Returns:
-
+        当传入外部 session 时复用调用方的连接池；否则为单次请求创建短生命周期 session。
         """
         hdr = {"User-Agent": DEFAULT_USERAGENT}
 

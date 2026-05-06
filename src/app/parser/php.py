@@ -15,7 +15,6 @@ class Parser(Base):
         vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
         async with sem:
-            # Make an HTTP request.
             for major in soft.major:
                 _, status, _, data_r = await self.request(
                     "GET", f"https://www.php.net/releases/index.php?json&max=-1&version={major}", is_json=True
@@ -28,6 +27,4 @@ class Parser(Base):
 
             if soft.split > 0:
                 logger.debug(f"Split Versions: {vhlp.split_versions}")
-
-            # Write data to file.
             await self.write(soft, vhlp.summary)

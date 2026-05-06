@@ -16,7 +16,6 @@ class Parser(Base):
         vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
         async with sem:
-            # Make an HTTP request.
             _, status, _, data_s = await self.request("GET", "https://dotnet.microsoft.com/en-us/download/dotnet-framework", is_json=False)
 
             soup = BeautifulSoup(data_s, "html5lib")
@@ -54,6 +53,4 @@ class Parser(Base):
 
         if soft.split > 0:
             logger.debug(f"Split Versions: {vhlp.split_versions}")
-
-        # Write data to file.
         await self.write(soft, vhlp.summary)

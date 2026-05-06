@@ -42,10 +42,8 @@ class OutputResult(BaseModel):
 
 class Parser(Base):
     async def handle(self, sem: Semaphore, soft: DockerHubSoftware):
+        """分页读取 Docker Hub Tag 列表，并保留限流响应头用于输出和日志。"""
         logger.debug(f"Repository: {soft.repo} ({soft.parser})")
-
-        # 使用 arrow 解析 Tag 推送时间并转换为国内时间
-        # arrow.get(a, "YYYY-MM-DDTHH:mm:ss.SSSSSSZ", tzinfo='UTC').to(tz='Asia/Shanghai')
 
         vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=[])
 
@@ -61,7 +59,6 @@ class Parser(Base):
                 if current_page > max_page:
                     break
 
-                # Make an HTTP request.
                 _, status, headers, data_r = await self.request(
                     "GET",
                     f"https://hub.docker.com/v2/namespaces/{repo_parts[0]}/repositories/{repo_parts[1]}/tags",
@@ -88,16 +85,16 @@ class Parser(Base):
 
                 current_page += 1
 
-            # Write data to file.
             await self.write_data(soft, results, data_header, vhlp)
 
     async def write_data(self, soft: DockerHubSoftware, items: List[RepositoryTagItem], header: RatelimitHeader, vhlp: VersionHelper):
+        """写出 Docker Hub 专用 JSON，包含匹配版本、最新标签、可用后缀和限流信息。"""
         output_path = get_output_dir(self.cfg.workdir)
 
         if not output_path.is_dir():
             output_path.mkdir(parents=True, exist_ok=True)
 
-        # 标签过滤
+        # 只保留能被版本正则识别的 Tag，避免输出无关镜像标签。
         tags = []
         latests = []
         suffix = []
@@ -116,6 +113,7 @@ class Parser(Base):
             latests.append(version_summary.latest.version)
 
         def is_latest_exists(sfix: str) -> bool:
+            """判断某个 Tag 后缀是否仍存在于最新版本对应的标签中。"""
             for vv in latests:
                 fv = f"{vv}{sfix}"
 
@@ -124,7 +122,7 @@ class Parser(Base):
 
             return False
 
-        # 收集版本 Tag 可用的后缀
+        # 收集最新版本仍然存在的 Tag 后缀，例如 alpine、slim 等变体。
         for v in vhlp.raw_versions:
             if v.other and v.other not in suffix and is_latest_exists(v.other):
                 suffix.append(v.other)

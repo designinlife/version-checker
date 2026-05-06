@@ -18,7 +18,6 @@ class Parser(Base):
         # See <https://wiki.mozilla.org/Release_Management/Product_details>
 
         async with sem:
-            # Make an HTTP request.
             _, status, _, data_r = await self.request("GET", "https://product-details.mozilla.org/1.0/firefox.json", is_json=True)
 
             if isinstance(data_r, dict) and "releases" in data_r and isinstance(data_r["releases"], Mapping):
@@ -30,6 +29,4 @@ class Parser(Base):
 
             if soft.split > 0:
                 logger.debug(f"Split Versions: {vhlp.split_versions}")
-
-            # Write data to file.
             await self.write(soft, vhlp.summary)

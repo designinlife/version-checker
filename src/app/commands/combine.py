@@ -14,18 +14,9 @@ from app.core.output import get_output_dir
 
 
 def filter_nones(obj):
-    """
-    Given a JSON-serializable object, return a copy without elements which have
-    a value of None.
-    """
+    """递归移除 JSON 结构中的 None 值，避免合并输出包含空字段。"""
 
     if isinstance(obj, list):
-        # This version may or may not be easier to read depending on your
-        # preferences:
-        # return list(filter(None, map(remove_nones, obj)))
-
-        # This version uses a generator expression to avoid computing a full
-        # list only to immediately walk it again:
         filtered_values = (filter_nones(j) for j in obj)
         return [i for i in filtered_values if i is not None]
     elif isinstance(obj, dict):
@@ -36,22 +27,7 @@ def filter_nones(obj):
 
 
 def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = None) -> List[Tuple[str, str, str]]:
-    """
-    Compares the 'latest' version of data in two JSON-like lists of dictionaries.
-
-    Args:
-        new_data: A list of dictionaries representing the new data.
-        old_data: An optional list of dictionaries representing the old data.  If None, it's treated as no previous data.
-
-    Returns:
-        A list of tuples. Each tuple contains (name, latest, previous) where:
-            - name: The 'name' key from the new_data dictionary.
-            - latest: The 'latest' value from the new_data dictionary.
-            - previous: The 'latest' value from the old_data dictionary, or None if not found.
-
-        The list only contains tuples where the 'latest' version in new_data is different from the 'latest' version in old_data,
-        or when the 'name' key is not found in old_data.  Returns an empty list if old_data is None.
-    """
+    """对比新旧合并数据中的 latest 字段，返回需要通知的版本变化列表。"""
 
     if old_data is None:
         return []
@@ -72,6 +48,10 @@ def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = Non
 
 
 def combine_data(cfg: Configuration):
+    """合并输出目录中的单软件 JSON 文件，并生成 `all.json` 与 `all.json.zst`。
+
+    合并前会读取旧 `all.json` 作为对比基线；首次生成时没有旧数据，因此不会产生差异通知。
+    """
     p = get_output_dir(cfg.workdir)
     all_json_file = p.joinpath("all.json")
     old_all_json = None
@@ -96,13 +76,14 @@ def combine_data(cfg: Configuration):
         with zstd.open(p.joinpath("all.json.zst"), "wb") as zstf:
             zstf.write(b.encode("utf-8"))
 
-    # Compare the new and old data and print the differences.
+    # 差异仅用于通知和日志，不影响合并产物写入。
     differences = compare_json_data(new_all_json, old_all_json)
 
     return new_all_json, differences
 
 
 def send_update_notification(cfg: Configuration, email_data: List[Dict[str, str]]) -> bool:
+    """按差异列表渲染邮件模板并发送通知，模板缺失或发送失败都不影响合并结果。"""
     template_file = Path(cfg.workdir).joinpath("email_notify.j2")
     if not template_file.is_file():
         logger.warning("Email notification skipped: template file does not exist.")
@@ -124,6 +105,7 @@ def send_update_notification(cfg: Configuration, email_data: List[Dict[str, str]
 @click.pass_obj
 @click.pass_context
 def cli(ctx: Context, cfg: Configuration, notify: bool):
+    """执行输出合并命令；只有显式传入 --notify 时才发送邮件通知。"""
     logger.debug(f"app cli combine called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})")
 
     _, differences = combine_data(cfg)

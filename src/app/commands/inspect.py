@@ -31,6 +31,7 @@ from app.parser.registry import load_parser_class
 @click.pass_obj
 @click.pass_context
 def cli(ctx: Context, cfg: Configuration, worker_num: int, strict: bool, filter_name: Optional[str] = None):
+    """执行批量版本检测，并根据 strict 参数决定是否把单项失败提升为命令失败。"""
     logger.debug(f"app cli inspect called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})")
 
     if not cfg.debug:
@@ -49,11 +50,12 @@ def cli(ctx: Context, cfg: Configuration, worker_num: int, strict: bool, filter_
     if not cfg.debug:
         asyncio.run(show_rate_limit_best_effort())
 
-    # Merge the output JSON data files into all.json.
+    # 检测结束后统一合并本轮输出，保持 inspect 命令的一站式行为。
     ctx.invoke(cli_combine)
 
 
 async def show_rate_limit_best_effort():
+    """尽力输出 GitHub API 限额信息，查询失败时只降级为 warning。"""
     try:
         await GithubHelper.show_rate_limit()
     except Exception as e:
@@ -61,6 +63,11 @@ async def show_rate_limit_best_effort():
 
 
 async def process(cfg: Configuration, worker_num: int, filter_name: Optional[str] = None):
+    """调度配置中的软件检测任务，并返回每个条目的结构化检测结果。
+
+    该函数负责过滤指定名称、跳过 disabled 条目、复用同一个 aiohttp 会话，并把解析器内部失败收敛为
+    `InspectItemResult`。动态解析器导入失败这类调度级问题仍会记录为 `<process>` 失败，方便 CLI 统一处理。
+    """
     if worker_num < 1:
         raise ValueError("worker_num must be greater than or equal to 1.")
 
@@ -79,7 +86,6 @@ async def process(cfg: Configuration, worker_num: int, filter_name: Optional[str
                 continue
 
             cls = load_parser_class(v.parser)
-            # cls_handler = getattr(cls(cfg), 'handle')
             cls_o = cls(cfg)
             cls_o.httpc = AsyncHttpClient(debug=cfg.debug, session=session)
 

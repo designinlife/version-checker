@@ -26,7 +26,6 @@ class Parser(Base):
         vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
         async with sem:
-            # Make an HTTP request.
             _, status, _, data_r = await self.request(
                 "GET", f"https://sourceforge.net/projects/{soft.project}/best_release.json", is_json=True
             )
@@ -41,6 +40,4 @@ class Parser(Base):
 
             if soft.split > 0:
                 logger.debug(f"Split Versions: {vhlp.split_versions}")
-
-            # Write data to file.
             await self.write(soft, vhlp.summary)

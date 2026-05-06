@@ -12,6 +12,7 @@ from . import Base
 
 class Parser(Base):
     async def handle(self, sem: Semaphore, soft: GitLsRemoteSoftware):
+        """执行 `git ls-remote --tags` 获取远端标签，并从输出行中提取版本号。"""
         logger.debug(f"Name: {soft.name} ({soft.parser})")
 
         vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
@@ -26,7 +27,6 @@ class Parser(Base):
                 return
 
             stdout = result["stdout"]
-            # vhlp.append(v['name'])
             for line in stdout.splitlines():
                 v = self.parse_version(line)
 
@@ -38,26 +38,18 @@ class Parser(Base):
             if soft.split > 0:
                 logger.debug(f"Split Versions: {vhlp.split_versions}")
 
-            # Write data to file.
             await self.write(soft, vhlp.summary)
 
     async def run_command(self, command):
-        # Create subprocess
+        """异步执行外部命令并返回退出码、标准输出和标准错误。"""
         process = await asyncio.create_subprocess_exec(*command, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
 
-        # Wait for the subprocess to complete and get output
         stdout, stderr = await process.communicate()
 
-        # Decode output and return results
         return {"returncode": process.returncode, "stdout": stdout.decode() if stdout else "", "stderr": stderr.decode() if stderr else ""}
 
     def parse_version(self, text: str):
-        """
-        Parse version number from a string like 'a310c093c61ceb6e1b8073cddf610c50c2fae6f3 refs/tags/v2.75'.
-        Supports formats like 'vX.Y' or 'vX.Y.Z'.
-        Returns the version string (e.g., 'v2.75' or 'v2.75.0') or None if not found.
-        """
-        # Regular expression to match version numbers (vX.Y or vX.Y.Z)
+        """从 `git ls-remote` 输出行中提取 `vX.Y` 或 `vX.Y.Z` 形式的标签。"""
         pattern = r"refs/tags/(v?\d+\.\d+(?:\.\d+)?)$"
         match = re.search(pattern, text)
         return match.group(1) if match else None

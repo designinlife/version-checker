@@ -37,7 +37,6 @@ class Parser(Base):
         logger.debug(f"Name: {soft.name} ({soft.parser})")
 
         async with sem:
-            # Make an HTTP request.
             _, status, _, data_s = await self.request(
                 "GET", "https://raw.githubusercontent.com/dotnet/core/main/release-notes/releases-index.json", is_json=False
             )
@@ -85,8 +84,6 @@ class Parser(Base):
                                 vhlp.add_download_url(v3["url"])
 
                 logger.debug(f"Name: {soft.name}-{v['channel-version']}, Versions: {vhlp.versions}, Summary: {vhlp.summary}")
-
-                # Write data to file.
                 vlatest = vhlp.versions[0]
 
                 await self.write(soft, vhlp.summary, suffix=f"-{vlatest.major}.{vlatest.minor}")

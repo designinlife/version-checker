@@ -18,7 +18,6 @@ class Parser(Base):
 
         async with sem:
             # Download Links: https://download.rockylinux.org/pub/rocky/
-            # Make an HTTP request.
             _, status, _, data_s = await self.request("GET", "https://wiki.rockylinux.org/rocky/version/", is_json=False)
 
             # Analyzing HTML text data.
@@ -39,6 +38,4 @@ class Parser(Base):
 
             if soft.split > 0:
                 logger.debug(f"Split Versions: {vhlp.split_versions}")
-
-            # Write data to file.
             await self.write(soft, vhlp.summary)

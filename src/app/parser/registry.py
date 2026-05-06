@@ -6,10 +6,12 @@ from app.parser import Base
 
 
 def parser_to_module_name(parser_name: str) -> str:
+    """把配置中的 parser 名称转换为对应的 Python 模块名。"""
     return parser_name.replace("-", "_")
 
 
 def load_parser_class(parser_name: str) -> Type[Base]:
+    """加载 parser 对应的 `Parser` 类，并校验它继承自解析器基类。"""
     module_name = parser_to_module_name(parser_name)
     module = importlib.import_module(f"app.parser.{module_name}")
     parser_class = getattr(module, "Parser")
@@ -21,6 +23,7 @@ def load_parser_class(parser_name: str) -> Type[Base]:
 
 
 def validate_parser_contracts(softwares: Iterable[AppSettingSoftItem]) -> list[str]:
+    """批量校验配置中使用到的 parser 是否能加载并满足基类契约。"""
     errors: list[str] = []
     checked: set[str] = set()
 

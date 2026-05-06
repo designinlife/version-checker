@@ -44,6 +44,4 @@ class Parser(Base):
 
         if soft.split > 0:
             logger.debug(f"Split Versions: {vhlp.split_versions}")
-
-        # Write data to file.
         await self.write(soft, vhlp.summary)

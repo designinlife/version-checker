@@ -51,7 +51,6 @@ class Parser(Base):
         vhlp = VersionHelper(pattern=soft.pattern, split=soft.split, download_urls=soft.download_urls)
 
         async with sem:
-            # Make an HTTP request.
             _, status, _, data_r = await self.request("GET", f"https://plugins.jetbrains.com/api/plugins/{soft.plugin_id}", is_json=True)
 
             plugin_info = JetbrainPluginInfo(**data_r)
@@ -85,6 +84,4 @@ class Parser(Base):
                 )
 
             logger.debug(f"Name: {soft.name}, Versions: {vhlp.versions}, Summary: {vhlp.summary}")
-
-            # Write data to file.
             await self.write(soft, version_summary=vhlp.summary, storage_dir="jetbrains/plugins", jbp_extra=additional)

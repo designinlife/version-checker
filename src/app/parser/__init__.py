@@ -19,6 +19,7 @@ from app.link import UrlMakerBase
 
 
 def get_cache_ttl_hours() -> int:
+    """读取运行数据缓存有效期；非法或过小配置统一回退为 1 小时。"""
     raw_value = os.environ.get("VERSION_CHECKER_CACHE_TTL_HOURS", "1")
     try:
         ttl_hours = int(raw_value)
@@ -34,26 +35,13 @@ def get_cache_ttl_hours() -> int:
 
 
 def check_requirements(requirement_string: str, major: int, minor: Optional[int] = None) -> bool:
-    """
-    检查是否满足 requirements 字符串中的条件。
-
-    Args:
-        requirement_string: 包含条件的字符串，例如 "major >= 6 && minor < 2"。
-        major: major 版本号。
-        minor: minor 版本号。
-
-    Returns:
-        True 如果满足条件，否则返回 False。
-    """
-    # 定义运算符映射
+    """检查版本号是否满足 `major >= 6 && minor < 2` 这类条件表达式。"""
     ops = {">": operator.gt, "<": operator.lt, ">=": operator.ge, "<=": operator.le, "==": operator.eq, "!=": operator.ne}
 
     try:
-        # 将 requirement_string 分割成条件
         conditions = requirement_string.split("&&")
-        conditions = [c.strip() for c in conditions]  # 清理空格
+        conditions = [c.strip() for c in conditions]
 
-        # 逐个检查条件
         for condition in conditions:
             parts = condition.split()
             if len(parts) != 3:
@@ -62,7 +50,6 @@ def check_requirements(requirement_string: str, major: int, minor: Optional[int]
 
             variable, operator_str, value_str = parts
 
-            # 获取变量值
             if variable == "major":
                 value1 = major
             elif variable == "minor":
@@ -71,24 +58,20 @@ def check_requirements(requirement_string: str, major: int, minor: Optional[int]
                 logger.warning(f"Warning: Unknown variable: {variable}. Skipping condition.")
                 continue
 
-            # 获取运算符
             op = ops.get(operator_str)
             if op is None:
                 logger.warning(f"Warning: Unknown operator: {operator_str}. Skipping condition.")
                 continue
 
-            # 获取值
             try:
                 value2 = int(value_str)
             except ValueError:
                 logger.error(f"Warning: Invalid value: {value_str}. Skipping condition.")
                 continue
 
-            # 检查条件是否满足
             if not op(value1, value2):
-                return False  # 如果任何一个条件不满足，则返回 False
+                return False
 
-        # 所有条件都满足，返回 True
         return True
     except Exception as e:
         logger.error(f"Error evaluating requirement: {e}")
@@ -101,9 +84,12 @@ class Base(metaclass=ABCMeta):
         self.httpc = AsyncHttpClient(debug=self.cfg.debug)
 
     @abstractmethod
-    async def handle(self, sem: Semaphore, soft: AppSettingSoftItem): ...
+    async def handle(self, sem: Semaphore, soft: AppSettingSoftItem):
+        """解析器入口方法，子类负责抓取远端版本并调用 `write()` 写出结果。"""
+        ...
 
     async def wrap_handle(self, sem: Semaphore, soft: AppSettingSoftItem):
+        """包装单个软件条目的解析流程，把异常转换为结构化检测结果。"""
         try:
             await self.handle(sem, soft)
             return InspectItemResult.success(soft.name)
@@ -122,28 +108,15 @@ class Base(metaclass=ABCMeta):
         timeout: float = 15,
         is_json: bool = False,
     ):
-        """
-        Send an HTTP request.
-
-        Args:
-            method:
-            url:
-            params:
-            data:
-            headers:
-            timeout:
-            is_json:
-
-        Returns:
-
-        """
+        """通过解析器共享的 HTTP 客户端发送请求，保持 parser 子类的网络调用入口一致。"""
         url, http_status_code, headers, data = await self.httpc.request(method, url, params, data, headers, timeout, is_json)
 
         return url, http_status_code, headers, data
 
     def _build_download_urls(self, soft: AppSettingSoftItem, version_summary: VersionSummary, download_urls: List[str]) -> List[str]:
+        """根据配置决定直接使用下载模板，还是委托 `app.link` 动态生成下载地址。"""
         if soft.download_dynamic:
-            # Dynamically create an UrlMaker instance.
+            # 动态下载地址模块按软件名称约定加载，例如 `sqlite` -> `app.link.sqlite.UrlMaker`。
             module = importlib.import_module("app.link.%s" % soft.name.replace("-", "_"))
             cls = getattr(module, "UrlMaker")
             cls_o = cls(self.cfg)
@@ -154,14 +127,7 @@ class Base(metaclass=ABCMeta):
             return download_urls
 
     def is_expired(self, soft: AppSettingSoftItem) -> Tuple[bool, str]:
-        """检查数据是否过期。
-
-        Args:
-            soft:
-
-        Returns:
-
-        """
+        """检查软件输出文件是否超过缓存有效期，返回是否过期和上次更新时间。"""
         output_path = get_output_dir(self.cfg.workdir)
 
         file = None
@@ -194,6 +160,7 @@ class Base(metaclass=ABCMeta):
         storage_dir: Optional[str] = None,
         **kwargs,
     ):
+        """把版本摘要写入软件 JSON 文件；split 场景会按主版本或次版本拆分多个文件。"""
         output_path = get_output_dir(self.cfg.workdir)
 
         if not output_path.is_dir():

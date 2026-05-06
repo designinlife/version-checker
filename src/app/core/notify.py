@@ -9,18 +9,7 @@ from loguru import logger
 
 
 def send_mail(to: List[str], subject: str, content: str, html: Optional[str] = None) -> bool:
-    """
-    发送邮件函数。
-
-    Args:
-        to (List[str]): 收件人邮箱地址列表
-        subject (str): 邮件标题
-        content (str): 纯文本邮件内容
-        html (Optional[str]): HTML 邮件内容，若非空则发送 HTML 邮件，默认为 None
-
-    Returns:
-        bool: 发送成功返回 True，否则返回 False
-    """
+    """按环境变量中的 SMTP 配置发送邮件，配置缺失或发送失败时返回 False。"""
     # SMTP 配置
     smtp_server = os.environ.get("SMTP_SERVER")
     smtp_port = int(os.environ.get("SMTP_PORT", "465"))  # SSL 端口

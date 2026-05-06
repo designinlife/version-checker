@@ -19,7 +19,6 @@ class Parser(Base):
         # CN: https://www.navicat.com.cn/products/navicat-premium-release-note
 
         async with sem:
-            # Make an HTTP request.
             _, status, _, data_s = await self.request(
                 "GET", "https://www.navicat.com.cn/products/navicat-premium-release-note", is_json=False
             )
@@ -37,6 +36,4 @@ class Parser(Base):
 
             if soft.split > 0:
                 logger.debug(f"Split Versions: {vhlp.split_versions}")
-
-            # Write data to file.
             await self.write(soft, vhlp.summary)
