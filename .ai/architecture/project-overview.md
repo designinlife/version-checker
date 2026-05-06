@@ -43,5 +43,5 @@
 - 不要把 `data/` 当作源配置目录；它是生成结果目录。
 - 不要在未检查 `version-checker.toml` 的情况下新增软件配置。
 - 不要把 README 当作 AI 规则主维护位置；AI 规则维护在 `.ai/`。
-- `README.md` 默认由用户负责，AI 不主动干预；新增、删除或重命名软件检测配置导致生成的 `data/*.json` 支持清单变化时，只同步维护 `Supported software list` 表格，不改写 README 其他章节。
+- `README.md` 默认由用户负责，AI 不主动读取或修改，避免撑大上下文；新增、更新、删除或重命名软件检测配置导致生成的 `data/*.json` 支持清单变化时，只读取 README 并同步维护 `Supported software list` 表格，不改写 README 其他章节。
 - `docs/` 目录明确不提交，不要把必须随仓库保留的规则、计划或交付物写入 `docs/`。

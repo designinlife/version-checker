@@ -77,7 +77,7 @@ uv sync
 
 ## 文档约束
 
-- `README.md` 默认由用户负责，AI 不主动干预；新增、删除或重命名软件检测配置导致生成的 `data/*.json` 支持清单变化时，按 `workflow/add-software.md` 只同步维护 `Supported software list` 表格。
+- `README.md` 默认由用户负责，AI 不主动读取或修改，避免撑大上下文；新增、更新、删除或重命名软件检测配置导致生成的 `data/*.json` 支持清单变化时，按 `workflow/add-software.md` 只读取 README 并同步维护 `Supported software list` 表格。
 - AI 规则写入 `.ai/`，根目录入口文件只保留索引和摘要。
 - 修改配置键、环境变量或运行方式时，不主动修改 README 其他章节；必要时提示用户需要自行同步 README。
 - `.gitignore` 不要主动修改；如果发现需要新增或删除忽略规则，只在回复中提示用户建议调整内容。
