@@ -24,9 +24,9 @@ class AsyncHttpClient:
         text = " ".join(text.split())
         return text[:limit]
 
-    async def _read_response(self, resp, url: str, is_json: bool):
+    async def _read_response(self, resp, url: str, is_json: bool, raise_for_status: bool = True):
         """解析 HTTP 响应，并把状态码或 JSON 解析问题转换为带上下文的异常。"""
-        if 200 <= resp.status < 300:
+        if 200 <= resp.status < 300 or not raise_for_status:
             if is_json:
                 try:
                     return resp.url, resp.status, resp.headers, await resp.json()
@@ -48,6 +48,7 @@ class AsyncHttpClient:
         headers: Optional[Dict[str, str]] = None,
         timeout: float = 15,
         is_json: bool = False,
+        raise_for_status: bool = True,
     ) -> Tuple[URL, int, "CIMultiDictProxy[str]", Any | str]:
         """发送 HTTP 请求并返回最终 URL、状态码、响应头和响应内容。
 
@@ -74,8 +75,8 @@ class AsyncHttpClient:
 
         if self.session is not None:
             async with self.session.request(**request_kwargs) as resp:
-                return await self._read_response(resp, url, is_json)
+                return await self._read_response(resp, url, is_json, raise_for_status=raise_for_status)
 
         async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=timeout)) as session:
             async with session.request(**request_kwargs) as resp:
-                return await self._read_response(resp, url, is_json)
+                return await self._read_response(resp, url, is_json, raise_for_status=raise_for_status)

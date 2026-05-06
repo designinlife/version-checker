@@ -58,6 +58,25 @@ class AsyncHttpClientTestCase(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "HTTP request failed.*429.*rate limit exceeded"):
             asyncio.run(client._read_response(FakeResponse(), "https://example.com/rate", is_json=False))
 
+    def test_http_error_can_be_returned_without_raise(self):
+        class FakeResponse:
+            status = 429
+            headers = {"Retry-After": "3"}
+            url = "https://example.com/rate"
+
+            async def json(self):
+                return {"detail": "Rate limit exceeded"}
+
+        client = AsyncHttpClient()
+
+        _, status, headers, data = asyncio.run(
+            client._read_response(FakeResponse(), "https://example.com/rate", is_json=True, raise_for_status=False)
+        )
+
+        self.assertEqual(429, status)
+        self.assertEqual("3", headers["Retry-After"])
+        self.assertEqual({"detail": "Rate limit exceeded"}, data)
+
     def test_json_parse_error_includes_url_and_status(self):
         class FakeResponse:
             status = 200

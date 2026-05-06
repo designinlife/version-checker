@@ -2,6 +2,7 @@ import asyncio
 import json
 import tempfile
 import unittest
+from multidict import CIMultiDict
 from pathlib import Path
 from unittest.mock import AsyncMock
 
@@ -431,6 +432,69 @@ class ParserOfflineTestCase(unittest.TestCase):
         self.assertEqual(["1.0"], data["latest_tags"])
         self.assertEqual(["-alpine"], data["suffix"])
         self.assertEqual(["latest"], data["fixed_tags"])
+
+    def test_docker_hub_parser_waits_for_retry_after_on_rate_limit(self):
+        parser = DockerHubParser.__new__(DockerHubParser)
+        parser.cfg = Configuration()
+        parser.write_data = AsyncMock()
+        parser.sleep = AsyncMock()
+        parser._now = lambda: 1000
+        parser.request = AsyncMock(
+            side_effect=[
+                (
+                    "https://hub.docker.com/v2/namespaces/library/repositories/demo/tags",
+                    429,
+                    CIMultiDict(
+                        {
+                            "Retry-After": "3",
+                            "x-ratelimit-limit": "100",
+                            "x-ratelimit-remaining": "0",
+                            "x-ratelimit-reset": "1003",
+                        }
+                    ),
+                    {"detail": "Rate limit exceeded"},
+                ),
+                (
+                    "https://hub.docker.com/v2/namespaces/library/repositories/demo/tags",
+                    200,
+                    CIMultiDict(
+                        {
+                            "x-ratelimit-limit": "100",
+                            "x-ratelimit-remaining": "99",
+                            "x-ratelimit-reset": "1060",
+                        }
+                    ),
+                    {"results": [{"name": "1.0", "full_size": 1, "v2": True, "tag_last_pushed": "2026-05-05T00:00:00Z"}]},
+                ),
+            ]
+        )
+        soft = DockerHubSoftware(parser="docker-hub", repo="library/demo", pattern=r"^(?P<version>(?P<major>\d+)\.(?P<minor>\d+))$")
+
+        asyncio.run(parser.handle(asyncio.Semaphore(1), soft))
+
+        parser.sleep.assert_awaited_once_with(3)
+        self.assertEqual(2, parser.request.await_count)
+        parser.write_data.assert_awaited_once()
+
+    def test_docker_hub_parser_fails_when_retry_budget_is_exceeded(self):
+        parser = DockerHubParser.__new__(DockerHubParser)
+        parser.cfg = Configuration()
+        parser.sleep = AsyncMock()
+        parser._now = lambda: 1000
+        parser.request = AsyncMock(
+            return_value=(
+                "https://hub.docker.com/v2/namespaces/library/repositories/demo/tags",
+                429,
+                CIMultiDict({"Retry-After": "1800", "x-ratelimit-limit": "100", "x-ratelimit-remaining": "0", "x-ratelimit-reset": "2800"}),
+                {"detail": "Rate limit exceeded"},
+            )
+        )
+        soft = DockerHubSoftware(parser="docker-hub", repo="library/demo", pattern=r"^(?P<version>(?P<major>\d+))$")
+
+        with self.assertRaisesRegex(RuntimeError, "Docker Hub rate limit retry budget exceeded"):
+            asyncio.run(parser.handle(asyncio.Semaphore(1), soft))
+
+        parser.sleep.assert_not_awaited()
 
     def test_gitea_parser_reads_tag_names(self):
         parser = GiteaParser.__new__(GiteaParser)

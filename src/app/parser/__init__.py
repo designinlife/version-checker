@@ -107,9 +107,12 @@ class Base(metaclass=ABCMeta):
         headers: Optional[Dict[str, str]] = None,
         timeout: float = 15,
         is_json: bool = False,
+        raise_for_status: bool = True,
     ):
         """通过解析器共享的 HTTP 客户端发送请求，保持 parser 子类的网络调用入口一致。"""
-        url, http_status_code, headers, data = await self.httpc.request(method, url, params, data, headers, timeout, is_json)
+        url, http_status_code, headers, data = await self.httpc.request(
+            method, url, params, data, headers, timeout, is_json, raise_for_status=raise_for_status
+        )
 
         return url, http_status_code, headers, data
 
