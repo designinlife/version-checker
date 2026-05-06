@@ -736,14 +736,12 @@ download_urls = [
 
 [[softwares]]
 name = "forgejo"
-repo = "forgejo/forgejo"
-url = "https://forgejo.org/"
+url = "https://code.forgejo.org/forgejo/forgejo"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-parser = 'codeberg'
-release = true
+parser = "git-ls-remote"
 download_urls = [
-    "https://codeberg.org/forgejo/forgejo/releases/download/v{version}/forgejo-{version}-linux-amd64.xz",
-    "https://codeberg.org/forgejo/forgejo/releases/download/v{version}/forgejo-src-{version}.tar.gz",
+    "https://code.forgejo.org/forgejo/forgejo/releases/download/v{version}/forgejo-{version}-linux-amd64.xz",
+    "https://code.forgejo.org/forgejo/forgejo/releases/download/v{version}/forgejo-src-{version}.tar.gz",
 ]
 
 [[softwares]]
@@ -1309,11 +1307,11 @@ download_urls = ["https://www.tcpdump.org/release/libpcap-{version}.tar.gz"]
 
 [[softwares]]
 name = "fontconfig"
-url = "https://www.freedesktop.org/software/fontconfig/release/"
-pattern = "^fontconfig-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)).tar.gz$"
-parser = "index"
+repo = "fontconfig/fontconfig"
+url = "https://github.com/fontconfig/fontconfig"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 download_urls = [
-    "https://www.freedesktop.org/software/fontconfig/release/fontconfig-{version}.tar.gz",
+    "https://github.com/fontconfig/fontconfig/archive/refs/tags/{version}.tar.gz#fontconfig-{version}.tar.gz",
 ]
 
 [[softwares]]
@@ -3167,14 +3165,14 @@ download_urls = [
 
 [[softwares]]
 name = "7-zip"
-url = "https://www.7-zip.org/"
-pattern = "^7z(?P<version>(?P<major>\\d{2})(?P<minor>\\d{2}))-x64.exe$"
-parser = "sf"
-project = "sevenzip"
+repo = "ip7z/7zip"
+url = "https://github.com/ip7z/7zip"
+pattern = "^(?P<version>(?P<major>\\d{2})\\.(?P<minor>(?P<other>\\d{2})))$"
+release = true
 download_urls = [
-    "https://www.7-zip.org/a/7z{version}-x64.exe",
-    "https://www.7-zip.org/a/7z{version}-extra.7z",
-    "https://7-zip.org/a/7z{version}-linux-x64.tar.xz",
+    "https://github.com/ip7z/7zip/releases/download/{version}/7z{major}{other}-x64.exe",
+    "https://github.com/ip7z/7zip/releases/download/{version}/7z{major}{other}-extra.7z",
+    "https://github.com/ip7z/7zip/releases/download/{version}/7z{major}{other}-linux-x64.tar.xz",
 ]
 
 [[softwares]]
@@ -3270,18 +3268,6 @@ download_urls = [
     "https://github.com/rathole-org/rathole/releases/download/v{version}/rathole-x86_64-pc-windows-msvc.zip#rathole-{version}-x86_64-pc-windows-msvc.zip",
     "https://github.com/rathole-org/rathole/releases/download/v{version}/rathole-x86_64-unknown-linux-gnu.zip#rathole-{version}-x86_64-unknown-linux-gnu.zip",
     "https://github.com/rathole-org/rathole/archive/refs/tags/v{version}.tar.gz",
-]
-
-[[softwares]]
-name = "nodepass"
-repo = "yosebyte/nodepass"
-url = "https://github.com/yosebyte/nodepass"
-pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-release = true
-download_urls = [
-    "https://github.com/yosebyte/nodepass/releases/download/v{version}/nodepass_{version}_linux_amd64.tar.gz",
-    "https://github.com/yosebyte/nodepass/releases/download/v{version}/nodepass_{version}_windows_amd64.zip",
-    "https://github.com/yosebyte/nodepass/archive/refs/tags/v{version}.tar.gz",
 ]
 
 [[softwares]]
