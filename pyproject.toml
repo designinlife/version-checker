@@ -36,6 +36,7 @@ build-backend = "hatchling.build"
 [tool.hatch.version]
 # from <https://hatch.pypa.io/latest/version/>
 source = "vcs"
+
 #path = "src/app/__init__.py"
 
 [tool.hatch.build.targets.wheel]
@@ -43,6 +44,7 @@ packages = ["src/app"]
 
 [dependency-groups]
 dev = [
+    "coverage>=7.13.5",
     "hatch-vcs>=0.5.0",
     "hatchling>=1.29.0",
     "pytest>=9.0.3",
@@ -66,3 +68,17 @@ ignore = []
 
 [tool.ruff.format]
 line-ending = "native"
+
+[tool.coverage.run]
+source = ["src/app"]
+branch = true
+omit = [
+    ".venv/*",
+    "build/*",
+    "data/*",
+    "dist/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
