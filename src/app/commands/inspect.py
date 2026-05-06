@@ -28,9 +28,10 @@ from app.parser.registry import load_parser_class
     type=click.IntRange(min=1),
 )
 @click.option("--strict", "strict", help="Exit with non-zero code if any item fails.", is_flag=True)
+@click.option("--notify", "notify", help="Send notification when differences are found.", is_flag=True)
 @click.pass_obj
 @click.pass_context
-def cli(ctx: Context, cfg: Configuration, worker_num: int, strict: bool, filter_name: Optional[str] = None):
+def cli(ctx: Context, cfg: Configuration, worker_num: int, strict: bool, notify: bool, filter_name: Optional[str] = None):
     """执行批量版本检测，并根据 strict 参数决定是否把单项失败提升为命令失败。"""
     logger.debug(f"app cli inspect called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})")
 
@@ -51,7 +52,7 @@ def cli(ctx: Context, cfg: Configuration, worker_num: int, strict: bool, filter_
         asyncio.run(show_rate_limit_best_effort())
 
     # 检测结束后统一合并本轮输出，保持 inspect 命令的一站式行为。
-    ctx.invoke(cli_combine)
+    ctx.invoke(cli_combine, notify=notify)
 
 
 async def show_rate_limit_best_effort():

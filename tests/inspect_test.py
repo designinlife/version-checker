@@ -86,7 +86,7 @@ class InspectProcessTestCase(unittest.TestCase):
             return InspectResult(items=[InspectItemResult.failed("bad", "RuntimeError", "boom")])
 
         @click.command("combine")
-        def fake_combine():
+        def fake_combine(notify=False):
             pass
 
         cfg = Configuration(debug=True, settings=AppSetting(app=AppSettingBase(title="test")))
@@ -105,7 +105,7 @@ class InspectProcessTestCase(unittest.TestCase):
             return InspectResult(items=[InspectItemResult.failed("bad", "RuntimeError", "boom")])
 
         @click.command("combine")
-        def fake_combine():
+        def fake_combine(notify=False):
             pass
 
         cfg = Configuration(debug=True, settings=AppSetting(app=AppSettingBase(title="test")))
@@ -128,7 +128,7 @@ class InspectProcessTestCase(unittest.TestCase):
             raise RuntimeError("network down")
 
         @click.command("combine")
-        def fake_combine():
+        def fake_combine(notify=False):
             pass
 
         cfg = Configuration(debug=False, settings=AppSetting(app=AppSettingBase(title="test")))
@@ -142,6 +142,28 @@ class InspectProcessTestCase(unittest.TestCase):
             result = runner.invoke(inspect_cli, [], obj=cfg)
 
         self.assertEqual(0, result.exit_code)
+
+    def test_cli_passes_notify_to_combine(self):
+        async def fake_process(_cfg, _worker_num, _filter_name=None):
+            return InspectResult(items=[InspectItemResult.success("ok")])
+
+        calls = []
+
+        @click.command("combine")
+        def fake_combine(notify=False):
+            calls.append(notify)
+
+        cfg = Configuration(debug=True, settings=AppSetting(app=AppSettingBase(title="test")))
+        runner = CliRunner()
+
+        with (
+            patch("app.commands.inspect.process", side_effect=fake_process),
+            patch("app.commands.inspect.cli_combine", fake_combine),
+        ):
+            result = runner.invoke(inspect_cli, ["--notify"], obj=cfg)
+
+        self.assertEqual(0, result.exit_code)
+        self.assertEqual([True], calls)
 
     def test_cli_rejects_zero_worker(self):
         cfg = Configuration(debug=True, settings=AppSetting(app=AppSettingBase(title="test")))

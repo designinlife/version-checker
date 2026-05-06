@@ -6,12 +6,13 @@
 name := version-checker
 version := 1.0.0
 date := $(shell date '+%Y-%m-%d %H:%M:%S')
+NOTIFY ?=
 
 tidy:
 
 inspect: clean tidy
 	@uv sync --default-index=https://pypi.org/simple
-	@uv run version-checker inspect
+	@uv run version-checker inspect $(NOTIFY)
 
 lint:
 
