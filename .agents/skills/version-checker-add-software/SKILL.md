@@ -104,6 +104,9 @@ pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\
   - `amd64`
   - `x64`
   - `x86_64`
+- Linux ABI 变体：
+  - `gnu`
+  - `musl`
 - 排除：
   - `arm64`、`aarch64`、`armv7`、`arm`
   - `386`、`i386`、`x86`，除非它明确表示 `x86_64`
@@ -116,7 +119,8 @@ pattern = "^release-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\
 - 默认每个平台至少保留一个最直接可用资产。
 - Windows 优先 `.zip`，其次 `.msi`、`.exe`。
 - Linux 优先 `.tar.gz` 或 `.tar.xz`，其次 `.zip`、`.deb`、`.rpm`、无扩展可执行文件。
-- 同平台有 `gnu`/`musl`、`msvc`/`gnu` 等多个变体时，保留上游最常用或项目现有风格一致的变体；不确定时可以保留多个，但要说明原因。
+- Linux x64 同时提供 `gnu` 和 `musl` 变体时，默认同时保留；`gnu` 放在 `musl` 前面，便于覆盖 glibc 与 musl/static 常见运行环境。
+- Windows 同时提供 `msvc` 和 `gnu` 变体时，优先保留上游最常用或项目现有风格一致的变体；不确定时可以保留多个，但要说明原因。
 - Release 资产不足时仍可加入源码包，但要说明没有找到目标平台二进制。
 
 ### 源码包链接

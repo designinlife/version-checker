@@ -4158,6 +4158,7 @@ pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/uutils/coreutils/releases/download/{version}/coreutils-{version}-x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/uutils/coreutils/releases/download/{version}/coreutils-{version}-x86_64-unknown-linux-musl.tar.gz",
     "https://github.com/uutils/coreutils/releases/download/{version}/coreutils-{version}-x86_64-pc-windows-msvc.zip",
     "https://github.com/uutils/coreutils/archive/refs/tags/{version}.tar.gz",
 ]
@@ -4170,6 +4171,7 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/eza-community/eza/releases/download/v{version}/eza_x86_64-unknown-linux-gnu.tar.gz#eza-{version}_x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/eza-community/eza/releases/download/v{version}/eza_x86_64-unknown-linux-musl.tar.gz#eza-{version}_x86_64-unknown-linux-musl.tar.gz",
     "https://github.com/eza-community/eza/releases/download/v{version}/eza.exe_x86_64-pc-windows-gnu.zip#eza-{version}_x86_64-pc-windows-gnu.zip",
     "https://github.com/eza-community/eza/archive/refs/tags/v{version}.tar.gz",
 ]
@@ -4182,6 +4184,7 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/lsd-rs/lsd/releases/download/v{version}/lsd-v{version}-x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/lsd-rs/lsd/releases/download/v{version}/lsd-v{version}-x86_64-unknown-linux-musl.tar.gz",
     "https://github.com/lsd-rs/lsd/releases/download/v{version}/lsd-v{version}-x86_64-pc-windows-msvc.zip",
     "https://github.com/lsd-rs/lsd/archive/refs/tags/v{version}.tar.gz",
 ]
@@ -4206,6 +4209,7 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/bootandy/dust/releases/download/v{version}/dust-v{version}-x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/bootandy/dust/releases/download/v{version}/dust-v{version}-x86_64-unknown-linux-musl.tar.gz",
     "https://github.com/bootandy/dust/releases/download/v{version}/dust-v{version}-x86_64-pc-windows-msvc.zip",
     "https://github.com/bootandy/dust/archive/refs/tags/v{version}.tar.gz",
 ]
@@ -4218,6 +4222,7 @@ pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/ClementTsang/bottom/releases/download/{version}/bottom_x86_64-unknown-linux-gnu.tar.gz#bottom-{version}_x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/ClementTsang/bottom/releases/download/{version}/bottom_x86_64-unknown-linux-musl.tar.gz#bottom-{version}_x86_64-unknown-linux-musl.tar.gz",
     "https://github.com/ClementTsang/bottom/releases/download/{version}/bottom_x86_64-pc-windows-msvc.zip#bottom-{version}_x86_64-pc-windows-msvc.zip",
     "https://github.com/ClementTsang/bottom/archive/refs/tags/{version}.tar.gz",
 ]
@@ -4242,6 +4247,7 @@ pattern = "^gping-v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d
 release = true
 download_urls = [
     "https://github.com/orf/gping/releases/download/gping-v{version}/gping-Linux-gnu-x86_64.tar.gz#gping-{version}-Linux-gnu-x86_64.tar.gz",
+    "https://github.com/orf/gping/releases/download/gping-v{version}/gping-Linux-musl-x86_64.tar.gz#gping-{version}-Linux-musl-x86_64.tar.gz",
     "https://github.com/orf/gping/releases/download/gping-v{version}/gping-Windows-msvc-x86_64.zip#gping-{version}-Windows-msvc-x86_64.zip",
     "https://github.com/orf/gping/archive/refs/tags/gping-v{version}.tar.gz",
 ]
@@ -4254,6 +4260,7 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/chmln/sd/releases/download/v{version}/sd-v{version}-x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/chmln/sd/releases/download/v{version}/sd-v{version}-x86_64-unknown-linux-musl.tar.gz",
     "https://github.com/chmln/sd/releases/download/v{version}/sd-v{version}-x86_64-pc-windows-msvc.zip",
     "https://github.com/chmln/sd/archive/refs/tags/v{version}.tar.gz",
 ]
@@ -4266,6 +4273,7 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/rayylee/mwget/releases/download/v{version}/mwget-linux-x64.tar.gz#mwget-{version}-linux-x64.tar.gz",
+    "https://github.com/rayylee/mwget/releases/download/v{version}/mwget-linux-x64-musl.tar.gz#mwget-{version}-linux-x64-musl.tar.gz",
     "https://github.com/rayylee/mwget/releases/download/v{version}/mwget-windows-x64.zip#mwget-{version}-windows-x64.zip",
     "https://github.com/rayylee/mwget/archive/refs/tags/v{version}.tar.gz",
 ]
@@ -4302,6 +4310,7 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
     "https://github.com/theryangeary/choose/releases/download/v{version}/choose-x86_64-unknown-linux-gnu#choose-{version}-x86_64-unknown-linux-gnu",
+    "https://github.com/theryangeary/choose/releases/download/v{version}/choose-x86_64-unknown-linux-musl#choose-{version}-x86_64-unknown-linux-musl",
     "https://github.com/theryangeary/choose/releases/download/v{version}/choose-x86_64-pc-windows-gnu.exe#choose-{version}-x86_64-pc-windows-gnu.exe",
     "https://github.com/theryangeary/choose/archive/refs/tags/v{version}.tar.gz",
 ]
