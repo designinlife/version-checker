@@ -1,6 +1,6 @@
 ---
 name: version-checker-add-software
-description: 为当前 `version-checker` 项目从软件链接新增或更新软件检测配置，并生成、验证、同步 `version-checker.toml`。用户以 `@version-checker-add-software 软件链接`、`@技能 GitHub 仓库地址`、`生成 version-checker.toml 配置`、`新增软件下载检测配置`、`检查 Releases/Tags/下载链接`、`捕获 Windows/Linux x64/amd64 附件`、`用 CSS Selector/XPath 找下载地址` 等方式请求时必须使用。本技能既处理 GitHub Releases/Tags，也处理非 GitHub 下载页；会先写 `test.toml` 做验证，验证通过后再同步正式配置，且不主动提交 Git。
+description: 为当前 `version-checker` 项目从软件链接新增或更新软件检测配置，并生成、验证、同步 `version-checker.toml` 与 README 的 Supported software list 表格。用户以 `@version-checker-add-software 软件链接`、`@技能 GitHub 仓库地址`、`生成 version-checker.toml 配置`、`新增软件下载检测配置`、`检查 Releases/Tags/下载链接`、`捕获 Windows/Linux x64/amd64 附件`、`用 CSS Selector/XPath 找下载地址`、`更新 Supported software list` 等方式请求时必须使用。本技能既处理 GitHub Releases/Tags，也处理非 GitHub 下载页；会先写 `test.toml` 做验证，验证通过后再同步正式配置和 README 表格，且不主动提交 Git。
 ---
 
 # Version Checker 软件配置技能
@@ -52,11 +52,13 @@ description: 为当前 `version-checker` 项目从软件链接新增或更新软
    - 已有条目则更新原条目，不新增重复块。
    - 新条目默认追加到文件末尾，除非用户指定位置。
    - 更新后再运行最小验证，确认正式配置可解析。
+   - 若新增、删除、重命名或改变输出 JSON 名称，同步检查并更新 `README.md` 的 `Supported software list` 表格。
    - 不主动提交 Git；由用户决定何时提交。
 
 6. 收尾说明。
    - 简要列出最终配置、验证命令和结果。
-   - 若修改了配置键、运行方式或 README 可能需要同步，只提示用户；本项目 README 由用户维护。
+   - 说明 `README.md` 的 `Supported software list` 是否已同步；若无需修改，也明确说明已检查且无需修改。
+   - 若修改了配置键、运行方式或 README 其他章节可能需要同步，只提示用户；不要借新增软件配置任务改写 README 其他内容。
 
 ## GitHub 流程
 
@@ -225,6 +227,36 @@ uv run version-checker -c test.toml inspect --filter-name <name>
 
 如果网络不稳定，可以在当前 shell 进程临时设置代理，但不要写入配置文件。
 
+## README 支持列表维护
+
+当正式配置变更会影响生成的 `data/*.json` 输出时，同步维护 `README.md` 中 `Supported software list` 下方表格。这个表格是面向人工读者的支持清单，不是配置源；配置事实仍以 `version-checker.toml` 和实际生成的 `data/*.json` 为准。
+
+### 更新时机
+
+- 新增软件配置并通过正式验证后，加入对应表格行。
+- 更新已有软件配置但输出 JSON 文件名不变时，检查 Name 和 Summary 是否仍准确。
+- 重命名 `name`、调整 `split`、新增/删除分支输出、Docker Hub 输出名或 parser 输出名变化时，更新对应行和链接。
+- 删除或禁用软件配置，并确认不再生成对应 JSON 时，移除对应行。
+
+### 表格字段
+
+- `Name`：使用自然语言名称，不直接照抄 slug。保留官方大小写和常见专有名词，例如 `GitHub CLI`、`CoreDNS`、`OpenSSL`、`Node.js`、`Docker Compose`。
+- 分支型输出在 Name 后追加分支号，例如 `Python 3.14`、`OpenSSL 3.5`、`Redis 8.0`。
+- Docker Hub 输出使用 `Docker 镜像：<产品名>`，除非该条目本身就是普通软件输出，例如 `docker-compose` 应写成 `Docker Compose`。
+- JetBrains 插件输出优先使用生成数据中的 `display_name`，Name 写成 `JetBrains 插件：<插件名>`。
+- `Summary`：使用中文简短摘要，描述软件用途；分支型输出可追加 `（<版本> 分支）`。不要写成长介绍、历史背景、营销文案或待办状态。
+- `Link`：指向 `https://raw.githubusercontent.com/designinlife/version-checker/main/data/<json-name>.json`，链接文本使用实际 JSON basename。
+
+### 数据来源与校验
+
+- 优先从当前验证后生成的 `data/<name>.json` 或 `data/all.json` 确认实际输出名称；不要只凭 `version-checker.toml` 猜测链接文件名。
+- 不深度遍历 `data/`；只读取本次目标 JSON、`all.json` 或做轻量存在性检查。
+- 只替换或调整 `## Supported software list` 到下一个二级标题之间的表格，不改写 README 其他章节。
+- 更新后至少检查：
+  - 表格行格式正确，每行包含 `Name`、`Summary`、`Link` 三列。
+  - 新增或变更的链接对应本地 `data/*.json` 存在，或说明当前尚未生成数据的原因。
+  - `Name` 不是裸 slug，`Summary` 是中文短摘要。
+
 ## 输出格式
 
 ### 成功生成并验证
@@ -237,6 +269,7 @@ uv run version-checker -c test.toml inspect --filter-name <name>
 - 选择的下载链接数量与平台。
 - `test.toml` 验证命令和结果。
 - 是否已同步 `version-checker.toml`。
+- `README.md` 的 `Supported software list` 是否已同步或已检查无需修改。
 - 明确说明“未提交 Git”。
 
 ### 仅能输出候选配置

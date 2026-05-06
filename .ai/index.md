@@ -14,7 +14,7 @@
 
 ## 项目硬性边界
 
-- `README.md` 更新由用户负责，AI 不主动干预。
+- `README.md` 默认由用户负责，AI 不主动干预；新增、删除或重命名软件检测配置导致生成的 `data/*.json` 支持清单变化时，按 `workflow/add-software.md` 只同步维护 `Supported software list` 表格。
 - `version-checker.toml` 是核心配置文件；涉及软件版本检测、下载地址、解析器选择、过滤条件时，先检查该文件。
 - `data/` 是运行时生成 JSON 数据目录，数据量较大；默认不要深度读取、全文搜索或遍历。
 - 本项目使用 Uv 管理 Python 3.14；不要按 Poetry、PDM 或裸 `pip` 项目处理。
