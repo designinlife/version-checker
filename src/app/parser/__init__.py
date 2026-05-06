@@ -126,6 +126,8 @@ class Base(metaclass=ABCMeta):
         else:
             return download_urls
 
+        return download_urls
+
     def is_expired(self, soft: AppSettingSoftItem) -> Tuple[bool, str]:
         """检查软件输出文件是否超过缓存有效期，返回是否过期和上次更新时间。"""
         output_path = get_output_dir(self.cfg.workdir)

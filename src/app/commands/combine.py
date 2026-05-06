@@ -13,20 +13,20 @@ from app.core.notify import send_mail
 from app.core.output import get_output_dir
 
 
-def filter_nones(obj):
+def _filter_nones(obj):
     """递归移除 JSON 结构中的 None 值，避免合并输出包含空字段。"""
 
     if isinstance(obj, list):
-        filtered_values = (filter_nones(j) for j in obj)
+        filtered_values = (_filter_nones(j) for j in obj)
         return [i for i in filtered_values if i is not None]
     elif isinstance(obj, dict):
-        filtered_items = ((i, filter_nones(j)) for i, j in obj.items())
+        filtered_items = ((i, _filter_nones(j)) for i, j in obj.items())
         return {k: v for k, v in filtered_items if v is not None}
     else:
         return obj
 
 
-def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = None) -> List[Tuple[str, str, str]]:
+def _compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = None) -> List[Tuple[str, str, str]]:
     """对比新旧合并数据中的 latest 字段，返回需要通知的版本变化列表。"""
 
     if old_data is None:
@@ -45,6 +45,10 @@ def compare_json_data(new_data: List[Dict], old_data: Optional[List[Dict]] = Non
             if previous != latest:
                 updates.append((display_name, latest, previous if previous is not None else ""))
     return updates
+
+
+filter_nones = _filter_nones
+compare_json_data = _compare_json_data
 
 
 def combine_data(cfg: Configuration):
@@ -67,7 +71,7 @@ def combine_data(cfg: Configuration):
             with open(file, "r", encoding="utf-8") as f:
                 data.append(json.loads(f.read()))
 
-    new_all_json = sorted(filter_nones(data), key=lambda x: x["name"])
+    new_all_json = sorted(_filter_nones(data), key=lambda x: x["name"])
 
     with open(p.joinpath("all.json"), "w", encoding="utf-8") as f:
         b = json.dumps(new_all_json, ensure_ascii=True, separators=(",", ":"))
@@ -77,7 +81,7 @@ def combine_data(cfg: Configuration):
             zstf.write(b.encode("utf-8"))
 
     # 差异仅用于通知和日志，不影响合并产物写入。
-    differences = compare_json_data(new_all_json, old_all_json)
+    differences = _compare_json_data(new_all_json, old_all_json)
 
     return new_all_json, differences
 

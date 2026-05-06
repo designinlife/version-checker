@@ -51,6 +51,21 @@ class VersionHelperTestCase(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "No versions matched"):
             _ = helper.summary
 
+    def test_sort_versions_handles_missing_optional_segments(self):
+        helper = VersionHelper(pattern=r"^(?P<version>(?P<major>\d+)(\.(?P<minor>\d+))?)$")
+
+        helper.append("1")
+        helper.append("1.1")
+
+        self.assertEqual(["1.1", "1"], [v.version for v in helper.versions])
+
+    def test_split_summary_raises_when_no_groups_exist(self):
+        helper = VersionHelper(pattern=r"^(?P<version>(?P<major>\d+))$", split=2)
+        helper.append("1")
+
+        with self.assertRaisesRegex(ValueError, "No versions matched"):
+            _ = helper.summary
+
     def test_add_download_url_deduplicates_urls(self):
         helper = VersionHelper(pattern=r"^(?P<version>(?P<major>\d+))$", download_urls=[])
 

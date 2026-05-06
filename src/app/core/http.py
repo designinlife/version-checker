@@ -69,6 +69,7 @@ class AsyncHttpClient:
             "json": data,
             "headers": hdr,
             "proxy": os.environ.get("PROXY"),
+            "timeout": timeout,
         }
 
         if self.session is not None:

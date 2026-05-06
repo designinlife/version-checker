@@ -70,6 +70,17 @@ class InspectProcessTestCase(unittest.TestCase):
         self.assertEqual(["disabled"], [item.name for item in result.skipped])
         self.assertEqual("Software item is disabled.", result.skipped[0].message)
 
+    def test_process_reports_parser_load_failure_as_item_failure(self):
+        cfg = Configuration()
+        cfg.settings = AppSetting(softwares=[GithubSoftware(name="bad-parser", repo="owner/bad", pattern=r"^(?P<version>(?P<major>\d+))$")])
+
+        with patch("app.commands.inspect.load_parser_class", side_effect=RuntimeError("missing parser")):
+            result = asyncio.run(process(cfg, worker_num=1))
+
+        self.assertEqual(["bad-parser"], [item.name for item in result.failed])
+        self.assertEqual("RuntimeError", result.failed[0].error_type)
+        self.assertEqual("missing parser", result.failed[0].message)
+
     def test_cli_default_mode_allows_partial_failure(self):
         async def fake_process(_cfg, _worker_num, _filter_name=None):
             return InspectResult(items=[InspectItemResult.failed("bad", "RuntimeError", "boom")])

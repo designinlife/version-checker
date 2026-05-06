@@ -14,6 +14,36 @@ class AsyncHttpClientTestCase(unittest.TestCase):
 
         self.assertIs(session, client.session)
 
+    def test_external_session_request_receives_timeout(self):
+        class FakeResponse:
+            status = 200
+            headers = {}
+            url = "https://example.com"
+
+            async def text(self):
+                return "ok"
+
+            async def __aenter__(self):
+                return self
+
+            async def __aexit__(self, exc_type, exc, tb):
+                return False
+
+        class FakeSession:
+            def __init__(self):
+                self.kwargs = None
+
+            def request(self, **kwargs):
+                self.kwargs = kwargs
+                return FakeResponse()
+
+        session = FakeSession()
+        client = AsyncHttpClient(session=session)
+
+        asyncio.run(client.request("GET", "https://example.com", timeout=3))
+
+        self.assertEqual(3, session.kwargs["timeout"])
+
     def test_http_error_includes_response_excerpt(self):
         class FakeResponse:
             status = 429

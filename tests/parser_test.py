@@ -63,3 +63,33 @@ class ParserTestCase(unittest.TestCase):
         parser._append_latest_assets(soft, helper)
 
         self.assertEqual(["https://example.com/new.zip"], helper.download_urls)
+
+    def test_dynamic_download_urls_fall_back_when_link_maker_contract_invalid(self):
+        from app.core.config import Configuration
+        from app.parser import Base
+
+        class FakeParser(Base):
+            async def handle(self, _sem, _soft):
+                raise NotImplementedError
+
+        parser = FakeParser.__new__(FakeParser)
+        parser.cfg = Configuration()
+        soft = GithubSoftware(
+            name="demo",
+            repo="owner/demo",
+            pattern=r"^v(?P<version>(?P<major>\d+))$",
+            download_dynamic=True,
+        )
+        summary = VersionHelper(pattern=soft.pattern, download_urls=["https://example.com/{version}.zip"])
+        summary.append("v1")
+        version_summary = summary.summary
+
+        class InvalidUrlMaker:
+            def __init__(self, _cfg):
+                pass
+
+        with patch("app.parser.importlib.import_module") as import_module:
+            import_module.return_value.UrlMaker = InvalidUrlMaker
+            urls = parser._build_download_urls(soft, version_summary, ["https://example.com/1.zip"])
+
+        self.assertEqual(["https://example.com/1.zip"], urls)

@@ -42,6 +42,12 @@ def write_demo_data(tmp: str):
 
 
 class CombineCliTestCase(unittest.TestCase):
+    def test_combine_internal_helpers_keep_compatibility_aliases(self):
+        import app.commands.combine as combine
+
+        self.assertIs(combine.filter_nones, combine._filter_nones)
+        self.assertIs(combine.compare_json_data, combine._compare_json_data)
+
     def test_combine_does_not_send_email_by_default(self):
         with tempfile.TemporaryDirectory() as tmp:
             write_demo_data(tmp)

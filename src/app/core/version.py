@@ -137,12 +137,20 @@ class VersionHelper:
     def versions(self) -> List[Version]:
         """返回按数字版本倒序排列、并按 filter 表达式过滤后的版本列表。"""
         if self.filter_expr:
-            return self.filter_versions(
-                sorted(self._versions, key=lambda x: (x.major, x.minor, x.patch if x.patch else -1, x.build, x.letter), reverse=True),
-                self.filter_expr,
-            )
+            return self.filter_versions(sorted(self._versions, key=self._sort_key, reverse=True), self.filter_expr)
         else:
-            return sorted(self._versions, key=lambda x: (x.major, x.minor, x.patch if x.patch else -1, x.build, x.letter), reverse=True)
+            return sorted(self._versions, key=self._sort_key, reverse=True)
+
+    @staticmethod
+    def _sort_key(version: Version) -> tuple[int, int, int, int, str]:
+        """把可选版本段规整为稳定排序键，缺失数字段低于显式数字段。"""
+        return (
+            version.major,
+            version.minor if version.minor is not None else -1,
+            version.patch if version.patch is not None else -1,
+            version.build if version.build is not None else -1,
+            version.letter or "",
+        )
 
     @property
     def split_versions(self) -> Mapping[str, List[Version]]:
@@ -169,9 +177,7 @@ class VersionHelper:
 
         if len(d) > 0:
             for k, v in d.items():
-                d[k] = sorted(
-                    v, key=lambda x: (x.major, x.minor, x.patch if x.patch else 0, x.build if x.build else 0, x.letter), reverse=True
-                )
+                d[k] = sorted(v, key=self._sort_key, reverse=True)
 
         return d
 
@@ -189,8 +195,12 @@ class VersionHelper:
             )
         else:
             d = dict()
+            split_versions = self.split_versions
 
-            for k, v in self.split_versions.items():
+            if not split_versions:
+                raise ValueError("No versions matched the configured pattern.")
+
+            for k, v in split_versions.items():
                 d[k] = VersionSummary(latest=v[0], versions=v, downloads=self._format_download_link(v[0], self.download_urls))
 
             return d

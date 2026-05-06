@@ -65,8 +65,8 @@ async def show_rate_limit_best_effort():
 async def process(cfg: Configuration, worker_num: int, filter_name: Optional[str] = None):
     """调度配置中的软件检测任务，并返回每个条目的结构化检测结果。
 
-    该函数负责过滤指定名称、跳过 disabled 条目、复用同一个 aiohttp 会话，并把解析器内部失败收敛为
-    `InspectItemResult`。动态解析器导入失败这类调度级问题仍会记录为 `<process>` 失败，方便 CLI 统一处理。
+    该函数负责过滤指定名称、跳过 disabled 条目、复用同一个 aiohttp 会话，并把解析器加载和运行阶段的失败收敛为
+    `InspectItemResult`，避免单个配置项影响整批检测。
     """
     if worker_num < 1:
         raise ValueError("worker_num must be greater than or equal to 1.")
@@ -85,9 +85,14 @@ async def process(cfg: Configuration, worker_num: int, filter_name: Optional[str
                 items.append(InspectItemResult.skipped(v.name, "Software item is disabled."))
                 continue
 
-            cls = load_parser_class(v.parser)
-            cls_o = cls(cfg)
-            cls_o.httpc = AsyncHttpClient(debug=cfg.debug, session=session)
+            try:
+                cls = load_parser_class(v.parser)
+                cls_o = cls(cfg)
+                cls_o.httpc = AsyncHttpClient(debug=cfg.debug, session=session)
+            except Exception as e:
+                logger.exception(e)
+                items.append(InspectItemResult.failed(v.name, type(e).__name__, str(e)))
+                continue
 
             if isinstance(cls_o, BaseParser):
                 task_list.append(asyncio.create_task(cls_o.wrap_handle(sem, v)))

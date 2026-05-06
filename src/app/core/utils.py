@@ -1,7 +1,3 @@
-import re
-from typing import Optional
-
-
 def strtobool(val):
     """Convert a string representation of truth to true (1) or false (0).
     True values are 'y', 'yes', 't', 'true', 'on', and '1'; false values
@@ -23,13 +19,3 @@ def safe_strtobool(val, default=False):
         return bool(strtobool(val))
     except AttributeError, ValueError:
         return default
-
-
-def is_numeric(s: Optional[str]):
-    if not s:
-        return False
-
-    m = re.match(r"^\d+$", s)
-    if m:
-        return True
-    return False
