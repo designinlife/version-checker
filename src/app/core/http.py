@@ -14,6 +14,15 @@ class AsyncHttpClient:
         self.debug: bool = debug
         self.session = session
 
+    async def _response_excerpt(self, resp, limit: int = 300) -> str:
+        try:
+            text = await resp.text()
+        except Exception:
+            return ""
+
+        text = " ".join(text.split())
+        return text[:limit]
+
     async def _read_response(self, resp, url: str, is_json: bool):
         if 200 <= resp.status < 300:
             # for k, v in resp.headers.items():
@@ -21,11 +30,16 @@ class AsyncHttpClient:
             #         logger.debug(f'Response Header: {k}={v}')
 
             if is_json:
-                return resp.url, resp.status, resp.headers, await resp.json()
+                try:
+                    return resp.url, resp.status, resp.headers, await resp.json()
+                except Exception as e:
+                    excerpt = await self._response_excerpt(resp)
+                    raise ValueError(f"Invalid JSON response. ({resp.status} | {url} | {excerpt})") from e
             else:
                 return resp.url, resp.status, resp.headers, await resp.text()
         else:
-            raise ValueError(f"HTTP status code exception. ({resp.status} | {url})")
+            excerpt = await self._response_excerpt(resp)
+            raise ValueError(f"HTTP request failed. ({resp.status} | {url} | {excerpt})")
 
     async def request(
         self,

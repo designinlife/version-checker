@@ -50,6 +50,26 @@ class InspectProcessTestCase(unittest.TestCase):
         self.assertEqual(["bad"], [item.name for item in result.failed])
         self.assertEqual(["good"], [item.name for item in result.success])
 
+    def test_process_skips_disabled_items_without_importing_parser(self):
+        cfg = Configuration()
+        cfg.settings = AppSetting(
+            softwares=[
+                GithubSoftware(
+                    name="disabled",
+                    repo="owner/disabled",
+                    pattern=r"^(?P<version>(?P<major>\d+))$",
+                    disabled=True,
+                )
+            ]
+        )
+
+        with patch("importlib.import_module") as import_module:
+            result = asyncio.run(process(cfg, worker_num=1))
+
+        import_module.assert_not_called()
+        self.assertEqual(["disabled"], [item.name for item in result.skipped])
+        self.assertEqual("Software item is disabled.", result.skipped[0].message)
+
     def test_cli_default_mode_allows_partial_failure(self):
         async def fake_process(_cfg, _worker_num, _filter_name=None):
             return InspectResult(items=[InspectItemResult.failed("bad", "RuntimeError", "boom")])
@@ -88,3 +108,35 @@ class InspectProcessTestCase(unittest.TestCase):
 
         self.assertNotEqual(0, result.exit_code)
         self.assertIn("Inspect completed with failed item(s).", result.output)
+
+    def test_cli_ignores_rate_limit_failure_when_not_debug(self):
+        async def fake_process(_cfg, _worker_num, _filter_name=None):
+            return InspectResult(items=[InspectItemResult.success("ok")])
+
+        async def fake_rate_limit():
+            raise RuntimeError("network down")
+
+        @click.command("combine")
+        def fake_combine():
+            pass
+
+        cfg = Configuration(debug=False, settings=AppSetting(app=AppSettingBase(title="test")))
+        runner = CliRunner()
+
+        with (
+            patch("app.commands.inspect.process", side_effect=fake_process),
+            patch("app.commands.inspect.GithubHelper.show_rate_limit", side_effect=fake_rate_limit),
+            patch("app.commands.inspect.cli_combine", fake_combine),
+        ):
+            result = runner.invoke(inspect_cli, [], obj=cfg)
+
+        self.assertEqual(0, result.exit_code)
+
+    def test_cli_rejects_zero_worker(self):
+        cfg = Configuration(debug=True, settings=AppSetting(app=AppSettingBase(title="test")))
+        runner = CliRunner()
+
+        result = runner.invoke(inspect_cli, ["--worker", "0"], obj=cfg)
+
+        self.assertNotEqual(0, result.exit_code)
+        self.assertIn("Invalid value for '--worker'", result.output)

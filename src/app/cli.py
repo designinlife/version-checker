@@ -45,7 +45,7 @@ else:
 
 @click.group(context_settings={"max_content_width": 120}, help="\x1b[38;5;121mPython CLI Tools %s\x1b[0m" % __version__)
 @click.option("-c", "config_file", help="Configuration file name.", type=click.Path(), default="version-checker.toml", cls=ClickStdOption)
-@click.option("--slient", "slient", help="Turn on silent mode?", is_flag=True)
+@click.option("--silent", "--slient", "silent", help="Turn on silent mode?", is_flag=True)
 @click.option("--debug", "debug", help="Turn on debug mode?", is_flag=True)
 @click.option("--log", "log", help="Specifies the log file path.", cls=ClickStdOption)
 @click.option("--disable-log-time", "disable_log_time", help="Block log time.", is_flag=True)

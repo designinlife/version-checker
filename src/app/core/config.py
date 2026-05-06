@@ -1,6 +1,6 @@
 from typing import Any, List, Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import AliasChoices, BaseModel, Field
 
 
 class AppSettingBase(BaseModel):
@@ -213,7 +213,7 @@ class Configuration(BaseModel):
     # model_config = ConfigDict(from_attributes=True)
 
     config_file: Optional[str] = Field(default=None)
-    slient: bool = Field(default=False)
+    silent: bool = Field(default=False, validation_alias=AliasChoices("silent", "slient"))
     debug: bool = Field(default=False)
     log: Optional[str] = Field(default=None)
     disable_log_time: bool = Field(default=False)

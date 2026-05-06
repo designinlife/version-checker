@@ -102,10 +102,28 @@ def combine_data(cfg: Configuration):
     return new_all_json, differences
 
 
+def send_update_notification(cfg: Configuration, email_data: List[Dict[str, str]]) -> bool:
+    template_file = Path(cfg.workdir).joinpath("email_notify.j2")
+    if not template_file.is_file():
+        logger.warning("Email notification skipped: template file does not exist.")
+        return False
+
+    with open(template_file, "r", encoding="utf-8") as f:
+        template = Template(f.read())
+
+    html_content = template.render(items=email_data)
+    ok_email = send_mail(
+        to=["codeplus@qq.com"], subject="Github Notification from version-checker", content="No Content", html=html_content
+    )
+    logger.info(f"Send email result: {ok_email}")
+    return ok_email
+
+
 @click.command("combine", help="Merge JSON data into a file.")
+@click.option("--notify", "notify", help="Send email notification when differences are found.", is_flag=True)
 @click.pass_obj
 @click.pass_context
-def cli(ctx: Context, cfg: Configuration):
+def cli(ctx: Context, cfg: Configuration, notify: bool):
     logger.debug(f"app cli combine called. (Working directory: {cfg.workdir} | Title: {cfg.settings.app.title})")
 
     _, differences = combine_data(cfg)
@@ -122,15 +140,7 @@ def cli(ctx: Context, cfg: Configuration):
 
             logger.info(f"{name}: {previous} -> {latest}")
 
-        with open(Path(cfg.workdir).joinpath("email_notify.j2"), "r", encoding="utf-8") as f:
-            html_template = f.read()
-            template = Template(html_template)
-            html_content = template.render(items=email_data)
-
-            ok_email = send_mail(
-                to=["codeplus@qq.com"], subject="Github Notification from version-checker", content="No Content", html=html_content
-            )
-
-            logger.info(f"Send email result: {ok_email}")
+        if notify:
+            send_update_notification(cfg, email_data)
     else:
         logger.info("No differences were found.")

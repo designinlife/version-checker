@@ -1,4 +1,6 @@
+import os
 import unittest
+from unittest.mock import patch
 
 from app.core.config import GithubSoftware
 from app.core.version import VersionHelper
@@ -7,6 +9,18 @@ from app.parser.gh import Parser
 
 
 class ParserTestCase(unittest.TestCase):
+    def test_cache_ttl_hours_uses_env_value(self):
+        from app.parser import get_cache_ttl_hours
+
+        with patch.dict(os.environ, {"VERSION_CHECKER_CACHE_TTL_HOURS": "3"}, clear=True):
+            self.assertEqual(3, get_cache_ttl_hours())
+
+    def test_cache_ttl_hours_falls_back_to_default(self):
+        from app.parser import get_cache_ttl_hours
+
+        with patch.dict(os.environ, {"VERSION_CHECKER_CACHE_TTL_HOURS": "bad"}, clear=True):
+            self.assertEqual(1, get_cache_ttl_hours())
+
     def test_check_requirements_supports_major_and_minor(self):
         self.assertTrue(check_requirements("major >= 6 && minor < 5", major=6, minor=4))
         self.assertFalse(check_requirements("major >= 6 && minor < 5", major=6, minor=5))

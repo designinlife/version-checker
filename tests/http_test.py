@@ -14,6 +14,37 @@ class AsyncHttpClientTestCase(unittest.TestCase):
 
         self.assertIs(session, client.session)
 
+    def test_http_error_includes_response_excerpt(self):
+        class FakeResponse:
+            status = 429
+            headers = {}
+            url = "https://example.com/rate"
+
+            async def text(self):
+                return "rate limit exceeded because too many requests"
+
+        client = AsyncHttpClient()
+
+        with self.assertRaisesRegex(ValueError, "HTTP request failed.*429.*rate limit exceeded"):
+            asyncio.run(client._read_response(FakeResponse(), "https://example.com/rate", is_json=False))
+
+    def test_json_parse_error_includes_url_and_status(self):
+        class FakeResponse:
+            status = 200
+            headers = {}
+            url = "https://example.com/json"
+
+            async def json(self):
+                raise ValueError("bad json")
+
+            async def text(self):
+                return "<html>not json</html>"
+
+        client = AsyncHttpClient()
+
+        with self.assertRaisesRegex(ValueError, "Invalid JSON response.*200.*https://example.com/json"):
+            asyncio.run(client._read_response(FakeResponse(), "https://example.com/json", is_json=True))
+
 
 class AndroidStudioParserTestCase(unittest.TestCase):
     def test_android_studio_parser_uses_base_request(self):

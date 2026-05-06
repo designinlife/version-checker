@@ -1,6 +1,7 @@
 import importlib
 import json
 import operator
+import os
 from abc import ABCMeta, abstractmethod
 from asyncio import Semaphore
 from typing import Dict, List, Mapping, Optional, Tuple
@@ -15,6 +16,21 @@ from app.core.inspect_result import InspectItemResult
 from app.core.output import get_output_dir
 from app.core.version import VersionSummary
 from app.link import UrlMakerBase
+
+
+def get_cache_ttl_hours() -> int:
+    raw_value = os.environ.get("VERSION_CHECKER_CACHE_TTL_HOURS", "1")
+    try:
+        ttl_hours = int(raw_value)
+    except ValueError:
+        logger.warning("Invalid VERSION_CHECKER_CACHE_TTL_HOURS value. Using default cache TTL.")
+        return 1
+
+    if ttl_hours < 1:
+        logger.warning("VERSION_CHECKER_CACHE_TTL_HOURS must be greater than or equal to 1. Using default cache TTL.")
+        return 1
+
+    return ttl_hours
 
 
 def check_requirements(requirement_string: str, major: int, minor: Optional[int] = None) -> bool:
@@ -162,8 +178,8 @@ class Base(metaclass=ABCMeta):
             with open(file, "r", encoding="utf-8") as f:
                 data = json.loads(f.read())
 
-                # Data will be considered expired if it has been updated for more than 1 hours!
-                if arrow.now().shift(hours=-1) >= arrow.get(data["created_time"]):
+                ttl_hours = get_cache_ttl_hours()
+                if arrow.now().shift(hours=-ttl_hours) >= arrow.get(data["created_time"]):
                     return True, data["created_time"]
                 else:
                     return False, data["created_time"]

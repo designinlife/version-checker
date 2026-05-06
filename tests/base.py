@@ -15,7 +15,7 @@ class MyTestCase(unittest.TestCase):
         logger.add(sys.stderr, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level="ERROR")
         logger.add(sys.stdout, format="{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}", level="DEBUG")
 
-        kwargs = {"config_file": "version-checker.toml", "slient": False, "debug": False, "disable_log_time": False, "verbose": 0}
+        kwargs = {"config_file": "version-checker.toml", "silent": False, "debug": False, "disable_log_time": False, "verbose": 0}
 
         self.cfg = Configuration.model_validate(kwargs)
         self.cfg.workdir = os.getcwd()

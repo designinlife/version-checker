@@ -40,9 +40,7 @@ class Parser(Base):
         # Due to GitHub API current limit, you need to check whether the data update has expired!
         expired, last_update_time = self.is_expired(soft)
         if not expired:
-            logger.info(
-                f"[{soft.name}] SKIPPED: The last update time is: {last_update_time}, it has not been more than 6 hours, no need to update!"
-            )
+            logger.info(f"[{soft.name}] SKIPPED: The last update time is: {last_update_time}, cache is still valid.")
             return
 
         if soft.latest:
