@@ -3760,7 +3760,7 @@ parser = "docker-hub"
 
 [[softwares]]
 repo = "jenkins/jenkins"
-pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-lts-jdk17)?$"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))(?P<other>-lts-jdk21)?$"
 parser = "docker-hub"
 
 [[softwares]]
@@ -3822,12 +3822,6 @@ parser = "docker-hub"
 repo = "opensearchproject/data-prepper"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "docker-hub"
-
-[[softwares]]
-repo = "bitnami/kafka"
-pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-parser = "docker-hub"
-split = 2
 
 [[softwares]]
 repo = "stilleshan/frps"
