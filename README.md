@@ -19,135 +19,567 @@ curl -sSL --fail https://raw.githubusercontent.com/designinlife/version-checker/
 <!-- prettier-ignore -->
 | Name | Summary | Link |
 | :-- | :-- | :-- |
-| Git | Git 命令行工具 | [git](https://raw.githubusercontent.com/designinlife/version-checker/main/data/git.json) |
-| Git for Windows | Git for Windows 版本 | [git-for-windows](https://raw.githubusercontent.com/designinlife/version-checker/main/data/git-for-windows.json) |
-| Clash for Windows | Clash Windows 版本 | [clash_for_windows_pkg](https://raw.githubusercontent.com/designinlife/version-checker/main/data/clash_for_windows_pkg.json) |
-| Clash | Clash Linux 版本 | [clash](https://raw.githubusercontent.com/designinlife/version-checker/main/data/clash.json) |
-| Clash Premium | Clash Linux 闭源版(支持 Rule Provider 等高级特性) | [clash-premium](https://raw.githubusercontent.com/designinlife/version-checker/main/data/clash-premium.json) |
-| Clash for Android | Clash 手机版 | [ClashForAndroid](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ClashForAndroid.json) |
-| Clash.Meta | Clash 另一个发行版 | [Clash.Meta](https://raw.githubusercontent.com/designinlife/version-checker/main/data/Clash.Meta.json) |
-| Swoole | PHP 高性能协程开发扩展库 | [swoole](https://raw.githubusercontent.com/designinlife/version-checker/main/data/swoole.json) |
-| gRPC | Google 出品的 RPC 框架 | [grpc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/grpc.json) |
-| Protobuf | Google Protobuf 序列化框架 | [protobuf](https://raw.githubusercontent.com/designinlife/version-checker/main/data/protobuf.json) |
-| Harbor | Docker 私有仓库服务器 | [harbor](https://raw.githubusercontent.com/designinlife/version-checker/main/data/harbor.json) |
-| Docker Compose | Docker 容器命令行管理工具 | [docker-compose](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-compose.json) |
-| GraalVM CE | GraalVM 社区版 | [graalvm-ce-builds](https://raw.githubusercontent.com/designinlife/version-checker/main/data/graalvm-ce-builds.json) |
-| StoneDB | 一个分布式 OLAP 数据库 | [stonedb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/stonedb.json) |
-| Solon | 国产 Java 生态框架 | [solon](https://raw.githubusercontent.com/designinlife/version-checker/main/data/solon.json) |
-| Libmaxminddb | C library for the MaxMind DB file format | [libmaxminddb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libmaxminddb.json) |
-| GeoIP Update | GeoIP 数据库更新工具 | [geoipupdate](https://raw.githubusercontent.com/designinlife/version-checker/main/data/geoipupdate.json) |
-| OpenZFS | ZFS 分布式存储 | [zfs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zfs.json) |
-| UPX | 二进制程序压缩工具 | [upx](https://raw.githubusercontent.com/designinlife/version-checker/main/data/upx.json) |
-| cURL | 最流行的 HTTP 命令行客户端工具 | [curl](https://raw.githubusercontent.com/designinlife/version-checker/main/data/curl.json) |
-| LibGD | GD 库 | [libgd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libgd.json) |
-| OpenSSL | OpenSSL 加密库 | [1.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-1.1.json) / [3.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-3.0.json) / [3.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-3.1.json) / [3.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-3.2.json) |
-| Amazon Corretto 1.8 | Amazon Corretto JDK 1.8 | [corretto-8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/corretto-8.json) |
-| Amazon Corretto 11 | Amazon Corretto JDK 11 | [corretto-11](https://raw.githubusercontent.com/designinlife/version-checker/main/data/corretto-11.json) |
-| Amazon Corretto 17 | Amazon Corretto JDK 17 | [corretto-17](https://raw.githubusercontent.com/designinlife/version-checker/main/data/corretto-17.json) |
-| Amazon Corretto 21 | Amazon Corretto JDK 21 | [corretto-21](https://raw.githubusercontent.com/designinlife/version-checker/main/data/corretto-21.json) |
-| Python | Python 编程语言 | [3.8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-3.8.json) / [3.9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-3.9.json) / [3.10](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-3.10.json) / [3.11](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-3.11.json) / [3.12](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-3.12.json) |
-| PHP | PHP 脚本编程语言 | [7.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-7.0.json) / [7.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-7.1.json) / [7.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-7.2.json) / [7.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-7.3.json) / [7.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-7.4.json) / [8.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-8.0.json) / [8.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-8.1.json) / [8.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-8.2.json) / [8.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-8.3.json) |
-| Golang | Go 语言 | [1.16](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.16.json) / [1.18](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.18.json) / [1.19](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.19.json) / [1.20](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.20.json) / [1.21](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.21.json) / [1.22](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.22.json) |
-| Redis | 最流行的 KV 内存数据库 | [5.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-5.0.json) / [6.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-6.0.json) / [6.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-6.2.json) / [7.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-7.0.json) / [7.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-7.2.json) |
-| PHP Composer | PHP 包管理工具 | [1.10](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-1.10.json) / [2.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.0.json) / [2.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.1.json) / [2.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.2.json) / [2.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.3.json) / [2.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.4.json) / [2.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.5.json) / [2.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.6.json) / [2.7](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.7.json) |
+| .NET Framework | .NET Framework 运行环境 | [dotnetfx](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dotnetfx.json) |
+| 7-Zip | 文件压缩与解压工具 | [7-zip](https://raw.githubusercontent.com/designinlife/version-checker/main/data/7-zip.json) |
+| Aardvark DNS | 容器 DNS 组件 | [aardvark-dns](https://raw.githubusercontent.com/designinlife/version-checker/main/data/aardvark-dns.json) |
+| Ab Download Manager | 桌面下载管理器 | [ab-download-manager](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ab-download-manager.json) |
+| Air | Go 热重载开发工具 | [air](https://raw.githubusercontent.com/designinlife/version-checker/main/data/air.json) |
+| Alertmanager | Prometheus 告警管理组件 | [alertmanager](https://raw.githubusercontent.com/designinlife/version-checker/main/data/alertmanager.json) |
+| Aliyun OSSFS | 阿里云 OSS FUSE 挂载工具 | [aliyun-ossfs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/aliyun-ossfs.json) |
+| AlmaLinux 10 | AlmaLinux 发行版镜像（10 分支） | [almalinux-10](https://raw.githubusercontent.com/designinlife/version-checker/main/data/almalinux-10.json) |
+| AlmaLinux 8 | AlmaLinux 发行版镜像（8 分支） | [almalinux-8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/almalinux-8.json) |
+| AlmaLinux 9 | AlmaLinux 发行版镜像（9 分支） | [almalinux-9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/almalinux-9.json) |
+| Amazon Corretto 11 | Amazon OpenJDK 发行版（11 分支） | [corretto-11](https://raw.githubusercontent.com/designinlife/version-checker/main/data/corretto-11.json) |
+| Amazon Corretto 17 | Amazon OpenJDK 发行版（17 分支） | [corretto-17](https://raw.githubusercontent.com/designinlife/version-checker/main/data/corretto-17.json) |
+| Amazon Corretto 21 | Amazon OpenJDK 发行版（21 分支） | [corretto-21](https://raw.githubusercontent.com/designinlife/version-checker/main/data/corretto-21.json) |
+| Amazon Corretto 8 | Amazon OpenJDK 发行版（8 分支） | [corretto-8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/corretto-8.json) |
+| Android Studio | Android 官方集成开发环境 | [android-studio](https://raw.githubusercontent.com/designinlife/version-checker/main/data/android-studio.json) |
+| Another Redis Desktop Manager | Redis 桌面管理客户端 | [AnotherRedisDesktopManager](https://raw.githubusercontent.com/designinlife/version-checker/main/data/AnotherRedisDesktopManager.json) |
+| Ant | Java 构建工具 | [ant](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ant.json) |
+| ANTLR | 语法解析器生成工具 | [antlr](https://raw.githubusercontent.com/designinlife/version-checker/main/data/antlr.json) |
 | Apache HTTP Server | Apache HTTP 服务器 | [httpd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/httpd.json) |
-| Kafka | Apache Kafka 流式消息服务器 | [kafka](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka.json) |
-| Apache Doris | 一个基于 MPP 架构的高性能、实时的分析型数据库 | [1.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/doris-1.1.json) / [1.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/doris-1.2.json) / [2.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/doris-2.0.json) |
-| Maven | Java 依赖包管理工具 | [maven](https://raw.githubusercontent.com/designinlife/version-checker/main/data/maven.json) |
-| HBase | 开源的非关系型分布式数据库 | [hbase](https://raw.githubusercontent.com/designinlife/version-checker/main/data/hbase.json) |
-| Groovy | 用于 Java 虚拟机的一种敏捷的动态语言 | [2.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/groovy-2.4.json) / [2.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/groovy-2.5.json) / [3.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/groovy-3.0.json) / [4.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/groovy-4.0.json) |
-| Apache DolphinScheduler | 一个分布式、去中心化、易扩展的可视化 DAG 工作流任务调度系统 | [dolphinscheduler](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dolphinscheduler.json) |
-| ECharts | 一款基于 JavaScript 的数据可视化图表库 | [echarts](https://raw.githubusercontent.com/designinlife/version-checker/main/data/echarts.json) |
-| Apache Dubbo | 阿里巴巴公司开源的一个高性能优秀的服务框架 | [dubbo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dubbo.json) |
-| Apache Spark | 用于分布式数据处理和并行计算的开源项目 | [spark](https://raw.githubusercontent.com/designinlife/version-checker/main/data/spark.json) |
-| Apache Airflow | 一个以编程方式创作、调度和监控工作流程的平台 | [airflow](https://raw.githubusercontent.com/designinlife/version-checker/main/data/airflow.json) |
-| Apache RocketMQ | 由阿里捐赠给 Apache 的一款低延迟、高并发、高可用、高可靠的分布式消息中间件 | [rocketmq](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rocketmq.json) |
-| Apache Druid | 一个实时分析型数据库，旨在对大型数据集进行快速查询和分析 OLAP | [druid](https://raw.githubusercontent.com/designinlife/version-checker/main/data/druid.json) |
-| ZooKeeper | 一个分布式的，开放源码的分布式应用程序协调服务 | [zookeeper](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zookeeper.json) |
-| Nginx | 一个高性能的 HTTP 和反向代理服务器，特点是占有内存少，并发能力强 | [nginx](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nginx.json) |
-| NJS | 为了 NGINX 和 NGINX Plus 而开发的 JavaScript 实现 | [njs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/njs.json) |
-| Ansible | 新出现的自动化运维工具，基于 Python 开发，集合了众多运维工具的优点 | [ansible](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ansible.json) |
-| CoreDNS | 一个灵活可扩展的 DNS 服务器，可以作为 Kubernetes 集群 DNS | [coredns](https://raw.githubusercontent.com/designinlife/version-checker/main/data/coredns.json) |
-| Etcd | 开源的分布式统一键值存储，用于分布式系统或计算机集群的共享配置、服务发现和的调度协调 | [etcd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/etcd.json) |
-| Consul | 一个服务网格解决方案，提供了一个功能齐全的控制平面，具有服务发现、配置和分段功能 | [consul](https://raw.githubusercontent.com/designinlife/version-checker/main/data/consul.json) |
-| Vagrant | 一个构件虚拟开发环境的工具 | [vagrant](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vagrant.json) |
-| HashiCorp Vault | 用来安全的存储秘密信息的工具 | [vault](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vault.json) |
-| VMware Greenplum | 用于大规模分析和数据仓库的大规模并行处理(MPP) 数据平台 | [gpdb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/gpdb.json) |
-| Netdata | 一个高效，高度模块化的指标管理引擎 | [netdata](https://raw.githubusercontent.com/designinlife/version-checker/main/data/netdata.json) |
-| Elasticsearch (ES) | 一个开源的、高扩展的、分布式的、提供多用户能力的全文搜索引擎 | [elasticsearch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/elasticsearch.json) |
-| Logstash | 免费且开放的服务器端数据处理管道，能够从多个来源采集数据，转换数据 | [logstash](https://raw.githubusercontent.com/designinlife/version-checker/main/data/logstash.json) |
-| Kibana | 针对大规模数据快速运行数据分析，以实现可观测性、安全和搜索 | [kibana](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kibana.json) |
-| Elastic Beats | 一个免费且开放的平台，集合了多种单一用途数据采集器 | [beats](https://raw.githubusercontent.com/designinlife/version-checker/main/data/beats.json) |
-| OpenSearch | 分布式，由社区驱动并取得 Apache 2.0 许可的 100% 开源搜索和分析套件 | [opensearch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/opensearch.json) |
-| Kubernetes (k8s) | 用于自动部署、扩缩和管理容器化应用程序的开源系统 | [kubernetes](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kubernetes.json) |
-| RKE2 | RKE Government，是 Rancher 的下一代 Kubernetes 发行版 | [rke2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rke2.json) |
-| Gradle | 一个基于 Apache Ant 和 Apache Maven 概念的项目自动化构建开源工具 | [gradle](https://raw.githubusercontent.com/designinlife/version-checker/main/data/gradle.json) |
-| Memcached | 一款开源、高性能、分布式内存对象缓存系统 | [memcached](https://raw.githubusercontent.com/designinlife/version-checker/main/data/memcached.json) |
-| Ant Design | 一个致力于提升『用户』和『设计者』使用体验的中台设计语言 | [ant-design](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ant-design.json) |
-| Ant Design Vue | Ant Design Vue 版本 | [ant-design-vue](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ant-design-vue.json) |
-| HAProxy | 使用 C 语言编写的高可用性、负载均衡，以及基于 TCP 和 HTTP 的应用程序代理 | [haproxy](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy.json) |
-| MongoDB | 由 C++语言编写的，是一个基于分布式文件存储的开源数据库系统 | [mongo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/mongo.json) |
-| RabbitMQ | 一个开源的 AMQP 实现，服务器端用 Erlang 语言编写 | [rabbitmq](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rabbitmq.json) |
-| MySQL | 互联网上最流行的开源关系数据库 | [mysql](https://raw.githubusercontent.com/designinlife/version-checker/main/data/mysql.json) |
-| PostgreSQL | 一款高级的企业级开源关系数据库 | [11](https://raw.githubusercontent.com/designinlife/version-checker/main/data/postgres-11.json) / [12](https://raw.githubusercontent.com/designinlife/version-checker/main/data/postgres-12.json) / [13](https://raw.githubusercontent.com/designinlife/version-checker/main/data/postgres-13.json) / [14](https://raw.githubusercontent.com/designinlife/version-checker/main/data/postgres-14.json) / [15](https://raw.githubusercontent.com/designinlife/version-checker/main/data/postgres-15.json) / [16](https://raw.githubusercontent.com/designinlife/version-checker/main/data/postgres-16.json) |
-| CentOS | CentOS 7 操作系统 | [7.x](https://raw.githubusercontent.com/designinlife/version-checker/main/data/centos-7.json) / [8.x](https://raw.githubusercontent.com/designinlife/version-checker/main/data/centos-8.json) |
-| AlmaLinux | CentOS 8/9 的替代发行版 | [8.x](https://raw.githubusercontent.com/designinlife/version-checker/main/data/almalinux-8.json) / [9.x](https://raw.githubusercontent.com/designinlife/version-checker/main/data/almalinux-9.json) |
-| RockyLinux | CentOS 8/9 的替代发行版 | [8.x](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rockylinux-8.json) / [9.x](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rockylinux-9.json) |
-| Debian | Debian 开源操作系统 | [debian](https://raw.githubusercontent.com/designinlife/version-checker/main/data/debian.json) |
-| Ubuntu | Ubuntu 操作系统 | [ubuntu](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ubuntu.json) |
-| GitLab Community Edition | Gitlab 社区版 | [gitlab-ce](https://raw.githubusercontent.com/designinlife/version-checker/main/data/gitlab-ce.json) |
-| Gitlab Runner | GitLab CI 是 GitLab 随附的开源持续集成服务 | [gitlab-runner](https://raw.githubusercontent.com/designinlife/version-checker/main/data/gitlab-runner.json) |
-| Percona Server for MySQL | Percona 公司的增强 MySQL 发行版 | [5.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/percona-server-5.6.json) / [5.7](https://raw.githubusercontent.com/designinlife/version-checker/main/data/percona-server-5.7.json) / [8.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/percona-server-8.0.json) |
-| Apache Flume | 一个分布式，高可用的数据收集系统 | [flume](https://raw.githubusercontent.com/designinlife/version-checker/main/data/flume.json) |
-| Sonatype Nexus | 自建私有仓库的服务器系统。支持常见的 yum,apt,pypi 等仓库格式 | [nexus](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nexus.json) |
-| NodeJS | NodeJS 编程语言 | [nodejs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs.json) |
-| Ruby | Ruby 编程语言 | [ruby](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ruby.json) |
-| VirtualBox | 开源的虚拟机管理工具 | [virtualbox](https://raw.githubusercontent.com/designinlife/version-checker/main/data/virtualbox.json) |
-| TortoiseSVN | 流行的 SVN 管理客户端 GUI 工具 | [tortoisesvn](https://raw.githubusercontent.com/designinlife/version-checker/main/data/tortoisesvn.json) |
-| TortoiseGit | 一个开源的 Git 管理 GUI 工具 | [tortoisegit](https://raw.githubusercontent.com/designinlife/version-checker/main/data/tortoisegit.json) |
-| GitHub Desktop | Github 出品的桌面端 Git 版本管理工具 | [github-desktop](https://raw.githubusercontent.com/designinlife/version-checker/main/data/github-desktop.json) |
-| JetBrains AppCode | 适用于 iOS/macOS 开发的智能 IDE | [JetBrains.AppCode](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.AppCode.json) |
-| JetBrains CLion | JetBrains 公司旗下新推出的一款专门为开发 C/C++所设计的跨平台的 IDE | [JetBrains.CLion](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.CLion.json) |
-| JetBrains ReSharperUltimate | 为 .NET 开发者专门打造的插件工具 | [JetBrains.ReSharperUltimate](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.ReSharperUltimate.json) |
-| JetBrains DataGrip | 有助于您更快速地编写 SQL 代码 | [JetBrains.DataGrip](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.DataGrip.json) |
-| JetBrains Goland | Go 语言集成开发工具 IDE | [JetBrains.Goland](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.Goland.json) |
-| JetBrains IntelliJIDEA | Java 集成开发工具 IDE | [JetBrains.IntelliJIDEA](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.IntelliJIDEA.json) |
-| JetBrains PhpStorm | PHP 集成开发工具 IDE | [JetBrains.PhpStorm](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.PhpStorm.json) |
-| JetBrains PyCharm | Python 集成开发工具 IDE | [JetBrains.PyCharm](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.PyCharm.json) |
-| JetBrains Rider | JetBrains 出品的 .NET 集成开发工具 IDE | [JetBrains.Rider](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.Rider.json) |
-| JetBrains RubyMine | Ruby 集成开发工具 IDE | [JetBrains.RubyMine](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.RubyMine.json) |
-| JetBrains WebStorm | JavaScript/Vue/React 集成开发工具 IDE | [JetBrains.WebStorm](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.WebStorm.json) |
-| JetBrains Fleet | JetBrains 轻量级开发工具，可替代 VSCode | [JetBrains.Fleet](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.Fleet.json) |
-| JetBrains RustRover | Rust 集成开发工具 IDE | [JetBrains.RustRover](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.RustRover.json) |
-| JetBrains DataSpell | 适用于数据分析的 IDE | [JetBrains.DataSpell](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.DataSpell.json) |
-| JetBrains Aqua | 一款可以感知上下文的智能 IDE | [JetBrains.Aqua](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.Aqua.json) |
-| JetBrains TeamCity | JetBrains 开发的持续集成服务器 | [JetBrains.TeamCity](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.TeamCity.json) |
-| JetBrains Writerside | JetBrains 的全新技术写作环境 | [JetBrains.Writerside](https://raw.githubusercontent.com/designinlife/version-checker/main/data/JetBrains.Writerside.json) |
-| Dart | Dart 编程语言 | [dart](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dart.json) |
-| Flutter | 一个跨平台的 UI 工具集 | [flutter](https://raw.githubusercontent.com/designinlife/version-checker/main/data/flutter.json) |
-| Android Studio | 用于开发 Android 应用的官方集成开发环境(IDE) | [android-studio](https://raw.githubusercontent.com/designinlife/version-checker/main/data/android-studio.json) |
-| VSCode | 一款由微软开发且跨平台的免费源代码编辑器 | [vscode](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vscode.json) |
-| DotNet | 微软公司发布的免费的跨平台开源开发人员平台 | [6.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dotnet-6.0.json) / [7.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dotnet-7.0.json) / [8.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dotnet-8.0.json) |
-| Google Chrome | Google 浏览器 | [chrome](https://raw.githubusercontent.com/designinlife/version-checker/main/data/chrome.json) |
-| Firefox | Firefox 浏览器 | [firefox](https://raw.githubusercontent.com/designinlife/version-checker/main/data/firefox.json) |
+| aria2 | 多协议命令行下载工具 | [aria2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/aria2.json) |
+| ast-grep | 结构化代码搜索工具 | [ast-grep](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ast-grep.json) |
+| Athens | Go 模块代理服务 | [athens](https://raw.githubusercontent.com/designinlife/version-checker/main/data/athens.json) |
+| AutoHotkey | Windows 自动化脚本工具 | [AutoHotkey](https://raw.githubusercontent.com/designinlife/version-checker/main/data/AutoHotkey.json) |
 | AWS CLI v2 | AWS 命令行工具 | [awscli](https://raw.githubusercontent.com/designinlife/version-checker/main/data/awscli.json) |
-| React | Facebook 内部开源出来的一个前端 UI 开发框架 | [react](https://raw.githubusercontent.com/designinlife/version-checker/main/data/react.json) |
-| Vue.js | 一款用于构建用户界面的 JavaScript 框架 | [vue](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vue.json) |
-| Jenkins LTS | 基于 Java 开发的持续集成工具 | [jenkins](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jenkins.json) |
-| Bytebase | 一款开源的数据库 CI/CD 工具 | [bytebase](https://raw.githubusercontent.com/designinlife/version-checker/main/data/bytebase.json) |
-| Caddy | 一个强大的、可扩展的平台, 用于伺服你的站点、服务以及应用 | [caddy](https://raw.githubusercontent.com/designinlife/version-checker/main/data/caddy.json) |
-| Visual Studio | 微软旗下的集成开发环境（IDE） | [vs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vs.json) |
-| .NET Framework | Windows 的托管执行环境，可为其运行的应用提供各种服务 | [dotnetfx](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dotnetfx.json) |
-| OpenWrt | 一个高度模块化、高度自动化的嵌入式 Linux 系统 | [openwrt](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openwrt.json) |
-| MSYS2 | 一个 MSYS 的独立改写版本，主要用于 Windows shell 命令行开发环境 | [msys2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/msys2.json) |
-| Prometheus | 一个开源的系统监控和警报工具 | [prometheus](https://raw.githubusercontent.com/designinlife/version-checker/main/data/prometheus.json) |
-| PushGateway for Prometheus | 另一种数据采集的方式，采用被动推送来获取监控数据的 prometheus 插件 | [pushgateway](https://raw.githubusercontent.com/designinlife/version-checker/main/data/pushgateway.json) |
-| VMware Workstation Pro | VMware 出品的著名虚拟机软件 | [vmware-workstation-pro](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vmware-workstation-pro.json) |
-| VMware ESXi | ESXi 是用于创建并运行虚拟机和虚拟设备的虚拟化平台 | [vmware-esxi](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vmware-esxi.json) |
-| VMware vSphere (ESXi) | 业界领先且最可靠的虚拟化平台 | [vmware-vsphere](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vmware-vsphere.json) |
-| Sublime Text 4 | 功能强大的代码文本编辑器 | [sublime](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sublime.json) |
-| NetSarang Xshell | 一个强大的安全终端模拟软件，它支持 SSH1, SSH2, 以及 Microsoft Windows 平台的 TELNET 协议 | [xshell](https://raw.githubusercontent.com/designinlife/version-checker/main/data/xshell.json) |
-| Helm | Helm 是 Kubernetes 的包管理工具 | [helm](https://raw.githubusercontent.com/designinlife/version-checker/main/data/helm.json) |
+| bat | 带语法高亮的文件查看工具 | [bat](https://raw.githubusercontent.com/designinlife/version-checker/main/data/bat.json) |
+| Beanstalkd | 轻量级任务队列服务 | [beanstalkd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/beanstalkd.json) |
+| Beats | Elastic 数据采集器套件 | [beats](https://raw.githubusercontent.com/designinlife/version-checker/main/data/beats.json) |
+| Beekeeper Studio | SQL 数据库桌面客户端 | [beekeeper-studio](https://raw.githubusercontent.com/designinlife/version-checker/main/data/beekeeper-studio.json) |
+| BIND 9 | DNS 服务器软件 | [bind9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/bind9.json) |
+| bootc | 容器化系统启动工具 | [bootc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/bootc.json) |
+| bottom | 终端系统监控工具 | [bottom](https://raw.githubusercontent.com/designinlife/version-checker/main/data/bottom.json) |
+| Brotli | Brotli 压缩库 | [brotli](https://raw.githubusercontent.com/designinlife/version-checker/main/data/brotli.json) |
+| btop | 终端资源监控工具 | [btop](https://raw.githubusercontent.com/designinlife/version-checker/main/data/btop.json) |
+| Bubblewrap | Linux 沙箱隔离工具 | [bubblewrap](https://raw.githubusercontent.com/designinlife/version-checker/main/data/bubblewrap.json) |
+| Buf | Protocol Buffers 工具链 | [buf](https://raw.githubusercontent.com/designinlife/version-checker/main/data/buf.json) |
+| Buildah | OCI 镜像构建工具 | [buildah](https://raw.githubusercontent.com/designinlife/version-checker/main/data/buildah.json) |
+| Bun | JavaScript 运行时与工具链 | [bun](https://raw.githubusercontent.com/designinlife/version-checker/main/data/bun.json) |
+| Byconity | 云原生分析型数据库 | [byconity](https://raw.githubusercontent.com/designinlife/version-checker/main/data/byconity.json) |
+| c-ares | 异步 DNS 解析库 | [c-ares](https://raw.githubusercontent.com/designinlife/version-checker/main/data/c-ares.json) |
+| Caddy | 自动 HTTPS Web 服务器 | [caddy](https://raw.githubusercontent.com/designinlife/version-checker/main/data/caddy.json) |
+| Cat Catch | 浏览器媒体资源嗅探工具 | [cat-catch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/cat-catch.json) |
+| Catatonit | 容器 init 进程工具 | [catatonit](https://raw.githubusercontent.com/designinlife/version-checker/main/data/catatonit.json) |
+| CFSSL | PKI 与 TLS 证书工具 | [cfssl](https://raw.githubusercontent.com/designinlife/version-checker/main/data/cfssl.json) |
+| Chatbox | AI 聊天桌面客户端 | [chatbox](https://raw.githubusercontent.com/designinlife/version-checker/main/data/chatbox.json) |
+| Cherry Studio | AI 助手桌面客户端 | [cherry-studio](https://raw.githubusercontent.com/designinlife/version-checker/main/data/cherry-studio.json) |
+| Choose | 终端文本选择工具 | [choose](https://raw.githubusercontent.com/designinlife/version-checker/main/data/choose.json) |
+| Clash Meta for Android | Android 代理客户端 | [ClashMetaForAndroid](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ClashMetaForAndroid.json) |
+| Clash Verge Rev | 跨平台代理客户端 | [clash-verge-rev](https://raw.githubusercontent.com/designinlife/version-checker/main/data/clash-verge-rev.json) |
+| Clashmi | 代理客户端 | [clashmi](https://raw.githubusercontent.com/designinlife/version-checker/main/data/clashmi.json) |
+| CLIProxyAPI | 命令行代理 API 工具 | [CLIProxyAPI](https://raw.githubusercontent.com/designinlife/version-checker/main/data/CLIProxyAPI.json) |
+| Cloudberry Database | MPP 分析型数据库 | [cloudberrydb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/cloudberrydb.json) |
+| code-server | 浏览器版 VS Code 服务 | [code-server](https://raw.githubusercontent.com/designinlife/version-checker/main/data/code-server.json) |
+| Codon | 高性能 Python 编译器 | [codon](https://raw.githubusercontent.com/designinlife/version-checker/main/data/codon.json) |
+| Composer 1.10 | PHP 依赖管理工具（1.10 分支） | [composer-1.10](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-1.10.json) |
+| Composer 2.0 | PHP 依赖管理工具（2.0 分支） | [composer-2.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.0.json) |
+| Composer 2.1 | PHP 依赖管理工具（2.1 分支） | [composer-2.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.1.json) |
+| Composer 2.2 | PHP 依赖管理工具（2.2 分支） | [composer-2.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.2.json) |
+| Composer 2.3 | PHP 依赖管理工具（2.3 分支） | [composer-2.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.3.json) |
+| Composer 2.4 | PHP 依赖管理工具（2.4 分支） | [composer-2.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.4.json) |
+| Composer 2.5 | PHP 依赖管理工具（2.5 分支） | [composer-2.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.5.json) |
+| Composer 2.6 | PHP 依赖管理工具（2.6 分支） | [composer-2.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.6.json) |
+| Composer 2.7 | PHP 依赖管理工具（2.7 分支） | [composer-2.7](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.7.json) |
+| Composer 2.8 | PHP 依赖管理工具（2.8 分支） | [composer-2.8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.8.json) |
+| Composer 2.9 | PHP 依赖管理工具（2.9 分支） | [composer-2.9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-2.9.json) |
+| Conmon | OCI 容器监控进程 | [conmon](https://raw.githubusercontent.com/designinlife/version-checker/main/data/conmon.json) |
+| Consul | 服务发现与配置工具 | [consul](https://raw.githubusercontent.com/designinlife/version-checker/main/data/consul.json) |
+| Containerd | 容器运行时 | [containerd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/containerd.json) |
+| Containerd 1 | 容器运行时（1 分支） | [containerd-1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/containerd-1.json) |
+| Containerd 2 | 容器运行时（2 分支） | [containerd-2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/containerd-2.json) |
+| Containers Common | 容器工具公共配置 | [containers-common](https://raw.githubusercontent.com/designinlife/version-checker/main/data/containers-common.json) |
+| CoreDNS | 可扩展 DNS 服务器 | [coredns](https://raw.githubusercontent.com/designinlife/version-checker/main/data/coredns.json) |
+| cosfs | 腾讯云 COS FUSE 挂载工具 | [cosfs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/cosfs.json) |
+| createrepo_c | RPM 仓库元数据生成工具 | [createrepo_c](https://raw.githubusercontent.com/designinlife/version-checker/main/data/createrepo_c.json) |
+| CRI-O | Kubernetes CRI 容器运行时 | [cri-o](https://raw.githubusercontent.com/designinlife/version-checker/main/data/cri-o.json) |
+| crun | OCI 容器运行时 | [crun](https://raw.githubusercontent.com/designinlife/version-checker/main/data/crun.json) |
+| ctop | 容器资源监控工具 | [ctop](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ctop.json) |
+| cURL | HTTP 与网络传输工具 | [curl](https://raw.githubusercontent.com/designinlife/version-checker/main/data/curl.json) |
+| Curlie | 面向 API 的 HTTP 客户端 | [curlie](https://raw.githubusercontent.com/designinlife/version-checker/main/data/curlie.json) |
+| Czkawka | 重复文件清理工具 | [czkawka](https://raw.githubusercontent.com/designinlife/version-checker/main/data/czkawka.json) |
+| Dapr | 分布式应用运行时 | [dapr](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dapr.json) |
+| darktable | 开源摄影工作流软件 | [darktable](https://raw.githubusercontent.com/designinlife/version-checker/main/data/darktable.json) |
+| Dart | Dart 编程语言 | [dart](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dart.json) |
+| Deepchat | AI 聊天桌面客户端 | [deepchat](https://raw.githubusercontent.com/designinlife/version-checker/main/data/deepchat.json) |
+| Delta | Git Diff 增强查看器 | [delta](https://raw.githubusercontent.com/designinlife/version-checker/main/data/delta.json) |
+| Dinky | Apache Flink 实时计算平台 | [dinky](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dinky.json) |
+| dnsmasq | 轻量级 DNS 与 DHCP 服务 | [dnsmasq](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dnsmasq.json) |
+| dnsname | Podman DNS 插件 | [dnsname](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dnsname.json) |
+| Docker | 容器引擎核心项目 | [docker](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker.json) |
+| Docker Buildx | Docker 扩展构建工具 | [buildx](https://raw.githubusercontent.com/designinlife/version-checker/main/data/buildx.json) |
+| Docker 镜像：Aerospike | Docker Hub 镜像版本 | [docker-library-aerospike](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-aerospike.json) |
+| Docker 镜像：AlmaLinux | Docker Hub 镜像版本 | [docker-library-almalinux](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-almalinux.json) |
+| Docker 镜像：Alpine | Docker Hub 镜像版本 | [docker-library-alpine](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-alpine.json) |
+| Docker 镜像：Amazon Corretto | Docker Hub 镜像版本 | [docker-library-amazoncorretto](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-amazoncorretto.json) |
+| Docker 镜像：Apache HTTP Server | Docker Hub 镜像版本 | [docker-library-httpd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-httpd.json) |
+| Docker 镜像：APISIX | Docker Hub 镜像版本 | [docker-apache-apisix](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-apache-apisix.json) |
+| Docker 镜像：APISIX Dashboard | Docker Hub 镜像版本 | [docker-apache-apisix-dashboard](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-apache-apisix-dashboard.json) |
+| Docker 镜像：Boundary | Docker Hub 镜像版本 | [docker-hashicorp-boundary](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-hashicorp-boundary.json) |
+| Docker 镜像：Caddy | Docker Hub 镜像版本 | [docker-library-caddy](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-caddy.json) |
+| Docker Compose | Docker 多容器编排工具 | [docker-compose](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-compose.json) |
+| Docker 镜像：Composer | Docker Hub 镜像版本 | [docker-library-composer](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-composer.json) |
+| Docker 镜像：Consul | Docker Hub 镜像版本 | [docker-hashicorp-consul](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-hashicorp-consul.json) |
+| Docker 镜像：Data Prepper | Docker Hub 镜像版本 | [docker-opensearchproject-data-prepper](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-opensearchproject-data-prepper.json) |
+| Docker 镜像：Drone | Docker Hub 镜像版本 | [docker-drone-drone](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-drone-drone.json) |
+| Docker 镜像：Elasticsearch | Docker Hub 镜像版本 | [docker-elastic-elasticsearch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-elastic-elasticsearch.json) |
+| Docker 镜像：Fluent Bit | Docker Hub 镜像版本 | [docker-fluent-fluent-bit](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-fluent-fluent-bit.json) |
+| Docker 镜像：Fluentd | Docker Hub 镜像版本 | [docker-fluent-fluentd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-fluent-fluentd.json) |
+| Docker 镜像：Fluentd | Docker Hub 镜像版本 | [docker-library-fluentd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-fluentd.json) |
+| Docker 镜像：frpc | Docker Hub 镜像版本 | [docker-stilleshan-frpc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-stilleshan-frpc.json) |
+| Docker 镜像：frps | Docker Hub 镜像版本 | [docker-stilleshan-frps](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-stilleshan-frps.json) |
+| Docker 镜像：Gitea | Docker Hub 镜像版本 | [docker-gitea-gitea](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-gitea-gitea.json) |
+| Docker 镜像：Go | Docker Hub 镜像版本 | [docker-library-golang](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-golang.json) |
+| Docker 镜像：Gradle | Docker Hub 镜像版本 | [docker-library-gradle](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-gradle.json) |
+| Docker 镜像：Grafana | Docker Hub 镜像版本 | [docker-grafana-grafana](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-grafana-grafana.json) |
+| Docker 镜像：Grafana OSS | Docker Hub 镜像版本 | [docker-grafana-grafana-oss](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-grafana-grafana-oss.json) |
+| Docker 镜像：InfluxDB | Docker Hub 镜像版本 | [docker-library-influxdb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-influxdb.json) |
+| Docker 镜像：Jenkins | Docker Hub 镜像版本 | [docker-jenkins-jenkins](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-jenkins-jenkins.json) |
+| Docker 镜像：Kafka | Docker Hub 镜像版本 | [docker-apache-kafka](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-apache-kafka.json) |
+| Docker 镜像：Kafka | Docker Hub 镜像版本 | [docker-bitnami-kafka](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-bitnami-kafka.json) |
+| Docker 镜像：Kibana | Docker Hub 镜像版本 | [docker-elastic-kibana](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-elastic-kibana.json) |
+| Docker 镜像：Logstash | Docker Hub 镜像版本 | [docker-elastic-logstash](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-elastic-logstash.json) |
+| Docker 镜像：Manticore | Docker Hub 镜像版本 | [docker-manticoresearch-manticore](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-manticoresearch-manticore.json) |
+| Docker 镜像：MariaDB | Docker Hub 镜像版本 | [docker-library-mariadb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-mariadb.json) |
+| Docker 镜像：Maven | Docker Hub 镜像版本 | [docker-library-maven](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-maven.json) |
+| Docker 镜像：Meilisearch | Docker Hub 镜像版本 | [docker-getmeili-meilisearch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-getmeili-meilisearch.json) |
+| Docker 镜像：Mongo | Docker Hub 镜像版本 | [docker-library-mongo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-mongo.json) |
+| Docker 镜像：MySQL | Docker Hub 镜像版本 | [docker-library-mysql](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-mysql.json) |
+| Docker 镜像：NATS | Docker Hub 镜像版本 | [docker-library-nats](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-nats.json) |
+| Docker 镜像：nexus3 | Docker Hub 镜像版本 | [docker-sonatype-nexus3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-sonatype-nexus3.json) |
+| Docker 镜像：NGINX | Docker Hub 镜像版本 | [docker-library-nginx](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-nginx.json) |
+| Docker 镜像：Node.js | Docker Hub 镜像版本 | [docker-library-node](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-node.json) |
+| Docker 镜像：Nomad | Docker Hub 镜像版本 | [docker-hashicorp-nomad](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-hashicorp-nomad.json) |
+| Docker 镜像：NSQ | Docker Hub 镜像版本 | [docker-nsqio-nsq](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-nsqio-nsq.json) |
+| Docker 镜像：Ollama | Docker Hub 镜像版本 | [docker-ollama-ollama](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-ollama-ollama.json) |
+| Docker 镜像：OpenSearch | Docker Hub 镜像版本 | [docker-opensearchproject-opensearch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-opensearchproject-opensearch.json) |
+| Docker 镜像：OpenSearch Dashboards | Docker Hub 镜像版本 | [docker-opensearchproject-opensearch-dashboards](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-opensearchproject-opensearch-dashboards.json) |
+| Docker 镜像：OpenSearch Operator | Docker Hub 镜像版本 | [docker-opensearchproject-opensearch-operator](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-opensearchproject-opensearch-operator.json) |
+| Docker 镜像：Packer | Docker Hub 镜像版本 | [docker-hashicorp-packer](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-hashicorp-packer.json) |
+| Docker 镜像：Percona Server | Docker Hub 镜像版本 | [docker-percona-percona-server](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-percona-percona-server.json) |
+| Docker 镜像：Percona XtraBackup | Docker Hub 镜像版本 | [docker-percona-percona-xtrabackup](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-percona-percona-xtrabackup.json) |
+| Docker 镜像：PHP | Docker Hub 镜像版本 | [docker-library-php](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-php.json) |
+| Docker 镜像：PostgreSQL | Docker Hub 镜像版本 | [docker-library-postgres](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-postgres.json) |
+| Docker 镜像：Pulsar All | Docker Hub 镜像版本 | [docker-apachepulsar-pulsar-all](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-apachepulsar-pulsar-all.json) |
+| Docker 镜像：pypiserver | Docker Hub 镜像版本 | [docker-pypiserver-pypiserver](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-pypiserver-pypiserver.json) |
+| Docker 镜像：Python | Docker Hub 镜像版本 | [docker-library-python](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-python.json) |
+| Docker 镜像：Rabbitmq | Docker Hub 镜像版本 | [docker-library-rabbitmq](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-rabbitmq.json) |
+| Docker 镜像：Redis | Docker Hub 镜像版本 | [docker-library-redis](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-redis.json) |
+| Docker 镜像：Registry | Docker Hub 镜像版本 | [docker-library-registry](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-registry.json) |
+| Docker 镜像：Rocky Linux | Docker Hub 镜像版本 | [docker-library-rockylinux](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-rockylinux.json) |
+| Docker 镜像：Solr | Docker Hub 镜像版本 | [docker-library-solr](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-solr.json) |
+| Docker 镜像：SRS | Docker Hub 镜像版本 | [docker-ossrs-srs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-ossrs-srs.json) |
+| Docker 镜像：Terraform | Docker Hub 镜像版本 | [docker-hashicorp-terraform](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-hashicorp-terraform.json) |
+| Docker 镜像：TimescaleDB | Docker Hub 镜像版本 | [docker-timescale-timescaledb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-timescale-timescaledb.json) |
+| Docker 镜像：v2fly Core | Docker Hub 镜像版本 | [docker-v2fly-v2fly-core](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-v2fly-v2fly-core.json) |
+| Docker 镜像：Valkey | Docker Hub 镜像版本 | [docker-valkey-valkey](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-valkey-valkey.json) |
+| Docker 镜像：Vault | Docker Hub 镜像版本 | [docker-hashicorp-vault](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-hashicorp-vault.json) |
+| Docker 镜像：Waypoint | Docker Hub 镜像版本 | [docker-hashicorp-waypoint](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-hashicorp-waypoint.json) |
+| Docker 镜像：ZooKeeper | Docker Hub 镜像版本 | [docker-library-zookeeper](https://raw.githubusercontent.com/designinlife/version-checker/main/data/docker-library-zookeeper.json) |
+| Doggo | DNS 查询命令行工具 | [doggo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/doggo.json) |
+| Dolphinscheduler | 分布式工作流调度平台 | [dolphinscheduler](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dolphinscheduler.json) |
+| Doris | 实时分析型数据库 | [doris](https://raw.githubusercontent.com/designinlife/version-checker/main/data/doris.json) |
+| Dotnet 10.0 | .NET 开发平台（10.0 分支） | [dotnet-10.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dotnet-10.0.json) |
+| Dotnet 6.0 | .NET 开发平台（6.0 分支） | [dotnet-6.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dotnet-6.0.json) |
+| Dotnet 8.0 | .NET 开发平台（8.0 分支） | [dotnet-8.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dotnet-8.0.json) |
+| Dotnet 9.0 | .NET 开发平台（9.0 分支） | [dotnet-9.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dotnet-9.0.json) |
+| draw.io Desktop | 桌面图表绘制工具 | [drawio-desktop](https://raw.githubusercontent.com/designinlife/version-checker/main/data/drawio-desktop.json) |
+| Druid | 实时分析型数据库 | [druid](https://raw.githubusercontent.com/designinlife/version-checker/main/data/druid.json) |
+| Dubbo | 高性能 RPC 服务框架 | [dubbo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dubbo.json) |
+| Duckdb | 嵌入式分析型数据库 | [duckdb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/duckdb.json) |
+| Due | Go 微服务框架 | [due](https://raw.githubusercontent.com/designinlife/version-checker/main/data/due.json) |
+| Dufs | 静态文件服务器 | [dufs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dufs.json) |
+| Dust | 磁盘占用分析工具 | [dust](https://raw.githubusercontent.com/designinlife/version-checker/main/data/dust.json) |
+| Easy Rsa | OpenVPN 证书管理工具 | [easy-rsa](https://raw.githubusercontent.com/designinlife/version-checker/main/data/easy-rsa.json) |
+| EasyTier | 异地组网工具 | [easytier](https://raw.githubusercontent.com/designinlife/version-checker/main/data/easytier.json) |
+| Elasticsearch | 分布式搜索与分析引擎 | [elasticsearch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/elasticsearch.json) |
+| Etcd | 分布式键值存储 | [etcd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/etcd.json) |
+| Eza | 现代化目录列表工具 | [eza](https://raw.githubusercontent.com/designinlife/version-checker/main/data/eza.json) |
+| fd | 快速文件查找工具 | [fd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/fd.json) |
+| FFmpeg 6.0 | 音视频处理工具（6.0 分支） | [ffmpeg-6.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ffmpeg-6.0.json) |
+| FFmpeg 6.1 | 音视频处理工具（6.1 分支） | [ffmpeg-6.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ffmpeg-6.1.json) |
+| FFmpeg 7.0 | 音视频处理工具（7.0 分支） | [ffmpeg-7.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ffmpeg-7.0.json) |
+| FFmpeg 7.1 | 音视频处理工具（7.1 分支） | [ffmpeg-7.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ffmpeg-7.1.json) |
+| FFmpeg 8.0 | 音视频处理工具（8.0 分支） | [ffmpeg-8.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ffmpeg-8.0.json) |
+| FFmpeg 8.1 | 音视频处理工具（8.1 分支） | [ffmpeg-8.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ffmpeg-8.1.json) |
+| Firefox | Mozilla 浏览器 | [firefox](https://raw.githubusercontent.com/designinlife/version-checker/main/data/firefox.json) |
+| Flink | 分布式流处理框架 | [flink](https://raw.githubusercontent.com/designinlife/version-checker/main/data/flink.json) |
+| Fluent Bit | 轻量级日志采集器 | [fluent-bit](https://raw.githubusercontent.com/designinlife/version-checker/main/data/fluent-bit.json) |
+| Flume | 分布式日志采集系统 | [flume](https://raw.githubusercontent.com/designinlife/version-checker/main/data/flume.json) |
+| Flutter | 跨平台 UI 开发框架 | [flutter](https://raw.githubusercontent.com/designinlife/version-checker/main/data/flutter.json) |
+| Fluvio | 实时数据流平台 | [fluvio](https://raw.githubusercontent.com/designinlife/version-checker/main/data/fluvio.json) |
+| Fontconfig | 字体配置与发现库 | [fontconfig](https://raw.githubusercontent.com/designinlife/version-checker/main/data/fontconfig.json) |
+| Forgejo | 轻量级代码托管平台 | [forgejo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/forgejo.json) |
+| Forgejo Runner | Forgejo Actions 运行器 | [forgejo-runner](https://raw.githubusercontent.com/designinlife/version-checker/main/data/forgejo-runner.json) |
+| Fossil SCM | 分布式版本控制系统 | [fossil-scm](https://raw.githubusercontent.com/designinlife/version-checker/main/data/fossil-scm.json) |
+| Foundationdb | 分布式事务数据库 | [foundationdb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/foundationdb.json) |
+| frp | 内网穿透工具 | [frp](https://raw.githubusercontent.com/designinlife/version-checker/main/data/frp.json) |
+| Fuse Overlayfs | 用户态 OverlayFS 实现 | [fuse-overlayfs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/fuse-overlayfs.json) |
+| fzf | 命令行模糊查找器 | [fzf](https://raw.githubusercontent.com/designinlife/version-checker/main/data/fzf.json) |
+| Garnet | 高性能缓存存储服务 | [garnet](https://raw.githubusercontent.com/designinlife/version-checker/main/data/garnet.json) |
+| Geoipupdate | MaxMind GeoIP 数据库更新工具 | [geoipupdate](https://raw.githubusercontent.com/designinlife/version-checker/main/data/geoipupdate.json) |
+| Git | 分布式版本控制工具 | [git](https://raw.githubusercontent.com/designinlife/version-checker/main/data/git.json) |
+| Git for Windows | Windows 版 Git 工具链 | [git-for-windows](https://raw.githubusercontent.com/designinlife/version-checker/main/data/git-for-windows.json) |
+| Gitea | 轻量级代码托管平台 | [gitea](https://raw.githubusercontent.com/designinlife/version-checker/main/data/gitea.json) |
+| Gitea Act Runner | Gitea Actions 运行器 | [act_runner](https://raw.githubusercontent.com/designinlife/version-checker/main/data/act_runner.json) |
+| Git Extensions | Windows Git 图形客户端 | [gitextensions](https://raw.githubusercontent.com/designinlife/version-checker/main/data/gitextensions.json) |
+| GitHub CLI | GitHub 命令行工具 | [gh](https://raw.githubusercontent.com/designinlife/version-checker/main/data/gh.json) |
+| GitHub Desktop | GitHub 桌面客户端 | [github-desktop](https://raw.githubusercontent.com/designinlife/version-checker/main/data/github-desktop.json) |
+| GNS3 GUI | 网络模拟器图形界面 | [gns3-gui](https://raw.githubusercontent.com/designinlife/version-checker/main/data/gns3-gui.json) |
+| GNU Coreutils | 基础命令行工具集 | [coreutils](https://raw.githubusercontent.com/designinlife/version-checker/main/data/coreutils.json) |
+| Go 1.10 | Go 编程语言（1.10 分支） | [go-1.10](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.10.json) |
+| Go 1.11 | Go 编程语言（1.11 分支） | [go-1.11](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.11.json) |
+| Go 1.12 | Go 编程语言（1.12 分支） | [go-1.12](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.12.json) |
+| Go 1.13 | Go 编程语言（1.13 分支） | [go-1.13](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.13.json) |
+| Go 1.14 | Go 编程语言（1.14 分支） | [go-1.14](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.14.json) |
+| Go 1.15 | Go 编程语言（1.15 分支） | [go-1.15](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.15.json) |
+| Go 1.16 | Go 编程语言（1.16 分支） | [go-1.16](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.16.json) |
+| Go 1.17 | Go 编程语言（1.17 分支） | [go-1.17](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.17.json) |
+| Go 1.18 | Go 编程语言（1.18 分支） | [go-1.18](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.18.json) |
+| Go 1.19 | Go 编程语言（1.19 分支） | [go-1.19](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.19.json) |
+| Go 1.2 | Go 编程语言（1.2 分支） | [go-1.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.2.json) |
+| Go 1.20 | Go 编程语言（1.20 分支） | [go-1.20](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.20.json) |
+| Go 1.21 | Go 编程语言（1.21 分支） | [go-1.21](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.21.json) |
+| Go 1.22 | Go 编程语言（1.22 分支） | [go-1.22](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.22.json) |
+| Go 1.23 | Go 编程语言（1.23 分支） | [go-1.23](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.23.json) |
+| Go 1.24 | Go 编程语言（1.24 分支） | [go-1.24](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.24.json) |
+| Go 1.25 | Go 编程语言（1.25 分支） | [go-1.25](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.25.json) |
+| Go 1.26 | Go 编程语言（1.26 分支） | [go-1.26](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.26.json) |
+| Go 1.3 | Go 编程语言（1.3 分支） | [go-1.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.3.json) |
+| Go 1.4 | Go 编程语言（1.4 分支） | [go-1.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.4.json) |
+| Go 1.5 | Go 编程语言（1.5 分支） | [go-1.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.5.json) |
+| Go 1.6 | Go 编程语言（1.6 分支） | [go-1.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.6.json) |
+| Go 1.7 | Go 编程语言（1.7 分支） | [go-1.7](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.7.json) |
+| Go 1.8 | Go 编程语言（1.8 分支） | [go-1.8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.8.json) |
+| Go 1.9 | Go 编程语言（1.9 分支） | [go-1.9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-1.9.json) |
+| go-md2man | Markdown 转 man 手册工具 | [go-md2man](https://raw.githubusercontent.com/designinlife/version-checker/main/data/go-md2man.json) |
+| golangci-lint | Go 代码静态检查工具 | [golangci-lint](https://raw.githubusercontent.com/designinlife/version-checker/main/data/golangci-lint.json) |
+| Google Chrome | Google 浏览器 | [chrome](https://raw.githubusercontent.com/designinlife/version-checker/main/data/chrome.json) |
+| Gost | 网络代理与隧道工具 | [gost](https://raw.githubusercontent.com/designinlife/version-checker/main/data/gost.json) |
+| gping | 图形化 ping 工具 | [gping](https://raw.githubusercontent.com/designinlife/version-checker/main/data/gping.json) |
+| GraalVM Community Edition 17 | GraalVM 社区版运行时（17 分支） | [graalvm-ce-builds-17](https://raw.githubusercontent.com/designinlife/version-checker/main/data/graalvm-ce-builds-17.json) |
+| GraalVM Community Edition 20 | GraalVM 社区版运行时（20 分支） | [graalvm-ce-builds-20](https://raw.githubusercontent.com/designinlife/version-checker/main/data/graalvm-ce-builds-20.json) |
+| GraalVM Community Edition 21 | GraalVM 社区版运行时（21 分支） | [graalvm-ce-builds-21](https://raw.githubusercontent.com/designinlife/version-checker/main/data/graalvm-ce-builds-21.json) |
+| GraalVM Community Edition 22 | GraalVM 社区版运行时（22 分支） | [graalvm-ce-builds-22](https://raw.githubusercontent.com/designinlife/version-checker/main/data/graalvm-ce-builds-22.json) |
+| GraalVM Community Edition 23 | GraalVM 社区版运行时（23 分支） | [graalvm-ce-builds-23](https://raw.githubusercontent.com/designinlife/version-checker/main/data/graalvm-ce-builds-23.json) |
+| GraalVM Community Edition 24 | GraalVM 社区版运行时（24 分支） | [graalvm-ce-builds-24](https://raw.githubusercontent.com/designinlife/version-checker/main/data/graalvm-ce-builds-24.json) |
+| GraalVM Community Edition 25 | GraalVM 社区版运行时（25 分支） | [graalvm-ce-builds-25](https://raw.githubusercontent.com/designinlife/version-checker/main/data/graalvm-ce-builds-25.json) |
+| Gradle | 构建自动化工具 | [gradle](https://raw.githubusercontent.com/designinlife/version-checker/main/data/gradle.json) |
+| GreptimeDB | 时序数据分析数据库 | [greptimedb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/greptimedb.json) |
+| Groovy 2.5 | JVM 动态编程语言（2.5 分支） | [groovy-2.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/groovy-2.5.json) |
+| Groovy 3.0 | JVM 动态编程语言（3.0 分支） | [groovy-3.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/groovy-3.0.json) |
+| Groovy 4.0 | JVM 动态编程语言（4.0 分支） | [groovy-4.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/groovy-4.0.json) |
+| Groovy 5.0 | JVM 动态编程语言（5.0 分支） | [groovy-5.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/groovy-5.0.json) |
+| gRPC | 高性能 RPC 框架 | [grpc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/grpc.json) |
+| grpcurl | gRPC 命令行调试工具 | [grpcurl](https://raw.githubusercontent.com/designinlife/version-checker/main/data/grpcurl.json) |
+| Hadoop | 分布式数据处理框架 | [hadoop](https://raw.githubusercontent.com/designinlife/version-checker/main/data/hadoop.json) |
+| Handlebars C | C 语言 Handlebars 模板库 | [handlebars.c](https://raw.githubusercontent.com/designinlife/version-checker/main/data/handlebars.c.json) |
+| HAProxy 1.0 | 高性能负载均衡代理（1.0 分支） | [haproxy-1.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-1.0.json) |
+| HAProxy 1.1 | 高性能负载均衡代理（1.1 分支） | [haproxy-1.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-1.1.json) |
+| HAProxy 1.2 | 高性能负载均衡代理（1.2 分支） | [haproxy-1.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-1.2.json) |
+| HAProxy 1.3 | 高性能负载均衡代理（1.3 分支） | [haproxy-1.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-1.3.json) |
+| HAProxy 1.4 | 高性能负载均衡代理（1.4 分支） | [haproxy-1.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-1.4.json) |
+| HAProxy 1.5 | 高性能负载均衡代理（1.5 分支） | [haproxy-1.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-1.5.json) |
+| HAProxy 1.6 | 高性能负载均衡代理（1.6 分支） | [haproxy-1.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-1.6.json) |
+| HAProxy 1.7 | 高性能负载均衡代理（1.7 分支） | [haproxy-1.7](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-1.7.json) |
+| HAProxy 1.8 | 高性能负载均衡代理（1.8 分支） | [haproxy-1.8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-1.8.json) |
+| HAProxy 1.9 | 高性能负载均衡代理（1.9 分支） | [haproxy-1.9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-1.9.json) |
+| HAProxy 2.0 | 高性能负载均衡代理（2.0 分支） | [haproxy-2.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-2.0.json) |
+| HAProxy 2.1 | 高性能负载均衡代理（2.1 分支） | [haproxy-2.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-2.1.json) |
+| HAProxy 2.2 | 高性能负载均衡代理（2.2 分支） | [haproxy-2.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-2.2.json) |
+| HAProxy 2.3 | 高性能负载均衡代理（2.3 分支） | [haproxy-2.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-2.3.json) |
+| HAProxy 2.4 | 高性能负载均衡代理（2.4 分支） | [haproxy-2.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-2.4.json) |
+| HAProxy 2.5 | 高性能负载均衡代理（2.5 分支） | [haproxy-2.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-2.5.json) |
+| HAProxy 2.6 | 高性能负载均衡代理（2.6 分支） | [haproxy-2.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-2.6.json) |
+| HAProxy 2.7 | 高性能负载均衡代理（2.7 分支） | [haproxy-2.7](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-2.7.json) |
+| HAProxy 2.8 | 高性能负载均衡代理（2.8 分支） | [haproxy-2.8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-2.8.json) |
+| HAProxy 2.9 | 高性能负载均衡代理（2.9 分支） | [haproxy-2.9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-2.9.json) |
+| HAProxy 3.0 | 高性能负载均衡代理（3.0 分支） | [haproxy-3.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/haproxy-3.0.json) |
+| Harbor | 容器镜像仓库服务 | [harbor](https://raw.githubusercontent.com/designinlife/version-checker/main/data/harbor.json) |
+| Harbor CLI | Harbor 命令行工具 | [harbor-cli](https://raw.githubusercontent.com/designinlife/version-checker/main/data/harbor-cli.json) |
+| Hbase | 分布式列式数据库 | [hbase](https://raw.githubusercontent.com/designinlife/version-checker/main/data/hbase.json) |
+| Headscale | Tailscale 控制服务器 | [headscale](https://raw.githubusercontent.com/designinlife/version-checker/main/data/headscale.json) |
+| HeidiSQL | 数据库图形管理客户端 | [HeidiSQL](https://raw.githubusercontent.com/designinlife/version-checker/main/data/HeidiSQL.json) |
+| Helix | 终端代码编辑器 | [helix](https://raw.githubusercontent.com/designinlife/version-checker/main/data/helix.json) |
+| Helm | Kubernetes 包管理工具 | [helm](https://raw.githubusercontent.com/designinlife/version-checker/main/data/helm.json) |
+| HEU KMS Activator | Windows 与 Office 激活工具 | [HEU_KMS_Activator](https://raw.githubusercontent.com/designinlife/version-checker/main/data/HEU_KMS_Activator.json) |
+| Hiddify App | 跨平台代理客户端 | [hiddify-app](https://raw.githubusercontent.com/designinlife/version-checker/main/data/hiddify-app.json) |
+| Hoppscotch | API 调试与协作平台 | [hoppscotch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/hoppscotch.json) |
+| Hoppscotch Releases | Hoppscotch 桌面发布包 | [hoppscotch-releases](https://raw.githubusercontent.com/designinlife/version-checker/main/data/hoppscotch-releases.json) |
+| Hyperfine | 命令行基准测试工具 | [hyperfine](https://raw.githubusercontent.com/designinlife/version-checker/main/data/hyperfine.json) |
+| ImageMagick | 图像处理命令行工具 | [ImageMagick](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ImageMagick.json) |
+| ip2proxy C | IP2Proxy C 库 | [ip2proxy-c](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ip2proxy-c.json) |
+| Jansson | C 语言 JSON 库 | [jansson](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jansson.json) |
+| JetBrains IDE | JetBrains IDE 套件 | [jetbrains](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jetbrains.json) |
+| JetBrains 插件：ANTLR V4-Tool | JetBrains IDE 插件 | [jbp-antlr-v4-tool](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-antlr-v4-tool.json) |
+| JetBrains 插件：CodeGeeX: AI Coding Assistant | JetBrains IDE 插件 | [jbp-codegeex](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-codegeex.json) |
+| JetBrains 插件：Flutter | JetBrains IDE 插件 | [jbp-flutter](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-flutter.json) |
+| JetBrains 插件：Full Line Code Completion | JetBrains IDE 插件 | [jbp-full-line-code-completion](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-full-line-code-completion.json) |
+| JetBrains 插件：Gemini Code Assist | JetBrains IDE 插件 | [jbp-gemini-code-assist](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-gemini-code-assist.json) |
+| JetBrains 插件：GitHub Copilot - Your AI Pair Programmer | JetBrains IDE 插件 | [jbp-github-copilot](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-github-copilot.json) |
+| JetBrains 插件：Jenkins Development Support | JetBrains IDE 插件 | [jbp-jenkins-development-support](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-jenkins-development-support.json) |
+| JetBrains 插件：JetBrains AI Assistant | JetBrains IDE 插件 | [jbp-jetbrains-ai-assistant](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-jetbrains-ai-assistant.json) |
+| JetBrains 插件：JSON Assistant | JetBrains IDE 插件 | [jbp-json-assistant](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-json-assistant.json) |
+| JetBrains 插件：Junie, the AI coding agent by JetBrains | JetBrains IDE 插件 | [jbp-jetbrains-junie](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-jetbrains-junie.json) |
+| JetBrains 插件：Lingma - Alibaba Cloud AI Coding Assistant | JetBrains IDE 插件 | [jbp-tongyi-lingma](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-tongyi-lingma.json) |
+| JetBrains 插件：StringManipulation | JetBrains IDE 插件 | [jbp-string-manipulation](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-string-manipulation.json) |
+| JetBrains 插件：Tencent Cloud CodeBuddy | JetBrains IDE 插件 | [jbp-tencent-cloud-ai](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-tencent-cloud-ai.json) |
+| JetBrains 插件：TRAE AI: Coding Assistant | JetBrains IDE 插件 | [jbp-marscode](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-marscode.json) |
+| JetBrains 插件：Translation | JetBrains IDE 插件 | [jbp-translation](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jbp-translation.json) |
+| JPEG XL | JPEG XL 编解码库 | [libjxl](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libjxl.json) |
+| jq | JSON 命令行处理工具 | [jq](https://raw.githubusercontent.com/designinlife/version-checker/main/data/jq.json) |
+| Juicefs | 分布式文件系统 | [juicefs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/juicefs.json) |
+| Kafka 2.7 | 分布式流式消息平台（2.7 分支） | [kafka-2.7](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-2.7.json) |
+| Kafka 2.8 | 分布式流式消息平台（2.8 分支） | [kafka-2.8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-2.8.json) |
+| Kafka 3.0 | 分布式流式消息平台（3.0 分支） | [kafka-3.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-3.0.json) |
+| Kafka 3.1 | 分布式流式消息平台（3.1 分支） | [kafka-3.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-3.1.json) |
+| Kafka 3.2 | 分布式流式消息平台（3.2 分支） | [kafka-3.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-3.2.json) |
+| Kafka 3.3 | 分布式流式消息平台（3.3 分支） | [kafka-3.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-3.3.json) |
+| Kafka 3.4 | 分布式流式消息平台（3.4 分支） | [kafka-3.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-3.4.json) |
+| Kafka 3.5 | 分布式流式消息平台（3.5 分支） | [kafka-3.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-3.5.json) |
+| Kafka 3.6 | 分布式流式消息平台（3.6 分支） | [kafka-3.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-3.6.json) |
+| Kafka 3.7 | 分布式流式消息平台（3.7 分支） | [kafka-3.7](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-3.7.json) |
+| Kafka 3.8 | 分布式流式消息平台（3.8 分支） | [kafka-3.8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-3.8.json) |
+| Kafka 3.9 | 分布式流式消息平台（3.9 分支） | [kafka-3.9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-3.9.json) |
+| Kafka 4.0 | 分布式流式消息平台（4.0 分支） | [kafka-4.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-4.0.json) |
+| Kafka 4.1 | 分布式流式消息平台（4.1 分支） | [kafka-4.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-4.1.json) |
+| Kafka 4.2 | 分布式流式消息平台（4.2 分支） | [kafka-4.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-4.2.json) |
+| Keepassxc | 密码管理器 | [keepassxc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/keepassxc.json) |
+| Keystore Explorer | 密钥库管理工具 | [keystore-explorer](https://raw.githubusercontent.com/designinlife/version-checker/main/data/keystore-explorer.json) |
+| Kibana | Elastic 数据可视化平台 | [kibana](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kibana.json) |
+| Lapce | 现代代码编辑器 | [lapce](https://raw.githubusercontent.com/designinlife/version-checker/main/data/lapce.json) |
+| libavif | AVIF 图像编解码库 | [libavif](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libavif.json) |
+| libbase58 | Base58 编码库 | [libbase58](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libbase58.json) |
+| libbpf | BPF 用户态开发库 | [libbpf](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libbpf.json) |
+| libcap-ng | Linux capabilities 管理库 | [libcap-ng](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libcap-ng.json) |
+| libdatrie | 双数组 Trie 库 | [libdatrie](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libdatrie.json) |
+| libexpat | XML 解析库 | [libexpat](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libexpat.json) |
+| LibGD | 图像处理库 | [libgd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libgd.json) |
+| libgit2 | Git 核心库 | [libgit2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libgit2.json) |
+| libmaxminddb | MaxMind DB 读取库 | [libmaxminddb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libmaxminddb.json) |
+| Libmustache | Mustache 模板库 | [libmustache](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libmustache.json) |
+| libpcap | 网络数据包捕获库 | [libpcap](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libpcap.json) |
+| libpng | PNG 图像库 | [libpng](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libpng.json) |
+| libpsl | 公共后缀列表库 | [libpsl](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libpsl.json) |
+| librdkafka | Kafka C/C++ 客户端库 | [librdkafka](https://raw.githubusercontent.com/designinlife/version-checker/main/data/librdkafka.json) |
+| LibreSSL | TLS 与加密库 | [libressl](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libressl.json) |
+| libssh2 | SSH2 客户端库 | [libssh2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libssh2.json) |
+| libuv | 跨平台异步 I/O 库 | [libuv](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libuv.json) |
+| libvips | 高性能图像处理库 | [libvips](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libvips.json) |
+| libwebp | WebP 图像库 | [libwebp](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libwebp.json) |
+| libxcrypt | 密码哈希库 | [libxcrypt](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libxcrypt.json) |
+| libxdiff | 文件差异处理库 | [libxdiff](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libxdiff.json) |
+| libzip | ZIP 文件处理库 | [libzip](https://raw.githubusercontent.com/designinlife/version-checker/main/data/libzip.json) |
+| Linker | 内网组网工具 | [linker](https://raw.githubusercontent.com/designinlife/version-checker/main/data/linker.json) |
+| Linux PAM | Linux PAM 认证框架 | [linux-pam](https://raw.githubusercontent.com/designinlife/version-checker/main/data/linux-pam.json) |
+| Localsend | 局域网文件传输工具 | [localsend](https://raw.githubusercontent.com/designinlife/version-checker/main/data/localsend.json) |
+| Logstash | 服务器端数据处理管道 | [logstash](https://raw.githubusercontent.com/designinlife/version-checker/main/data/logstash.json) |
+| Lsd | 现代化目录列表工具 | [lsd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/lsd.json) |
+| LZ4 | 高速压缩工具 | [lz4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/lz4.json) |
+| Mailrelay | 轻量级邮件中继服务 | [mailrelay](https://raw.githubusercontent.com/designinlife/version-checker/main/data/mailrelay.json) |
+| Manticoresearch | 全文搜索数据库 | [manticoresearch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/manticoresearch.json) |
+| Maple Font | 中英文编程字体 | [maple-font](https://raw.githubusercontent.com/designinlife/version-checker/main/data/maple-font.json) |
+| Maven | Java 项目构建工具 | [maven](https://raw.githubusercontent.com/designinlife/version-checker/main/data/maven.json) |
+| Meilisearch | 轻量级搜索引擎 | [meilisearch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/meilisearch.json) |
+| Memcached | 分布式内存缓存系统 | [memcached](https://raw.githubusercontent.com/designinlife/version-checker/main/data/memcached.json) |
+| Mihomo | 代理核心程序 | [mihomo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/mihomo.json) |
+| Minio | 对象存储服务器 | [minio](https://raw.githubusercontent.com/designinlife/version-checker/main/data/minio.json) |
+| MinIO Client | MinIO 命令行客户端 | [mc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/mc.json) |
+| Mixxx | DJ 混音软件 | [mixxx](https://raw.githubusercontent.com/designinlife/version-checker/main/data/mixxx.json) |
+| MSYS2 | Windows Unix 风格开发环境 | [msys2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/msys2.json) |
+| Mwget | 多线程下载工具 | [mwget](https://raw.githubusercontent.com/designinlife/version-checker/main/data/mwget.json) |
+| Mydumper | MySQL 逻辑备份工具 | [mydumper](https://raw.githubusercontent.com/designinlife/version-checker/main/data/mydumper.json) |
+| NATS Server | NATS 消息服务器 | [nats-server](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nats-server.json) |
+| Navicat | 数据库管理客户端 | [Navicat](https://raw.githubusercontent.com/designinlife/version-checker/main/data/Navicat.json) |
+| netavark | Podman 网络栈 | [netavark](https://raw.githubusercontent.com/designinlife/version-checker/main/data/netavark.json) |
+| Netdata | 实时系统监控平台 | [netdata](https://raw.githubusercontent.com/designinlife/version-checker/main/data/netdata.json) |
+| NetSarang Xshell | 安全终端模拟器 | [xshell](https://raw.githubusercontent.com/designinlife/version-checker/main/data/xshell.json) |
+| nghttp2 | HTTP/2 协议库 | [nghttp2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nghttp2.json) |
+| nghttp3 | HTTP/3 协议库 | [nghttp3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nghttp3.json) |
+| Nginx | 高性能 HTTP 与反向代理服务器 | [nginx](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nginx.json) |
+| ngtcp2 | QUIC 协议库 | [ngtcp2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ngtcp2.json) |
+| Ninja | 小型快速构建系统 | [ninja](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ninja.json) |
+| Njs | NGINX JavaScript 运行时 | [njs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/njs.json) |
+| Node.js 14 | Node.js JavaScript 运行时（14 分支） | [nodejs-14](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs-14.json) |
+| Node.js 16 | Node.js JavaScript 运行时（16 分支） | [nodejs-16](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs-16.json) |
+| Node.js 18 | Node.js JavaScript 运行时（18 分支） | [nodejs-18](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs-18.json) |
+| Node.js 19 | Node.js JavaScript 运行时（19 分支） | [nodejs-19](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs-19.json) |
+| Node.js 20 | Node.js JavaScript 运行时（20 分支） | [nodejs-20](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs-20.json) |
+| Node.js 21 | Node.js JavaScript 运行时（21 分支） | [nodejs-21](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs-21.json) |
+| Node.js 22 | Node.js JavaScript 运行时（22 分支） | [nodejs-22](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs-22.json) |
+| Node.js 23 | Node.js JavaScript 运行时（23 分支） | [nodejs-23](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs-23.json) |
+| Node.js 24 | Node.js JavaScript 运行时（24 分支） | [nodejs-24](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs-24.json) |
+| Node.js 25 | Node.js JavaScript 运行时（25 分支） | [nodejs-25](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs-25.json) |
+| Node.js 26 | Node.js JavaScript 运行时（26 分支） | [nodejs-26](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nodejs-26.json) |
+| Nping | 网络探测与压测工具 | [Nping](https://raw.githubusercontent.com/designinlife/version-checker/main/data/Nping.json) |
+| Obsidian | 知识库与笔记应用 | [obsidian](https://raw.githubusercontent.com/designinlife/version-checker/main/data/obsidian.json) |
+| Office Tool Plus | Office 部署与管理工具 | [Office-Tool](https://raw.githubusercontent.com/designinlife/version-checker/main/data/Office-Tool.json) |
+| Oha | HTTP 压测工具 | [oha](https://raw.githubusercontent.com/designinlife/version-checker/main/data/oha.json) |
+| Opencode | 终端 AI 编程工具 | [opencode](https://raw.githubusercontent.com/designinlife/version-checker/main/data/opencode.json) |
+| OpenLDAP 1.0 | LDAP 目录服务软件（1.0 分支） | [openldap-1.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openldap-1.0.json) |
+| OpenLDAP 1.1 | LDAP 目录服务软件（1.1 分支） | [openldap-1.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openldap-1.1.json) |
+| OpenLDAP 1.2 | LDAP 目录服务软件（1.2 分支） | [openldap-1.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openldap-1.2.json) |
+| OpenLDAP 2.0 | LDAP 目录服务软件（2.0 分支） | [openldap-2.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openldap-2.0.json) |
+| OpenLDAP 2.1 | LDAP 目录服务软件（2.1 分支） | [openldap-2.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openldap-2.1.json) |
+| OpenLDAP 2.2 | LDAP 目录服务软件（2.2 分支） | [openldap-2.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openldap-2.2.json) |
+| OpenLDAP 2.3 | LDAP 目录服务软件（2.3 分支） | [openldap-2.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openldap-2.3.json) |
+| OpenLDAP 2.4 | LDAP 目录服务软件（2.4 分支） | [openldap-2.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openldap-2.4.json) |
+| OpenLDAP 2.5 | LDAP 目录服务软件（2.5 分支） | [openldap-2.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openldap-2.5.json) |
+| OpenLDAP 2.6 | LDAP 目录服务软件（2.6 分支） | [openldap-2.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openldap-2.6.json) |
+| Opensearch | 开源搜索与分析套件 | [opensearch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/opensearch.json) |
+| OpenSSL 1.0 | TLS 与加密库（1.0 分支） | [openssl-1.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-1.0.json) |
+| OpenSSL 1.1 | TLS 与加密库（1.1 分支） | [openssl-1.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-1.1.json) |
+| OpenSSL 3.0 | TLS 与加密库（3.0 分支） | [openssl-3.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-3.0.json) |
+| OpenSSL 3.1 | TLS 与加密库（3.1 分支） | [openssl-3.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-3.1.json) |
+| OpenSSL 3.2 | TLS 与加密库（3.2 分支） | [openssl-3.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-3.2.json) |
+| OpenSSL 3.3 | TLS 与加密库（3.3 分支） | [openssl-3.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-3.3.json) |
+| OpenSSL 3.4 | TLS 与加密库（3.4 分支） | [openssl-3.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-3.4.json) |
+| OpenSSL 3.5 | TLS 与加密库（3.5 分支） | [openssl-3.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-3.5.json) |
+| OpenSSL 3.6 | TLS 与加密库（3.6 分支） | [openssl-3.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-3.6.json) |
+| OpenSSL 4.0 | TLS 与加密库（4.0 分支） | [openssl-4.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-4.0.json) |
+| OpenSSL QUIC 3.0 | QUIC 分支 OpenSSL（3.0 分支） | [openssl-quic-3.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-quic-3.0.json) |
+| OpenSSL QUIC 3.1 | QUIC 分支 OpenSSL（3.1 分支） | [openssl-quic-3.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-quic-3.1.json) |
+| OpenSSL QUIC 3.3 | QUIC 分支 OpenSSL（3.3 分支） | [openssl-quic-3.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openssl-quic-3.3.json) |
+| OpenVPN | VPN 服务端与客户端 | [openvpn](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openvpn.json) |
+| OpenVPN 3 | OpenVPN 3 客户端库 | [openvpn3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/openvpn3.json) |
+| OpenZFS | OpenZFS 文件系统 | [zfs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zfs.json) |
+| Operit | AI 助手应用 | [operit](https://raw.githubusercontent.com/designinlife/version-checker/main/data/operit.json) |
+| Osquery | SQL 化系统安全检查工具 | [osquery](https://raw.githubusercontent.com/designinlife/version-checker/main/data/osquery.json) |
+| pcre2 | 正则表达式库 | [pcre2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/pcre2.json) |
+| PHP 7.0 | PHP 脚本语言（7.0 分支） | [php-7.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-7.0.json) |
+| PHP 7.1 | PHP 脚本语言（7.1 分支） | [php-7.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-7.1.json) |
+| PHP 7.2 | PHP 脚本语言（7.2 分支） | [php-7.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-7.2.json) |
+| PHP 7.3 | PHP 脚本语言（7.3 分支） | [php-7.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-7.3.json) |
+| PHP 7.4 | PHP 脚本语言（7.4 分支） | [php-7.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-7.4.json) |
+| PHP 8.0 | PHP 脚本语言（8.0 分支） | [php-8.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-8.0.json) |
+| PHP 8.1 | PHP 脚本语言（8.1 分支） | [php-8.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-8.1.json) |
+| PHP 8.2 | PHP 脚本语言（8.2 分支） | [php-8.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-8.2.json) |
+| PHP 8.3 | PHP 脚本语言（8.3 分支） | [php-8.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-8.3.json) |
+| PHP 8.4 | PHP 脚本语言（8.4 分支） | [php-8.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-8.4.json) |
+| PHP 8.5 | PHP 脚本语言（8.5 分支） | [php-8.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/php-8.5.json) |
+| pkcs11-helper | PKCS#11 辅助库 | [pkcs11-helper](https://raw.githubusercontent.com/designinlife/version-checker/main/data/pkcs11-helper.json) |
+| Pngquant | PNG 有损压缩工具 | [pngquant](https://raw.githubusercontent.com/designinlife/version-checker/main/data/pngquant.json) |
+| Podlet | Podman 到 systemd 转换工具 | [podlet](https://raw.githubusercontent.com/designinlife/version-checker/main/data/podlet.json) |
+| Podman | 无守护进程容器引擎 | [podman](https://raw.githubusercontent.com/designinlife/version-checker/main/data/podman.json) |
+| Podman Desktop | 容器桌面管理工具 | [podman-desktop](https://raw.githubusercontent.com/designinlife/version-checker/main/data/podman-desktop.json) |
+| Podman Machine WSL OS | Podman WSL 虚拟机镜像 | [podman-machine-wsl-os](https://raw.githubusercontent.com/designinlife/version-checker/main/data/podman-machine-wsl-os.json) |
+| Podman Static | 静态构建 Podman | [podman-static](https://raw.githubusercontent.com/designinlife/version-checker/main/data/podman-static.json) |
+| PowerShell | 跨平台自动化 Shell | [PowerShell](https://raw.githubusercontent.com/designinlife/version-checker/main/data/PowerShell.json) |
+| procs | 现代化进程查看工具 | [procs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/procs.json) |
+| Prometheus | 监控与告警系统 | [prometheus](https://raw.githubusercontent.com/designinlife/version-checker/main/data/prometheus.json) |
+| Prompt Optimizer | 提示词优化工具 | [prompt-optimizer](https://raw.githubusercontent.com/designinlife/version-checker/main/data/prompt-optimizer.json) |
+| Protocol Buffers | Protocol Buffers 序列化框架 | [protobuf](https://raw.githubusercontent.com/designinlife/version-checker/main/data/protobuf.json) |
+| Proxypin | 跨平台抓包工具 | [proxypin](https://raw.githubusercontent.com/designinlife/version-checker/main/data/proxypin.json) |
+| Pulsar | 分布式消息与流平台 | [pulsar](https://raw.githubusercontent.com/designinlife/version-checker/main/data/pulsar.json) |
+| Pushgateway | Prometheus 指标推送网关 | [pushgateway](https://raw.githubusercontent.com/designinlife/version-checker/main/data/pushgateway.json) |
+| Python 3.10 | Python 编程语言（3.10 分支） | [python-3.10](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-3.10.json) |
+| Python 3.11 | Python 编程语言（3.11 分支） | [python-3.11](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-3.11.json) |
+| Python 3.12 | Python 编程语言（3.12 分支） | [python-3.12](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-3.12.json) |
+| Python 3.13 | Python 编程语言（3.13 分支） | [python-3.13](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-3.13.json) |
+| Python 3.14 | Python 编程语言（3.14 分支） | [python-3.14](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-3.14.json) |
+| Python 3.9 | Python 编程语言（3.9 分支） | [python-3.9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-3.9.json) |
+| Python Build Standalone | 独立 Python 构建发行版 | [python-build-standalone](https://raw.githubusercontent.com/designinlife/version-checker/main/data/python-build-standalone.json) |
+| Qdrant | 向量数据库 | [qdrant](https://raw.githubusercontent.com/designinlife/version-checker/main/data/qdrant.json) |
+| Questdb | 高性能时序数据库 | [questdb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/questdb.json) |
+| r-nacos | Nacos 兼容注册配置中心 | [r-nacos](https://raw.githubusercontent.com/designinlife/version-checker/main/data/r-nacos.json) |
+| RabbitMQ Server | RabbitMQ 消息服务器 | [rabbitmq-server](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rabbitmq-server.json) |
+| Rathole | 安全内网穿透工具 | [rathole](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rathole.json) |
+| Rclone | 云存储同步工具 | [rclone](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rclone.json) |
+| re2c | 词法分析器生成工具 | [re2c](https://raw.githubusercontent.com/designinlife/version-checker/main/data/re2c.json) |
+| Redis 5.0 | 内存键值数据库（5.0 分支） | [redis-5.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-5.0.json) |
+| Redis 6.0 | 内存键值数据库（6.0 分支） | [redis-6.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-6.0.json) |
+| Redis 6.2 | 内存键值数据库（6.2 分支） | [redis-6.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-6.2.json) |
+| Redis 7.0 | 内存键值数据库（7.0 分支） | [redis-7.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-7.0.json) |
+| Redis 7.2 | 内存键值数据库（7.2 分支） | [redis-7.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-7.2.json) |
+| Redis 7.4 | 内存键值数据库（7.4 分支） | [redis-7.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-7.4.json) |
+| Redis 8.0 | 内存键值数据库（8.0 分支） | [redis-8.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-8.0.json) |
+| Redis 8.2 | 内存键值数据库（8.2 分支） | [redis-8.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-8.2.json) |
+| Redis 8.4 | 内存键值数据库（8.4 分支） | [redis-8.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-8.4.json) |
+| Redis 8.6 | 内存键值数据库（8.6 分支） | [redis-8.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-8.6.json) |
+| Redpanda | Kafka 兼容流平台 | [redpanda](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redpanda.json) |
+| Redpanda Connect | Redpanda 数据连接器 | [redpanda-connect](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redpanda-connect.json) |
+| Redpanda Console | Redpanda Web 控制台 | [redpanda-console](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redpanda-console.json) |
+| Registry | OCI 镜像仓库服务 | [registry](https://raw.githubusercontent.com/designinlife/version-checker/main/data/registry.json) |
+| Reqable App | API 调试与抓包工具 | [reqable-app](https://raw.githubusercontent.com/designinlife/version-checker/main/data/reqable-app.json) |
+| Res Downloader | 资源下载工具 | [res-downloader](https://raw.githubusercontent.com/designinlife/version-checker/main/data/res-downloader.json) |
+| ripgrep | 高速文本搜索工具 | [ripgrep](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ripgrep.json) |
+| Robustmq | 云原生消息队列 | [robustmq](https://raw.githubusercontent.com/designinlife/version-checker/main/data/robustmq.json) |
+| Rocketmq | 分布式消息中间件 | [rocketmq](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rocketmq.json) |
+| Rocksdb | 嵌入式键值存储引擎 | [rocksdb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rocksdb.json) |
+| Rocky Linux 10 | Rocky Linux 发行版镜像（10 分支） | [rockylinux-10](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rockylinux-10.json) |
+| Rocky Linux 8 | Rocky Linux 发行版镜像（8 分支） | [rockylinux-8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rockylinux-8.json) |
+| Rocky Linux 9 | Rocky Linux 发行版镜像（9 分支） | [rockylinux-9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rockylinux-9.json) |
+| Rsync | 文件同步工具 | [rsync](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rsync.json) |
+| Ruff | Python 代码检查与格式化工具 | [ruff](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ruff.json) |
+| runc | OCI 容器运行时 | [runc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/runc.json) |
+| Rustdesk | 远程桌面工具 | [rustdesk](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rustdesk.json) |
+| s3fs-fuse | S3 FUSE 挂载工具 | [s3fs-fuse](https://raw.githubusercontent.com/designinlife/version-checker/main/data/s3fs-fuse.json) |
+| Sarasa Gothic | 中英文等宽字体 | [Sarasa-Gothic](https://raw.githubusercontent.com/designinlife/version-checker/main/data/Sarasa-Gothic.json) |
+| Sd | 命令行文本替换工具 | [sd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sd.json) |
+| Serf | 服务发现与编排工具 | [serf](https://raw.githubusercontent.com/designinlife/version-checker/main/data/serf.json) |
+| SFTPGo | SFTP 与文件传输服务器 | [sftpgo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sftpgo.json) |
+| Sigma | OCI 制品管理平台 | [sigma](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sigma.json) |
+| Sing Box | 通用代理平台 | [sing-box](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sing-box.json) |
+| Skopeo | 容器镜像复制工具 | [skopeo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/skopeo.json) |
+| slirp4netns | Rootless 容器网络工具 | [slirp4netns](https://raw.githubusercontent.com/designinlife/version-checker/main/data/slirp4netns.json) |
+| Solon | Java 应用开发框架 | [solon](https://raw.githubusercontent.com/designinlife/version-checker/main/data/solon.json) |
+| SpacetimeDB | 实时数据库与应用后端 | [SpacetimeDB](https://raw.githubusercontent.com/designinlife/version-checker/main/data/SpacetimeDB.json) |
+| Spark | 分布式计算引擎 | [spark](https://raw.githubusercontent.com/designinlife/version-checker/main/data/spark.json) |
+| Sqlite | 嵌入式关系数据库 | [sqlite](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sqlite.json) |
+| Srs | 实时音视频服务器 | [srs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/srs.json) |
+| static-curl | 静态构建 cURL | [static-curl](https://raw.githubusercontent.com/designinlife/version-checker/main/data/static-curl.json) |
+| Sublime | 代码文本编辑器 | [sublime](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sublime.json) |
+| Subversion | 集中式版本控制系统 | [subversion](https://raw.githubusercontent.com/designinlife/version-checker/main/data/subversion.json) |
+| SwitchHosts | Hosts 文件管理工具 | [SwitchHosts](https://raw.githubusercontent.com/designinlife/version-checker/main/data/SwitchHosts.json) |
+| Swoole | PHP 协程网络扩展 | [swoole](https://raw.githubusercontent.com/designinlife/version-checker/main/data/swoole.json) |
+| Syncthing | 持续文件同步工具 | [syncthing](https://raw.githubusercontent.com/designinlife/version-checker/main/data/syncthing.json) |
+| Tabby | 跨平台终端应用 | [tabby](https://raw.githubusercontent.com/designinlife/version-checker/main/data/tabby.json) |
+| Tailscale | 基于 WireGuard 的组网工具 | [tailscale](https://raw.githubusercontent.com/designinlife/version-checker/main/data/tailscale.json) |
+| tcpdump | 网络抓包工具 | [tcpdump](https://raw.githubusercontent.com/designinlife/version-checker/main/data/tcpdump.json) |
+| tcping | TCP 连通性探测工具 | [tcping](https://raw.githubusercontent.com/designinlife/version-checker/main/data/tcping.json) |
+| tcpslice | pcap 文件切片工具 | [tcpslice](https://raw.githubusercontent.com/designinlife/version-checker/main/data/tcpslice.json) |
+| Teleport | 基础设施访问平台 | [teleport](https://raw.githubusercontent.com/designinlife/version-checker/main/data/teleport.json) |
+| TinyGo | Go 编译器工具链 | [tinygo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/tinygo.json) |
+| TortoiseGit | Windows Git 图形客户端 | [TortoiseGit](https://raw.githubusercontent.com/designinlife/version-checker/main/data/TortoiseGit.json) |
+| TortoiseSVN | Windows SVN 图形客户端 | [TortoiseSVN](https://raw.githubusercontent.com/designinlife/version-checker/main/data/TortoiseSVN.json) |
+| Trippy | 网络路径诊断工具 | [trippy](https://raw.githubusercontent.com/designinlife/version-checker/main/data/trippy.json) |
+| Upx | 可执行文件压缩工具 | [upx](https://raw.githubusercontent.com/designinlife/version-checker/main/data/upx.json) |
+| utf8proc | Unicode 文本处理库 | [utf8proc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/utf8proc.json) |
+| util-linux | Linux 基础系统工具集 | [util-linux](https://raw.githubusercontent.com/designinlife/version-checker/main/data/util-linux.json) |
+| uv | Python 包与项目管理工具 | [uv](https://raw.githubusercontent.com/designinlife/version-checker/main/data/uv.json) |
+| Vagrant | 虚拟开发环境管理工具 | [vagrant](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vagrant.json) |
+| Valkey | Redis 兼容内存数据库 | [valkey](https://raw.githubusercontent.com/designinlife/version-checker/main/data/valkey.json) |
+| Vault | 密钥与机密管理工具 | [vault](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vault.json) |
+| Vaultwarden | Bitwarden 兼容密码服务 | [vaultwarden](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vaultwarden.json) |
+| VDHCoApp | Video DownloadHelper 配套应用 | [vdhcoapp](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vdhcoapp.json) |
+| Ventoy | 多系统启动盘制作工具 | [ventoy](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ventoy.json) |
+| Virtualbox | 桌面虚拟机管理工具 | [virtualbox](https://raw.githubusercontent.com/designinlife/version-checker/main/data/virtualbox.json) |
+| Visual Studio Code | 代码编辑器 | [vscode](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vscode.json) |
+| VMR | 版本管理工具 | [vmr](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vmr.json) |
+| VSCodium | 开源 VS Code 构建 | [vscodium](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vscodium.json) |
+| Vtracer | 图像矢量化工具 | [vtracer](https://raw.githubusercontent.com/designinlife/version-checker/main/data/vtracer.json) |
+| watchexec | 文件变更监听执行工具 | [watchexec](https://raw.githubusercontent.com/designinlife/version-checker/main/data/watchexec.json) |
+| wget2 | 现代化下载工具 | [wget2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/wget2.json) |
+| Windhawk | Windows 桌面增强工具 | [windhawk](https://raw.githubusercontent.com/designinlife/version-checker/main/data/windhawk.json) |
+| Windows Terminal | Windows 终端应用 | [Windows.Terminal](https://raw.githubusercontent.com/designinlife/version-checker/main/data/Windows.Terminal.json) |
+| Wolfssl | 轻量级 TLS 库 | [wolfssl](https://raw.githubusercontent.com/designinlife/version-checker/main/data/wolfssl.json) |
+| xh | HTTP 命令行客户端 | [xh](https://raw.githubusercontent.com/designinlife/version-checker/main/data/xh.json) |
+| xxHash | 高速哈希算法库 | [xxhash](https://raw.githubusercontent.com/designinlife/version-checker/main/data/xxhash.json) |
+| XZ Utils | XZ 压缩工具 | [xz](https://raw.githubusercontent.com/designinlife/version-checker/main/data/xz.json) |
+| yamllint | YAML 静态检查工具 | [yamllint](https://raw.githubusercontent.com/designinlife/version-checker/main/data/yamllint.json) |
+| Youki | Rust OCI 容器运行时 | [youki](https://raw.githubusercontent.com/designinlife/version-checker/main/data/youki.json) |
+| yq | YAML/JSON/TOML 处理工具 | [yq](https://raw.githubusercontent.com/designinlife/version-checker/main/data/yq.json) |
+| ZeroOmega | 浏览器代理切换插件 | [ZeroOmega](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ZeroOmega.json) |
+| Zlib | 通用压缩库 | [zlib](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zlib.json) |
+| zlib-ng | 新一代 zlib 兼容库 | [zlib-ng](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zlib-ng.json) |
+| Zookeeper 3.4 | 分布式协调服务（3.4 分支） | [zookeeper-3.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zookeeper-3.4.json) |
+| Zookeeper 3.5 | 分布式协调服务（3.5 分支） | [zookeeper-3.5](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zookeeper-3.5.json) |
+| Zookeeper 3.6 | 分布式协调服务（3.6 分支） | [zookeeper-3.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zookeeper-3.6.json) |
+| Zookeeper 3.7 | 分布式协调服务（3.7 分支） | [zookeeper-3.7](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zookeeper-3.7.json) |
+| Zookeeper 3.8 | 分布式协调服务（3.8 分支） | [zookeeper-3.8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zookeeper-3.8.json) |
+| Zookeeper 3.9 | 分布式协调服务（3.9 分支） | [zookeeper-3.9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zookeeper-3.9.json) |
+| Zoxide | 智能目录跳转工具 | [zoxide](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zoxide.json) |
+| Zstandard | Zstandard 压缩工具 | [zstd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/zstd.json) |
 
 ## Add Source
 
