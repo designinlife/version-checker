@@ -729,8 +729,8 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "gitea"
 release = true
 download_urls = [
-    "https://gitea.com/gitea/act_runner/releases/download/v{version}/act_runner-{version}-linux-amd64",
-    "https://gitea.com/gitea/act_runner/releases/download/v{version}/act_runner-{version}-windows-amd64.exe",
+    "https://gitea.com/gitea/runner/releases/download/v{version}/act_runner-{version}-linux-amd64.xz",
+    "https://gitea.com/gitea/runner/releases/download/v{version}/act_runner-{version}-windows-amd64.exe.xz",
     "https://gitea.com/gitea/act_runner/archive/v{version}.tar.gz",
 ]
 
