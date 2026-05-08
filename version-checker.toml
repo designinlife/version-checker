@@ -723,8 +723,8 @@ download_urls = [
 [[softwares]]
 name = "act_runner"
 owner = "gitea"
-repo = "act_runner"
-url = "https://gitea.com/gitea/act_runner"
+repo = "runner"
+url = "https://gitea.com/gitea/runner"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "gitea"
 release = true
