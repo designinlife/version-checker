@@ -4386,3 +4386,15 @@ release = true
 download_urls = [
     "https://github.com/usebruno/bruno/releases/download/v{version}/bruno_{version}_x64_win.zip",
 ]
+
+[[softwares]]
+name = "MySQL2PG"
+repo = "xfg0218/MySQL2PG"
+url = "https://github.com/xfg0218/MySQL2PG"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/xfg0218/MySQL2PG/releases/download/v{version}/mysql2pg_linux_amd64#mysql2pg_{version}_linux_amd64",
+    "https://github.com/xfg0218/MySQL2PG/releases/download/v{version}/mysql2pg_windows_amd64.exe#mysql2pg_{version}_windows_amd64.exe",
+    "https://github.com/xfg0218/MySQL2PG/archive/refs/tags/v{version}.tar.gz",
+]
