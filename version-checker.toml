@@ -4376,3 +4376,13 @@ download_urls = [
     "https://github.com/sentrux/sentrux/releases/download/v{version}/sentrux-windows-x86_64.exe#sentrux-v{version}-windows-x86_64.exe",
     "https://github.com/sentrux/sentrux/archive/refs/tags/v{version}.tar.gz",
 ]
+
+[[softwares]]
+name = "bruno"
+repo = "usebruno/bruno"
+url = "https://github.com/usebruno/bruno"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/usebruno/bruno/releases/download/v{version}/bruno_{version}_x64_win.zip",
+]
