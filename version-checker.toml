@@ -4422,3 +4422,14 @@ download_urls = [
     "https://github.com/jlcodes99/cockpit-tools/releases/download/v{version}/Cockpit.Tools_{version}_x64-setup.exe",
     "https://github.com/jlcodes99/cockpit-tools/archive/refs/tags/v{version}.tar.gz",
 ]
+
+[[softwares]]
+name = "etcd-workbench"
+repo = "tzfun/etcd-workbench"
+url = "https://github.com/tzfun/etcd-workbench"
+pattern = "^App-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/tzfun/etcd-workbench/releases/download/App-{version}/etcd-workbench-{version}-windows-x86_64.exe",
+    "https://github.com/tzfun/etcd-workbench/archive/refs/tags/App-{version}.tar.gz",
+]
