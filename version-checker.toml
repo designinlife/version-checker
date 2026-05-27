@@ -4433,3 +4433,15 @@ download_urls = [
     "https://github.com/tzfun/etcd-workbench/releases/download/App-{version}/etcd-workbench-{version}-windows-x86_64.exe",
     "https://github.com/tzfun/etcd-workbench/archive/refs/tags/App-{version}.tar.gz",
 ]
+
+[[softwares]]
+name = "sonar"
+repo = "raskrebs/sonar"
+url = "https://github.com/raskrebs/sonar"
+pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/raskrebs/sonar/releases/download/v{version}/sonar_linux_amd64.tar.gz#sonar_v{version}_linux_amd64.tar.gz",
+    "https://github.com/raskrebs/sonar/releases/download/v{version}/sonar_windows_amd64.zip#sonar_v{version}_windows_amd64.zip",
+    "https://github.com/raskrebs/sonar/archive/refs/tags/v{version}.tar.gz",
+]
