@@ -51,6 +51,7 @@ curl -sSL --fail https://raw.githubusercontent.com/designinlife/version-checker/
 | bootc | 容器化系统启动工具 | [bootc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/bootc.json) |
 | bottom | 终端系统监控工具 | [bottom](https://raw.githubusercontent.com/designinlife/version-checker/main/data/bottom.json) |
 | Brotli | Brotli 压缩库 | [brotli](https://raw.githubusercontent.com/designinlife/version-checker/main/data/brotli.json) |
+| Bruno | API 客户端 | [bruno](https://raw.githubusercontent.com/designinlife/version-checker/main/data/bruno.json) |
 | btop | 终端资源监控工具 | [btop](https://raw.githubusercontent.com/designinlife/version-checker/main/data/btop.json) |
 | Bubblewrap | Linux 沙箱隔离工具 | [bubblewrap](https://raw.githubusercontent.com/designinlife/version-checker/main/data/bubblewrap.json) |
 | Buf | Protocol Buffers 工具链 | [buf](https://raw.githubusercontent.com/designinlife/version-checker/main/data/buf.json) |
@@ -70,6 +71,7 @@ curl -sSL --fail https://raw.githubusercontent.com/designinlife/version-checker/
 | Clashmi | 代理客户端 | [clashmi](https://raw.githubusercontent.com/designinlife/version-checker/main/data/clashmi.json) |
 | CLIProxyAPI | 命令行代理 API 工具 | [CLIProxyAPI](https://raw.githubusercontent.com/designinlife/version-checker/main/data/CLIProxyAPI.json) |
 | Cloudberry Database | MPP 分析型数据库 | [cloudberrydb](https://raw.githubusercontent.com/designinlife/version-checker/main/data/cloudberrydb.json) |
+| Cockpit Tools | Cockpit 辅助工具集 | [cockpit-tools](https://raw.githubusercontent.com/designinlife/version-checker/main/data/cockpit-tools.json) |
 | code-server | 浏览器版 VS Code 服务 | [code-server](https://raw.githubusercontent.com/designinlife/version-checker/main/data/code-server.json) |
 | Codon | 高性能 Python 编译器 | [codon](https://raw.githubusercontent.com/designinlife/version-checker/main/data/codon.json) |
 | Composer 1.10 | PHP 依赖管理工具（1.10 分支） | [composer-1.10](https://raw.githubusercontent.com/designinlife/version-checker/main/data/composer-1.10.json) |
@@ -193,7 +195,9 @@ curl -sSL --fail https://raw.githubusercontent.com/designinlife/version-checker/
 | Easy Rsa | OpenVPN 证书管理工具 | [easy-rsa](https://raw.githubusercontent.com/designinlife/version-checker/main/data/easy-rsa.json) |
 | EasyTier | 异地组网工具 | [easytier](https://raw.githubusercontent.com/designinlife/version-checker/main/data/easytier.json) |
 | Elasticsearch | 分布式搜索与分析引擎 | [elasticsearch](https://raw.githubusercontent.com/designinlife/version-checker/main/data/elasticsearch.json) |
+| Engram | 终端字符艺术工具 | [engram](https://raw.githubusercontent.com/designinlife/version-checker/main/data/engram.json) |
 | Etcd | 分布式键值存储 | [etcd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/etcd.json) |
+| Etcd Workbench | Etcd 桌面管理工具 | [etcd-workbench](https://raw.githubusercontent.com/designinlife/version-checker/main/data/etcd-workbench.json) |
 | Eza | 现代化目录列表工具 | [eza](https://raw.githubusercontent.com/designinlife/version-checker/main/data/eza.json) |
 | fd | 快速文件查找工具 | [fd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/fd.json) |
 | FFmpeg 6.0 | 音视频处理工具（6.0 分支） | [ffmpeg-6.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ffmpeg-6.0.json) |
@@ -344,6 +348,7 @@ curl -sSL --fail https://raw.githubusercontent.com/designinlife/version-checker/
 | Kafka 4.0 | 分布式流式消息平台（4.0 分支） | [kafka-4.0](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-4.0.json) |
 | Kafka 4.1 | 分布式流式消息平台（4.1 分支） | [kafka-4.1](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-4.1.json) |
 | Kafka 4.2 | 分布式流式消息平台（4.2 分支） | [kafka-4.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-4.2.json) |
+| Kafka 4.3 | 分布式流式消息平台（4.3 分支） | [kafka-4.3](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kafka-4.3.json) |
 | Keepassxc | 密码管理器 | [keepassxc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/keepassxc.json) |
 | Keystore Explorer | 密钥库管理工具 | [keystore-explorer](https://raw.githubusercontent.com/designinlife/version-checker/main/data/keystore-explorer.json) |
 | Kibana | Elastic 数据可视化平台 | [kibana](https://raw.githubusercontent.com/designinlife/version-checker/main/data/kibana.json) |
@@ -389,6 +394,7 @@ curl -sSL --fail https://raw.githubusercontent.com/designinlife/version-checker/
 | MSYS2 | Windows Unix 风格开发环境 | [msys2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/msys2.json) |
 | Mwget | 多线程下载工具 | [mwget](https://raw.githubusercontent.com/designinlife/version-checker/main/data/mwget.json) |
 | Mydumper | MySQL 逻辑备份工具 | [mydumper](https://raw.githubusercontent.com/designinlife/version-checker/main/data/mydumper.json) |
+| MySQL2PG | MySQL 到 PostgreSQL 迁移工具 | [MySQL2PG](https://raw.githubusercontent.com/designinlife/version-checker/main/data/MySQL2PG.json) |
 | NATS Server | NATS 消息服务器 | [nats-server](https://raw.githubusercontent.com/designinlife/version-checker/main/data/nats-server.json) |
 | Navicat | 数据库管理客户端 | [Navicat](https://raw.githubusercontent.com/designinlife/version-checker/main/data/Navicat.json) |
 | netavark | Podman 网络栈 | [netavark](https://raw.githubusercontent.com/designinlife/version-checker/main/data/netavark.json) |
@@ -496,6 +502,7 @@ curl -sSL --fail https://raw.githubusercontent.com/designinlife/version-checker/
 | Redis 8.2 | 内存键值数据库（8.2 分支） | [redis-8.2](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-8.2.json) |
 | Redis 8.4 | 内存键值数据库（8.4 分支） | [redis-8.4](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-8.4.json) |
 | Redis 8.6 | 内存键值数据库（8.6 分支） | [redis-8.6](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-8.6.json) |
+| Redis 8.8 | 内存键值数据库（8.8 分支） | [redis-8.8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redis-8.8.json) |
 | Redpanda | Kafka 兼容流平台 | [redpanda](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redpanda.json) |
 | Redpanda Connect | Redpanda 数据连接器 | [redpanda-connect](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redpanda-connect.json) |
 | Redpanda Console | Redpanda Web 控制台 | [redpanda-console](https://raw.githubusercontent.com/designinlife/version-checker/main/data/redpanda-console.json) |
@@ -510,14 +517,17 @@ curl -sSL --fail https://raw.githubusercontent.com/designinlife/version-checker/
 | Rocky Linux 8 | Rocky Linux 发行版镜像（8 分支） | [rockylinux-8](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rockylinux-8.json) |
 | Rocky Linux 9 | Rocky Linux 发行版镜像（9 分支） | [rockylinux-9](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rockylinux-9.json) |
 | Rsync | 文件同步工具 | [rsync](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rsync.json) |
+| RTK | AI 工具运行套件 | [rtk](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rtk.json) |
 | Ruff | Python 代码检查与格式化工具 | [ruff](https://raw.githubusercontent.com/designinlife/version-checker/main/data/ruff.json) |
 | runc | OCI 容器运行时 | [runc](https://raw.githubusercontent.com/designinlife/version-checker/main/data/runc.json) |
 | Rustdesk | 远程桌面工具 | [rustdesk](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rustdesk.json) |
+| Rustnet | 网络诊断工具 | [rustnet](https://raw.githubusercontent.com/designinlife/version-checker/main/data/rustnet.json) |
 | s3fs-fuse | S3 FUSE 挂载工具 | [s3fs-fuse](https://raw.githubusercontent.com/designinlife/version-checker/main/data/s3fs-fuse.json) |
 | Sarasa Gothic | 中英文等宽字体 | [Sarasa-Gothic](https://raw.githubusercontent.com/designinlife/version-checker/main/data/Sarasa-Gothic.json) |
 | Sd | 命令行文本替换工具 | [sd](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sd.json) |
 | Serf | 服务发现与编排工具 | [serf](https://raw.githubusercontent.com/designinlife/version-checker/main/data/serf.json) |
 | SFTPGo | SFTP 与文件传输服务器 | [sftpgo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sftpgo.json) |
+| Sentrux | 代码架构质量分析工具 | [sentrux](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sentrux.json) |
 | Sigma | OCI 制品管理平台 | [sigma](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sigma.json) |
 | Sing Box | 通用代理平台 | [sing-box](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sing-box.json) |
 | Skopeo | 容器镜像复制工具 | [skopeo](https://raw.githubusercontent.com/designinlife/version-checker/main/data/skopeo.json) |
@@ -528,6 +538,7 @@ curl -sSL --fail https://raw.githubusercontent.com/designinlife/version-checker/
 | Sqlite | 嵌入式关系数据库 | [sqlite](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sqlite.json) |
 | Srs | 实时音视频服务器 | [srs](https://raw.githubusercontent.com/designinlife/version-checker/main/data/srs.json) |
 | static-curl | 静态构建 cURL | [static-curl](https://raw.githubusercontent.com/designinlife/version-checker/main/data/static-curl.json) |
+| sub2api | 订阅转换 API 工具 | [sub2api](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sub2api.json) |
 | Sublime | 代码文本编辑器 | [sublime](https://raw.githubusercontent.com/designinlife/version-checker/main/data/sublime.json) |
 | Subversion | 集中式版本控制系统 | [subversion](https://raw.githubusercontent.com/designinlife/version-checker/main/data/subversion.json) |
 | SwitchHosts | Hosts 文件管理工具 | [SwitchHosts](https://raw.githubusercontent.com/designinlife/version-checker/main/data/SwitchHosts.json) |
