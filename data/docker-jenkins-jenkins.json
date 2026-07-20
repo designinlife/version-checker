@@ -1,1 +1,1 @@
-{"name":"docker-jenkins-jenkins","repo":"jenkins/jenkins","tags":[{"name":"2.568.1","full_size":289828561,"v2":true,"tag_last_pushed":"2026-07-09T17:51:06.850391Z"}],"suffix":["-lts-jdk21"],"fixed_tags":[],"latest_tags":["2.568.1"],"created_time":"2026-07-20 04:02:14"}
+{"name":"docker-jenkins-jenkins","repo":"jenkins/jenkins","tags":[{"name":"2.568.1","full_size":289828561,"v2":true,"tag_last_pushed":"2026-07-09T17:51:06.850391Z"}],"suffix":["-lts-jdk21"],"fixed_tags":[],"latest_tags":["2.568.1"],"created_time":"2026-07-20 16:03:04"}
