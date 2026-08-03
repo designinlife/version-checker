@@ -721,7 +721,7 @@ download_urls = [
 ]
 
 [[softwares]]
-name = "act_runner"
+name = "gitea-runner"
 owner = "gitea"
 repo = "runner"
 url = "https://gitea.com/gitea/runner"
@@ -729,9 +729,8 @@ pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "gitea"
 release = true
 download_urls = [
-    "https://gitea.com/gitea/runner/releases/download/v{version}/act_runner-{version}-linux-amd64.xz",
-    "https://gitea.com/gitea/runner/releases/download/v{version}/act_runner-{version}-windows-amd64.exe.xz",
-    "https://gitea.com/gitea/act_runner/archive/v{version}.tar.gz",
+    "https://gitea.com/gitea/runner/releases/download/v{version}/gitea-runner-{version}-linux-amd64.xz",
+    "https://gitea.com/gitea/runner/archive/v{version}.tar.gz",
 ]
 
 [[softwares]]
