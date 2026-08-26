@@ -63,6 +63,18 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "just"
+repo = "casey/just"
+url = "https://github.com/casey/just"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/casey/just/releases/download/{version}/just-{version}-x86_64-pc-windows-msvc.zip",
+    "https://github.com/casey/just/releases/download/{version}/just-{version}-x86_64-unknown-linux-musl.tar.gz",
+    "https://github.com/casey/just/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "hoppscotch"
 repo = "hoppscotch/hoppscotch"
 url = "https://github.com/hoppscotch/hoppscotch"
