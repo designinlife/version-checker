@@ -764,9 +764,7 @@ parser = 'codeberg'
 host = 'code.forgejo.org'
 release = true
 download_urls = [
-    "https://code.forgejo.org/forgejo/runner/releases/download/v{version}/forgejo-runner-{version}-linux-amd64",
     "https://code.forgejo.org/forgejo/runner/releases/download/v{version}/forgejo-runner-{version}-linux-amd64.xz",
-    "https://code.forgejo.org/forgejo/runner/releases/download/v{version}/forgejo-runner-{version}-linux-arm64.xz",
 ]
 
 [[softwares]]
