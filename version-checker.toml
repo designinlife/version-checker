@@ -3233,8 +3233,8 @@ url = "https://github.com/hanshuaikang/Nping"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
-    "https://github.com/hanshuaikang/Nping/releases/download/v{version}/nping-x86_64-pc-windows-msvc.zip#nping-{version}-x86_64-pc-windows-msvc.zip",
-    "https://github.com/hanshuaikang/Nping/releases/download/v{version}/nping-x86_64-unknown-linux-gnu.tar.gz#nping-{version}-x86_64-unknown-linux-gnu.tar.gz",
+    "https://github.com/hanshuaikang/NBping/releases/download/v{version}/nbping-x86_64-pc-windows-msvc.zip#nbping-{version}-x86_64-pc-windows-msvc.zip",
+    "https://github.com/hanshuaikang/NBping/releases/download/v{version}/nbping-x86_64-unknown-linux-gnu.tar.gz#nbping-{version}-x86_64-unknown-linux-gnu.tar.gz",
     "https://github.com/hanshuaikang/Nping/archive/refs/tags/v{version}.tar.gz",
 ]
 
