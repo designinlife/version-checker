@@ -4296,8 +4296,9 @@ url = "https://github.com/mr-karan/doggo"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
-    "https://github.com/mr-karan/doggo/releases/download/v{version}/doggo_{version}_Linux_x86_64.tar.gz",
-    "https://github.com/mr-karan/doggo/releases/download/v{version}/doggo_{version}_Windows_x86_64.zip",
+    "https://github.com/mr-karan/doggo/releases/download/v{version}/doggo-linux-x86_64.tar.gz#doggo-{version}-linux-x86_64.tar.gz",
+    "https://github.com/mr-karan/doggo/releases/download/v{version}/doggo-windows-x86_64.zip#doggo-{version}-windows-x86_64.zip",
+    "https://github.com/mr-karan/doggo/releases/download/v{version}/doggo_web_{version}_linux_amd64.tar.gz",
     "https://github.com/mr-karan/doggo/archive/refs/tags/v{version}.tar.gz",
 ]
 
