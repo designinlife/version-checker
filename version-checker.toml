@@ -3247,7 +3247,8 @@ url = "https://easytier.rs/"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
-    "https://github.com/EasyTier/EasyTier/releases/download/v{version}/app-universal-release.apk#app-universal-release-v{version}.apk",
+    "https://github.com/EasyTier/EasyTier/releases/download/v{version}/app-x86_64-release.apk#app-{version}-x86_64-release.apk",
+    "https://github.com/EasyTier/EasyTier/releases/download/v{version}/app-arm64-release.apk#app-{version}-arm64-release.apk",
     "https://github.com/EasyTier/EasyTier/releases/download/v{version}/easytier-gui_{version}_amd64.deb",
     "https://github.com/EasyTier/EasyTier/releases/download/v{version}/easytier-gui_{version}_x64-setup.exe",
     "https://github.com/EasyTier/EasyTier/releases/download/v{version}/easytier-gui_{version}_x64.dmg",
