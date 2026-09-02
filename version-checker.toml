@@ -357,7 +357,7 @@ url = "https://www.navicat.com/"
 pattern = "^Navicat Premium \\(Windows\\) version (?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 parser = "navicat"
 download_urls = [
-    "https://dn.navicat.com/download/navicat{major}{minor}_premium_cs_x64.exe#navicat_premium_cs_x64_v{version}.exe",
+    "https://dn.navicat.com/download/navicat{major}_premium_cs_x64.exe#navicat_premium_cs_x64_v{version}.exe",
 ]
 
 [[softwares]]
