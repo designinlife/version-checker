@@ -1635,15 +1635,6 @@ download_urls = [
 ]
 
 [[softwares]]
-name = "libgd"
-repo = "libgd/libgd"
-url = "https://libgd.github.io/"
-pattern = "^gd-(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-download_urls = [
-    "https://github.com/libgd/libgd/releases/download/gd-{version}/libgd-{version}.tar.gz",
-]
-
-[[softwares]]
 name = "corretto-8"
 repo = "corretto/corretto-8"
 url = "https://aws.amazon.com/corretto/"
@@ -1777,16 +1768,6 @@ release = true
 split = 2
 download_urls = [
     "https://getcomposer.org/download/{version}/composer.phar#composer-{major}.{minor}.{patch}.phar",
-]
-
-[[softwares]]
-name = "utf8proc"
-repo = "JuliaStrings/utf8proc"
-url = "https://github.com/JuliaStrings/utf8proc"
-pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
-release = true
-download_urls = [
-    "https://github.com/JuliaStrings/utf8proc/archive/refs/tags/v{version}.tar.gz",
 ]
 
 [[softwares]]
