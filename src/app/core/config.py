@@ -16,6 +16,7 @@ class AppSettingSoftItem(BaseModel):
     filter: Optional[str] = Field(default=None)
     split: int = Field(default=0)
     disabled: bool = Field(default=False)
+    recheck_download: bool = Field(default=False)
     download_dynamic: bool = Field(default=False, description="动态生成下载地址")
     download_urls: List[str] = Field(default_factory=list)
     condition: Optional[str] = None  # 条件表达式: major >= 6 && minor < 5 或 major >= 6
