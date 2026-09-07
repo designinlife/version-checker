@@ -3467,7 +3467,7 @@ repo = "FFmpeg/FFmpeg"
 url = "https://github.com/FFmpeg/FFmpeg"
 pattern = "^n(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.?(?P<patch>\\d+)?)$"
 split = 2
-filter = "> 8.0.0"
+filter = "> 8.1.0"
 download_urls = [
     "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n{major}.{minor}-latest-linux64-gpl-{major}.{minor}.tar.xz",
     "https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-n{major}.{minor}-latest-linux64-lgpl-{major}.{minor}.tar.xz",
