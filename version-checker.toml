@@ -359,6 +359,7 @@ parser = "navicat"
 download_urls = [
     "https://dn.navicat.com/download/navicat{major}_premium_cs_x64.exe#navicat_premium_cs_x64_v{version}.exe",
 ]
+recheck_download = true
 
 [[softwares]]
 name = "beekeeper-studio"
