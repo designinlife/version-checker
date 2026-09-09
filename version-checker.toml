@@ -1060,12 +1060,12 @@ split = 1
 
 [[softwares]]
 name = "skopeo"
-repo = "containers/skopeo"
-url = "https://github.com/containers/skopeo"
+repo = "podman-container-tools/skopeo"
+url = "https://github.com/podman-container-tools/skopeo"
 pattern = "^v(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
 release = true
 download_urls = [
-    "https://github.com/containers/skopeo/archive/refs/tags/v{version}.tar.gz",
+    "https://github.com/podman-container-tools/skopeo/archive/refs/tags/v{version}.tar.gz",
 ]
 
 [[softwares]]
