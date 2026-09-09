@@ -2732,6 +2732,7 @@ url = "https://www.google.com/chrome/"
 pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)\\.(?P<build>\\d+))$"
 parser = "chrome"
 download_urls = []
+recheck_download = true
 
 [[softwares]]
 name = "firefox"
