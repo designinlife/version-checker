@@ -3081,6 +3081,19 @@ download_urls = [
 ]
 
 [[softwares]]
+name = "rustfs"
+repo = "rustfs/rustfs"
+url = "https://rclone.org/"
+pattern = "^(?P<version>(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+))$"
+release = true
+download_urls = [
+    "https://github.com/rustfs/rustfs/releases/download/{version}/rustfs-linux-x86_64-gnu-v{version}.zip",
+    "https://github.com/rustfs/rustfs/releases/download/{version}/rustfs-linux-x86_64-musl-v{version}.zip",
+    "https://github.com/rustfs/rustfs/releases/download/{version}/rustfs-windows-x86_64-v{version}.zip",
+    "https://github.com/rustfs/rustfs/archive/refs/tags/{version}.tar.gz",
+]
+
+[[softwares]]
 name = "minio"
 repo = "minio/minio"
 url = "https://min.io/"
